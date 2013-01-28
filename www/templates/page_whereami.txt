@@ -5,11 +5,14 @@
 {if !$rsp.ok}
 <p class="error">{$rsp.error|escape}</p>
 
+{elseif $rsp.choices|@count == 0}
+<p>Hrm... we have no idea where you are.</p>
 {else}
 <ul>
 {foreach from=$rsp.choices item="row"}
 <li id="woe-{$row.woe_id|escape}" class="location">{if $row.name}{$row.name|escape}{else}{$row.label|escape}{/if}</li>
 {/foreach}
+<li>No no no. It's all wrong.</li>
 </ul>
 
 {/if}
