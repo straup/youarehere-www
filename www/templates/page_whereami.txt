@@ -1,0 +1,23 @@
+{include file="inc_head.txt"}
+
+{if $step=='choose'}
+
+{if !$rsp.ok}
+<p class="error">{$rsp.error|escape}</p>
+
+{else}
+<ul>
+{foreach from=$rsp.choices item="row"}
+<li id="woe-{$row.woe_id|escape}" class="location">{if $row.name}{$row.name|escape}{else}{$row.label|escape}{/if}</li>
+{/foreach}
+</ul>
+
+{/if}
+
+{else}
+
+<p>Get location here...</p>
+
+{/if}
+
+{include file="inc_foot.txt"}
