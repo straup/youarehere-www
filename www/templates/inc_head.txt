@@ -15,6 +15,8 @@
     <link href="{$cfg.abs_root_url}css/admin.source.css" rel="stylesheet">
 {/if}
 
+    <link href="{$cfg.abs_root_url}css/whereami.css" rel="stylesheet">
+
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="{$cfg.abs_root}javascript/html5.js"></script>
@@ -62,3 +64,5 @@
         </div>
       </div>
     </div>
+
+    <div id="main">

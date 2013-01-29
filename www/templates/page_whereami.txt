@@ -5,22 +5,42 @@
 {if !$rsp.ok}
 <p class="error">{$rsp.error|escape}</p>
 
-{elseif $rsp.choices|@count == 0}
+{elseif $rsp.data|@count == 0}
 <p>Hrm... we have no idea where you are.</p>
 {else}
-<ul>
-{foreach from=$rsp.choices item="row"}
-<li id="woe-{$row.woe_id|escape}" class="location">{if $row.name}{$row.name|escape}{else}{$row.label|escape}{/if}</li>
+
+<form id="choices" method="POST" action="{$cfg.abs_root_url}whereami/">
+<input type="hidden" name="choose" value="1" />
+<input type="hidden" name="lat" value="{$latitude|escape}" />
+<input type="hidden" name="lon" value="{$longitude|escape}" />
+{* TO DO: crumbs... *}
+	
+<select name="whereami">
+{foreach from=$rsp.data item="row"}
+<option value="{$row.woe_id|escape}" id="woe-{$row.woe_id|escape}" class="location">{if $row.name}{$row.name|escape}{else}{$row.label|escape}{/if}</option>
 {/foreach}
-<li>No no no. It's all wrong.</li>
-</ul>
+<option value="-1">No no no. It's all wrong.</option>
+</select>
+
+<br /><input type="submit" value="WORD" />
+</form>
 
 {/if}
 
+{elseif $step=='update'}
+UPDATE...
 {else}
 
-<p>Get location here...</p>
+<ul id="status"><li>Getting started.</li></ul>
 
 {/if}
 
 {include file="inc_foot.txt"}
+
+{if !$step}
+
+<script type="text/javascript">
+$(document).ready( whereami_locate );
+</script>
+
+{/if}
