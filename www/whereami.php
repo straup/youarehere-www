@@ -7,6 +7,11 @@
 
 	$lat = request_float("lat");
 	$lon = request_float("lon");
+	$filter = $GLOBALS['cfg']['reverse_geocode_default_filter'];
+
+	if ($f = request_str("filter")){
+		$filter = $f;
+	}
 
 	if (($lat) && ($lon)){
 
@@ -17,7 +22,7 @@
 
 		# TO DO: choose endpoint by placetype
 
-		$rsp = reverse_geocode($lat, $lon);
+		$rsp = reverse_geocode($lat, $lon, $filter);
 
 		if (post_isset("choose")){
 

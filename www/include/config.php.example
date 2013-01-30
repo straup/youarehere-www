@@ -20,8 +20,19 @@
 	$GLOBALS['cfg']['display_message'] = 0;
 	$GLOBALS['cfg']['display_message_text'] = '';
 
+	# The things doing the actual reverse geocoding. This is still
+	# a bit of a moving target. See also:
 	# https://github.com/straup/flickrgeocoder-java
-	$GLOBALS['cfg']['reverse_geocode_endpoint'] = 'http://localhost:5000';
+
+	$GLOBALS['cfg']['reverse_geocode_endpoints'] = array(
+		'neighbourhoods' => array('http://localhost:5000'),
+		'localities' => array('http://localhost:9000'),
+	);
+
+	# For people who measure neighbourhoods in US Imperial...
+	$GLOBALS['cfg']['reverse_geocode_endpoints']['neighborhoods'] = $GLOBALS['cfg']['reverse_geocode_endpoints']['neighbourhoods'];
+
+	$GLOBALS['cfg']['reverse_geocode_default_filter'] = 'neighbourhoods';
 
 	#
 	# Things you'll certainly need to tweak
