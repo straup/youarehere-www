@@ -49,6 +49,8 @@ RewriteEngine on
 
 RewriteRule   ^whereami/?$		whereami.php		[L]
 
+RewriteRule   ^corrections/([0-9]+)/?$		correction.php?id=$1&%{QUERY_STRING}		[L]
+
 # Login stuff
 
 RewriteRule  ^signup$			signup.php		[L]

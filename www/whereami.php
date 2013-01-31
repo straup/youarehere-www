@@ -47,7 +47,7 @@
 				$correction = array(
 					'latitude' => $lat,
 					'longitude' => $lon,
-					'woeid' => $choice,
+					'woe_id' => $choice,
 				);
 
 				$perspective = post_int32("perspective");
