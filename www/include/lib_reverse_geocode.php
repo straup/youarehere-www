@@ -2,8 +2,6 @@
 
 	loadlib("http");
 
-	$GLOBALS['cfg']['reverse_geocode_endpoint'] = 'http://localhost:5000';
-
 	########################################################################
 
 	function reverse_geocode($lat, $lon, $filter){

@@ -2,8 +2,9 @@
 
 	include("include/init.php");
 	loadlib("reverse_geocode");
+	loadlib("corrections");
 
-	# TO DO: ensure logged in
+	# login_ensure_loggedin();
 
 	$lat = request_float("lat");
 	$lon = request_float("lon");
@@ -28,6 +29,8 @@
 
 			$GLOBALS['smarty']->assign("step", "update");
 
+			# TO DO: something with $choice is -1
+
 			# see also: artisanal integers
 			$choice = post_int64("whereami");
 			$ok = 0;
@@ -39,7 +42,24 @@
 				}
 			}
 
-			# TO DO: finish error checking; update db...
+			if ($ok){
+
+				$correction = array(
+					'latitude' => $lat,
+					'longitude' => $lon,
+					'woeid' => $choice,
+				);
+
+				$perspective = post_int32("perspective");
+
+				if (($perspective) && (corrections_is_valid_perspective($perspective))){
+					$correction['perspective'] = $perspective;
+				}
+
+				$rsp = corrections_add_correction($correction);
+			}
+
+			# TO DO: notifications (pubsub or ... ?)
 		}
 
 		else {
@@ -47,6 +67,9 @@
 			$GLOBALS['smarty']->assign_by_ref("rsp", $rsp);
 		}
 	}
+
+	$map = corrections_perspective_map();
+	$GLOBALS['smarty']->assign_by_ref("perspective_map", $map);
 
 	$GLOBALS['smarty']->display("page_whereami.txt");
 	exit();

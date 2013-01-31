@@ -24,7 +24,19 @@
 <option value="-1">No no no. It's all wrong.</option>
 </select>
 
-<br /><input type="submit" value="WORD" />
+<br /><br />
+
+<p>...perspective</p>
+
+<select name="perspective">
+<option value="0" />
+{foreach from=$perspective_map item="label" key="id"}
+<option value="0">{$label|escape}</option>
+{/foreach}
+</select>
+
+<br /><br />
+<input type="submit" value="WORD" />
 </form>
 
 {/if}
