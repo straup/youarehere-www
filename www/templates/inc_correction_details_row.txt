@@ -1,5 +1,9 @@
 <tr>
 {foreach from=$correction_row item="value" key="key"}
+{if $key=='user_id' and !"show_users"|@features_is_enabled}
+	{* pass *}
+{else}
+
 <td class="correction-{$key|replace:"_":"-"|escape}">
 
 {if $key=='id'}
@@ -17,5 +21,6 @@
 {/if}
 
 </td>
+{/if}
 {/foreach}
 </tr>

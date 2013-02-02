@@ -2,6 +2,8 @@
 
 	include("include/init.php");
 
+	features_ensure_enabled("show_users");
+
 	$id = get_int32("id");
 
 	if (! $id){
