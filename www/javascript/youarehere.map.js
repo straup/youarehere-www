@@ -59,9 +59,9 @@ function youarehere_map_draw_features(geojson){
 
 	var poly_style = {
 		"color": 'orange',
-		"weight": 2,
+		"weight": 3,
 		"opacity": 1,
-		fillOpacity: .25,
+		fillOpacity: .15,
 		fillColor: 'yellow',
 		"radius": 5,
 	};
@@ -71,7 +71,7 @@ function youarehere_map_draw_features(geojson){
 		"weight": 2,
 		"opacity": 1,
 		fillOpacity: .25,
-		fillColor: 'yellow',
+		fillColor: 'red',
 		"radius": 10,
 	};
 
