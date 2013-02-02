@@ -20,6 +20,13 @@
 	$GLOBALS['cfg']['display_message'] = 0;
 	$GLOBALS['cfg']['display_message_text'] = '';
 
+	# Twitter OAuth stuff
+
+	$GLOBALS['cfg']['twitter_oauth_key'] = '';
+	$GLOBALS['cfg']['twitter_oauth_secret'] = '';	
+	$GLOBALS['cfg']['crypto_oauth_cookie_secret'] = '';	# (see notes in www/sign_oauth.php)
+	$GLOBALS['cfg']['twitter_api_perms'] = 'read';
+
 	# The things doing the actual reverse geocoding. This is still
 	# a bit of a moving target. See also:
 	# https://github.com/straup/flickrgeocoder-java
@@ -30,6 +37,7 @@
 	);
 
 	# For people who measure neighbourhoods in US Imperial...
+
 	$GLOBALS['cfg']['reverse_geocode_endpoints']['neighborhoods'] = $GLOBALS['cfg']['reverse_geocode_endpoints']['neighbourhoods'];
 
 	$GLOBALS['cfg']['reverse_geocode_default_filter'] = 'neighbourhoods';

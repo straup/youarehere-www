@@ -39,3 +39,13 @@ CREATE TABLE `Corrections` (
   KEY `by_woe` (`woe_id`, `created`),
   KEY `by_timestamp` (`created`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `TwitterUsers`;
+
+CREATE TABLE `TwitterUsers` (
+  `user_id` int(11) UNSIGNED NOT NULL,
+  `twitter_id` varchar(20) NOT NULL,
+  `oauth_token` char(34) NOT NULL,
+  `oauth_secret` char(34) NOT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `by_twitterid` (`twitter_id`)
+)  ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

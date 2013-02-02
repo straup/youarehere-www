@@ -1,8 +1,5 @@
-{assign var='page_title' value='Sign in'}
-{include file='inc_head.txt'}
+{include file="inc_head.txt"}
 
-<div class="container">
-	<p class="error">Sign ins are currently disabled.</p>
-</div>
+<p class="error">Sign in is currently disabled. Sorry!</p>
 
-{include file='inc_foot.txt'}
+{include file="inc_foot.txt"}

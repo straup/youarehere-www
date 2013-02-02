@@ -54,7 +54,7 @@
 {else}
 	{if $cfg.enable_feature_signin}
 		{if $cfg.enable_feature_signup}
-			<li{if $nav_tab == 'signup'} class="active"{/if}><a href="{$cfg.abs_root_url}signup">Create New Account</a></li>
+			{if 0}<li{if $nav_tab == 'signup'} class="active"{/if}><a href="{$cfg.abs_root_url}signup">Create New Account</a></li>{/if}
 		{/if}
 			<li{if $nav_tab == 'signin'} class="active"{/if}><a href="{$cfg.abs_root_url}signin">Sign In</a></li>
 	{/if}

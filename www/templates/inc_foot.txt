@@ -8,8 +8,10 @@
         <p>&copy; Company {$smarty.now|date_format:"%Y"}</p>
       </footer>
 
+{if 0}
 {if $cfg.auth_roles.staff}
       	{timings}
+{/if}
 {/if}
 
     </div> <!-- /container -->

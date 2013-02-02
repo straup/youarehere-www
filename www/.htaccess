@@ -53,8 +53,11 @@ RewriteRule   ^corrections/([0-9]+)/?$		correction.php?id=$1&%{QUERY_STRING}		[L
 
 # Login stuff
 
-RewriteRule  ^signup$			signup.php		[L]
-RewriteRule  ^signin$			signin.php		[L]
+RewriteRule	^signin/?$		signin_twitter_oauth.php?%{QUERY_STRING}	[L]
+RewriteRule	^auth/?$		auth_callback_twitter_oauth.php?%{QUERY_STRING}	[L]
+
+# RewriteRule  ^signup$			signup.php		[L]
+# RewriteRule  ^signin$			signin.php		[L]
 RewriteRule  ^signout$			signout.php		[L]
 RewriteRule  ^checkcookie$		checkcookie.php	[L]
 

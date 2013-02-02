@@ -1,0 +1,34 @@
+{include file="inc_head.txt"}
+
+{if $error|@count}
+
+<p class="error">
+{if $error.oauth_missing_secret}
+This website is not properly configured for signing you in using your Twitter credentials. It's not your fault but it is currently unsafe to proceed.
+
+{elseif $error.oauth_missing_cookie}
+Hrm. Your request is missing some of the required data we need to cross the river. It's not clear what the problem is but it is currently unsafe to proceed.
+
+{elseif $error.oauth_access_token}
+There was a problem getting the required auth-y bits (specifically an <code>access token</code>) from Twitter!
+
+{elseif $error.dberr_user}
+There was a database-related problem creating your account. Sad face.
+
+{elseif $error.dberr_twitteruser}
+There was a database-related problem creating your account, specifically associating it with your Twitter account. Curses!
+
+{elseif $error.dberr_twitteruser_update}
+There was a database-related problem updating your Twitter information. Blargh...
+
+{else}
+Ack! The INVISIBLE ERROR CAT hisses at you...
+{/if}
+</p>
+
+{else}
+{* you should never get here *}
+<!-- something is very wrong -->
+{/if}
+
+{include file="inc_foot.txt"}
