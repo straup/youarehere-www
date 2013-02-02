@@ -11,11 +11,11 @@
 
 <p>It appears that you are in:</p>
 
-<form id="choices" method="POST" action="{$cfg.abs_root_url}whereami/">
+<form id="choices" method="POST" action="{$cfg.abs_root_url}">
+{$crumb_key|crumb_input}
 <input type="hidden" name="choose" value="1" />
 <input type="hidden" name="lat" value="{$latitude|escape}" />
 <input type="hidden" name="lon" value="{$longitude|escape}" />
-{* TO DO: crumbs... *}
 	
 <select name="whereami">
 {foreach from=$rsp.data item="row"}
@@ -26,12 +26,12 @@
 
 <br /><br />
 
-<p>...perspective</p>
+<p>You're saying as a:</p>
 
 <select name="perspective">
 <option value="0" />
 {foreach from=$perspective_map item="label" key="id"}
-<option value="0">{$label|escape}</option>
+<option value="{$id|escape}">{$label|escape}</option>
 {/foreach}
 </select>
 

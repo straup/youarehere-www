@@ -3,6 +3,7 @@
 	# TO DO: artisanal integers...
 
 	loadlib("spacetimeid");
+	loadlib("artisanal_integers");
 
 	########################################################################
 
@@ -29,19 +30,14 @@
 
 	function corrections_add_correction($data){
 
-		$now = time();
+		$rsp = artisanal_integers_create();
 
-		# TO DO: error handling, etc.
-		# ALSO: this will never work unless we store the 'id' as a
-		# string – the spacetime IDs are actually 128-bit (confirm)
+		if (! $rsp['ok']){
+			return $rsp;
+		}
 
-		$st_rsp = spacetimeid_encode($data['latitude'], $data['longitude'], $now);
-
-		$data['id'] = $st_rsp['data']['id'];
-		$data['created'] = $now;
-
-		dumper($data);
-		return;
+		$data['id'] = $rsp['integer'];
+		$data['created'] = time();
 
 		$insert = array();
 

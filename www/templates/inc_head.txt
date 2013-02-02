@@ -39,7 +39,7 @@
             <ul class="nav">
               <li{if $nav_tab == 'home'} class="active"{/if}><a href="{$cfg.abs_root_url}">Home</a></li>
               <li{if $nav_tab == 'about'} class="active"{/if}><a href="{$cfg.abs_root_url}about">About</a></li>
-              <li{if $nav_tab == 'contact'} class="active"{/if}><a href="{$cfg.abs_root_url}contact">Contact</a></li>
+              {if 0}<li{if $nav_tab == 'contact'} class="active"{/if}><a href="{$cfg.abs_root_url}contact">Contact</a></li>{/if}
             </ul>
 
             <ul class="nav pull-right">

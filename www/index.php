@@ -19,6 +19,9 @@
 		$filter = $f;
 	}
 
+	$crumb_key = 'whereami';
+	$GLOBALS['smarty']->assign("crumb_key", $crumb_key);
+
 	if (($lat) && ($lon)){
 
 		# TO DO: validate lat,lon
@@ -30,13 +33,14 @@
 
 		$rsp = reverse_geocode($lat, $lon, $filter);
 
-		if (post_isset("choose")){
+		if ((post_isset("choose")) && (crumb_check($crumb_key))){
 
 			$GLOBALS['smarty']->assign("step", "update");
 
 			# TO DO: something with $choice is -1
 
 			# see also: artisanal integers
+
 			$choice = post_int64("whereami");
 			$ok = 0;
 
@@ -50,9 +54,10 @@
 			if ($ok){
 
 				$correction = array(
+					'user_id' => $GLOBALS['cfg']['user']['id'],
+					'woe_id' => $choice,
 					'latitude' => $lat,
 					'longitude' => $lon,
-					'woe_id' => $choice,
 				);
 
 				$perspective = post_int32("perspective");

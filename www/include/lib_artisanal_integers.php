@@ -5,7 +5,7 @@
 	$GLOBALS['artisanal_integers_providers'] = array(
 		'brooklyn',
 		'london',
-		'mission',
+		# 'mission',
 	);
 
 	#################################################################
@@ -31,9 +31,9 @@
 
 	function artisanal_integers_create($provider=null){
 
-		if (! features_is_enabled("artisanal_integers")){
-			return array("ok" => 0, "error" => "artisanal integers are currently disabled", "error_code" => -1);
-		}
+		# if (! features_is_enabled("artisanal_integers")){
+		# 	return array("ok" => 0, "error" => "artisanal integers are currently disabled", "error_code" => -1);
+		# }
 
 		if ($provider){
 
