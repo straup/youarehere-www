@@ -9,8 +9,6 @@
 	}
 
 	loadlib("reverse_geocode");
-	loadlib("corrections");
-	loadlib("urls");
 
 	$lat = request_float("lat");
 	$lon = request_float("lon");

@@ -15,6 +15,13 @@
 
 	########################################################################
 
+	function urls_correction_export_url($correction, $format="json"){
+		$root = urls_corrections_url();
+		return $root . "{$correction['id']}.json";
+	}
+
+	########################################################################
+
 	function urls_correction_short_url($correction){
 		$root = $GLOBALS['cfg']['abs_root_url'] . "c/";
 		$code = base58_encode($correction['id']);

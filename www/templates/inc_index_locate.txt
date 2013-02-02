@@ -1,0 +1,6 @@
+<ul id="status"><li>Getting started by asking permission to look for
+you.</li></ul>
+
+<script type="text/javascript">
+$(document).ready( youarehere_locate );
+</script>

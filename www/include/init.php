@@ -227,6 +227,7 @@
 	#loadlib('versions');
 	loadlib('http');
 
+	loadlib('corrections');
 	loadlib('urls');
 	loadlib('base58');
 

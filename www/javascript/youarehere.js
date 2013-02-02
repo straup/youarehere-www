@@ -1,4 +1,4 @@
-function whereami_locate(){
+function youarehere_locate(){
 
 	var set_status = function(msg){
 		var status = $("#status");

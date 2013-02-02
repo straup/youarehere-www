@@ -1,0 +1,40 @@
+{if !$rsp.ok}
+<p class="error">{$rsp.error|escape}</p>
+
+{elseif $rsp.data|@count == 0}
+<p>Hrm... we have no idea where you are.</p>
+{else}
+
+{* TO DO: add map... *}
+
+<p>It appears that you are in:</p>
+
+<form id="choices" method="POST" action="{$cfg.abs_root_url}">
+{$crumb_key|crumb_input}
+<input type="hidden" name="choose" value="1" />
+<input type="hidden" name="lat" value="{$latitude|escape}" />
+<input type="hidden" name="lon" value="{$longitude|escape}" />
+	
+<select name="whereami">
+{foreach from=$rsp.data item="row"}
+<option value="{$row.woe_id|escape}" id="woe-{$row.woe_id|escape}" class="location">{if $row.name}{$row.name|escape}{else}{$row.label|escape}{/if}</option>
+{/foreach}
+<option value="-1">No no no. It's all wrong.</option>
+</select>
+
+<br /><br />
+
+<p>You're saying as:</p>
+
+<select name="perspective">
+<option value="0" />
+{foreach from=$perspective_map item="label" key="id"}
+<option value="{$id|escape}">{$label|escape}</option>
+{/foreach}
+</select>
+
+<br /><br />
+<input type="submit" value="WORD" />
+</form>
+
+{/if}

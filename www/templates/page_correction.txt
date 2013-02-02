@@ -2,4 +2,14 @@
 
 {$correction|@dumper}
 
+
+
+<div id="map"></div>
+
+<script type="text/javascript">
+$(document).ready(function(){literal}{{/literal}
+	youarehere_correction_draw_map('{$correction|@urls_correction_export_url}');
+{literal}}{/literal});
+</script>
+
 {include file="inc_foot.txt"}

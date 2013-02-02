@@ -15,12 +15,23 @@
     <link href="{$cfg.abs_root_url}css/admin.source.css" rel="stylesheet">
 {/if}
 
-    <link href="{$cfg.abs_root_url}css/whereami.css" rel="stylesheet">
+    <link href="{$cfg.abs_root_url}css/youarehere.css" rel="stylesheet">
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <link rel="stylesheet" href="{$cfg.abs_root_url}css/leaflet.css" />
+
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="{$cfg.abs_root_url}css/leaflet.ie.css" />
+    <![endif]-->
+
     <!--[if lt IE 9]>
       <script src="{$cfg.abs_root}javascript/html5.js"></script>
     <![endif]-->
+
+    <script src="{$cfg.abs_root_url}javascript/jquery-1.8.2.min.js"></script>
+    <script src="{$cfg.abs_root_url}javascript/leaflet.js"></script>
+    <script src="{$cfg.abs_root_url}javascript/youarehere.js"></script>
+    <script src="{$cfg.abs_root_url}javascript/youarehere.correction.js"></script>
+    <script src="{$cfg.abs_root_url}javascript/youarehere.map.js"></script>
 
   </head>
 

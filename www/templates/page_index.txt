@@ -1,70 +1,11 @@
 {include file="inc_head.txt"}
 
 {if $step=='choose'}
-
-{if !$rsp.ok}
-<p class="error">{$rsp.error|escape}</p>
-
-{elseif $rsp.data|@count == 0}
-<p>Hrm... we have no idea where you are.</p>
-{else}
-
-<p>It appears that you are in:</p>
-
-<form id="choices" method="POST" action="{$cfg.abs_root_url}">
-{$crumb_key|crumb_input}
-<input type="hidden" name="choose" value="1" />
-<input type="hidden" name="lat" value="{$latitude|escape}" />
-<input type="hidden" name="lon" value="{$longitude|escape}" />
-	
-<select name="whereami">
-{foreach from=$rsp.data item="row"}
-<option value="{$row.woe_id|escape}" id="woe-{$row.woe_id|escape}" class="location">{if $row.name}{$row.name|escape}{else}{$row.label|escape}{/if}</option>
-{/foreach}
-<option value="-1">No no no. It's all wrong.</option>
-</select>
-
-<br /><br />
-
-<p>You're saying as:</p>
-
-<select name="perspective">
-<option value="0" />
-{foreach from=$perspective_map item="label" key="id"}
-<option value="{$id|escape}">{$label|escape}</option>
-{/foreach}
-</select>
-
-<br /><br />
-<input type="submit" value="WORD" />
-</form>
-
-{/if}
-
+	{include file="inc_index_choose.txt"}
 {elseif $step=='update'}
-
-{if !$update.ok}
-	<p class="error">Hrmph! There was a problem adding your correction.</p>
+	{include file="inc_index_update.txt"}
 {else}
-
-	{capture assign="permalink"}{$update.correction|@urls_correction_short_url}{$capture}
-	<h2>Awesome! Your correction has been recorded</h2>
-	{* WHAT THE FUCK... *}
-	<p>It has a permalink, which is <a href="{$permalink}">{$permalink}</a></p>
-{/if}
-
-{else}
-
-<ul id="status"><li>Getting started by asking permission to look for you.</li></ul>
-
+	{include file="inc_index_locate.txt"}
 {/if}
 
 {include file="inc_foot.txt"}
-
-{if !$step}
-
-<script type="text/javascript">
-$(document).ready( whereami_locate );
-</script>
-
-{/if}
