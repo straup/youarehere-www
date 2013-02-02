@@ -52,11 +52,14 @@
 
 			if ($ok){
 
+				$addr = ip2long($_SERVER['REMOTE_ADDR']);
+
 				$correction = array(
 					'user_id' => $GLOBALS['cfg']['user']['id'],
 					'woe_id' => $choice,
 					'latitude' => $lat,
 					'longitude' => $lon,
+					'ip_address' => $addr,
 				);
 
 				$perspective = post_int32("perspective");

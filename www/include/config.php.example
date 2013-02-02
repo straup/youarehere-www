@@ -43,6 +43,7 @@
 	# Privacy stuff
 
 	$GLOBALS['cfg']['enable_feature_show_users'] = 0;
+	$GLOBALS['cfg']['enable_feature_show_ip_address'] = 0;
 
 	#
 	# Things you'll certainly need to tweak

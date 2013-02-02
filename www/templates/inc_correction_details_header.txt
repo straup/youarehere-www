@@ -3,6 +3,8 @@
 
 {if $label=='user_id' and !"show_users"|@features_is_enabled}
 	{* pass *}
+{elseif $label=='ip_address' and !"show_ip_address"|@features_is_enabled}
+	{* pass *}
 {else}
 	<th>{$label|replace:"_":" "|upper|escape}</th>
 {/if}

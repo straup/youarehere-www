@@ -91,4 +91,12 @@
 
 	########################################################################
 
+	function corrections_obfuscate_ip_address(&$correction){
+		$user = users_get_by_id($correction['user_id']);
+		$hash = hash_hmac("sha256", $correction['ip_address'], $user['password']);
+		return md5($hash);
+	}
+
+	########################################################################
+
 	# the end
