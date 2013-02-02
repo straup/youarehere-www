@@ -4,7 +4,7 @@
 	loadlib("reverse_geocode");
 	loadlib("corrections");
 
-	# login_ensure_loggedin();
+	login_ensure_loggedin();
 
 	$lat = request_float("lat");
 	$lon = request_float("lon");
