@@ -23,6 +23,9 @@
 
 	$GLOBALS['smarty']->assign_by_ref("correction", $correction);
 
+	$map = corrections_perspective_map();
+	$GLOBALS['smarty']->assign_by_ref("perspective_map", $map);
+
 	$GLOBALS['smarty']->display("page_correction.txt");
 	exit();
 

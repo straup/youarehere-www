@@ -3,7 +3,30 @@
 
 <div id="map"></div>
 
-{$correction|@dumper}
+<table id="correction-details">
+<tr>
+{foreach from=$correction|@array_keys item="label"}
+<th>{$label|replace:"_":" "|upper|escape}</th>
+{/foreach}
+</tr>
+
+<tr>
+{foreach from=$correction item="value" key="key"}
+<td class="correction-{$key|replace:"_":"-"|escape}">
+
+{if $key=='created'}
+{$value|@date_format|escape}
+{elseif $key=='perspective'}
+{$perspective_map.$value|escape}
+{else}
+{$value|escape}
+{/if}
+
+</td>
+{/foreach}
+</tr>
+
+</table>
 
 <script type="text/javascript">
 $(document).ready(function(){literal}{{/literal}
