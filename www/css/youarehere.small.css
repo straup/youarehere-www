@@ -15,3 +15,8 @@
     display: block !important;
     padding-bottom: 1em !important;
 }
+
+#correction-select-submit {
+    margin-top: 1em !important;
+    display:block !important;
+}

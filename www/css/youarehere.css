@@ -48,3 +48,10 @@
 #correction-details td {
     padding-top:1em;
 }
+
+input[type=submit] {
+    border: solid thin;
+    font-weight: 700;
+    padding: .5em;
+    margin-left: .5em;
+}
