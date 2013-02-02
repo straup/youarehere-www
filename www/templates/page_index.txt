@@ -1,14 +1,60 @@
-{include file='inc_head.txt' nav_tab='home'}
+{include file="inc_head.txt"}
 
-<div class="container">
-  <div class="hero-unit">
-    <h1>Flamework</h1>
-    <p>OK, looks like you got it installed. You win one (1) Internets.</p>
-    <ul>
-      <li><a href="https://github.com/exflickr/flamework">Flamework on GitHub</a></li>
-      <li><a href="http://twitter.github.com/bootstrap/">Bootstrap docs</a></li>
-    </ul>
-  </div>
-</div>
+{if $step=='choose'}
 
-{include file='inc_foot.txt'}
+{if !$rsp.ok}
+<p class="error">{$rsp.error|escape}</p>
+
+{elseif $rsp.data|@count == 0}
+<p>Hrm... we have no idea where you are.</p>
+{else}
+
+<p>It appears that you are in:</p>
+
+<form id="choices" method="POST" action="{$cfg.abs_root_url}whereami/">
+<input type="hidden" name="choose" value="1" />
+<input type="hidden" name="lat" value="{$latitude|escape}" />
+<input type="hidden" name="lon" value="{$longitude|escape}" />
+{* TO DO: crumbs... *}
+	
+<select name="whereami">
+{foreach from=$rsp.data item="row"}
+<option value="{$row.woe_id|escape}" id="woe-{$row.woe_id|escape}" class="location">{if $row.name}{$row.name|escape}{else}{$row.label|escape}{/if}</option>
+{/foreach}
+<option value="-1">No no no. It's all wrong.</option>
+</select>
+
+<br /><br />
+
+<p>...perspective</p>
+
+<select name="perspective">
+<option value="0" />
+{foreach from=$perspective_map item="label" key="id"}
+<option value="0">{$label|escape}</option>
+{/foreach}
+</select>
+
+<br /><br />
+<input type="submit" value="WORD" />
+</form>
+
+{/if}
+
+{elseif $step=='update'}
+UPDATE...
+{else}
+
+<ul id="status"><li>Getting started by asking permission to look for you.</li></ul>
+
+{/if}
+
+{include file="inc_foot.txt"}
+
+{if !$step}
+
+<script type="text/javascript">
+$(document).ready( whereami_locate );
+</script>
+
+{/if}
