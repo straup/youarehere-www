@@ -1,10 +1,9 @@
+{capture assign="page_title"}Correction #{$correction.id} | {$correction.created|@date_format}{/capture}
 {include file="inc_head.txt"}
 
-{$correction|@dumper}
-
-
-
 <div id="map"></div>
+
+{$correction|@dumper}
 
 <script type="text/javascript">
 $(document).ready(function(){literal}{{/literal}

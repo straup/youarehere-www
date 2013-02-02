@@ -57,18 +57,38 @@ function youarehere_map_draw_features(geojson){
 
 	var map = youarehere_map();
 
-	var style = {
+	var poly_style = {
 		"color": 'orange',
 		"weight": 2,
 		"opacity": 1,
 		fillOpacity: .25,
 		fillColor: 'yellow',
+		"radius": 5,
+	};
+
+	var point_style = {
+		"color": 'orange',
+		"weight": 2,
+		"opacity": 1,
+		fillOpacity: .25,
+		fillColor: 'yellow',
+		"radius": 10,
 	};
 
 	var onfeature = function(f, layer){
 		layer.on('click', function(){ });
 	};
 
-	var shape = L.geoJson(geojson, { style: style, onEachFeature: onfeature });
+	var onpoint = function (f, latlng) {
+	        return L.circleMarker(latlng, point_style);
+    	};
+
+	var args = {
+		'style': poly_style,
+		'pointToLayer': onpoint,
+		'onEachFeature': onfeature
+	};
+
+	var shape = L.geoJson(geojson, args);
 	shape.addTo(map);
 }
