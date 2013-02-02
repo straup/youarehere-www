@@ -26,7 +26,7 @@
 
 <br /><br />
 
-<p>You're saying as a:</p>
+<p>You're saying as:</p>
 
 <select name="perspective">
 <option value="0" />
@@ -42,7 +42,17 @@
 {/if}
 
 {elseif $step=='update'}
-UPDATE...
+
+{if !$update.ok}
+	<p class="error">Hrmph! There was a problem adding your correction.</p>
+{else}
+
+	{capture assign="permalink"}{$update.correction|@urls_correction_short_url}{$capture}
+	<h2>Awesome! Your correction has been recorded</h2>
+	{* WHAT THE FUCK... *}
+	<p>It has a permalink, which is <a href="{$permalink}">{$permalink}</a></p>
+{/if}
+
 {else}
 
 <ul id="status"><li>Getting started by asking permission to look for you.</li></ul>

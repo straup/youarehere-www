@@ -10,6 +10,7 @@
 
 	loadlib("reverse_geocode");
 	loadlib("corrections");
+	loadlib("urls");
 
 	$lat = request_float("lat");
 	$lon = request_float("lon");
@@ -67,6 +68,7 @@
 				}
 
 				$rsp = corrections_add_correction($correction);
+				$GLOBALS['smarty']->assign("update", $rsp);
 			}
 
 			# TO DO: notifications (pubsub or ... ?)

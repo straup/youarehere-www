@@ -10,9 +10,9 @@
 	function corrections_perspective_map(){
 
 		$map = array(
-			0 => "None of your business",
-			1 => "Local",
-			2 => "Tourist",
+			0 => "none of your business",
+			1 => "a local",
+			2 => "a tourist",
 		);
 
 		return $map;
