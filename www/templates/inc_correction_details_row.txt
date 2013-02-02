@@ -1,0 +1,21 @@
+<tr>
+{foreach from=$correction_row item="value" key="key"}
+<td class="correction-{$key|replace:"_":"-"|escape}">
+
+{if $key=='id'}
+<a href="{$cfg.abs_root_url}corrections/{$value|escape}/">{$value|escape}</a>
+{elseif $key=='user_id'}
+<a href="{$cfg.abs_root_url}users/{$value|escape}/corrections/">{$value|escape}</a>
+{elseif $key=='woe_id'}
+<a href="{$cfg.abs_root_url}woe/{$value|escape}/corrections/">{$value|escape}</a>
+{elseif $key=='created'}
+{$value|@date_format|escape}
+{elseif $key=='perspective'}
+{$perspective_map.$value|escape}
+{else}
+{$value|escape}
+{/if}
+
+</td>
+{/foreach}
+</tr>

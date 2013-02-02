@@ -2,7 +2,11 @@ var _map = null;
 
 function youarehere_map(){
 
+	var container_id = 'map';
+
 	if (! _map){
+
+		$("#" . container_id).show();
 
 		var args = {
 			'scrollWheelZoom': false,
@@ -10,7 +14,7 @@ function youarehere_map(){
 			'attributionControl': false
 		};
 
-		var map = L.map('map', args);
+		var map = L.map(container_id, args);
 
 		var toner = 'http://tile.stamen.com/toner-background/{z}/{x}/{y}.jpg';
 
@@ -21,6 +25,7 @@ function youarehere_map(){
 
 		base.addTo(map);
 		_map = map;
+
 	}
 
 	return _map;

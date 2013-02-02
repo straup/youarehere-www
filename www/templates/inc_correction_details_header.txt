@@ -1,0 +1,5 @@
+<tr>
+{foreach from=$correction_row|@array_keys item="label"}
+<th>{$label|replace:"_":" "|upper|escape}</th>
+{/foreach}
+</tr>

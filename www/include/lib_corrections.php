@@ -1,8 +1,5 @@
 <?php
 
-	# TO DO: artisanal integers...
-
-	loadlib("spacetimeid");
 	loadlib("artisanal_integers");
 
 	########################################################################
@@ -66,6 +63,30 @@
 		$row = db_single($rsp);
 		
 		return $row;
+	}
+
+	########################################################################
+
+	function corrections_get_for_user(&$user, $more=array()){
+
+		$enc_id = AddSlashes($user['id']);
+
+		$sql = "SELECT * FROM Corrections WHERE user_id='{$enc_id}' ORDER BY created DESC";
+
+		$rsp = db_fetch_paginated($sql, $more);
+		return $rsp;
+	}
+
+	########################################################################
+
+	function corrections_get_for_woe(&$woe, $more=array()){
+
+		$enc_id = AddSlashes($woe['woe_id']);
+
+		$sql = "SELECT * FROM Corrections WHERE woe_id='{$enc_id}' ORDER BY created DESC";
+
+		$rsp = db_fetch_paginated($sql, $more);
+		return $rsp;
 	}
 
 	########################################################################
