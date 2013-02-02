@@ -92,3 +92,23 @@ function youarehere_map_draw_features(geojson){
 	var shape = L.geoJson(geojson, args);
 	shape.addTo(map);
 }
+
+function youarehere_map_latlon_to_geojson(lat, lon){
+
+	var geom = {
+		'type': 'Point',
+		'coordinates': [ lon, lat ],
+	};
+
+	var feature = {
+		'type': 'Feature',
+		'geometry': geom,
+	};
+
+	var geojson = {
+		'type': 'FeatureCollection',
+		'features': [ feature ]
+	};
+
+	return geojson;
+}

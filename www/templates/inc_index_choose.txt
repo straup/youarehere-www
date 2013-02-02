@@ -7,6 +7,8 @@
 
 {* TO DO: add map... *}
 
+<div id="map"></div>
+
 <p>It appears that you are in:</p>
 
 <form id="choices" method="POST" action="{$cfg.abs_root_url}">
@@ -36,5 +38,15 @@
 <br /><br />
 <input type="submit" value="WORD" />
 </form>
+
+<script type="text/javascript">
+$(document).ready(function(){literal}{{/literal}
+	var geojson = youarehere_map_latlon_to_geojson({$latitude|escape}, {$longitude|escape});
+	youarehere_map_init(geojson);
+
+	// TO DO: shapes for the places to choose from...
+
+{literal}}{/literal});
+</script>
 
 {/if}
