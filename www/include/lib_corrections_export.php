@@ -14,7 +14,7 @@
 			);
 
 			$geom = array(
-				'type' => 'Points',
+				'type' => 'Point',
 				'coordinates' => $coords,
 			);
 
@@ -30,7 +30,7 @@
 			);
 
 			foreach ($props as $p){
-				$feature['properties'][$p] = $c[$p];
+				$feature['properties'][$p] = intval($c[$p]);
 			}
 
 			$features[] = $feature;
