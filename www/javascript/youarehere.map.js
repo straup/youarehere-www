@@ -6,6 +6,8 @@ function youarehere_map(){
 
 		var args = {
 			'scrollWheelZoom': false,
+			'zoomControl': false,
+			'attributionControl': false
 		};
 
 		var map = L.map('map', args);

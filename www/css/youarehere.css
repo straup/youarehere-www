@@ -29,6 +29,11 @@
 
 }
 
+#correction-select {
+    width: 100%;
+    margin-top: 2em;
+}
+
 #correction-details {
     width: 100%;
     margin-top: 2em;

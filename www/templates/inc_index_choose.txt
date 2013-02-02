@@ -9,7 +9,7 @@
 
 <div id="map"></div>
 
-<p>It appears that you are in:</p>
+<div id="correction-select">
 
 <form id="choices" method="POST" action="{$cfg.abs_root_url}">
 {$crumb_key|crumb_input}
@@ -17,6 +17,10 @@
 <input type="hidden" name="lat" value="{$latitude|escape}" />
 <input type="hidden" name="lon" value="{$longitude|escape}" />
 	
+<span class="correction-select">
+
+<span class="correction-select-text">It appears that you are in</span>
+
 <select name="whereami">
 {foreach from=$rsp.data item="row"}
 <option value="{$row.woe_id|escape}" id="woe-{$row.woe_id|escape}" class="location">{if $row.name}{$row.name|escape}{else}{$row.label|escape}{/if}</option>
@@ -24,9 +28,10 @@
 <option value="-1">No no no. It's all wrong.</option>
 </select>
 
-<br /><br />
+</span>
 
-<p>You're saying as:</p>
+<span class="correction-select">
+<span class="correction-select-text">and you're saying this as</span>
 
 <select name="perspective">
 <option value="0" />
@@ -35,9 +40,13 @@
 {/foreach}
 </select>
 
-<br /><br />
-<input type="submit" value="WORD" />
+<input type="submit" value="WORD" id="correction-select-submit" class="correction-select" />
+
 </form>
+
+</span>
+
+</div>
 
 <script type="text/javascript">
 $(document).ready(function(){literal}{{/literal}

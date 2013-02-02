@@ -3,5 +3,15 @@
 }
 
 #map {
-    height: 200px !important;
+    height: 150px !important;
+}
+
+.correction-select {
+    display: block !important;
+    font-weight: 700 !important;
+}
+
+.correction-select-text {
+    display: block !important;
+    padding-bottom: 1em !important;
 }
