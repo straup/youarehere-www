@@ -16,6 +16,7 @@
 {/if}
 
     <link href="{$cfg.abs_root_url}css/youarehere.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 480px)" href="{$cfg.abs_root_url}css/youarehere.small.css" />
 
     <link rel="stylesheet" href="{$cfg.abs_root_url}css/leaflet.css" />
 
