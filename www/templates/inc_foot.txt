@@ -5,7 +5,7 @@
       <hr>
 
       <footer>
-        <p>this is a thing by <a href="">aaron straup cope</a></p>
+        <p>this is a thing by <a href="http://www.aaronstraupcope.com/" target="_asc">aaron straup cope</a></p>
       </footer>
 
 {if 0}
