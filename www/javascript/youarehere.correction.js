@@ -27,7 +27,9 @@ function youarehere_correction_draw_shape(woeid){
 		};
 
 		try {
-			youarehere_map_draw_features(geojson);
+			var l = youarehere_map_draw_features(geojson);
+			l.bringToBack();
+
 			youarehere_map_set_viewport(geojson);
 		}
 

@@ -65,21 +65,26 @@ function youarehere_map_draw_features(geojson){
 	var map = youarehere_map();
 
 	var poly_style = {
-		"color": 'orange',
-		"weight": 3,
+		"color": '#000',
+		"weight": 5,
 		"opacity": 1,
-		fillOpacity: .15,
-		fillColor: 'yellow',
-		"radius": 5,
+		fillOpacity: 1,
+		fillColor: '#fff',
 	};
 
 	var point_style = {
-		"color": 'orange',
-		"weight": 2,
+		"color": 'red',
+		"weight": 4,
 		"opacity": 1,
-		fillOpacity: .25,
-		fillColor: 'red',
-		"radius": 10,
+		fillOpacity: 1,
+		fillColor: 'white',
+		"radius": 8,
+	};
+
+	var poly_function = function(f){
+		if (f['geometry']['type'] != 'Point'){
+			return poly_style;
+		}
 	};
 
 	var onfeature = function(f, layer){
@@ -91,13 +96,15 @@ function youarehere_map_draw_features(geojson){
     	};
 
 	var args = {
-		'style': poly_style,
+		'style': poly_function,
 		'pointToLayer': onpoint,
 		'onEachFeature': onfeature
 	};
 
 	var shape = L.geoJson(geojson, args);
 	shape.addTo(map);
+
+	return shape;
 }
 
 function youarehere_map_latlons_to_geojson(pairs){
