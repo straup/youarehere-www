@@ -54,7 +54,8 @@ $(document).ready(function(){literal}{{/literal}
 	var geojson = youarehere_map_latlons_to_geojson(latlons);
 	youarehere_map_init(geojson);
 
-	// TO DO: shapes for the places to choose from...
+	var woeids = [{foreach from=$rsp.data item="row" name="woeids"}{$row.woe_id|escape}{if !$smarty.foreach.woeids.last},{/if}{/foreach}];
+	youarehere_woe_draw_shapes(woeids);
 
 {literal}}{/literal});
 </script>

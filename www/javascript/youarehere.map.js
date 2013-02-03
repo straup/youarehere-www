@@ -9,7 +9,7 @@ function youarehere_map(){
 		$("#" . container_id).show();
 
 		var args = {
-			'scrollWheelZoom': false,
+			//'scrollWheelZoom': false,
 			'zoomControl': false,
 			'attributionControl': false
 		};
@@ -69,8 +69,8 @@ function youarehere_map_draw_features(geojson){
 		"color": '#000',
 		"weight": 2,
 		"opacity": 1,
-		fillOpacity: 1,
-		fillColor: '#fff',
+		fillOpacity: .8,
+		fillColor: '#afceee',
 	};
 
 	var point_style = {
@@ -168,7 +168,7 @@ function youarehere_map_coords_to_bbox(coords, is_lonlat){
 	var bbox = [ swlon, swlat, nelon, nelat ];
 
 	for (i in bbox){
-		bbox[i] = bbox[i].toFixed(4);
+		bbox[i] = bbox[i].toFixed(3);
 	}
 
 	return bbox;

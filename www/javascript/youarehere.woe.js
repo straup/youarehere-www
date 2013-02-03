@@ -8,20 +8,33 @@ function youarehere_woe_draw_shapes(woeids){
 
 		var woeid_url = 'http://woe.spum.org/id/' + woeid + '/shape.js';
 
+		if (woeid==18807771){
+			woeid_url = 'http://gowanusheights.info/data/gowanus-heights.json';
+		}
+
 		var _onsuccess = function(rsp){
 
-			if (! rsp['bbox']){
-				var coords = rsp['geometry']['coordinates'];
-				coords = coords[0][0];
+			var geojson = undefined;
 
-				var bbox = youarehere_map_coords_to_bbox(coords, 'lonlat');
-				rsp['bbox'] = bbox;
+			if (rsp['type'] == 'FeatureCollection'){
+				geojson = rsp;
 			}
 
-			var geojson = {
-				'type': 'FeatureCollection',
-				'features': [ rsp ]
-			};
+			else {
+
+				if (! rsp['bbox']){
+					var coords = rsp['geometry']['coordinates'];
+					coords = coords[0][0];
+
+					var bbox = youarehere_map_coords_to_bbox(coords, 'lonlat');
+					rsp['bbox'] = bbox;
+				}
+
+				geojson = {
+					'type': 'FeatureCollection',
+					'features': [ rsp ]
+				};
+			}
 
 			try {
 				var l = youarehere_map_draw_features(geojson);
