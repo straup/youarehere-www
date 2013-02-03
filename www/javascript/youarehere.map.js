@@ -55,6 +55,7 @@ function youarehere_map_set_viewport(geojson){
 
 	else {
 		var extent = [ [bbox[1], bbox[0] ], [bbox[3], bbox[2] ] ];
+		console.log(extent);
 		map.fitBounds(extent);
 	}
 
@@ -113,20 +114,10 @@ function youarehere_map_latlons_to_geojson(pairs){
 
 	var count = pairs.length;
 
-	var swlat = undefined;
-	var swlon = undefined;
-	var nelat = undefined;
-	var nelon = undefined;
-
 	for (var i=0; i < count; i++){
 
 		var lat = pairs[i][0];
 		var lon = pairs[i][1];
-
-		swlat = (swlat == undefined) ? swlat : Math.min(swlat, lat);
-		swlon = (swlon == undefined) ? swlon : Math.min(swlon, lon);
-		nelat = (nelat == undefined) ? nelat : Math.max(nelat, lat);
-		nelon = (nelon == undefined) ? nelon : Math.max(nelon, lon);
 
 		var geom = {
 			'type': 'Point',
@@ -147,9 +138,38 @@ function youarehere_map_latlons_to_geojson(pairs){
 	};
 
 	if (count > 1){
-		var bbox = [ swlon, swlat, nelon, nelat ];
+		var bbox = youarehere_map_coords_to_bbox(pairs);
 		geojson['bbox'] = bbox;
 	}
 
 	return geojson;
+}
+
+function youarehere_map_coords_to_bbox(coords, is_lonlat){
+
+	var count = coords.length;
+
+	var swlat = undefined;
+	var swlon = undefined;
+	var nelat = undefined;
+	var nelon = undefined;
+
+	for (var i=0; i < count; i++){
+
+		var lat = (is_lonlat) ? coords[i][1] : coords[i][0];
+		var lon = (is_lonlat) ? coords[i][0] : coords[i][0];
+
+		swlat = (swlat == undefined) ? lat : Math.min(swlat, lat);
+		swlon = (swlon == undefined) ? lon : Math.min(swlon, lon);
+		nelat = (nelat == undefined) ? lat : Math.max(nelat, lat);
+		nelon = (nelon == undefined) ? lon : Math.max(nelon, lon);
+	}
+
+	var bbox = [ swlon, swlat, nelon, nelat ];
+
+	for (i in bbox){
+		bbox[i] = bbox[i].toFixed(4);
+	}
+
+	return bbox;
 }

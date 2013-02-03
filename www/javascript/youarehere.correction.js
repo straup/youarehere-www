@@ -21,9 +21,15 @@ function youarehere_correction_draw_shape(woeid){
 
 	var _onsuccess = function(rsp){
 
+		var coords = rsp['geometry']['coordinates'];
+		coords = coords[0][0];
+
+		var bbox = youarehere_map_coords_to_bbox(coords, 'lonlat');
+		rsp['bbox'] = bbox;
+
 		var geojson = {
 			'type': 'FeatureCollection',
-			'features': [ rsp ],
+			'features': [ rsp ]
 		};
 
 		try {
