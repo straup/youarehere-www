@@ -67,7 +67,7 @@ function youarehere_map_draw_features(geojson){
 
 	var poly_style = {
 		"color": '#000',
-		"weight": 5,
+		"weight": 2,
 		"opacity": 1,
 		fillOpacity: 1,
 		fillColor: '#fff',

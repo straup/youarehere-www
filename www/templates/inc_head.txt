@@ -33,6 +33,7 @@
     <script src="{$cfg.abs_root_url}javascript/youarehere.js"></script>
     <script src="{$cfg.abs_root_url}javascript/youarehere.correction.js"></script>
     <script src="{$cfg.abs_root_url}javascript/youarehere.map.js"></script>
+    <script src="{$cfg.abs_root_url}javascript/youarehere.woe.js"></script>
 
   </head>
 

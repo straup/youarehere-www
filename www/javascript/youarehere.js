@@ -21,10 +21,7 @@ function youarehere_locate(){
 		}, 2500);
 	};
 
-	var _onerror = function(rsp){
-		console.log("error");
-		console.log(rsp);
-	};
+	var _onerror = function(rsp){ };
 
 	navigator.geolocation.getCurrentPosition(_onsuccess, _onerror);
 
