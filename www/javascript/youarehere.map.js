@@ -101,14 +101,42 @@ function youarehere_map_draw_features(geojson){
 	        return L.circleMarker(latlng, point_style);
     	};
 
+	// these two functions show probably be moved in to youarehere_map_*
+
+	var show_name = function(f){
+
+		if (! f['properties']){
+			return;
+		}
+
+		var name = f['properties']['label'];
+
+		if (! name){
+			name = f['properties']['name'];
+		}
+
+		if (name){
+			update_feedback(name);
+		}
+	};
+
+	var update_feedback = function(msg){
+		var fb = $("#map-feedback");
+		fb.html(msg);
+		(msg) ? fb.show() : fb.hide();
+	}
+	
 	var on_mouseover = function(e){
 		var _layer = e.target;
-
 		_layer.setStyle({ 'color': 'red', 'fillColor': '#8ca4be' });
 
 		if (!L.Browser.ie && !L.Browser.opera){
 			_layer.bringToFront();
 			refloat_points();
+		}
+
+		if (_layer.feature){
+			show_name(_layer.feature);
 		}
 	};
 
@@ -116,6 +144,7 @@ function youarehere_map_draw_features(geojson){
 		var _layer = e.target;
 		layer.resetStyle(_layer);   
 		refloat_points();
+		update_feedback(null);
 	};
 
 	var on_feature = function(f, _layer){

@@ -7,7 +7,7 @@
 
 {* TO DO: add map... *}
 
-<div id="map"></div>
+{include file="inc_map.txt"}
 
 <div id="correction-select">
 

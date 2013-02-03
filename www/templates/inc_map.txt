@@ -1,0 +1,4 @@
+<div id ="map-container">
+<div id="map"></div>
+<div id="map-feedback"></div>
+</div>
