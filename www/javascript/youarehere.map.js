@@ -1,4 +1,5 @@
 var _map = null;
+var _points = new Array(); /* not awesome; see below for details */
 
 function youarehere_map(){
 
@@ -63,6 +64,12 @@ function youarehere_map_set_viewport(geojson){
 
 function youarehere_map_draw_features(geojson){
 
+	/*
+		not the best name but something that we refer
+		to in a callback function and assign at the end
+		(20130203/straup)
+	*/
+
 	var layer = null
 
 	var map = youarehere_map();
@@ -101,12 +108,14 @@ function youarehere_map_draw_features(geojson){
 
 		if (!L.Browser.ie && !L.Browser.opera){
 			_layer.bringToFront();
+			refloat_points();
 		}
 	};
 
 	var on_mouseout = function(e){
 		var _layer = e.target;
 		layer.resetStyle(_layer);   
+		refloat_points();
 	};
 
 	var on_feature = function(f, _layer){
@@ -125,6 +134,29 @@ function youarehere_map_draw_features(geojson){
 
 	layer = L.geoJson(geojson, args);
 	layer.addTo(map);
+
+	/*
+		Do not pretend this is awesome. If there's a better way to
+		ensure that points are always place on top of shapes then I
+		would love to know about it. In the meantime, we'll just track
+		the list of points in a global variable "refloat" then whenever
+		the layer stack (for shapes) changes. The refloat function is
+		below. (20130203/straup)
+	*/
+
+	var geom = geojson['features'][0]['geometry'];
+
+	if (geom['type'] == 'Point'){
+		_points.push(layer);
+	}
+
+	var refloat_points = function(){
+		var count = _points.length;
+		for (var i = 0; i < count; i++){
+			var _layer = _points[i];
+			_layer.bringToFront();
+		}
+	};
 
 	return layer;
 }
