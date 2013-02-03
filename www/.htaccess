@@ -49,6 +49,8 @@ RewriteEngine on
 
 # You are here
 
+RewriteRule   ^maybe/?$					maybe.php?%{QUERY_STRING}			[L]
+
 RewriteRule   ^c/([A-Za-z0-9]+)/?$			correction.php?code=$1&%{QUERY_STRING}		[L]
 RewriteRule   ^corrections/([0-9]+)/?$			correction.php?id=$1&%{QUERY_STRING}		[L]
 RewriteRule   ^corrections/([0-9]+)\.([a-z]+)?$		correction_export.php?id=$1&format=$2%{QUERY_STRING}		[L]

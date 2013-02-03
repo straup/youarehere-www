@@ -1,11 +1,20 @@
 {include file="inc_head.txt"}
 
-{if $step=='choose'}
-	{include file="inc_index_choose.txt"}
-{elseif $step=='update'}
-	{include file="inc_index_update.txt"}
+<div class="container">
+
+{if !$cfg.user.id}
+
+  <div class="hero-unit">
+    <h1>You are here</h1>
+    <p>...<a href="{$cfg.abs_root_url}signin/">sign in with your Twitter account</a>.</p>
+  </div>
+
+
 {else}
-	{include file="inc_index_locate.txt"}
+
+	<p>...<a href="{$cfg.abs_root_url}maybe/">maybe</a>.</p>
 {/if}
+
+</div>
 
 {include file="inc_foot.txt"}
