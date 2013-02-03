@@ -35,7 +35,7 @@
 
 	<p>The point is not to promote a naked Facebook-esque mirror world but
 	to find an acceptable place where privacy interests and transparency can
-	exist. That might not exist and if that's the case then a user's privacy
+	exist. That might not be possible and if that's the case then a user's privacy
 	will take precedence.</p>
 
 	<p><a href="{$cfg.abs_root_url}maybe/">Okay! Let's get started.</a></p>
