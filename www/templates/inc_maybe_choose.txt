@@ -50,7 +50,8 @@
 
 <script type="text/javascript">
 $(document).ready(function(){literal}{{/literal}
-	var geojson = youarehere_map_latlon_to_geojson({$latitude|escape}, {$longitude|escape});
+	var latlons = [[{$latitude|escape}, {$longitude|escape}]];
+	var geojson = youarehere_map_latlons_to_geojson(latlons);
 	youarehere_map_init(geojson);
 
 	// TO DO: shapes for the places to choose from...

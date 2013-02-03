@@ -100,21 +100,33 @@ function youarehere_map_draw_features(geojson){
 	shape.addTo(map);
 }
 
-function youarehere_map_latlon_to_geojson(lat, lon){
+function youarehere_map_latlons_to_geojson(pairs){
 
-	var geom = {
-		'type': 'Point',
-		'coordinates': [ lon, lat ],
-	};
+	var features = new Array();
 
-	var feature = {
-		'type': 'Feature',
-		'geometry': geom,
-	};
+	var count = pairs.length;
+
+	for (var i=0; i < count; i++){
+
+		var lat = pairs[i][0];
+		var lon = pairs[i][1];
+
+		var geom = {
+			'type': 'Point',
+			'coordinates': [ lon, lat ],
+		};
+
+		var feature = {
+			'type': 'Feature',
+			'geometry': geom,
+		};
+
+		features.push(feature);
+	}
 
 	var geojson = {
 		'type': 'FeatureCollection',
-		'features': [ feature ]
+		'features': features
 	};
 
 	return geojson;
