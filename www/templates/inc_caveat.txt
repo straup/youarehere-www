@@ -1,0 +1,27 @@
+  <div class="hero-unit">
+
+<h2>This is important</h2>
+
+    	    <p>There are a couple important things you should know before
+    	    getting started.</p>
+
+	<ol>
+		{if $cfg.environment != 'prod'}<li>This project is still being
+		cobbled together. Anything you add here may go *poof!* without notice.</li>{/if}
+
+		<li>The idea is for all of this data to released publicly under
+	as liberal a license (for the purposes of re-use) as is not-annoying.</li>
+	</ol>
+
+	<p>Data dumps will <em>not</em> contain your (Twitter) username but
+	<em>might</em> contain an obfuscated user identifier. This is so that
+	people consuming the data can make better informed decisions about which
+	corrections to trust. Or not. I am still working through the ways in
+	which that might get creepy.</p>
+
+	<p>The point is not to promote a naked Facebook-esque mirror world but
+	to find an acceptable place where privacy interests and transparency can
+	exist. That might not be possible and if that's the case then a user's privacy
+	will take precedence.</p>
+
+</div>
