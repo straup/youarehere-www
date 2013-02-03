@@ -1,5 +1,7 @@
 {include file="inc_head.txt"}
 
+<div id="container">
+
 {if $step=='choose'}
 	{include file="inc_maybe_choose.txt"}
 {elseif $step=='update'}
@@ -7,5 +9,7 @@
 {else}
 	{include file="inc_maybe_locate.txt"}
 {/if}
+
+</div>
 
 {include file="inc_foot.txt"}

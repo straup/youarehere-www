@@ -11,7 +11,7 @@
 
 <div id="correction-select">
 
-<form id="choices" method="POST" action="{$cfg.abs_root_url}">
+<form id="choices" method="POST" action="{$cfg.abs_root_url}maybe/">
 {$crumb_key|crumb_input}
 <input type="hidden" name="choose" value="1" />
 <input type="hidden" name="lat" value="{$latitude|escape}" />

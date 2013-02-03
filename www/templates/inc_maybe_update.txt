@@ -2,8 +2,6 @@
 	<p class="error">Hrmph! There was a problem adding your correction.</p>
 {else}
 
-	{capture assign="permalink"}{$update.correction|@urls_correction_short_url}{$capture}
-	<h2>Awesome! Your correction has been recorded</h2>
-	{* WHAT THE FUCK... *}
-	<p>It has a permalink, which is <a href="{$permalink}">{$permalink}</a></p>
+	{capture assign="permalink"}{$update.correction|@urls_correction_short_url}{/capture}
+	<p>Awesome. Your correction has been recorded. It has a permalink, which is <a href="{$permalink}" class="permalink">{$permalink}</a></p>
 {/if}
