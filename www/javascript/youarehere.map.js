@@ -19,6 +19,8 @@ function youarehere_map(){
 
 		var toner = 'http://tile.stamen.com/toner-background/{z}/{x}/{y}.jpg';
 
+		// fix me: this will cause weirdness for countries...
+
 		var base = L.tileLayer(toner, {
 			attribution: '',
 			maxZoom: 18,
@@ -47,15 +49,19 @@ function youarehere_map_set_viewport(geojson){
 
 	var feature = geojson['features'][0];
 	var bbox = feature.bbox;
+	var geom = feature.geometry;
 
-	if (! bbox){
-		var geom = feature.geometry;
+	// See if we can't calculate this based on the place type...
+
+	var zoom = 12;
+
+	if (geom['type'] == 'Point'){
 		var coords = geom.coordinates;
 		var centroid = [ coords[1], coords[0] ];
-		map.setView(centroid, 15);
+		map.setView(centroid, zoom);
 	}
 
-	else {
+	else if (bbox){
 		var extent = [ [bbox[1], bbox[0] ], [bbox[3], bbox[2] ] ];
 		map.fitBounds(extent);
 	}
@@ -70,7 +76,7 @@ function youarehere_map_draw_features(geojson){
 		(20130203/straup)
 	*/
 
-	var layer = null
+	var layer = null;
 
 	var map = youarehere_map();
 

@@ -1,5 +1,10 @@
 function youarehere_woe_draw_shapes(woeids){
 
+	var swlat = undefined;
+	var swlon = undefined;
+	var nelat = undefined;
+	var nelon = undefined;
+
 	var count = woeids.length;
 
 	for (var i=0; i < count; i++){
@@ -18,6 +23,18 @@ function youarehere_woe_draw_shapes(woeids){
 
 			if (rsp['type'] == 'FeatureCollection'){
 				geojson = rsp;
+
+				var f = geojson['features'][0];
+
+				if (! f['bbox']){
+				    
+					var coords = f['geometry']['coordinates'];
+					coords = coords[0][0];
+
+					var bbox = youarehere_map_coords_to_bbox(coords, 'lonlat');
+					f['bbox'] = bbox;
+					geojson['features'][0] = f;
+				}
 			}
 
 			else {
@@ -34,6 +51,20 @@ function youarehere_woe_draw_shapes(woeids){
 					'type': 'FeatureCollection',
 					'features': [ rsp ]
 				};
+			}
+
+			if (geojson['features'][0]['bbox']){
+
+				var bbox = geojson['features'][0]['bbox'];
+
+				for (i in bbox){
+					bbox[i] = parseFloat(bbox[i]);
+				}
+
+				swlat = (swlat == undefined) ? bbox[1] : Math.min(swlat, bbox[1]);
+				swlon = (swlon == undefined) ? bbox[0] : Math.min(swlon, bbox[0]);
+				nelat = (nelat == undefined) ? bbox[3] : Math.max(nelat, bbox[3]);
+				nelon = (nelon == undefined) ? bbox[2] : Math.max(nelon, bbox[2]);
 			}
 
 			try {
@@ -59,4 +90,10 @@ function youarehere_woe_draw_shapes(woeids){
 			'error': _onerror
 		});
 	}
+
+	/*
+	var extent = [ swlat, swlon, nelat, nelon ];
+	var map = youarehere_map();
+	map.fitBounds(extent);
+	*/
 }
