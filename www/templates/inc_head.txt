@@ -66,7 +66,7 @@
             <li class="dropdown{if $nav_tab == 'account'} active{/if}">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hello {$cfg.user.username|escape} <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="{$cfg.abs_root_url}account">Account</a></li>
+                {if 0}<li><a href="{$cfg.abs_root_url}account">Account</a></li>{/if}
                 <li><a href="{$cfg.abs_root_url}signout">Logout</a></li>
               </ul>
             </li>
