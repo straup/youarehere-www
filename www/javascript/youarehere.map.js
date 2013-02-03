@@ -56,13 +56,14 @@ function youarehere_map_set_viewport(geojson){
 
 	else {
 		var extent = [ [bbox[1], bbox[0] ], [bbox[3], bbox[2] ] ];
-		console.log(extent);
 		map.fitBounds(extent);
 	}
 
 }
 
 function youarehere_map_draw_features(geojson){
+
+	var layer = null
 
 	var map = youarehere_map();
 
@@ -89,24 +90,43 @@ function youarehere_map_draw_features(geojson){
 		}
 	};
 
-	var onfeature = function(f, layer){
-		layer.on('click', function(){ });
-	};
-
-	var onpoint = function (f, latlng) {
+	var on_point = function (f, latlng) {
 	        return L.circleMarker(latlng, point_style);
     	};
 
-	var args = {
-		'style': poly_function,
-		'pointToLayer': onpoint,
-		'onEachFeature': onfeature
+	var on_mouseover = function(e){
+		var _layer = e.target;
+
+		_layer.setStyle({ 'color': 'red', 'fillColor': '#8ca4be' });
+
+		if (!L.Browser.ie && !L.Browser.opera){
+			_layer.bringToFront();
+		}
 	};
 
-	var shape = L.geoJson(geojson, args);
-	shape.addTo(map);
+	var on_mouseout = function(e){
+		var _layer = e.target;
+		layer.resetStyle(_layer);   
+	};
 
-	return shape;
+	var on_feature = function(f, _layer){
+		_layer.on({
+			// 'click': undefined,
+			'mouseover': on_mouseover,
+        		'mouseout': on_mouseout
+		});
+	};
+
+	var args = {
+		'style': poly_function,
+		'pointToLayer': on_point,
+		'onEachFeature': on_feature
+	};
+
+	layer = L.geoJson(geojson, args);
+	layer.addTo(map);
+
+	return layer;
 }
 
 function youarehere_map_latlons_to_geojson(pairs){
