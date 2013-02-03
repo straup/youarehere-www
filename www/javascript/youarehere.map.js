@@ -106,10 +106,20 @@ function youarehere_map_latlons_to_geojson(pairs){
 
 	var count = pairs.length;
 
+	var swlat = undefined;
+	var swlon = undefined;
+	var nelat = undefined;
+	var nelon = undefined;
+
 	for (var i=0; i < count; i++){
 
 		var lat = pairs[i][0];
 		var lon = pairs[i][1];
+
+		swlat = (swlat == undefined) ? swlat : Math.min(swlat, lat);
+		swlon = (swlon == undefined) ? swlon : Math.min(swlon, lon);
+		nelat = (nelat == undefined) ? nelat : Math.max(nelat, lat);
+		nelon = (nelon == undefined) ? nelon : Math.max(nelon, lon);
 
 		var geom = {
 			'type': 'Point',
@@ -128,6 +138,11 @@ function youarehere_map_latlons_to_geojson(pairs){
 		'type': 'FeatureCollection',
 		'features': features
 	};
+
+	if (count > 1){
+		var bbox = [ swlon, swlat, nelon, nelat ];
+		geojson['bbox'] = bbox;
+	}
 
 	return geojson;
 }
