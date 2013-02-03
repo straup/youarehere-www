@@ -41,12 +41,12 @@
 
 #correction-details th {
     text-align: left;
-    border-bottom: 1px dotted #666;
     padding-bottom:.5em;
 }
 
 #correction-details td {
     padding-top:1em;
+    font-size:small;
 }
 
 input[type=submit] {

@@ -20,7 +20,8 @@ function youarehere_map(){
 
 		var base = L.tileLayer(toner, {
 			attribution: '',
-			maxZoom: 18
+			maxZoom: 18,
+			minZoom: 12
 		});
 
 		base.addTo(map);
@@ -70,7 +71,7 @@ function youarehere_map_draw_features(geojson){
 		"weight": 2,
 		"opacity": 1,
 		fillOpacity: .8,
-		fillColor: '#afceee',
+		fillColor: '#afceee'
 	};
 
 	var point_style = {
@@ -79,7 +80,7 @@ function youarehere_map_draw_features(geojson){
 		"opacity": 1,
 		fillOpacity: 1,
 		fillColor: 'white',
-		"radius": 8,
+		"radius": 8
 	};
 
 	var poly_function = function(f){
@@ -121,12 +122,12 @@ function youarehere_map_latlons_to_geojson(pairs){
 
 		var geom = {
 			'type': 'Point',
-			'coordinates': [ lon, lat ],
+			'coordinates': [ lon, lat ]
 		};
 
 		var feature = {
 			'type': 'Feature',
-			'geometry': geom,
+			'geometry': geom
 		};
 
 		features.push(feature);
