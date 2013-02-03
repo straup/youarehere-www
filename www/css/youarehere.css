@@ -36,6 +36,7 @@
     background-color:white;
     color: #000;
     padding: 1em;
+    padding-left: 0px !important;
     font-weight: 700;
     font-size: small;
     border-top: solid thin;
