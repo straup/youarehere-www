@@ -67,6 +67,18 @@
 
 	########################################################################
 
+	function corrections_get_recent($more=array()){
+
+		$enc_id = AddSlashes($user['id']);
+
+		$sql = "SELECT * FROM Corrections ORDER BY created DESC";
+
+		$rsp = db_fetch_paginated($sql, $more);
+		return $rsp;
+	}
+
+	########################################################################
+
 	function corrections_get_for_user(&$user, $more=array()){
 
 		$enc_id = AddSlashes($user['id']);
