@@ -6,8 +6,10 @@
 
 	loadlib("reverse_geocode");
 
-	$lat = request_float("lat");
-	$lon = request_float("lon");
+	# Make it work for Null Island
+
+	$lat = request_isset("lat");
+	$lon = request_isset("lon");
 	$filter = $GLOBALS['cfg']['reverse_geocode_default_filter'];
 
 	if ($f = request_str("filter")){
@@ -18,6 +20,9 @@
 	$GLOBALS['smarty']->assign("crumb_key", $crumb_key);
 
 	if (($lat) && ($lon)){
+
+		$lat = request_float("lat");
+		$lon = request_float("lon");
 
 		# TO DO: validate lat,lon
 
