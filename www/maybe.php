@@ -53,15 +53,20 @@
 
 			if ($ok){
 
-				$addr = ip2long($_SERVER['REMOTE_ADDR']);
-
 				$correction = array(
 					'user_id' => $GLOBALS['cfg']['user']['id'],
 					'woe_id' => $choice,
 					'latitude' => $lat,
 					'longitude' => $lon,
-					'ip_address' => $addr,
 				);
+
+				if (features_is_enabled("record_ip_address")){
+
+					# TO DO: hash the address... how, exactly?
+
+					$addr =	ip2long($_SERVER['REMOTE_ADDR']);
+					$correction['ip_address'] = $addr;
+				}
 
 				$perspective = post_int32("perspective");
 
