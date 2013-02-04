@@ -23,6 +23,10 @@
 
 	$GLOBALS['smarty']->assign_by_ref("correction", $correction);
 
+	# Not a feature. Please fix me... (20130204/straup)
+	$corrections = array($correction);
+	$GLOBALS['smarty']->assign_by_ref("corrections", $corrections);
+
 	$map = corrections_perspective_map();
 	$GLOBALS['smarty']->assign_by_ref("perspective_map", $map);
 

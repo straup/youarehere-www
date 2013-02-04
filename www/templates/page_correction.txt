@@ -1,12 +1,10 @@
 {capture assign="page_title"}correction #{$correction.id}{/capture}
 {include file="inc_head.txt"}
 
-<div id="map"></div>
+{* note: we are setting both the correction and a list of corrections in the app code *}
+{* this is not ideal but it makes the following work... sort of (20130204/straup) *}
 
-<table id="correction-details">
-{include file="inc_correction_details_header.txt" correction_row=$correction}
-{include file="inc_correction_details_row.txt" correction_row=$correction}
-</table>
+{include file="inc_corrections_list.txt"}
 
 <script type="text/javascript">
 $(document).ready(function(){literal}{{/literal}

@@ -24,7 +24,7 @@ function youarehere_map(){
 		var base = L.tileLayer(toner, {
 			attribution: '',
 			maxZoom: 18,
-			minZoom: 12
+			minZoom: 4
 		});
 
 		base.addTo(map);
@@ -51,6 +51,10 @@ function youarehere_map_set_viewport(geojson){
 	var bbox = feature.bbox;
 	var geom = feature.geometry;
 
+	if ((feature['properties']) && (feature['properties']['place_type_id'] == 12)){
+		return;	    
+	}
+
 	// See if we can't calculate this based on the place type...
 
 	var zoom = 12;
@@ -69,6 +73,13 @@ function youarehere_map_set_viewport(geojson){
 }
 
 function youarehere_map_draw_features(geojson){
+
+	 var feature = geojson['features'][0];
+
+	 if ((feature['properties']) && (feature['properties']['place_type_id'] == 12)){
+		return;	    
+	 }
+
 
 	/*
 		not the best name but something that we refer
