@@ -1,7 +1,15 @@
+{if !$do_update}
+	<p class="error">Your correction could not be processed
+	because... robots? This is what they're saying: <q>{$error|escape}</p></p>
+{else}
+
 {if !$update.ok}
-	<p class="error">Hrmph! There was a problem adding your correction.</p>
+	<p class="error">Hrmph! There was a problem adding your correction. The
+	robots are reporting the following: <q>{$update.error|escape}</q></p>
 {else}
 
 	{capture assign="permalink"}{$update.correction|@urls_correction_short_url}{/capture}
 	<p>Awesome. Your correction has been recorded. It has a permalink, which is <a href="{$permalink}" class="permalink">{$permalink}</a></p>
+{/if}
+
 {/if}

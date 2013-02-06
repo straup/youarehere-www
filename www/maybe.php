@@ -37,21 +37,59 @@
 
 			$GLOBALS['smarty']->assign("step", "update");
 
-			# TO DO: something with $choice is -1
+			# Note: We're expecting a string not an int so we
+			# can trap negative values.
 
-			# see also: artisanal integers
+			$choice = post_str("whereami");
 
-			$choice = post_int64("whereami");
 			$ok = 0;
+			$error = null;
 
-			foreach ($rsp['data'] as $row){
-				if ($row['woe_id'] == $choice){
-					$ok = 1;
-					break;
+			# if choice == -1: try parent
+			# if choice == 2: no no no, all wrong
+			# if choice: ensure nearby-iness (note that '0' is a
+			# valid option, because Null Island)
+
+			# Note: Blank strings are not Null Island
+
+			if ($choice == ''){
+				$error = 'You forgot to choose a place!';
+			}
+
+			else if ($choice == -1){
+
+				# TO DO: What/how to store (given that 0 is Null Island)
+				# $ok = 1;
+				$error = 'Incorrect(ions) are currently not been processed.';
+			}
+
+			else if ($choice == -2){
+				# TO DO: Parent stuff...
+				$error = 'Parent lookup are currently disabled...';
+			}
+
+			else {
+
+				foreach ($rsp['data'] as $row){
+
+					if ($row['woe_id'] == $choice){
+						$ok = 1;
+						break;
+					}
+				}
+
+				if (! $ok){
+					$error = "Invalid WOE ID";
 				}
 			}
 
-			if ($ok){
+			$GLOBALS['smarty']->assign("do_update", $ok);
+
+			if (! $ok){
+				$GLOBALS['smarty']->assign('error', $error);
+			}
+
+			else {
 
 				$correction = array(
 					'user_id' => $GLOBALS['cfg']['user']['id'],
