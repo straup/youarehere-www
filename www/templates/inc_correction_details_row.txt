@@ -2,7 +2,7 @@
 {foreach from=$correction_row item="value" key="key"}
 {if $key=='user_id' and !"show_users"|@features_is_enabled}
 	{* pass *}
-{elseif $key=='ip_address' and !"show_ip_address"|@features_is_enabled}
+{elseif $key=='remote_address' and !"show_remote_address"|@features_is_enabled}
 	{* pass *}
 {else}
 
@@ -18,8 +18,8 @@
 {$value|@date_format|escape}
 {elseif $key=='perspective'}
 {$perspective_map.$value|escape}
-{elseif $key=='ip_address'}
-{$correction_row|@corrections_obfuscate_ip_address|escape}
+{elseif $key=='remote_address'}
+{if $value}{$value|escape}{else}&#8212;{/if}
 {else}
 {$value|escape}
 {/if}

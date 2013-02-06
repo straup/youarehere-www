@@ -103,9 +103,11 @@
 
 	########################################################################
 
-	function corrections_obfuscate_ip_address(&$correction){
-		$user = users_get_by_id($correction['user_id']);
-		$hash = hash_hmac("sha256", $correction['ip_address'], $user['password']);
+	# use bcrypt?
+
+	function corrections_obfuscate_remote_address($addr){
+		$secret = $GLOBALS['cfg']['crypto_remote_address_secret'];
+		$hash = hash_hmac("sha256", $addr, $secret);
 		return md5($hash);
 	}
 
