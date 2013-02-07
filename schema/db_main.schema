@@ -31,7 +31,7 @@ DROP TABLE IF EXISTS `Corrections`;
 CREATE TABLE `Corrections` (
   `id` BIGINT(20) unsigned NOT NULL,
   `user_id` INT(10) unsigned NOT NULL,
-  `woe_id` BIGINT(20) unsigned NOT NULL,
+  `woe_id` BIGINT(20) signed NOT NULL,
   `latitude` decimal(9,6) DEFAULT NULL,
   `longitude` decimal(9,6) DEFAULT NULL,
   `created` int(10) unsigned NOT NULL,

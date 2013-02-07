@@ -56,11 +56,11 @@
 				$error = 'You forgot to choose a place!';
 			}
 
-			else if ($choice == -1){
+			# See what this means: We're going to store a negative
+			# number in the database (20130207/straup)
 
-				# TO DO: What/how to store (given that 0 is Null Island)
-				# $ok = 1;
-				$error = 'Incorrect(ions) are currently not been processed.';
+			else if ($choice == -1){
+				$ok = 1;
 			}
 
 			else if ($choice == -2){

@@ -6,10 +6,12 @@
 
 {include file="inc_corrections_list.txt"}
 
+{if $correction.woe_id >= 0}
 <script type="text/javascript">
 $(document).ready(function(){literal}{{/literal}
 	youarehere_correction_draw_map('{$correction|@urls_correction_export_url}');
 {literal}}{/literal});
 </script>
+{/if}
 
 {include file="inc_foot.txt"}
