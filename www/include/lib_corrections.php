@@ -25,6 +25,29 @@
 
 	########################################################################
 
+	# sudo give me a better name...
+	
+	function corrections_get_fallback($filter){
+
+		$possible = $GLOBALS['cfg']['reverse_geocode_fallbacks'];
+
+		if (! isset($possible[$filter])){
+			return null;
+		}
+
+		return $possible[$filter];
+	}
+
+	########################################################################
+
+	function corrections_is_valid_fallback($fallback){
+
+		$possible = array_keys($GLOBALS['cfg']['reverse_geocoder_fallbacks']);
+		return (in_array($fallback, $possible)) ? 1 : 0;
+	}
+
+	########################################################################
+
 	function corrections_add_correction($data){
 
 		$rsp = artisanal_integers_create();

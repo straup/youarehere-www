@@ -25,7 +25,7 @@
 {foreach from=$rsp.data item="row"}
 <option value="{$row.woe_id|escape}" id="woe-{$row.woe_id|escape}" class="location">{if $row.name}{$row.name|escape}{else}{$row.label|escape}{/if}</option>
 {/foreach}
-{if 0}<option value="-2">[PARENT LOOKUP]</option>{/if}
+{if $fallback}<option value="-2">[{$fallback|escape} LOOKUP]</option>{/if}
 <option value="-1">No no no. It's all wrong.</option>
 </select>
 

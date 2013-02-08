@@ -31,7 +31,7 @@
 
 		# TO DO: choose endpoint by placetype
 
-		$rsp = reverse_geocode($lat, $lon, $filter);
+		$reversegeo_rsp = reverse_geocode($lat, $lon, $filter);
 
 		if ((post_isset("choose")) && (crumb_check($crumb_key))){
 
@@ -56,6 +56,8 @@
 				$error = 'You forgot to choose a place!';
 			}
 
+			# The user has given up
+
 			# See what this means: We're going to store a negative
 			# number in the database (20130207/straup)
 
@@ -63,14 +65,26 @@
 				$ok = 1;
 			}
 
+			# The user wants more choices
+
 			else if ($choice == -2){
-				# TO DO: Parent stuff...
-				$error = 'Parent lookup are currently disabled...';
+
+				if ($fallback = corrections_get_fallback($filter)){
+					$reversegeo_rsp = reverse_geocode($lat,	$lon, $fallback);
+					$GLOBALS['smarty']->assign_by_ref("rsp", $reversegeo_rsp);
+					$ok = 1;
+				}
+
+				else {
+					$error = 'Invalid fallback';
+				}
 			}
+
+			# Validate what the user is saying
 
 			else {
 
-				foreach ($rsp['data'] as $row){
+				foreach ($reversegeo_rsp['data'] as $row){
 
 					if ($row['woe_id'] == $choice){
 						$ok = 1;
@@ -85,9 +99,20 @@
 
 			$GLOBALS['smarty']->assign("do_update", $ok);
 
+			# Sad face
+			
 			if (! $ok){
 				$GLOBALS['smarty']->assign('error', $error);
 			}
+
+			# See this: we're going to pop out of the stack and
+			# present the user with a new set of places (20130208/straup)
+
+			else if ($choice == -2){
+				$GLOBALS['smarty']->assign("step", "choose");
+			}
+
+			# Stick it in the database
 
 			else {
 
@@ -118,9 +143,12 @@
 
 		else {
 			$GLOBALS['smarty']->assign("step", "choose");
-			$GLOBALS['smarty']->assign_by_ref("rsp", $rsp);
+			$GLOBALS['smarty']->assign_by_ref("rsp", $reversegeo_rsp);
 		}
 	}
+
+	$fallback = corrections_get_fallback($filter);
+	$GLOBALS['smarty']->assign("fallback", $fallback);
 
 	$map = corrections_perspective_map();
 	$GLOBALS['smarty']->assign_by_ref("perspective_map", $map);

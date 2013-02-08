@@ -38,6 +38,11 @@
 		'localities' => array('http://localhost:9000'),
 	);
 
+	$GLOBALS['cfg']['reverse_geocode_fallbacks'] = array(
+		'neighbourhoods' => 'localities',
+		'localities' => null,
+	);
+
 	$GLOBALS['cfg']['reverse_geocode_default_filter'] = 'neighbourhoods';
 
 	# Privacy stuff
