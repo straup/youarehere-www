@@ -69,8 +69,8 @@
 
 			else if ($choice == -2){
 
-				if ($fallback = corrections_get_fallback($filter)){
-					$reversegeo_rsp = reverse_geocode($lat,	$lon, $fallback);
+				if ($filter = corrections_get_fallback($filter)){
+					$reversegeo_rsp = reverse_geocode($lat,	$lon, $filter);
 					$GLOBALS['smarty']->assign_by_ref("rsp", $reversegeo_rsp);
 					$ok = 1;
 				}
