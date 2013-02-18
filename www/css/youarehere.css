@@ -1,3 +1,9 @@
+optgroup {
+    border-top: solid thin;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
 .container-wtf {
     margin:3em !important;
     padding: 0 !important;

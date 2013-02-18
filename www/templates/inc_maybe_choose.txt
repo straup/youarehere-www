@@ -21,12 +21,16 @@
 
 <span class="correction-select-text">It appears that you are in</span>
 
-<select name="whereami">
+<select name="whereami" id="whereami-places">
+<optgroup>
 {foreach from=$rsp.data item="row"}
 <option value="{$row.woe_id|escape}" id="woe-{$row.woe_id|escape}" class="location">{if $row.name}{$row.name|escape}{else}{$row.label|escape}{/if}</option>
 {/foreach}
-{if $fallback}<option value="-2">[{$fallback|escape} LOOKUP]</option>{/if}
-<option value="-1">No no no. It's all wrong.</option>
+</optgroup>
+{if $fallback}<optgroup><option value="-2">
+None of these are correct but I'd like to see {$fallback|escape}.
+</option></optgroup>{/if}
+<optgroup><option value="-1">Meh. It's all wrong. I give up.</option></optgroup>
 </select>
 
 </span>
@@ -34,7 +38,7 @@
 <span class="correction-select">
 <span class="correction-select-text">and you're saying this as</span>
 
-<select name="perspective">
+<select name="perspective" id="whereami-perspective">
 <option value="0" />
 {foreach from=$perspective_map item="label" key="id"}
 <option value="{$id|escape}">{$label|escape}</option>
@@ -57,6 +61,23 @@ $(document).ready(function(){literal}{{/literal}
 
 	var woeids = [{foreach from=$rsp.data item="row" name="woeids"}{$row.woe_id|escape}{if !$smarty.foreach.woeids.last},{/if}{/foreach}];
 	youarehere_woe_draw_shapes(woeids);
+
+	{literal}
+	$("#whereami-places").change(function(){
+
+		var perspective = $("#whereami-perspective");
+
+		var youarehere = $(this).attr('value');
+
+		if (youarehere == -2){
+			perspective.attr("disabled", "disabled");
+		}
+
+		else {
+			perspective.removeAttr("disabled");
+		}
+	});
+	{/literal}
 
 {literal}}{/literal});
 </script>
