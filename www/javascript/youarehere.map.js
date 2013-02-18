@@ -75,6 +75,8 @@ function youarehere_map_set_viewport(geojson){
 	}
 }
 
+// TO DO: allow styles to be passed in at runtime (20130218/straup)
+
 function youarehere_map_draw_features(geojson){
 
 	 var feature = geojson['features'][0];
@@ -148,6 +150,8 @@ function youarehere_map_draw_features(geojson){
 	
 	var on_mouseover = function(e){
 		var _layer = e.target;
+		var feature = _layer.feature;
+
 		_layer.setStyle({ 'color': 'red', 'fillColor': '#8ca4be' });
 
 		if (!L.Browser.ie && !L.Browser.opera){
@@ -155,16 +159,31 @@ function youarehere_map_draw_features(geojson){
 			refloat_points();
 		}
 
-		if (_layer.feature){
-			show_name(_layer.feature);
+		if (! feature){
+			return;
 		}
+
+		show_name(feature);
+
+		if (feature['geometry']['type'] == 'Point'){
+			var el = $("#iamhere-" + feature['id']);
+			el.attr("class", "info");
+		}
+
 	};
 
 	var on_mouseout = function(e){
 		var _layer = e.target;
+		var feature = _layer.feature;
+
 		layer.resetStyle(_layer);   
 		refloat_points();
 		update_feedback(null);
+
+		if ((feature) && (feature['geometry']['type'] == 'Point')){
+			var el = $("#iamhere-" + feature['id']);
+			el.removeAttr("class");
+		}
 	};
 
 	var on_click = function(e){

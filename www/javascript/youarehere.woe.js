@@ -7,7 +7,9 @@ function youarehere_woe_draw_shapes(woeids){
 
 	var count = woeids.length;
 
-	var drawn = [];
+	// this is being weird... (20130218/straup)
+
+	var to_draw = [];
 
 	for (var i=0; i < count; i++){
 
@@ -17,17 +19,22 @@ function youarehere_woe_draw_shapes(woeids){
 			continue;
 		}
 
+		if ($.inArray(woeid, to_draw) == -1){
+			to_draw.push(woeid);
+		}
+	}
+
+	count = to_draw.length;
+
+	for (var i=0; i < count; i++){
+
+		var woeid = to_draw[i];
+
 		var woeid_url = 'http://woe.spum.org/id/' + woeid + '/shape.js';
 
 		if (woeid==18807771){
 			woeid_url = 'http://gowanusheights.info/data/gowanus-heights.json';
 		}
-
-		if ($.inArray(woeid, drawn) >= 0){
-			continue;
-		}
-
-		drawn.push(woeid);
 
 		// see the '__' ?
 		// it's important and explained below
