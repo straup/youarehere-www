@@ -7,15 +7,27 @@ function youarehere_woe_draw_shapes(woeids){
 
 	var count = woeids.length;
 
+	var drawn = [];
+
 	for (var i=0; i < count; i++){
 
 		var woeid = woeids[i];
+
+		if (woeid == -1){
+			continue;
+		}
 
 		var woeid_url = 'http://woe.spum.org/id/' + woeid + '/shape.js';
 
 		if (woeid==18807771){
 			woeid_url = 'http://gowanusheights.info/data/gowanus-heights.json';
 		}
+
+		if ($.inArray(woeid, drawn) >= 0){
+			continue;
+		}
+
+		drawn.push(woeid);
 
 		// see the '__' ?
 		// it's important and explained below
@@ -87,8 +99,21 @@ function youarehere_woe_draw_shapes(woeids){
 			var props = geojson['features'][0]['properties'];
 
 			if (props){
-				var link = $("#woeid-" + props['woe_id']);
-				link.html(props['label'] + " ( " + props['woe_id'] + " )");
+
+				var id = props['woe_id'];
+				var name = props['label'];
+
+				if (props['id']){
+					id = props['id'];
+				}
+
+
+				if (props['name']){
+					name = props['name'];
+				}
+
+				var links = $(".woeid-" + id);
+				links.html(name + " ( " + id + " )");
 			}
 		};
 
