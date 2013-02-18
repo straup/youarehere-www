@@ -164,9 +164,25 @@ function youarehere_map_draw_features(geojson){
 		update_feedback(null);
 	};
 
+	var on_click = function(e){
+		var f = e.target.feature;
+
+		if (! f['properties']){
+			return;
+		};
+
+		var props = f['properties'];
+
+		if (! props['permalink']){
+			return;
+		}
+
+		location.href = props['permalink'];
+	};
+
 	var on_feature = function(f, _layer){
 		_layer.on({
-			// 'click': undefined,
+			'click': on_click,
 			'mouseover': on_mouseover,
         		'mouseout': on_mouseout
 		});
@@ -227,6 +243,10 @@ function youarehere_map_latlons_to_geojson(pairs){
 			'type': 'Feature',
 			'geometry': geom
 		};
+
+		if (pairs[i].length == 3){
+			feature['properties'] = pairs[i][2];		    
+		}
 
 		features.push(feature);
 	}

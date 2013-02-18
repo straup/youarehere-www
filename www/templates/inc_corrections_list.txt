@@ -8,11 +8,11 @@
 {/foreach}
 
 </table>
-
+{$corrections|@dumper}
 <script type="text/javascript">
 $(document).ready(function(){literal}{{/literal}
 	var latlons = [{foreach from=$corrections item="row"}
-		[{$row.latitude|escape},{$row.longitude|escape}],
+		[{$row.latitude|escape},{$row.longitude|escape},{literal}{{/literal}'id':{$row.id|escape},'permalink':'{$row|@urls_correction_url}'{literal}}{/literal}],
 	{/foreach}];
 	var geojson = youarehere_map_latlons_to_geojson(latlons);
 	youarehere_map_init(geojson);
