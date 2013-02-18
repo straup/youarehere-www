@@ -66,10 +66,13 @@ function youarehere_map_set_viewport(geojson){
 	}
 
 	else if (bbox){
-		var extent = [ [bbox[1], bbox[0] ], [bbox[3], bbox[2] ] ];
-		map.fitBounds(extent);
-	}
 
+		var extent = [ [bbox[1], bbox[0] ], [bbox[3], bbox[2] ] ];
+
+		var bounds = map.getBounds();
+		bounds.extend(extent);
+		// map.fitBounds(extent);
+	}
 }
 
 function youarehere_map_draw_features(geojson){

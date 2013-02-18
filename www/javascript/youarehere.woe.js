@@ -17,7 +17,10 @@ function youarehere_woe_draw_shapes(woeids){
 			woeid_url = 'http://gowanusheights.info/data/gowanus-heights.json';
 		}
 
-		var _onsuccess = function(rsp){
+		// see the '__' ?
+		// it's important and explained below
+
+		var __onsuccess = function(rsp){
 
 			var geojson = undefined;
 
@@ -57,8 +60,8 @@ function youarehere_woe_draw_shapes(woeids){
 
 				var bbox = geojson['features'][0]['bbox'];
 
-				for (i in bbox){
-					bbox[i] = parseFloat(bbox[i]);
+				for (var b in bbox){
+					bbox[b] = parseFloat(bbox[b]);
 				}
 
 				swlat = (swlat == undefined) ? bbox[1] : Math.min(swlat, bbox[1]);
@@ -77,6 +80,26 @@ function youarehere_woe_draw_shapes(woeids){
 			catch (e){
 				// youarehere_set_status("Hrm... I can't seem to draw the shape for that place");
 			}
+		};
+
+		// I am guessing that there is some magic closure declaration
+		// that I can invoke to do this automagically but I gave up trying
+		// to figure out what it is. Remember how above we've been building
+		// a bounding box based on all the shapes? If this is the last
+		// shape then zoom to its extent after we've drawn the shape as we
+		// might usually (20130218/straup)
+
+		var _onsuccess = __onsuccess;
+
+		if ((i + 1) == count){
+
+			_onsuccess = function(rsp){
+				__onsuccess(rsp);
+
+				var extent = [[swlat, swlon], [nelat, nelon]];
+				var map = youarehere_map();
+				map.fitBounds(extent);
+			};
 		}
 
 		var _onerror = function(rsp){
@@ -90,10 +113,4 @@ function youarehere_woe_draw_shapes(woeids){
 			'error': _onerror
 		});
 	}
-
-	/*
-	var extent = [ swlat, swlon, nelat, nelon ];
-	var map = youarehere_map();
-	map.fitBounds(extent);
-	*/
 }
