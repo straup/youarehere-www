@@ -30,6 +30,7 @@
     <![endif]-->
 
     <script src="{$cfg.abs_root_url}javascript/jquery-1.8.2.min.js"></script>
+    <script src="{$cfg.abs_root_url}javascript/jquery.touchwipe.min.js"></script>
     <script src="{$cfg.abs_root_url}javascript/leaflet.js"></script>
     {if $cfg.environment=='prod'}
     <script src="{$cfg.abs_root_url}javascript/youarehere.min.js"></script>
