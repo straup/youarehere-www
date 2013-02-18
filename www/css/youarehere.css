@@ -79,3 +79,7 @@ input[type=submit] {
     padding: .5em;
     margin-left: .5em;
 }
+
+.error q {
+    font-weight: 700;
+}

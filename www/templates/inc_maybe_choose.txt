@@ -1,5 +1,7 @@
 {if !$rsp.ok}
-<p class="error">{$rsp.error|escape}</p>
+<p class="error">Well, that's no good. The geo servers appear to be upset and
+not willing to play nicely, right now. Let's marvel at the terseness of their
+error messages. This is what they are willing to tell us: <q>{$rsp.error|escape}</q></p>
 
 {elseif $rsp.data|@count == 0}
 <p>Hrm... we have no idea where you are.</p>
