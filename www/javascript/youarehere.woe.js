@@ -80,6 +80,16 @@ function youarehere_woe_draw_shapes(woeids){
 			catch (e){
 				// youarehere_set_status("Hrm... I can't seem to draw the shape for that place");
 			}
+
+			// Not convinced this is the best place to do this
+			// (20130218/straup)
+
+			var props = geojson['features'][0]['properties'];
+
+			if (props){
+				var link = $("#woeid-" + props['woe_id']);
+				link.html(props['label'] + " ( " + props['woe_id'] + " )");
+			}
 		};
 
 		// I am guessing that there is some magic closure declaration
