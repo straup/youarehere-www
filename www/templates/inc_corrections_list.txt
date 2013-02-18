@@ -8,7 +8,7 @@
 {/foreach}
 
 </table>
-{$corrections|@dumper}
+
 <script type="text/javascript">
 $(document).ready(function(){literal}{{/literal}
 	var latlons = [{foreach from=$corrections item="row"}
