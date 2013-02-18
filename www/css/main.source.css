@@ -9,7 +9,7 @@ body { padding-bottom: 40px; }
 
 /*pagination*/
 #pagination{
-
+    text-align:center;
 }
 
 /* pagination header */
