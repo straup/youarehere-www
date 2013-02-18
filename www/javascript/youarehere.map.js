@@ -166,7 +166,8 @@ function youarehere_map_draw_features(geojson){
 		show_name(feature);
 
 		if (feature['geometry']['type'] == 'Point'){
-			var el = $("#iamhere-" + feature['id']);
+			var id = (feature['id']) ? feature['id'] : feature['properties']['id'];
+			var el = $("#iamhere-" + id);
 			el.attr("class", "info");
 		}
 
@@ -181,7 +182,8 @@ function youarehere_map_draw_features(geojson){
 		update_feedback(null);
 
 		if ((feature) && (feature['geometry']['type'] == 'Point')){
-			var el = $("#iamhere-" + feature['id']);
+			var id = (feature['id']) ? feature['id'] : feature['properties']['id'];
+			var el = $("#iamhere-" + id);
 			el.removeAttr("class");
 		}
 	};
