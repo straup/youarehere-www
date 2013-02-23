@@ -24,6 +24,8 @@
 {$perspective_map.$value|escape}
 {elseif $key=='remote_address'}
 {if $value}{$value|escape}{else}&#8212;{/if}
+{elseif $key=='source_id'}
+{$value|@corrections_sources_label|replace:"; ":"<br />"}
 {else}
 {$value|escape}
 {/if}

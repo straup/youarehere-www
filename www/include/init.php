@@ -228,6 +228,7 @@
 	loadlib('http');
 
 	loadlib('corrections');
+	loadlib('corrections_sources');
 	loadlib('urls');
 	loadlib('base58');
 

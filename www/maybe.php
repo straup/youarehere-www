@@ -116,14 +116,14 @@
 
 			else {
 
-				$source = $GLOBALS['cfg']['reverse_geocode_endpoint_sources'][$filter];
+				$source_id = corrections_sources_for_filter($filter);
 
 				$correction = array(
 					'user_id' => $GLOBALS['cfg']['user']['id'],
 					'woe_id' => $choice,
 					'latitude' => $lat,
 					'longitude' => $lon,
-					'source_id' => $source,
+					'source_id' => $source_id,
 				);
 
 				if (features_is_enabled("record_remote_address")){

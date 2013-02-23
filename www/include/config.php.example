@@ -48,7 +48,7 @@
 
 	$GLOBALS['cfg']['reverse_geocode_sources'] = array(
 		0 => 'unknown',	 # this shouldn't happen but better to trap it
-		1 => 'flickr shapefiles v. 2.0'
+		1 => 'flickr shapefiles (2.0); gowanus heights (1.0)'
 	);
 
 	$GLOBALS['cfg']['reverse_geocode_endpoints_sources'] = array(
