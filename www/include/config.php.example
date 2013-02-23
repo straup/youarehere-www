@@ -33,14 +33,28 @@
 	# a bit of a moving target. See also:
 	# https://github.com/straup/flickrgeocoder-java
 
+	# Port numbers can be whatever but I like to bind them to the
+	# corresponding WOE place type ID (20130223/straup)
+
 	$GLOBALS['cfg']['reverse_geocode_endpoints'] = array(
-		'neighbourhoods' => array('http://localhost:5000'),
-		'localities' => array('http://localhost:9000'),
+		'neighbourhoods' => array('http://localhost:9022'),
+		'localities' => array('http://localhost:9007'),
 	);
 
 	$GLOBALS['cfg']['reverse_geocode_fallbacks'] = array(
 		'neighbourhoods' => 'localities',
 		'localities' => null,
+	);
+
+	$GLOBALS['cfg']['reverse_geocode_sources'] = array(
+		0 => 'unknown',	 # this shouldn't happen but better to trap it
+		1 => 'flickr shapefiles v. 2.0'
+	);
+
+	$GLOBALS['cfg']['reverse_geocode_endpoints_sources'] = array(
+		'neighbourhoods' => 1,
+		'localities' => 1,
+		# 'countries' => 1,
 	);
 
 	$GLOBALS['cfg']['reverse_geocode_default_filter'] = 'neighbourhoods';
