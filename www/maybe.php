@@ -5,8 +5,7 @@
 	login_ensure_loggedin();
 
 	loadlib("reverse_geocode");
-
-	# Make it work for Null Island
+	loadlib("geo_utils");
 
 	$lat = request_isset("lat");
 	$lon = request_isset("lon");
@@ -24,12 +23,22 @@
 		$lat = request_float("lat");
 		$lon = request_float("lon");
 
-		# TO DO: validate lat,lon
+		$lat = (geo_utils_is_valid_latitude($lat)) ? $lat : null;
+		$lon = (geo_utils_is_valid_longitude($lon)) ? $lon : null;
+
+		# TO DO: error reporting (20130223/straup)
+	}
+
+	if (($lat) && ($lon)){
 
 		$GLOBALS['smarty']->assign("latitude", $lat);
 		$GLOBALS['smarty']->assign("longitude", $lon);
 
-		# TO DO: choose endpoint by placetype
+		# Not really sure what this means or should do yet
+		# (20130223/straup)
+
+		# $rsp = corrections_get_for_user_latlon($GLOBALS['cfg']['user'], $lat, $lon);
+		# $count = $rsp['pagination']['total_count'];
 
 		$reversegeo_rsp = reverse_geocode($lat, $lon, $filter);
 

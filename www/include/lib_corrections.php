@@ -114,6 +114,29 @@
 
 	########################################################################
 
+	function corrections_get_for_user_latlon(&$user, $lat, $lon, $more=array()){
+
+		$enc_id = AddSlashes($user['id']);
+		$enc_lat = AddSlashes($lat);
+		$enc_lon = AddSlashes($lon);
+
+		$sql = "SELECT * FROM Corrections WHERE user_id='{$enc_id}'";
+
+		# TO DO: nearby-ish-ness (20130223/straup)
+
+		$sql .= " AND latitude='{$enc_lat}' AND longitude='{$enc_lon}'";
+
+		# TO DO: recently-ish-ness (20130223/straup)
+
+		$sql .= " ORDER BY created DESC";
+
+		$rsp = db_fetch_paginated($sql, $more);
+		return $rsp;
+
+	}
+
+	########################################################################
+
 	function corrections_get_for_woe(&$woe, $more=array()){
 
 		$enc_id = AddSlashes($woe['woe_id']);
