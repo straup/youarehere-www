@@ -39,6 +39,7 @@ CREATE TABLE `Corrections` (
   `source_id` tinyint(3) unsigned NOT NULL,
   `perspective` tinyint(3) unsigned NOT NULL,
   KEY `by_user` (`user_id`, `created`),
+  KEY `by_user_latlon` (`user_id`, `latitude`, `longitude`, `created`),
   KEY `by_woe` (`woe_id`, `created`),
   KEY `by_timestamp` (`created`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
