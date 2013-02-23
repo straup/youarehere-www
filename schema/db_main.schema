@@ -40,6 +40,7 @@ CREATE TABLE `Corrections` (
   KEY `by_woe` (`woe_id`, `created`),
   KEY `by_timestamp` (`created`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `TwitterUsers`;
 
 CREATE TABLE `TwitterUsers` (
