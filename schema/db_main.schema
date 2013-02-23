@@ -35,8 +35,9 @@ CREATE TABLE `Corrections` (
   `latitude` decimal(9,6) DEFAULT NULL,
   `longitude` decimal(9,6) DEFAULT NULL,
   `created` int(10) unsigned NOT NULL,
-  `ip_address` int(11) unsigned NOT NULL,
+  `remote_address` char(32) NOT NULL,
   `source_id` tinyint(3) unsigned NOT NULL,
+  `perspective` tinyint(3) unsigned NOT NULL,
   KEY `by_user` (`user_id`, `created`),
   KEY `by_woe` (`woe_id`, `created`),
   KEY `by_timestamp` (`created`)
