@@ -208,7 +208,7 @@ function youarehere_map_draw_features(geojson){
 		refloat_points();
 		update_feedback(null);
 
-		if ((feature) && (feature['geometry']['type'] == 'Point')){
+		if ((feature) && (feature['geometry']['type'] == 'Point') && (feature['properties'])){
 			var id = (feature['id']) ? feature['id'] : feature['properties']['id'];
 			var el = $("#iamhere-" + id);
 			el.removeAttr("class");
