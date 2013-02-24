@@ -187,7 +187,7 @@ function youarehere_map_draw_features(geojson){
 			return;
 		}
 
-		if (feature['geometry']['type'] == 'Point'){
+		if ((feature['geometry']['type'] == 'Point') && (feature['properties'])){
 			var id = (feature['id']) ? feature['id'] : feature['properties']['id'];
 			var el = $("#iamhere-" + id);
 			el.attr("class", "info");
