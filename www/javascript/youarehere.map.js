@@ -142,6 +142,30 @@ function youarehere_map_draw_features(geojson){
 		}
 	};
 
+	var update_menu = function(f){
+
+		if (! f['properties']){
+			return;
+		}
+
+		var menu = $("#whereami-places");
+
+		if (! menu){
+			return;
+		}
+
+		var id = f['properties']['woe_id'];
+
+		if (! id){
+			id = f['properties']['id'];
+		}
+
+		if (id){
+			$("#woe-" + id).attr("selected", "selected");
+		}
+
+	};
+
 	var update_feedback = function(msg){
 		var fb = $("#map-feedback");
 		fb.html(msg);
@@ -163,14 +187,17 @@ function youarehere_map_draw_features(geojson){
 			return;
 		}
 
-		show_name(feature);
-
 		if (feature['geometry']['type'] == 'Point'){
 			var id = (feature['id']) ? feature['id'] : feature['properties']['id'];
 			var el = $("#iamhere-" + id);
 			el.attr("class", "info");
 		}
 
+		else {
+
+			show_name(feature);
+			update_menu(feature);
+		}
 	};
 
 	var on_mouseout = function(e){

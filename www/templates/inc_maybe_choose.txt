@@ -25,6 +25,9 @@ error messages. This is what they are willing to tell us: <q>{$rsp.error|escape}
 
 <select name="whereami" id="whereami-places">
 <optgroup>
+<option selected="selected"/>
+</optgroup>
+<optgroup>
 {foreach from=$rsp.data item="row"}
 <option value="{$row.woe_id|escape}" id="woe-{$row.woe_id|escape}" class="location">{if $row.name}{$row.name|escape}{else}{$row.label|escape}{/if}</option>
 {/foreach}
