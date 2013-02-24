@@ -49,6 +49,8 @@ RewriteEngine on
 
 # You are here
 
+RewriteRule   ^getlatlon?$				getlatlon.php?%{QUERY_STRING}			[L]
+
 RewriteRule   ^maybe/?$					maybe.php?%{QUERY_STRING}			[L]
 
 RewriteRule   ^corrections(/page([0-9]+))?/?$		corrections.php?page=$2&%{QUERY_STRING}	[L]
