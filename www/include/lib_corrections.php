@@ -1,6 +1,7 @@
 <?php
 
 	loadlib("artisanal_integers");
+	loadlib("geo_utils");
 
 	########################################################################
 
@@ -122,9 +123,16 @@
 
 		$sql = "SELECT * FROM Corrections WHERE user_id='{$enc_id}'";
 
-		# TO DO: nearby-ish-ness (20130223/straup)
+		# $sql .= " AND latitude='{$enc_lat}' AND longitude='{$enc_lon}'";
 
-		$sql .= " AND latitude='{$enc_lat}' AND longitude='{$enc_lon}'";
+		$bbox = geo_utils_bbox_from_point($lat, $lon, 0.05);
+
+		foreach (range(0, 3) as $i){
+			$bbox[$i] = AddSlashes($bbox[$i]);
+		}
+		
+		$sql .= " AND latitude >= '{$bbox[0]}' AND latitude <= '{$bbox[2]}'";
+		$sql .= " AND longitude >= '{$bbox[1]}' AND longitude <= '{$bbox[3]}'";
 
 		# TO DO: recently-ish-ness (20130223/straup)
 

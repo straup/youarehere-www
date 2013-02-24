@@ -37,7 +37,7 @@
 		# Not really sure what this means or should do yet
 		# (20130223/straup)
 
-		# $rsp = corrections_get_for_user_latlon($GLOBALS['cfg']['user'], $lat, $lon);
+		$rsp = corrections_get_for_user_latlon($GLOBALS['cfg']['user'], $lat, $lon);
 		# $count = $rsp['pagination']['total_count'];
 
 		$reversegeo_rsp = reverse_geocode($lat, $lon, $filter);
