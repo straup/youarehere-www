@@ -10,7 +10,10 @@
 	if (($ok_geocode) && ($q = get_str("q"))){
 
 		$rsp = twofishes_geocode($q);
-		dumper($rsp['data']);
+		$data = $rsp['data']['interpretations'];
+
+		$geojson = twofishes_interpretations_to_geojson($data);
+		
 	}
 
 	$GLOBALS['smarty']->display("page_getlatlon.txt");

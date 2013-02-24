@@ -59,6 +59,13 @@
 
 	$GLOBALS['cfg']['reverse_geocode_default_filter'] = 'neighbourhoods';
 
+	# Get latlon / geocoder stuff
+
+	$GLOBALS['cfg']['enable_feature_getlatlon'] = 0;
+	$GLOBALS['cfg']['enable_feature_geocoder'] = 0;
+
+	$GLOBALS['cfg']['twofishes_endpoint'] = 'http://localhost:8081';
+
 	# Privacy stuff
 
 	$GLOBALS['cfg']['enable_feature_show_users'] = 0;
