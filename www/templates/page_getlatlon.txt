@@ -1,4 +1,16 @@
+{capture assign="page_title"}where are you?{/capture}
 {include file="inc_head.txt"}
 
+{include file="inc_map.txt"}
+
+<script type="text/javascript">
+{literal}
+$(document).ready(function(){
+	var extent = [[-90, -180], [90, 180]];
+	var map = youarehere_map();
+	map.fitBounds(extent);
+});
+{/literal}
+</script>
 
 {include file="inc_foot.txt"}

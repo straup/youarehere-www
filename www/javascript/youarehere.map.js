@@ -24,7 +24,7 @@ function youarehere_map(){
 		var base = L.tileLayer(toner, {
 			attribution: '',
 			maxZoom: 18,
-			minZoom: 4
+			minZoom: 1
 		});
 
 		base.addTo(map);
