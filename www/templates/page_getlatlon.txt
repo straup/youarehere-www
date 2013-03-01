@@ -1,13 +1,14 @@
 {capture assign="page_title"}where are you?{/capture}
+{capture assign="extra_head"}<script src="{$cfg.abs_root_url}javascript/youarehere.getlatlon.js"></script>{/capture}
 {include file="inc_head.txt"}
 
-{include file="inc_map.txt"}
+{include file="inc_map_getlatlon.txt"}
 
 <script type="text/javascript">
 {literal}
 $(document).ready(function(){
 	var extent = [[-90, -180], [90, 180]];
-	var map = youarehere_map();
+	var map = youarehere_getlatlon_map();
 	map.fitBounds(extent);
 });
 {/literal}

@@ -49,6 +49,19 @@ optgroup {
     display:none;
 }
 
+#map-geocode {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color:white;
+    color: #000;
+    padding: 1em;
+    padding-left: 0px !important;
+    border-top: solid thin;
+    border-right: solid thin;
+    display:block;
+}
+
 #choices {
 
 }
