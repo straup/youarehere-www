@@ -56,10 +56,16 @@ optgroup {
     background-color:white;
     color: #000;
     padding: 1em;
+    padding-bottom: none;
     padding-left: 0px !important;
     border-top: solid thin;
     border-right: solid thin;
     display:block;
+}
+
+#map-geocode form {
+    margin:0;
+    padding:0;
 }
 
 #choices {
