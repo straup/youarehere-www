@@ -4,11 +4,16 @@
 
 {include file="inc_map_getlatlon.txt"}
 
-{$geojson|@dumper}
+{if $geojson}
+
+<ul>
+{foreach from=$geojson.features item="row"}
+<li>{$row.properties.displayname|escape}</li>
+{/foreach}
+</ul>
 
 <script type="text/javascript">
 
-{if $geojson}
 var geojson = JSON.parse('{$geojson|@json_encode}');
 
 {literal}
@@ -21,9 +26,11 @@ $(document).ready(function(){
 	youarehere_getlatlon_draw_features(geojson);
 });
 {/literal}
+</script>
 
 {else}
 
+<script type="text/javascript">
 {literal}
 $(document).ready(function(){
 	var extent = [[-90, -180], [90, 180]];
@@ -31,8 +38,8 @@ $(document).ready(function(){
 	map.fitBounds(extent);
 });
 {/literal}
+</script>
 
 {/if}
-</script>
 
 {include file="inc_foot.txt"}
