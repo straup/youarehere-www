@@ -4,7 +4,26 @@
 
 {include file="inc_map_getlatlon.txt"}
 
+{$geojson|@dumper}
+
 <script type="text/javascript">
+
+{if $geojson}
+var geojson = JSON.parse('{$geojson|@json_encode}');
+
+{literal}
+$(document).ready(function(){
+	var extent = [[-90, -180], [90, 180]];
+	var map = youarehere_getlatlon_map();
+	map.fitBounds(extent);
+
+	youarehere_getlatlon_set_viewport(geojson);
+	youarehere_getlatlon_draw_features(geojson);
+});
+{/literal}
+
+{else}
+
 {literal}
 $(document).ready(function(){
 	var extent = [[-90, -180], [90, 180]];
@@ -12,6 +31,8 @@ $(document).ready(function(){
 	map.fitBounds(extent);
 });
 {/literal}
+
+{/if}
 </script>
 
 {include file="inc_foot.txt"}

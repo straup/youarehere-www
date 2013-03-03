@@ -13,9 +13,8 @@
 
 		if ($rsp['ok']){
 			$data = $rsp['data']['interpretations'];
-			# dumper($data);
-			# $geojson = twofishes_interpretations_to_geojson($data);
-dumper($data);
+			$geojson = twofishes_interpretations_to_geojson($data);
+			$GLOBALS['smarty']->assign_by_ref("geojson", $geojson);
 		}
 	}
 
