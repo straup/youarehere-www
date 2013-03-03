@@ -91,6 +91,8 @@ function youarehere_getlatlon_set_viewport(geojson){
 
 }
 
+// TO DO: pass in a UID and track to bounding box, etc (20130303/straup)
+
 function youarehere_getlatlon_jumpto(lat, lon){
 
 	var map = youarehere_getlatlon_map();
