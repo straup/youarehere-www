@@ -159,6 +159,9 @@ function youarehere_getlatlon_coords(){
 	var lat = centroid['lat'];
 	var lon = centroid['lng'];
 
+	// TO DO: try to precalculate filter type based
+	// on zoom level (20130303/straup)
+    
 	var href = "/maybe?lat=" + lat + "&lon=" + lon;
 
 	var html = '';
