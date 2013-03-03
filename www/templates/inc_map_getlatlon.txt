@@ -3,7 +3,7 @@
 <div id="getlatlon-crosshairs"></div>
 <div id="getlatlon-geocode">
 	<form>
-	<input type="text" name="q" />
+	<input type="text" name="q" value="{$smarty.get.q|escape}" />
 	<input type="submit" value="FIND ME" />
 	</form>
 </div>

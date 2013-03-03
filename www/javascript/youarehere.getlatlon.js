@@ -91,6 +91,15 @@ function youarehere_getlatlon_set_viewport(geojson){
 
 }
 
+function youarehere_getlatlon_jumpto(lat, lon){
+
+	var map = youarehere_getlatlon_map();
+
+	var centroid = [ lat, lon ];
+	var zoom = 12;	// make me better...
+	map.setView(centroid, zoom);
+}
+
 // TO DO: allow styles to be passed in at runtime (20130218/straup)
 
 function youarehere_getlatlon_draw_features(geojson){
