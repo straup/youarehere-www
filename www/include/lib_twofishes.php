@@ -63,13 +63,13 @@
 
 				$bbox = array($swlon, $swlat, $nelon, $nelat);
 
-				$coords = array(
+				$coords = array(array(
 					array($swlon, $swlat),
 					array($swlon, $nelat),
 					array($nelon, $nelat),
 					array($nelon, $swlat),
 					array($swlon, $swlat),
-				);
+				));
 
 				$geom['type'] = 'Polygon';
 				$geom['coordinates'] = $coords;

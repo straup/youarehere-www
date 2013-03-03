@@ -109,7 +109,6 @@ function youarehere_getlatlon_draw_features(geojson){
 		'onEachFeature': on_feature
 	};
 
-console.log(geojson);
 	layer = L.geoJson(geojson, args);
 	layer.addTo(map);
 
