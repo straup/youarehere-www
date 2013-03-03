@@ -33,36 +33,59 @@ function youarehere_getlatlon_map(){
 	return _map;
 }
 
-// this needs to be taught to deal with multiple features
-
 function youarehere_getlatlon_set_viewport(geojson){
 
 	var map = youarehere_getlatlon_map();
 
-	var feature = geojson['features'][0];
-	var bbox = feature.bbox;
-	var geom = feature.geometry;
+	var features = geojson['features'];
+	var count = features.length;
 
-	// See if we can't calculate this based on the place type...
+	var swlat = undefined;
+	var swlon = undefined;
+	var nelat = undefined;
+	var nelon = undefined;
 
-	var zoom = 12;
+	for (var i=0; i < count; i++){
 
-	if (geom['type'] == 'Point'){
-		var coords = geom.coordinates;
-		var centroid = [ coords[1], coords[0] ];
+		var feature = features[i];
+		var bbox = feature.bbox;
+		var geom = feature.geometry;
+
+		if (geom['type'] == 'Point'){
+
+			var coords = geom.coordinates;
+			var lat = coords[1];
+			var lon = coords[0];
+
+			swlat = (swlat == undefined) ? lat : Math.min(swlat, lat);
+			swlon = (swlon == undefined) ? lon : Math.min(swlon, lon);
+			nelat = (nelat == undefined) ? lat : Math.max(nelat, lat);
+			nelon = (nelon == undefined) ? lon : Math.max(nelon, lon);
+		}
+
+		else if (bbox){
+			swlat = (swlat == undefined) ? bbox[1] : Math.min(swlat, bbox[1]);
+			swlon = (swlon == undefined) ? bbox[0] : Math.min(swlon, bbox[0]);
+			nelat = (nelat == undefined) ? bbox[3] : Math.max(nelat, bbox[3]);
+			nelon = (nelon == undefined) ? bbox[2] : Math.max(nelon, bbox[2]);
+		}
+
+		else {
+			// console.log("SAD FACE");
+		}    
+	}
+
+	if ((swlat == nelat) && (swlon == nelon)){
+		var centroid = [ swlat, swlon ];
+		var zoom = 12;
 		map.setView(centroid, zoom);
 	}
 
-	else if (bbox){
-		var extent = [ [bbox[1], bbox[0] ], [bbox[3], bbox[2] ] ];
+	else {
+		var extent = [[swlat, swlon], [nelat, nelon]];
 		map.fitBounds(extent);
-		// var bounds = map.getBounds();
-		// bounds.extend(extent);
 	}
 
-	else {
-		// console.log("SAD FACE");
-	}    
 }
 
 // TO DO: allow styles to be passed in at runtime (20130218/straup)
