@@ -7,3 +7,7 @@
 	</form>
 </div>
 </div>
+
+<div id="getlatlon-details">
+<span id="map-coords"></span>
+</div>

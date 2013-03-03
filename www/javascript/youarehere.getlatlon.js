@@ -17,6 +17,9 @@ function youarehere_getlatlon_map(){
 
 		var map = L.map(container_id, args);
 
+		// map.on('load', youarehere_getlatlon_coords);
+		map.on('move', youarehere_getlatlon_coords);
+
 		var toner = 'http://tile.stamen.com/toner-background/{z}/{x}/{y}.jpg';
 
 		var base = L.tileLayer(toner, {
@@ -97,8 +100,8 @@ function youarehere_getlatlon_draw_features(geojson){
 	var map = youarehere_getlatlon_map();
 
 	var poly_style = {
-		"color": '#000',
-		"weight": 2,
+		"color": 'red',
+		"weight": 6,
 		"opacity": 1,
 		fillOpacity: .8,
 		fillColor: '#afceee'
@@ -135,4 +138,17 @@ function youarehere_getlatlon_draw_features(geojson){
 	layer = L.geoJson(geojson, args);
 	layer.addTo(map);
 
+}
+
+function youarehere_getlatlon_coords(){
+	var map = youarehere_getlatlon_map();
+	var centroid = map.getCenter();
+	var zoom = map.getZoom();
+
+	var lat = centroid['lat'];
+	var lon = centroid['lng'];
+
+	var str = lat.toFixed(6) + "," + lon.toFixed(6) + " @ zoom level " + zoom;
+
+	$("#map-coords").html(str);
 }

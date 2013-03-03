@@ -102,3 +102,7 @@ input[type=submit] {
 .error q {
     font-weight: 700;
 }
+
+#getlatlon-details {
+    text-align:center;
+}
