@@ -127,7 +127,11 @@ function youarehere_getlatlon_draw_features(geojson){
 		"radius": 8
 	};
 
+	// this needs to draw a dot if we're <= zoom ... 10?
+	// (20130303/straup    
+
 	var poly_function = function(f){
+
 		if (f['geometry']['type'] != 'Point'){
 			return poly_style;
 		}
