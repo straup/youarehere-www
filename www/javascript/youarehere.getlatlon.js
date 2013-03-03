@@ -20,7 +20,7 @@ function youarehere_getlatlon_map(){
 		// map.on('load', youarehere_getlatlon_coords);
 		map.on('move', youarehere_getlatlon_coords);
 
-		var toner = 'http://tile.stamen.com/toner-background/{z}/{x}/{y}.jpg';
+		var toner = 'http://tile.stamen.com/toner/{z}/{x}/{y}.jpg';
 
 		var base = L.tileLayer(toner, {
 			attribution: '',
@@ -148,7 +148,13 @@ function youarehere_getlatlon_coords(){
 	var lat = centroid['lat'];
 	var lon = centroid['lng'];
 
-	var str = lat.toFixed(6) + "," + lon.toFixed(6) + " @ zoom level " + zoom;
+	var href = "/maybe?lat=" + lat + "&lon=" + lon;
 
-	$("#map-coords").html(str);
+	var html = '';
+	html += lat.toFixed(6) + ", " + lon.toFixed(6);
+	html += " @ zoom level " + zoom;
+
+	html += ' <span class="pointer">⇦</span> <a href="' + href + '">I am here</a>';
+
+	$("#map-coords").html(html);
 }
