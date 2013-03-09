@@ -39,11 +39,14 @@
 	$GLOBALS['cfg']['reverse_geocode_endpoints'] = array(
 		'neighbourhoods' => array('http://localhost:9022'),
 		'localities' => array('http://localhost:9007'),
+		# 'aerotropolii' => array('http://localhost:9099'),
 	);
 
 	$GLOBALS['cfg']['reverse_geocode_fallbacks'] = array(
 		'neighbourhoods' => 'localities',
 		'localities' => null,
+		# 'localities' => 'aerotropolii',
+		# 'aerotropolii' => null
 	);
 
 	$GLOBALS['cfg']['reverse_geocode_sources'] = array(
