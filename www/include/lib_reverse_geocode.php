@@ -19,6 +19,32 @@
 
 		if ($rsp['ok']){
 			$data = json_decode($rsp['body'], 'as hash');
+			$count = count($data);
+
+			# Grrrrn...
+
+			for ($i = 0; $i < $count; $i++){
+				$props = $data[$i];
+
+				foreach ($props as $k => $v){
+
+					$lc_k = strtolower($k);
+
+					if ($lc_k != $k){
+						$props[$lc_k] = $v;
+						unset($props[$k]);
+					}
+				}
+
+				# Double grrrrnnnn...
+
+				if (! isset($props['woe_id'])){
+					$props['woe_id'] = $props['woeid'];
+				}
+
+				$data[$i] = $props;
+			}
+
 			$rsp['data'] = $data;
 		}
 
