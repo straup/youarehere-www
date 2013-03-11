@@ -160,6 +160,8 @@
 	}
 
 	$fallback = corrections_get_fallback($filter);
+	
+	$GLOBALS['smarty']->assign("filter", $filter);
 	$GLOBALS['smarty']->assign("fallback", $fallback);
 
 	$map = corrections_perspective_map();
