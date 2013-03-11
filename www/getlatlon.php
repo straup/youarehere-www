@@ -13,7 +13,8 @@
 
 		if ($rsp['ok']){
 			$data = $rsp['data']['interpretations'];
-			$geojson = twofishes_interpretations_to_geojson($data);
+			$more = array('favour_centroids' => 1);
+			$geojson = twofishes_interpretations_to_geojson($data, $more);
 			$GLOBALS['smarty']->assign_by_ref("geojson", $geojson);
 		}
 	}

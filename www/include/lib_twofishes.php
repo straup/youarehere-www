@@ -27,7 +27,13 @@
 
 	########################################################################
 
-	function twofishes_interpretations_to_geojson(&$interpretations){
+	function twofishes_interpretations_to_geojson(&$interpretations, $more=array()){
+
+		$defaults = array(
+			'favour_centroids' => 0
+		);
+
+		$more = array_merge($defaults, $more);
 
 		$features = array();
 
@@ -54,7 +60,7 @@
 			$geom = array();
 			$bbox = null;
 
-			if (isset($g['bounds'])){
+			if ((isset($g['bounds'])) && (! $more['favour_centroids'])){
 
 				$swlat = $g['bounds']['sw']['lat'];
 				$swlon = $g['bounds']['sw']['lng'];
