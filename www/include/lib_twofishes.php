@@ -27,13 +27,7 @@
 
 	########################################################################
 
-	function twofishes_interpretations_to_geojson(&$interpretations, $more=array()){
-
-		$defaults = array(
-			'favour_centroids' => 0
-		);
-
-		$more = array_merge($defaults, $more);
+	function twofishes_interpretations_to_geojson(&$interpretations){
 
 		$features = array();
 
