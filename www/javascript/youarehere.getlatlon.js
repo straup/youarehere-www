@@ -144,13 +144,21 @@ function youarehere_getlatlon_set_viewport(geojson){
 
 // TO DO: pass in a UID and track to bounding box, etc (20130303/straup)
 
-function youarehere_getlatlon_jumpto(lat, lon){
+function youarehere_getlatlon_jumpto(lat, lon, bbox){
 
 	var map = youarehere_getlatlon_map();
 
-	var centroid = [ lat, lon ];
-	var zoom = 12;	// make me better...
-	map.setView(centroid, zoom);
+	if (bbox){
+		bbox = bbox.split(',');
+		var extent = [[bbox[1], bbox[0]], [bbox[3], bbox[2]]];
+		map.fitBounds(extent);
+	}
+
+	else {
+		var centroid = [ lat, lon ];
+		var zoom = 12;	// make me better...
+		map.setView(centroid, zoom);
+	}
 }
 
 // TO DO: allow styles to be passed in at runtime (20130218/straup)
@@ -170,11 +178,11 @@ function youarehere_getlatlon_draw_features(geojson){
 	};
 
 	var point_style = {
-		"color": 'red',
+		"color": 'orange',
 		"weight": 4,
 		"opacity": 1,
-		fillOpacity: 1,
-		fillColor: 'white',
+		fillOpacity: .5,
+		fillColor: 'yellow',
 		"radius": 8
 	};
 

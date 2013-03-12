@@ -93,15 +93,15 @@
 				$geom['geometries'][] = $poly_geom;
 			}
 
-			if ($bbox){
-				$feature['bbox'] = $bbox;
-			}
-
 			$feature = array(
 				'type' => 'Feature',
 				'geometry' => $geom,
 				'properties' => $props
 			);
+
+			if ($bbox){
+				$feature['bbox'] = $bbox;
+			}
 
 			$features[] = $feature;
 		}
