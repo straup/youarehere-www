@@ -162,10 +162,10 @@ function youarehere_getlatlon_draw_features(geojson){
 	var map = youarehere_getlatlon_map();
 
 	var poly_style = {
-		"color": 'red',
+		"color": 'green',
 		"weight": 6,
 		"opacity": 1,
-		fillOpacity: .8,
+		fillOpacity: 0,
 		fillColor: '#afceee'
 	};
 
@@ -195,8 +195,38 @@ function youarehere_getlatlon_draw_features(geojson){
 	var on_feature = function(f, _layer){
 	};
 
+	// Basically the only way (I've found) to not draw
+	// draw polygons if we're dealing with GeometryCollections
+	// short of diving into the Leaflet source code and
+	// patching things which I'm not interested in doing
+	// at 7:30 in the morning... (20130312/straup)
+    
+	var features = geojson['features'];
+	var count_f = features.length;
+
+	for (var i=0; i < count_f; i++){
+
+		var f = features[i];
+		var g = f['geometry'];
+
+		if (g['type'] == 'GeometryCollection'){
+			var geoms = g['geometries'];
+			var count_g = geoms.length;
+
+			for (var j=0; j < count_g; j++){
+
+				if (geoms[j]['type'] == 'Point'){
+					g = geoms[j];
+					f['geometry'] = g;
+					geojson['features'][i] = f;
+					break;
+				}
+			}
+		}
+	}
+
 	var args = {
-		'style': poly_function,
+		// 'style': poly_function,
 		'pointToLayer': on_point,
 		'onEachFeature': on_feature
 	};

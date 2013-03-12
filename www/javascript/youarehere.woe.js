@@ -97,7 +97,7 @@ function youarehere_woe_draw_shapes(woeids){
 			}
 
 			catch (e){
-				console.log(e);
+				// console.log(e);
 				// youarehere_set_status("Hrm... I can't seem to draw the shape for that place");
 			}
 
