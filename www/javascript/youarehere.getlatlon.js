@@ -38,6 +38,71 @@ function youarehere_getlatlon_map(){
 
 function youarehere_getlatlon_set_viewport(geojson){
 
+	var parse_geom = function(geom){
+
+		var _swlat = undefined;
+		var _swlon = undefined;
+		var _nelat = undefined;
+		var _nelon = undefined;
+
+		if (geom['type'] == 'GeometryCollection'){
+
+			var count_geoms = geom['geometries'].length;
+
+			for (var g=0; g < count_geoms; g++){
+
+				var _bbox = parse_geom(geom['geometries'][g]);
+
+				_swlat = (_swlat == undefined) ? _bbox[1] : Math.min(_swlat, _bbox[1]);
+				_swlon = (_swlon == undefined) ? _bbox[0] : Math.min(_swlon, _bbox[0]);
+				_nelat = (_nelat == undefined) ? _bbox[3] : Math.max(_nelat, _bbox[3]);
+				_nelon = (_nelon == undefined) ? _bbox[2] : Math.max(_nelon, _bbox[2]);
+			}
+		}
+
+		else if (geom['type'] == 'Point'){
+
+			var coords = geom.coordinates;
+			var lat = coords[1];
+			var lon = coords[0];
+
+			_swlat = (_swlat == undefined) ? lat : Math.min(_swlat, lat);
+			_swlon = (_swlon == undefined) ? lon : Math.min(_swlon, lon);
+			_nelat = (_nelat == undefined) ? lat : Math.max(_nelat, lat);
+			_nelon = (_nelon == undefined) ? lon : Math.max(_nelon, lon);
+		}
+
+		else if (geom['type'] == 'Polygon'){
+
+			var polys = geom.coordinates;
+			var polys_count = polys.length;
+
+			for (var p=0; p < polys_count; p++){
+
+				var lines = polys[p];
+				var lines_count = lines.length;
+
+				for (var l=0; l < lines_count; l++){
+
+					var coords = lines[l];
+					var lat = coords[1];
+					var lon = coords[0];
+
+					_swlat = (_swlat == undefined) ? lat : Math.min(_swlat, lat);
+					_swlon = (_swlon == undefined) ? lon : Math.min(_swlon, lon);
+					_nelat = (_nelat == undefined) ? lat : Math.max(_nelat, lat);
+					_nelon = (_nelon == undefined) ? lon : Math.max(_nelon, lon);
+				}
+			}
+		}
+
+		else {
+			// console.log("SAD FACE " + geom['type']);
+		}    
+
+		return [ _swlat, _swlon, _nelat, _nelon ];
+	};
+
 	var map = youarehere_getlatlon_map();
 
 	var features = geojson['features'];
@@ -54,28 +119,14 @@ function youarehere_getlatlon_set_viewport(geojson){
 		var bbox = feature.bbox;
 		var geom = feature.geometry;
 
-		if (geom['type'] == 'Point'){
-
-			var coords = geom.coordinates;
-			var lat = coords[1];
-			var lon = coords[0];
-
-			swlat = (swlat == undefined) ? lat : Math.min(swlat, lat);
-			swlon = (swlon == undefined) ? lon : Math.min(swlon, lon);
-			nelat = (nelat == undefined) ? lat : Math.max(nelat, lat);
-			nelon = (nelon == undefined) ? lon : Math.max(nelon, lon);
+		if (! bbox){
+			bbox = parse_geom(geom);
 		}
 
-		else if (bbox){
-			swlat = (swlat == undefined) ? bbox[1] : Math.min(swlat, bbox[1]);
-			swlon = (swlon == undefined) ? bbox[0] : Math.min(swlon, bbox[0]);
-			nelat = (nelat == undefined) ? bbox[3] : Math.max(nelat, bbox[3]);
-			nelon = (nelon == undefined) ? bbox[2] : Math.max(nelon, bbox[2]);
-		}
-
-		else {
-			// console.log("SAD FACE");
-		}    
+		swlat = (swlat == undefined) ? bbox[1] : Math.min(swlat, bbox[1]);
+		swlon = (swlon == undefined) ? bbox[0] : Math.min(swlon, bbox[0]);
+		nelat = (nelat == undefined) ? bbox[3] : Math.max(nelat, bbox[3]);
+		nelon = (nelon == undefined) ? bbox[2] : Math.max(nelon, bbox[2]);
 	}
 
 	if ((swlat == nelat) && (swlon == nelon)){

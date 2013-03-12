@@ -15,7 +15,7 @@
 <script type="text/javascript">
 
 var geojson = JSON.parse('{$geojson|@json_encode}');
-
+console.log(geojson);
 {literal}
 $(document).ready(function(){
 	var extent = [[-90, -180], [90, 180]];
