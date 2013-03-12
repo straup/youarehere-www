@@ -55,12 +55,26 @@
 				$props[ $copy_to ] = $f[ $copy_from ];
 			}
 
+			$props['latitude'] = $g['center']['lat'];
+			$props['longitude'] = $g['center']['lng'];
+
 			# TO DO: names and concordances
 
-			$geom = array();
+			$geom = array(
+				'type' => 'GeometryCollection',
+				'geometries' => [],
+			);
+
 			$bbox = null;
 
-			if ((isset($g['bounds'])) && (! $more['favour_centroids'])){
+			$pt_geom = array(
+				'type' => 'Point',
+				'coordinates' => array($g['center']['lng'], $g['center']['lat'])
+			);
+
+			$geom['geometries'][] = $pt_geom;
+
+			if (isset($g['bounds'])){
 
 				$swlat = $g['bounds']['sw']['lat'];
 				$swlon = $g['bounds']['sw']['lng'];
@@ -77,27 +91,23 @@
 					array($swlon, $swlat),
 				));
 
-				$geom['type'] = 'Polygon';
-				$geom['coordinates'] = $coords;
+				$poly_geom = array(
+					'type' => 'Polygon',
+					'coordinates' => $coords
+				);
+
+				$geom['geometries'][] = $poly_geom;
 			}
 
-			else {
-				$geom['type'] = 'Point';
-				$geom['coordinates'] = array($g['center']['lng'], $g['center']['lat']);
+			if ($bbox){
+				$feature['bbox'] = $bbox;
 			}
-
-			$props['latitude'] = $g['center']['lat'];
-			$props['longitude'] = $g['center']['lng'];
 
 			$feature = array(
 				'type' => 'Feature',
 				'geometry' => $geom,
 				'properties' => $props
 			);
-
-			if ($bbox){
-				$feature['bbox'] = $bbox;
-			}
 
 			$features[] = $feature;
 		}
