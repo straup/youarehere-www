@@ -169,38 +169,46 @@ function youarehere_getlatlon_draw_features(geojson){
 
 	var map = youarehere_getlatlon_map();
 
-	var poly_style = {
-		"color": 'green',
-		"weight": 6,
-		"opacity": 1,
-		fillOpacity: 0,
-		fillColor: '#afceee'
-	};
-
 	var point_style = {
-		"color": 'orange',
+		"color": '#0BBDFF',
 		"weight": 4,
 		"opacity": 1,
-		fillOpacity: .5,
-		fillColor: 'yellow',
+		fillOpacity: 1,
+		fillColor: '#fff',
 		"radius": 8
-	};
-
-	// this needs to draw a dot if we're <= zoom ... 10?
-	// (20130303/straup    
-
-	var poly_function = function(f){
-
-		if (f['geometry']['type'] != 'Point'){
-			return poly_style;
-		}
 	};
 
 	var on_point = function (f, latlng) {
 	        return L.circleMarker(latlng, point_style);
     	};
 
+	var on_click = function(e){
+		var f = e.target.feature;
+
+		var bbox = f['bbox'];
+
+		if (bbox){
+			bbox = bbox.join(',');
+		}
+
+		// Note: Even if there's a poly it will have been removed by
+		// the time we get here. Details below. (20130313/straup)
+
+		var coords = f['geometry']['coordinates'];	    
+
+		var lat = coords[1];
+		var lon = coords[0];
+
+	    	// console.log('lat: ' + lat + ' lon: ' + lon + ' bbox: ' + bbox);
+		youarehere_getlatlon_jumpto(lat, lon, bbox);
+	};
+
 	var on_feature = function(f, _layer){
+		_layer.on({
+			'click': on_click
+			// 'mouseover': on_mouseover,
+        		// 'mouseout': on_mouseout
+		});
 	};
 
 	// Basically the only way (I've found) to not draw
@@ -215,6 +223,7 @@ function youarehere_getlatlon_draw_features(geojson){
 	for (var i=0; i < count_f; i++){
 
 		var f = features[i];
+
 		var g = f['geometry'];
 
 		if (g['type'] == 'GeometryCollection'){
