@@ -8,7 +8,7 @@
 
 <ul>
 {foreach from=$geojson.features item="row"}
-<li><a href="#" onclick="javascript:youarehere_getlatlon_jumpto({$row.properties.latitude|escape},{$row.properties.longitude|escape},'{$row.bbox|@implode:","|escape}');return false;">{$row.properties.displayname|escape}</a></li>
+<li><a href="#" onclick="javascript:youarehere_getlatlon_jumpto({$row.properties.latitude|escape},{$row.properties.longitude|escape}{if $row.bbox},'{$row.bbox|@implode:","|escape}'{/if});return false;">{$row.properties.displayname|escape}</a></li>
 {/foreach}
 </ul>
 
