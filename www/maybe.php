@@ -52,10 +52,12 @@
 			$choice = post_str("whereami");
 
 			$ok = 0;
+			$try_fallback = 0;
+
 			$error = null;
 
-			# if choice == -1: try parent
-			# if choice == 2: no no no, all wrong
+			# if choice == -1: no no no, all wrong - give up
+			# if choice == -2-STUFF: where STUFF is a ancestor/fallback
 			# if choice: ensure nearby-iness (note that '0' is a
 			# valid option, because Null Island)
 
@@ -76,11 +78,24 @@
 
 			# The user wants more choices
 
-			else if ($choice == -2){
+			else if (preg_match("/^-2-([a-z]+)$/", $choice, $m)){
 
-				if ($filter = corrections_get_fallback($filter)){
+				$fallback = $m[1];
+
+				$fallback_tree = corrections_get_fallback_tree($filter);
+
+				# isset($fallback_tree[$fallback]) fails because... uh?
+				# (20130321/straup)
+
+				$ok_fallback = (in_array($fallback, array_keys($fallback_tree))) ? 1 : 0;
+
+				if ($ok_fallback){
+
+					$filter = $fallback;
 					$reversegeo_rsp = reverse_geocode($lat,	$lon, $filter);
 					$GLOBALS['smarty']->assign_by_ref("rsp", $reversegeo_rsp);
+
+					$try_fallback = 1;
 					$ok = 1;
 				}
 
@@ -117,7 +132,7 @@
 			# See this: we're going to pop out of the stack and
 			# present the user with a new set of places (20130208/straup)
 
-			else if ($choice == -2){
+			else if ($try_fallback){
 				$GLOBALS['smarty']->assign("step", "choose");
 			}
 
@@ -159,10 +174,15 @@
 		}
 	}
 
+	$GLOBALS['smarty']->assign("filter", $filter);
+
+	$fallback_tree = corrections_get_fallback_tree($filter);
+
+	# Deprecated
 	$fallback = corrections_get_fallback($filter);
 	
-	$GLOBALS['smarty']->assign("filter", $filter);
 	$GLOBALS['smarty']->assign("fallback", $fallback);
+	$GLOBALS['smarty']->assign("fallback_tree", $fallback_tree);
 
 	$map = corrections_perspective_map();
 	$GLOBALS['smarty']->assign_by_ref("perspective_map", $map);

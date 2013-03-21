@@ -33,9 +33,13 @@ error messages. This is what they are willing to tell us: <q>{$rsp.error|escape}
 <option value="{$row.woe_id|escape}" id="woe-{$row.woe_id|escape}" class="location">{if $row.name}{$row.name|escape}{else}{$row.label|escape}{/if}</option>
 {/foreach}
 </optgroup>
-{if $fallback}<optgroup><option value="-2">
-None of these are correct but I'd like to see {$fallback|escape}.
-</option></optgroup>{/if}
+{if $fallback_tree|@count}
+<optgroup>
+{foreach from=$fallback_tree item="ignore" key="fallback"}
+<option value="-2-{$fallback|escape}">Let's try {$fallback|escape}, instead.</option>
+{/foreach}
+</optgroup>
+{/if}
 <optgroup><option value="-1">Meh. It's all wrong. I give up.</option></optgroup>
 </select>
 

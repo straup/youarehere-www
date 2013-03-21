@@ -41,6 +41,36 @@
 
 	########################################################################
 
+	function corrections_get_fallback_tree($filter){
+
+		$tree = array();
+
+		$possible = $GLOBALS['cfg']['reverse_geocode_fallbacks'];
+
+		if (! isset($possible[$filter])){
+			return $tree;
+		}
+
+		$parent = $possible[$filter];
+		$filter = $parent;
+
+		if (! $filter){
+			return $tree;
+		}
+
+		while ($parent){
+
+			$parent = $possible[$filter];
+			$tree[$filter] = $parent;
+
+			$filter = $parent;
+		}
+
+		return $tree;
+	}
+
+	########################################################################
+
 	function corrections_is_valid_fallback($fallback){
 
 		$possible = array_keys($GLOBALS['cfg']['reverse_geocoder_fallbacks']);
