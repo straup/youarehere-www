@@ -72,6 +72,13 @@
 
 	$GLOBALS['cfg']['twofishes_endpoint'] = 'http://localhost:8081';
 
+	# WOEDB static files
+
+	$GLOBALS['cfg']['woedb_url'] = '';
+
+	$GLOBALS['cfg']['enable_feature_woedb_static'] = 0;
+	$GLOBALS['cfg']['woedb_static_path'] = '';
+
 	# Privacy stuff
 
 	$GLOBALS['cfg']['enable_feature_show_users'] = 0;
