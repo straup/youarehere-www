@@ -74,9 +74,9 @@
 
 	# WOEDB static files
 
-	$GLOBALS['cfg']['woedb_url'] = '';
-
 	$GLOBALS['cfg']['enable_feature_woedb_static'] = 0;
+
+	$GLOBALS['cfg']['woedb_static_url_template'] = "http://example.com/woe/{W}/geojson/";
 	$GLOBALS['cfg']['woedb_static_path'] = '';
 
 	# Privacy stuff

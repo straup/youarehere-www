@@ -30,11 +30,7 @@ function youarehere_woe_draw_shapes(woeids){
 
 		var woeid = to_draw[i];
 
-		var woeid_url = 'http://woe.spum.org/id/' + woeid + '/shape.js';
-
-		if (woeid==18807771){
-			woeid_url = 'http://gowanusheights.info/data/gowanus-heights.json';
-		}
+		var woeid_url = _cfg.woedb_static_url_template.replace("{W}", woeid);
 
 		// see the '__' ?
 		// it's important and explained below

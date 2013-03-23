@@ -5,7 +5,7 @@
 
 	features_ensure_enabled("woedb_static");
 
-	$woeid = get_int32("woeid");
+	$woeid = get_int32("id");
 
 	if (! $woeid){
 		error_404();

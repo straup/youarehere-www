@@ -63,6 +63,8 @@ RewriteRule   ^users/([0-9]+)/corrections(/page([0-9]+))?/?$		user_corrections.p
 
 RewriteRule   ^woe/([0-9]+)/corrections(/page([0-9]+))?/?$		woe_corrections.php?id=$1&page=$3&%{QUERY_STRING}	[L]
 
+RewriteRule   ^woe/([0-9]+)/geojson/?$					woedb_geojson.php?id=$1&%{QUERY_STRING}	[L]
+
 # Login stuff
 
 RewriteRule	^signin/?$		signin_twitter_oauth.php?%{QUERY_STRING}	[L]

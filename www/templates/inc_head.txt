@@ -40,7 +40,12 @@
     <script src="{$cfg.abs_root_url}javascript/youarehere.map.js"></script>
     <script src="{$cfg.abs_root_url}javascript/youarehere.woe.js"></script>
     {/if}
-
+    <script type="text/javascript">
+	var _cfg = {literal}{{/literal}
+		'abs_root_url': '{$cfg.abs_root_url}',
+		'woedb_static_url_template': '{$cfg.woedb_static_url_template}'
+	{literal}}{/literal};
+    </script>
     {if $extra_head}{$extra_head}{/if}
   </head>
 
