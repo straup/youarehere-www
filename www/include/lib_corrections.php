@@ -127,6 +127,7 @@
 		$rsp = db_insert('Corrections', $insert);
 
 		if ($rsp['ok']){
+			$data = corrections_scrub_correction($data);
 			$rsp['correction'] = $data;
 		}
 
@@ -140,10 +141,11 @@
 		$enc_id = AddSlashes($id);
 
 		$sql = "SELECT * FROM Corrections WHERE id='{$enc_id}'";
-
 		$rsp = db_fetch($sql);
+
 		$row = db_single($rsp);
-		
+		$row = corrections_scrub_correction($row);		
+
 		return $row;
 	}
 
@@ -156,6 +158,8 @@
 		$sql = "SELECT * FROM Corrections ORDER BY created DESC";
 
 		$rsp = db_fetch_paginated($sql, $more);
+		$rsp = corrections_scrub_rsp($rsp);
+
 		return $rsp;
 	}
 
@@ -168,6 +172,8 @@
 		$sql = "SELECT * FROM Corrections WHERE user_id='{$enc_id}' ORDER BY created DESC";
 
 		$rsp = db_fetch_paginated($sql, $more);
+		$rsp = corrections_scrub_rsp($rsp);
+
 		return $rsp;
 	}
 
@@ -197,6 +203,8 @@
 		$sql .= " ORDER BY created DESC";
 
 		$rsp = db_fetch_paginated($sql, $more);
+		$rsp = corrections_scrub_rsp($rsp);
+
 		return $rsp;
 
 	}
@@ -210,6 +218,8 @@
 		$sql = "SELECT * FROM Corrections WHERE woe_id='{$enc_id}' ORDER BY created DESC";
 
 		$rsp = db_fetch_paginated($sql, $more);
+		$rsp = corrections_scrub_rsp($rsp);
+
 		return $rsp;
 	}
 
@@ -221,6 +231,48 @@
 		$secret = $GLOBALS['cfg']['crypto_remote_address_secret'];
 		$hash = hash_hmac("sha256", $addr, $secret);
 		return md5($hash);
+	}
+
+	########################################################################
+
+	function corrections_scrub_rsp(&$rsp){
+
+		if ($rsp['ok']){
+			$rsp['rows'] = corrections_scrub_corrections($rsp['rows']);
+		}
+
+		return $rsp;
+	}
+
+	########################################################################
+
+	function corrections_scrub_corrections(&$rows){
+
+		$count = count($rows);
+
+		for ($i=0; $i < $count; $i++){
+			$rows[$i] = corrections_scrub_correction($rows[$i]);
+		}
+
+		return $rows;
+	}
+
+	########################################################################
+
+	function corrections_scrub_correction($row){
+
+		$to_remove = array(
+			'user_id',
+		);
+
+		foreach ($to_remove as $prop){
+
+			if (array_key_exists($prop, $row)){
+				unset($row[$prop]);
+			}
+		}
+
+		return $row;
 	}
 
 	########################################################################
