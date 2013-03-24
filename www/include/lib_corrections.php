@@ -41,13 +41,15 @@
 
 	########################################################################
 
+	# get all the placetypes that are ancestors of $filter
+
 	function corrections_get_fallback_tree($filter){
 
 		$tree = array();
 
 		$possible = $GLOBALS['cfg']['reverse_geocode_fallbacks'];
 
-		if (! isset($possible[$filter])){
+		if (! array_key_exists($filter, $possible)){
 			return $tree;
 		}
 
@@ -75,6 +77,32 @@
 
 		$possible = array_keys($GLOBALS['cfg']['reverse_geocoder_fallbacks']);
 		return (in_array($fallback, $possible)) ? 1 : 0;
+	}
+
+	########################################################################
+
+	# get all the placetypes that are descendants of $filter
+
+	function corrections_get_falldown_tree($filter){
+
+		$tree = array();
+
+		$possible = $GLOBALS['cfg']['reverse_geocode_fallbacks'];
+
+		if (! array_key_exists($filter, $possible)){
+			return $tree;
+		}
+
+		foreach ($possible as $child => $parent){
+
+			if ($child == $filter){
+				break;
+			}
+
+			$tree[$child] = $parent;
+		}
+
+		return $tree;
 	}
 
 	########################################################################

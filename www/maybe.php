@@ -78,16 +78,26 @@
 
 			# The user wants more choices
 
-			else if (preg_match("/^-2-([a-z]+)$/", $choice, $m)){
+			else if (preg_match("/^-(\d)-([a-z]+)$/", $choice, $m)){
 
-				$fallback = $m[1];
+				$relationship = $m[1];
+				$fallback = $m[2];
 
-				$fallback_tree = corrections_get_fallback_tree($filter);
+				$relations = array();
 
-				# isset($fallback_tree[$fallback]) fails because... uh?
-				# (20130321/straup)
+				if ($relationship == 2){
+					$fallback_tree = corrections_get_fallback_tree($filter);
+					$relations = array_keys($fallback_tree);
+				}
 
-				$ok_fallback = (in_array($fallback, array_keys($fallback_tree))) ? 1 : 0;
+				else if ($relationship == 3){
+					$falldown_tree = corrections_get_falldown_tree($filter);
+					$relations = array_keys($falldown_tree);
+				}
+
+				else {}
+
+				$ok_fallback = (in_array($fallback, $relations)) ? 1 : 0;
 
 				if ($ok_fallback){
 
@@ -177,12 +187,14 @@
 	$GLOBALS['smarty']->assign("filter", $filter);
 
 	$fallback_tree = corrections_get_fallback_tree($filter);
+	$falldown_tree = corrections_get_falldown_tree($filter);
+
+	$GLOBALS['smarty']->assign("fallback_tree", $fallback_tree);
+	$GLOBALS['smarty']->assign("falldown_tree", $falldown_tree);
 
 	# Deprecated
 	$fallback = corrections_get_fallback($filter);
-	
 	$GLOBALS['smarty']->assign("fallback", $fallback);
-	$GLOBALS['smarty']->assign("fallback_tree", $fallback_tree);
 
 	$map = corrections_perspective_map();
 	$GLOBALS['smarty']->assign_by_ref("perspective_map", $map);

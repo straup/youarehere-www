@@ -33,6 +33,17 @@ error messages. This is what they are willing to tell us: <q>{$rsp.error|escape}
 <option value="{$row.woe_id|escape}" id="woe-{$row.woe_id|escape}" class="location">{if $row.name}{$row.name|escape}{else}{$row.label|escape}{/if}</option>
 {/foreach}
 </optgroup>
+
+{* TO DO: scrumjax this eventually (20130324/straup) *}
+
+{if $falldown_tree|@count}
+<optgroup>
+{foreach from=$falldown_tree item="ignore" key="falldown"}
+<option value="-3-{$falldown|escape}">I would like to see the {$falldown|escape}.</option>
+{/foreach}
+</optgroup>
+{/if}
+
 {if $fallback_tree|@count}
 <optgroup>
 {foreach from=$fallback_tree item="ignore" key="fallback"}
@@ -40,6 +51,7 @@ error messages. This is what they are willing to tell us: <q>{$rsp.error|escape}
 {/foreach}
 </optgroup>
 {/if}
+
 <optgroup><option value="-1">Meh. It's all wrong. I give up.</option></optgroup>
 </select>
 
