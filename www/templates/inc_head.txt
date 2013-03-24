@@ -63,8 +63,10 @@
           <div class="nav-collapse">
             <ul class="nav">
               {if 0}<li{if $nav_tab == 'home'} class="active"{/if}><a href="{$cfg.abs_root_url}">Home</a></li>{/if}
-              <li{if $nav_tab == 'about'} class="active"{/if}><a href="{$cfg.abs_root_url}about/">About</a></li>
-              <li{if $nav_tab == 'recent'} class="active"{/if}><a href="{$cfg.abs_root_url}corrections/">Recent</a></li>
+              <li{if $nav_tab == 'recent'} class="active"{/if}><a href="{$cfg.abs_root_url}getlatlon/">Choose</a></li>
+              <li{if $nav_tab == 'recent'} class="active"{/if}><a href="{$cfg.abs_root_url}maybe/">Decide</a></li>
+              <li{if $nav_tab == 'about'} class="active"{/if}><a href="{$cfg.abs_root_url}corrections/">Recent</a></li>
+              <li{if $nav_tab == 'about'} class="active"{/if}><a href="{$cfg.abs_root_url}about/">What is this?</a></li>
               {if 0}<li{if $nav_tab == 'contact'} class="active"{/if}><a href="{$cfg.abs_root_url}contact">Contact</a></li>{/if}
             </ul>
 
