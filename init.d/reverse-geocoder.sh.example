@@ -14,18 +14,19 @@ REVERSEGEO_SHAPES=''
 REVERSEGEO_PORT=''
 REVERSEGEO_MEM='500m'
 REVERSEGEO_LOGS='/dev/null'
+REVERSEGEO_USER='www-data'
 
 PIDFILE=/var/run/reverse-geocoder-${PORT}.pid
 
 case $1 in
     start)
-        echo "Starting reverse geocoder on port ${REVERSEGEO_PORT}"
 
 	cd ${REVERSEGEO_HOME}
+        echo "Starting reverse geocoder on port ${REVERSEGEO_PORT}"
 
-	$REVERSEGEO_CMD = "${JAVA} -Xmx${REVERSEGEO_MEM} -cp 'target/classes:target/dependency/*' com.hackdiary.geo.FlickrGeocodeServlet ${REVERSEGEO_SHAPES}
+	# Note how we're passing PORT as part of the sudo command
 
-	PID=`exec sudo -u www-data ${REVERSEGEO_CMD} > ${REVERSEGEO_LOGS} 2>&1 & echo $!`
+	PID=`exec sudo -u ${REVERSEGEO_USER} PORT=${REVERSEGEO_PORT} ${JAVA} -Xmx${REVERSEGEO_MEM} -cp 'target/classes:target/dependency/*' com.hackdiary.geo.FlickrGeocodeServlet ${REVERSEGEO_SHAPES} > ${REVERSEGEO_LOGS} 2>&1 & echo $!`
 
         if [ -z $PID ]; then
             printf "%s\n" "Fail"
@@ -34,6 +35,16 @@ case $1 in
             printf "%s\n" "Ok"
 	    echo $PID
         fi
+
+        ;;
+    debug)
+
+	cd ${REVERSEGEO_HOME}
+        echo "Starting reverse geocoder on port ${REVERSEGEO_PORT}"
+
+	# Note how we're passing PORT as part of the sudo command
+
+	PID=`exec sudo -u ${REVERSEGEO_USER} PORT=${REVERSEGEO_PORT} ${JAVA} -Xmx${REVERSEGEO_MEM} -cp 'target/classes:target/dependency/*' com.hackdiary.geo.FlickrGeocodeServlet ${REVERSEGEO_SHAPES}`
 
         ;;
     stop)
@@ -69,7 +80,7 @@ case $1 in
         fi
 	;;
     *)
-        echo "Usage: $0 {start|stop|restart|status}" >&2
+        echo "Usage: $0 {start|stop|restart|status|debug}" >&2
         exit 1
         ;;
 esac
