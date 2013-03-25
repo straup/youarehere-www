@@ -1,0 +1,75 @@
+#!/bin/sh -e
+
+# Starts, stops, and restarts the event server
+# http://werxltd.com/wp/2012/01/05/simple-init-d-script-template/
+
+# To make sure this runs at startup, do:
+# update-rc.d reverse-geocoder.sh defaults
+
+JAVA=`which java`
+
+REVERSEGEO_HOME=''
+REVERSEGEO_SHAPES=''
+
+REVERSEGEO_PORT=''
+REVERSEGEO_MEM='500m'
+REVERSEGEO_LOGS='/dev/null'
+
+PIDFILE=/var/run/reverse-geocoder-${PORT}.pid
+
+case $1 in
+    start)
+        echo "Starting reverse geocoder on port ${REVERSEGEO_PORT}"
+
+	cd ${REVERSEGEO_HOME}
+
+	$REVERSEGEO_CMD = "${JAVA} -Xmx${REVERSEGEO_MEM} -cp 'target/classes:target/dependency/*' com.hackdiary.geo.FlickrGeocodeServlet ${REVERSEGEO_SHAPES}
+
+	PID=`exec sudo -u www-data ${REVERSEGEO_CMD} > ${REVERSEGEO_LOGS} 2>&1 & echo $!`
+
+        if [ -z $PID ]; then
+            printf "%s\n" "Fail"
+        else
+            echo $PID > $PIDFILE
+            printf "%s\n" "Ok"
+	    echo $PID
+        fi
+
+        ;;
+    stop)
+        echo "Stopping event server"
+
+	printf "%-50s" "Stopping $NAME"
+            PID=`cat $PIDFILE`
+            cd $DAEMON_PATH
+        if [ -f $PIDFILE ]; then
+            kill -HUP $PID
+            printf "%s\n" "Ok"
+            rm -f $PIDFILE
+        else
+            printf "%s\n" "pidfile not found"
+        fi
+
+        ;;
+    restart)
+        $0 stop
+        $0 start
+        ;;
+    status)
+        printf "%-50s" "Checking event-server..."
+        if [ -f $PIDFILE ]; then
+            PID=`cat $PIDFILE`
+            if [ -z "`ps axf | grep ${PID} | grep -v grep`" ]; then
+                printf "%s\n" "Process dead but pidfile exists"
+            else
+                echo "Running"
+            fi
+        else
+            printf "%s\n" "Service not running"
+        fi
+	;;
+    *)
+        echo "Usage: $0 {start|stop|restart|status}" >&2
+        exit 1
+        ;;
+esac
