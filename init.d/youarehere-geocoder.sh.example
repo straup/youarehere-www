@@ -1,0 +1,84 @@
+#!/bin/sh -e
+
+# Starts, stops, and restarts the event server
+# http://werxltd.com/wp/2012/01/05/simple-init-d-script-template/
+
+# To make sure this runs at startup, do:
+# update-rc.d youarehere-geocoder.sh defaults
+
+JAVA=`which java`
+
+TWOFISHES_HOME='/FIXME/PATH/TO/twofishes'
+TWOFISHES_USER='FIXME'	# needs to be able to write to ~USER/.sbt
+
+TWOFISHES_HBASE=${TWOFISHES_HOME}'/latest'
+TWOFISHES_PORT=8080
+TWOFISHES_ARGS='--preload True'
+TWOFISHES_LOGS='/dev/null'
+
+TWOFISHES_SBT="${JAVA}  -Xms6g -Xmx12g -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=384M -jar ${TWOFISHES_HOME}/sbt-launch.jar"
+
+PIDFILE=/var/run/twofishes.pid
+
+case $1 in
+    start)
+
+	cd ${TWOFISHES_HOME}
+        echo "Starting twofishes"
+
+	PID=`exec sudo -u ${TWOFISHES_USER} ${TWOFISHES_SBT} "server/run-main com.foursquare.twofishes.GeocodeFinagleServer ${TWOFISHES_ARGS} --port ${TWOFISHES_PORT} --hfile_basepath ${TWOFISHES_HBASE}" > ${TWOFISHES_LOGS} 2>&1 & echo $!`
+
+        if [ -z $PID ]; then
+            printf "%s\n" "Fail"
+        else
+            echo $PID > $PIDFILE
+            printf "%s\n" "Ok"
+	    echo $PID
+        fi
+
+        ;;
+    debug)
+
+	cd ${TWOFISHES_HOME}
+        echo "Starting twofishes"
+
+	exec sudo -u ${TWOFISHES_USER} ${TWOFISHES_SBT} "server/run-main com.foursquare.twofishes.GeocodeFinagleServer ${TWOFISHES_ARGS} --port ${TWOFISHES_PORT} --hfile_basepath ${TWOFISHES_HBASE}"
+
+        ;;
+    stop)
+        echo "Stopping event server"
+
+	printf "%-50s" "Stopping $NAME"
+            PID=`cat $PIDFILE`
+            cd $DAEMON_PATH
+        if [ -f $PIDFILE ]; then
+            kill -HUP $PID
+            printf "%s\n" "Ok"
+            rm -f $PIDFILE
+        else
+            printf "%s\n" "pidfile not found"
+        fi
+
+        ;;
+    restart)
+        $0 stop
+        $0 start
+        ;;
+    status)
+        printf "%-50s" "Checking event-server..."
+        if [ -f $PIDFILE ]; then
+            PID=`cat $PIDFILE`
+            if [ -z "`ps axf | grep ${PID} | grep -v grep`" ]; then
+                printf "%s\n" "Process dead but pidfile exists"
+            else
+                echo "Running"
+            fi
+        else
+            printf "%s\n" "Service not running"
+        fi
+	;;
+    *)
+        echo "Usage: $0 {start|stop|restart|status|debug}" >&2
+        exit 1
+        ;;
+esac
