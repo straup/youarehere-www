@@ -7,16 +7,25 @@
 # update-rc.d youarehere-geocoder.sh defaults
 
 JAVA=`which java`
+JAVA_ARGS='-Xms6g -Xmx12g -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=384M'
 
 TWOFISHES_HOME='/FIXME/PATH/TO/twofishes'
-TWOFISHES_USER='FIXME'	# needs to be able to write to ~USER/.sbt
+TWOFISHES_USER='FIXME'	# needs to be able to write to ~USER/.sbt (see below)
 
 TWOFISHES_HBASE=${TWOFISHES_HOME}'/latest'
 TWOFISHES_PORT=8080
 TWOFISHES_ARGS='--preload True'
 TWOFISHES_LOGS='/dev/null'
 
-TWOFISHES_SBT="${JAVA}  -Xms6g -Xmx12g -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=384M -jar ${TWOFISHES_HOME}/sbt-launch.jar"
+TWOFISHES_SBT="${JAVA} ${JAVA_ARGS} -jar ${TWOFISHES_HOME}/sbt-launch.jar"
+
+# The following is the correct way to run twofishes in production and requires
+# running "${TWOFISHES_HOME}/sbt server/assembly" which is still failing with
+# unknown errors so I am waiting to hear back from David – This probably also
+# means that the "stop" command doesn't work correctly yet... (20130327/straup)
+#
+# TWOFISHES_VERSION='see above inre: server/assembly'
+# ${JAVA} ${JAVA_ARGS} -jar ./server/target/scala-2.9.1/server_2.9.1-${TWOFISHES_VERSION}.jar --hfile_basepath ${TWOFISHES_HBASE}
 
 PIDFILE=/var/run/twofishes.pid
 
