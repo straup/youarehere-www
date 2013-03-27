@@ -4,7 +4,33 @@ not willing to play nicely, right now. Let's marvel at the terseness of their
 error messages. This is what they are willing to tell us: <q>{$rsp.error|escape}</q></p>
 
 {elseif $rsp.data|@count == 0}
-<p>Hrm... we have no idea where you are.</p>
+
+{if !$fallback_tree|@count}
+<p>Hrm... Okay, well we can't find any <q>{$filter|escape}</q> for this location.</p>
+{else}
+
+<p>Hrm... Okay, well we can't find any <q>{$filter|escape}</q> for this location. Would you like to try situating yourself in a more general place?</p>
+
+<form id="choices-other" method="GET" action="{$cfg.abs_root_url}maybe/">
+<input type="hidden" name="lat" value="{$latitude|escape}" />
+<input type="hidden" name="lon" value="{$longitude|escape}" />
+
+<select name="filter" id="whereami-places">
+<optgroup>
+<option selected="selected"/>
+</optgroup>
+{* there is no reason to expect that there will be 'falldown' options... right? *}
+<optgroup>
+{foreach from=$fallback_tree item="ignore" key="fallback"}
+<option value="{$fallback|escape}">Let's try {$fallback|escape}, instead.</option>
+{/foreach}
+</optgroup>
+</select>
+
+<input type="submit" value="LET'S SEE ABOUT THAT" />
+</form>
+{/if}
+
 {else}
 
 {* TO DO: add map... *}
