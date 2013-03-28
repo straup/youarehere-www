@@ -1,0 +1,46 @@
+{capture assign="page_title"}Your API keys | API{/capture}
+{include file="inc_head.txt"}
+
+{capture assign="key_count"}{$pagination.total_count}{/capture}
+
+{capture assign="subtitle"}
+{if $key_count}
+{if $key_count > 1}You've created {$key_count} API keys{else}You've created one API key{/if}
+ /
+<a href="{$cfg.abs_root_url}api/keys/register/">Create a new API key</a>
+{/if}
+{/capture}
+
+{include file="inc_api_header.txt" title="Your API keys"}
+
+{if $keys|@count}
+
+<ul class="list-o-things">
+{foreach from=$keys item="row"}
+<li>
+	<a href="{$cfg.abs_root_url}api/keys/{$row.api_key|escape}/">{$row.app_title|escape}</a>
+	<span class="count-objects">
+
+	{if $row.app_description}
+	<span class="object-thingy">
+	<q>{$row.app_description|escape}</q>
+	</span>
+	{/if}
+
+	<span class="object-thingy">
+	You created this API key on {$row.created|date_format} 
+	</span>
+
+	</span>
+</li>
+{/foreach}
+</ul>
+
+{else}
+
+<p>You haven't created any API keys. <a href="{$cfg.abs_root_url}api/keys/register/">Would you like to?</a></p>
+
+{/if}
+
+{include file="inc_pagination.txt"}
+{include file="inc_foot.txt"}

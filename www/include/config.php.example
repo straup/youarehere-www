@@ -86,6 +86,99 @@
 	$GLOBALS['cfg']['enable_feature_record_ip_address'] = 0;
 	$GLOBALS['cfg']['enable_feature_show_ip_address'] = 0;
 
+	# API methods and "blessings" are defined at the bottom
+
+	# API feature flags
+
+	$GLOBALS['cfg']['enable_feature_api'] = 0;
+
+	$GLOBALS['cfg']['enable_feature_api_documentation'] = 1;
+	$GLOBALS['cfg']['enable_feature_api_logging'] = 1;
+	$GLOBALS['cfg']['enable_feature_api_throttling'] = 0;
+
+	$GLOBALS['cfg']['enable_feature_api_require_keys'] = 0;		# because oauth2...
+	$GLOBALS['cfg']['enable_feature_api_register_keys'] = 1;
+
+	$GLOBALS['cfg']['enable_feature_api_delegated_auth'] = 1;
+	$GLOBALS['cfg']['enable_feature_api_authenticate_self'] = 1;
+
+	# API URLs and endpoints
+
+	# $GLOBALS['cfg']['site_abs_root_url'] = '';
+
+	$GLOBALS['cfg']['api_require_ssl'] = 1;
+	$GLOBALS['cfg']['api_subdomain'] = 'api';
+
+	$GLOBALS['cfg']['api_server_scheme'] = ($GLOBALS['cfg']['api_require_ssl']) ? 'https' : 'http';
+	$GLOBALS['cfg']['api_server_name'] = parse_url($GLOBALS['cfg']['abs_root_url'], 1);
+
+	# If I have an API specific subdomain/prefix then check to see if I am already
+	# running on that host; if not then update the 'api_server_name' config
+
+	if (($GLOBALS['cfg']['api_subdomain']) && (! preg_match("/^{$GLOBALS['cfg']['api_subdomain']}\.(?:.*)/", $GLOBALS['cfg']['api_server_name']))){
+		$GLOBALS['cfg']['api_server_name'] = $GLOBALS['cfg']['api_subdomain'] . "." . $GLOBALS['cfg']['api_server_name'];
+	}
+
+	# Build the 'api_abs_root_url' based on everything above
+
+	$GLOBALS['cfg']['api_abs_root_url'] = "{$GLOBALS['cfg']['api_server_scheme']}://{$GLOBALS['cfg']['api_server_name']}" . "/";
+
+	# If I have an API specific subdomain/prefix then check to see if I am already
+	# running on that host; if I am then update the 'site_abs_root_url' config and
+	# use it in your code accordingly.
+
+	if (($GLOBALS['cfg']['api_subdomain']) && (preg_match("/{$GLOBALS['cfg']['api_subdomain']}\.(?:.*)/", $GLOBALS['cfg']['api_server_name']))){
+		$GLOBALS['cfg']['site_abs_root_url'] = str_replace("{$GLOBALS['cfg']['api_subdomain']}.", "", $GLOBALS['cfg']['abs_root_url']);
+	}
+
+	else {
+		$GLOBALS['cfg']['site_abs_root_url'] = $GLOBALS['cfg']['abs_root_url'];
+	}
+
+	$GLOBALS['cfg']['api_auth_type'] = 'oauth2';
+
+	# API pagination
+
+	$GLOBALS['cfg']['api_per_page_default'] = 100;
+	$GLOBALS['cfg']['api_per_page_max'] = 500;
+
+	# The actual API config
+
+	$GLOBALS['cfg']['api'] = array(
+
+		# This is maybe what we should move to (20130222/straup)
+		# $GLOBALS['cfg']['api_formats'] = array('json');
+		# $GLOBALS['cfg']['api_default_format'] = 'json';
+		# $GLOBALS['cfg']['api_methods'] = array();
+
+		'formats' => array( 'json' ),
+		'default_format' => 'json',
+
+		# We're defining methods using the method_definitions
+		# hooks defined below to minimize the clutter in the
+		# main config file, aka this one (20130308/straup)
+		'methods' => array(),
+
+		# We are NOT doing the same for blessed API keys since
+		# it's expected that their number will be small and
+		# manageable (20130308/straup)
+
+		'blessings' => array(),
+	);
+
+	# Load api methods defined in separate PHP files whose naming
+	# convention is FLAMEWORK_INCLUDE_DIR . "/config_api_{$definition}.php";
+	#
+	# IMPORTANT: This is syntactic sugar and helper code to keep the growing
+	# number of API methods out of the main config. Stuff is loaded in to
+	# memory in lib_api_config:api_config_init (20130308/straup)
+
+	$GLOBALS['cfg']['api_method_definitions'] = array(
+		'methods',
+	);
+
+	# Default Flamework stuff
+
 	#
 	# Things you'll certainly need to tweak
 	#
