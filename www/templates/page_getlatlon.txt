@@ -1,5 +1,17 @@
 {capture assign="page_title"}where are you?{/capture}
-{capture assign="extra_head"}<script src="{$cfg.abs_root_url}javascript/youarehere.getlatlon.js"></script>{/capture}
+{capture assign="extra_head"}
+<script src="{$cfg.abs_root_url}javascript/youarehere.getlatlon.js"></script>
+{* I don't love that this is here but it will do for now (20130329/straup) *}
+<script type="text/javascript">
+var zoom_filter = {literal}{{/literal}
+{foreach from=$cfg.reverse_geocode_zoom_range item="zoom_range" key="filter"}
+{foreach from=$zoom_range item="zoom"}
+	'{$zoom|escape}': '{$filter|escape}',
+{/foreach}
+{/foreach}
+{literal}}{/literal};
+</script>
+{/capture}
 {include file="inc_head.txt"}
 
 {include file="inc_map_getlatlon.txt"}

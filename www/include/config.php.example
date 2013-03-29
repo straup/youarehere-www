@@ -52,6 +52,22 @@
 		# 'regions' => 'countries'
 	);
 
+	# Not awesome but it will do for now – see also Github issue #16,19
+	# (20130329/straup)
+
+	# Adjust to taste
+
+	$GLOBALS['cfg']['reverse_geocode_zoom_range'] = array(
+		# 'neighbourhoods' => 'localities',
+		# 'localities' => null,
+		# 'aerotropolii' => null,
+
+		'neighbourhoods' => range(15, 18),
+		'localities' => range(12, 14),
+		'aerotropolii' => range(9, 11),
+		'timezones' => range(1, 8),
+	);
+
 	$GLOBALS['cfg']['reverse_geocode_sources'] = array(
 		0 => 'unknown',	 # this shouldn't happen but better to trap it
 		1 => 'flickr shapefiles (2.0); gowanus heights (1.0)'

@@ -266,6 +266,10 @@ function youarehere_getlatlon_coords(){
     
 	var href = "/maybe?lat=" + lat + "&lon=" + lon;
 
+	if (zoom_filter[zoom]){    
+		href += '&filter=' + zoom_filter[zoom];
+	}
+
 	var html = '';
 	html += lat.toFixed(6) + ", " + lon.toFixed(6);
 	html += " @ zoom level " + zoom;
