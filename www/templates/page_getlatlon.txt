@@ -23,6 +23,12 @@ $(document).ready(function(){
 
 	youarehere_getlatlon_set_viewport(geojson);
 	youarehere_getlatlon_draw_features(geojson);
+
+	$("#getlatlon-crosshairs").dblclick(function(e){
+		var offset = (e.shiftKey) ? -1 : 1;
+		var map = youarehere_getlatlon_map();
+		map.setZoom(map.getZoom() + offset);
+	});
 });
 {/literal}
 </script>
