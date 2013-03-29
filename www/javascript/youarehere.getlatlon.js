@@ -261,14 +261,7 @@ function youarehere_getlatlon_coords(){
 	var lat = centroid['lat'];
 	var lon = centroid['lng'];
 
-	// TO DO: try to precalculate filter type based
-	// on zoom level (20130303/straup)
-    
-	var href = "/maybe?lat=" + lat + "&lon=" + lon;
-
-	if (zoom_filter[zoom]){    
-		href += '&filter=' + zoom_filter[zoom];
-	}
+	var href = "/maybe?lat=" + lat + "&lon=" + lon + "&zoom=" + zoom;
 
 	var html = '';
 	html += lat.toFixed(6) + ", " + lon.toFixed(6);

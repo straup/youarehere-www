@@ -9,11 +9,29 @@
 
 	$lat = request_isset("lat");
 	$lon = request_isset("lon");
+
 	$filter = $GLOBALS['cfg']['reverse_geocode_default_filter'];
 
-	if ($f = request_str("filter")){
-		$filter = $f;
+	# github issue #16
+
+	if ($zoom = request_int32("zoom")){
+
+		$ranges = $GLOBALS['cfg']['reverse_geocode_zoom_range'];
+
+		foreach ($ranges as $f => $zoom_levels){
+
+			if (in_array($zoom, $zoom_levels)){
+				$filter = $f;
+				break;
+			}
+		}
 	}
+
+	else if ($filter = request_str("filter")){
+		# pass - we just redefined filter
+	}
+
+	else {}
 
 	$crumb_key = 'whereami';
 	$GLOBALS['smarty']->assign("crumb_key", $crumb_key);
