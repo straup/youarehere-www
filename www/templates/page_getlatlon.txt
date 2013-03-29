@@ -4,7 +4,7 @@
 
 {include file="inc_map_getlatlon.txt"}
 
-{if $geojson}
+{if $geojson && $geojson.features|@count}
 
 <ul>
 {foreach from=$geojson.features item="row"}
@@ -34,6 +34,10 @@ $(document).ready(function(){
 </script>
 
 {else}
+
+{if $geojson}
+<p class="error" style="margin-top:1em;font-size:2em;text-align:center;"><q>{$smarty.get.q|escape}</q> is not any place that we know about. Try again?</p>
+{/if}
 
 <script type="text/javascript">
 {literal}
