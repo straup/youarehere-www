@@ -9,23 +9,27 @@
 JAVA=`which java`
 JAVA_ARGS='-Xms6g -Xmx12g -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=384M'
 
-TWOFISHES_HOME='/FIXME/PATH/TO/twofishes'
-TWOFISHES_USER='FIXME'	# needs to be able to write to ~USER/.sbt (see below)
+TWOFISHES_HOME='/FIX-ME/PATH/TO/twofishes'
+TWOFISHES_USER='www-data'
 
-TWOFISHES_HBASE=${TWOFISHES_HOME}'/latest'
-TWOFISHES_PORT=8080
-TWOFISHES_ARGS='--preload True'
-TWOFISHES_LOGS='/dev/null'
-
-TWOFISHES_SBT="${JAVA} ${JAVA_ARGS} -jar ${TWOFISHES_HOME}/sbt-launch.jar"
-
-# The following is the correct way to run twofishes in production and requires
-# running "${TWOFISHES_HOME}/sbt server/assembly" which is still failing with
-# unknown errors so I am waiting to hear back from David – This probably also
-# means that the "stop" command doesn't work correctly yet... (20130327/straup)
+# So this assumes that you've build all your indexes and then run
 #
-# TWOFISHES_VERSION='see above inre: server/assembly'
-# ${JAVA} ${JAVA_ARGS} -jar ./server/target/scala-2.9.1/server_2.9.1-${TWOFISHES_VERSION}.jar --hfile_basepath ${TWOFISHES_HBASE}
+# $> mkdir sillyivy
+# $> ./sbt -Dsbt.ivy.home=sillyivy
+#
+# At which point you will be "in" sbt and you'll need to type
+#
+# > assembly 
+#
+# When that finishes there will be a .jar file in ./server/target – that is
+# your twofishes server. The hoop-jumping is hopefully temporary until some
+# Java stuff I don't really understand gets sorted out. Until then this works.
+# (20130330/straup)
+
+TWOFISHES_SERVER=${TWOFISHES_HOME}'/server/target/server-assembly-FIX-ME.jar'
+TWOFISHES_HBASE=${TWOFISHES_HOME}'/latest'
+
+TWOFISHES_LOGS='/dev/null'
 
 PIDFILE=/var/run/twofishes.pid
 
@@ -35,7 +39,7 @@ case $1 in
 	cd ${TWOFISHES_HOME}
         echo "Starting twofishes"
 
-	PID=`exec sudo -u ${TWOFISHES_USER} ${TWOFISHES_SBT} "server/run-main com.foursquare.twofishes.GeocodeFinagleServer ${TWOFISHES_ARGS} --port ${TWOFISHES_PORT} --hfile_basepath ${TWOFISHES_HBASE}" > ${TWOFISHES_LOGS} 2>&1 & echo $!`
+	PID=`exec sudo -u ${TWOFISHES_USER} ${JAVA} ${JAVA_ARGS} -jar ${TWOFISHES_SERVER} --hfile_basepath ${TWOFISHES_HBASE} > ${TWOFISHES_LOGS} 2>&1 & echo $!`
 
         if [ -z $PID ]; then
             printf "%s\n" "Fail"
@@ -51,7 +55,8 @@ case $1 in
 	cd ${TWOFISHES_HOME}
         echo "Starting twofishes"
 
-	exec sudo -u ${TWOFISHES_USER} ${TWOFISHES_SBT} "server/run-main com.foursquare.twofishes.GeocodeFinagleServer ${TWOFISHES_ARGS} --port ${TWOFISHES_PORT} --hfile_basepath ${TWOFISHES_HBASE}"
+	echo exec sudo -u ${TWOFISHES_USER} ${JAVA} ${JAVA_ARGS} -jar ${TWOFISHES_SERVER} --hfile_basepath ${TWOFISHES_HBASE}
+	exec sudo -u ${TWOFISHES_USER} ${JAVA} ${JAVA_ARGS} -jar ${TWOFISHES_SERVER} --hfile_basepath ${TWOFISHES_HBASE}
 
         ;;
     stop)
