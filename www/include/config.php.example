@@ -29,6 +29,8 @@
 
 	# Reverse geocoder stuff
 
+	$GLOBALS['cfg']['enable_feature_reverse_geocoder'] = 1;
+
 	# The things doing the actual reverse geocoding. This is still
 	# a bit of a moving target. See also:
 	# https://github.com/straup/flickrgeocoder-java

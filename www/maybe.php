@@ -4,6 +4,8 @@
 
 	login_ensure_loggedin();
 
+	features_ensure_enabled("reverse_geocoder");
+
 	loadlib("reverse_geocode");
 	loadlib("geo_utils");
 

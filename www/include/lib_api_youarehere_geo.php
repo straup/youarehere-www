@@ -38,11 +38,9 @@
 
 	function api_youarehere_geo_reverseGeocode(){
 
-		# TO DO (20130330/straup)
-
-		# if (! features_is_enabled("reverse_geocoder")){
-		# 	api_output_error(999, "The geocoder is currently not available");
-		# }
+		if (! features_is_enabled("reverse_geocoder")){
+			api_output_error(999, "The geocoder is currently not available");
+		}
 
 		$lat = request_float("lat");
 		$lon = request_float("lon");

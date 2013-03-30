@@ -64,9 +64,10 @@
           <div class="nav-collapse">
             <ul class="nav">
               {if 0}<li{if $nav_tab == 'home'} class="active"{/if}><a href="{$cfg.abs_root_url}">Home</a></li>{/if}
-              <li{if $nav_tab == 'recent'} class="active"{/if}><a href="{$cfg.abs_root_url}choose/">Choose</a></li>
-              <li{if $nav_tab == 'recent'} class="active"{/if}><a href="{$cfg.abs_root_url}decide/">Decide</a></li>
+              {if "geocoder"|features_is_enabled}<li{if $nav_tab == 'recent'} class="active"{/if}><a href="{$cfg.abs_root_url}choose/">Choose</a></li>{/if}
+              {if "reverse_geocoder"|features_is_enabled}<li{if $nav_tab == 'recent'} class="active"{/if}><a href="{$cfg.abs_root_url}decide/">Decide</a></li>{/if}
               <li{if $nav_tab == 'about'} class="active"{/if}><a href="{$cfg.abs_root_url}corrections/">Recent</a></li>
+              {if "api"|features_is_enabled}<li{if $nav_tab == 'about'} class="active"{/if}><a href="{$cfg.abs_root_url}api/">API</a></li>{/if}
               <li{if $nav_tab == 'about'} class="active"{/if}><a href="{$cfg.abs_root_url}about/">What is this?</a></li>
               {if 0}<li{if $nav_tab == 'contact'} class="active"{/if}><a href="{$cfg.abs_root_url}contact">Contact</a></li>{/if}
             </ul>
