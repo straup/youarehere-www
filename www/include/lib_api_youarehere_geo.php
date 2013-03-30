@@ -55,11 +55,9 @@
 
 		$filter = request_str("filter");
 
-		# TO DO (20130330/straup)
-
-		# if ((! $filter) || (! reverse_geocode_is_valid_filter($filter))){
-		# 	api_output_error(500, "Missing or invalid filter");
-		# }
+		if ((! $filter) || (! reverse_geocode_is_valid_filter($filter))){
+			api_output_error(500, "Missing or invalid filter");
+		}
 
 		$rsp = reverse_geocode($lat, $lon, $filter);
 
@@ -67,12 +65,8 @@
 			api_output_error(999, "The reverse geocoder is sad...");
 		}
 
-		# TO DO (20130330/straup)
-
-		# sudo make me GeoJSON
-
-		$data = $rsp['data'];
-		$features = $data;
+		$geojson = reverse_geocode_results_to_geojson($rsp['data']);
+		$features = $geojson['features'];
 
 		$out = array(
 			'filter' => $filter,

@@ -42,7 +42,7 @@
 		"youarehere.geo.reverseGeocode" => array(
 			"description" => "...",
 			"documented" => 0,
-			"enabled" => 0,
+			"enabled" => 1,
 			"library" => "api_youarehere_geo"
 		),
 

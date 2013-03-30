@@ -69,6 +69,43 @@
 
 	########################################################################
 
+	function reverse_geocode_results_to_geojson(&$results){
+
+		$features = array();
+
+		foreach ($results as $row){
+
+			$geom = array(
+				'type' => 'Point',
+				'coordinates' => array($row['midpoint_lng'], $row['midpoint_lat']),
+			);
+
+			$props = array(
+				'woe_id' => $row['woe_id'],
+				'placetype' => $row['place_type'],
+				'placetype_id' => $row['place_ty_1'],
+			);
+
+			$id = $props['woe_id'];
+
+			$feature = array(
+				'type' => 'Feature',
+				'geometry' => $geom,
+				'properties' => $props,
+				'id' => $id,
+			);
+
+			$features[] = $feature;
+		}
+
+		return array(
+			'type' => 'FeatureCollection',
+			'features' => $features,
+		);
+	}
+
+	########################################################################
+
 	function _reverse_geocode_endpoint($filter){
 
 		$hosts = $GLOBALS['cfg']['reverse_geocode_endpoints'][$filter];
