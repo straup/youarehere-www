@@ -20,20 +20,22 @@
 	$length = filesize($path);
 	$type = (get_isset("text")) ? "text/plain" : "application/json";
 
-	header("HTTP/1.0 200 OK");
-	header("content-type: {$type}");
-	header("content-length: {$length}");
-
 	if ($_SERVER['REQUEST_METHOD'] == 'HEAD'){
+		header("HTTP/1.0 200 OK");
+		header("content-type: {$type}");
+		header("content-length: {$length}");
 		exit();
 	}
 
+	ob_start("ob_gzhandler");
+
+	header("HTTP/1.0 200 OK");
+	header("content-type: {$type}");
 	header("Access-Control-Allow-Origin: *");
 
-	$fh = fopen($path, 'r');
-	echo fread($fh, $length);
-	fclose($fh);
+	echo file_get_contents($path);
 
+	ob_end_flush();
 	exit();
 
 ?>

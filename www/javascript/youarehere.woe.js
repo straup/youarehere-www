@@ -37,6 +37,8 @@ function youarehere_woe_draw_shapes(woeids){
 
 		var __onsuccess = function(rsp){
 
+			youarehere_map_update_feedback("drawing place boundaries...");
+
 			var geojson = undefined;
 
 			if (rsp['type'] == 'FeatureCollection'){
@@ -119,6 +121,8 @@ function youarehere_woe_draw_shapes(woeids){
 				var links = $(".woeid-" + id);
 				links.html(name + " ( " + id + " )");
 			}
+
+			youarehere_map_update_feedback(null);
 		};
 
 		// I am guessing that there is some magic closure declaration
@@ -151,5 +155,7 @@ function youarehere_woe_draw_shapes(woeids){
 			'success': _onsuccess,
 			'error': _onerror
 		});
+
+		youarehere_map_update_feedback("fetching place boundaries...");
 	}
 }

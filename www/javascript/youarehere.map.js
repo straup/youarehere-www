@@ -232,6 +232,7 @@ function youarehere_map_draw_features(geojson){
 	};
 
 	var on_feature = function(f, _layer){
+
 		_layer.on({
 			'click': on_click,
 			'mouseover': on_mouseover,
@@ -342,4 +343,10 @@ function youarehere_map_coords_to_bbox(coords, is_lonlat){
 	}
 
 	return bbox;
+}
+
+function youarehere_map_update_feedback(msg){
+	var fb = $("#map-feedback");
+	fb.html(msg);
+	(msg) ? fb.show() : fb.hide();
 }
