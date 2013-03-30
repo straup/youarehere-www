@@ -2,6 +2,9 @@
 
 	include("include/init.php");
 
+	loadlib("corrections");
+	loadlib("reverse_geocode");
+
 	$more = array();
 
 	if ($page = get_int32("page")){

@@ -229,7 +229,7 @@
 	loadlib('http');
 
 	loadlib('corrections');
-	loadlib('corrections_sources');
+	loadlib('reverse_geocode');
 	loadlib('urls');
 	loadlib('base58');
 

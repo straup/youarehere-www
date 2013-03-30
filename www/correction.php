@@ -3,7 +3,7 @@
 	include("include/init.php");
 
 	loadlib("corrections");
-	loadlib("corrections_export");
+	loadlib("reverse_geocode");
 
 	$id = get_int64("id");
 

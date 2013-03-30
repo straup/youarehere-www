@@ -12,20 +12,14 @@
 	$lat = request_isset("lat");
 	$lon = request_isset("lon");
 
-	$filter = $GLOBALS['cfg']['reverse_geocode_default_filter'];
+	$filter = reverse_geocode_default_filter();
 
 	# github issue #16
 
 	if ($zoom = request_int32("zoom")){
 
-		$ranges = $GLOBALS['cfg']['reverse_geocode_zoom_range'];
-
-		foreach ($ranges as $f => $zoom_levels){
-
-			if (in_array($zoom, $zoom_levels)){
-				$filter = $f;
-				break;
-			}
+		if ($this_filter = reverse_geocode_filter_for_zoom($zoom)){
+			$filter = $this_filter;
 		}
 	}
 
@@ -106,12 +100,12 @@
 				$relations = array();
 
 				if ($relationship == 2){
-					$fallback_tree = corrections_get_fallback_tree($filter);
+					$fallback_tree = reverse_geocode_get_fallback_tree($filter);
 					$relations = array_keys($fallback_tree);
 				}
 
 				else if ($relationship == 3){
-					$falldown_tree = corrections_get_falldown_tree($filter);
+					$falldown_tree = reverse_geocode_get_falldown_tree($filter);
 					$relations = array_keys($falldown_tree);
 				}
 
@@ -170,7 +164,7 @@
 
 			else {
 
-				$source_id = corrections_sources_for_filter($filter);
+				$source_id = reverse_geocode_filter_source($filter);
 
 				$correction = array(
 					'user_id' => $GLOBALS['cfg']['user']['id'],
@@ -206,15 +200,11 @@
 
 	$GLOBALS['smarty']->assign("filter", $filter);
 
-	$fallback_tree = corrections_get_fallback_tree($filter);
-	$falldown_tree = corrections_get_falldown_tree($filter);
+	$fallback_tree = reverse_geocode_get_fallback_tree($filter);
+	$falldown_tree = reverse_geocode_get_falldown_tree($filter);
 
 	$GLOBALS['smarty']->assign("fallback_tree", $fallback_tree);
 	$GLOBALS['smarty']->assign("falldown_tree", $falldown_tree);
-
-	# Deprecated
-	$fallback = corrections_get_fallback($filter);
-	$GLOBALS['smarty']->assign("fallback", $fallback);
 
 	$map = corrections_perspective_map();
 	$GLOBALS['smarty']->assign_by_ref("perspective_map", $map);

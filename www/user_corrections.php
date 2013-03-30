@@ -2,6 +2,9 @@
 
 	include("include/init.php");
 
+	loadlib("corrections");
+	loadlib("reverse_geocode");
+
 	features_ensure_enabled("show_users");
 
 	$id = get_int32("id");

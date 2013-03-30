@@ -31,57 +31,49 @@
 
 	$GLOBALS['cfg']['enable_feature_reverse_geocoder'] = 1;
 
-	# The things doing the actual reverse geocoding. This is still
-	# a bit of a moving target. See also:
+	$GLOBALS['cfg']['reverse_geocoder_sources'] = array(
+		0 => 'unknown',	 # this shouldn't happen but better to trap it
+		1 => 'flickr shapefiles (2.0); gowanus heights (1.0)',
+		2 => 'woedb (2.0)'
+	);
+
+	# The things doing the actual reverse geocoding. See also:
 	# https://github.com/straup/flickrgeocoder-java
 
 	# Port numbers can be whatever but I like to bind them to the
 	# corresponding WOE place type ID (20130223/straup)
 
-	$GLOBALS['cfg']['reverse_geocode_endpoints'] = array(
-		'neighbourhoods' => array('http://localhost:9022'),
-		'localities' => array('http://localhost:9007'),
-		'aerotropolii' => array('http://localhost:9099'),
-		'regions' => array('http://localhost:9008'),
-		'countries' => array('http://localhost:9012'),
+	$GLOBALS['cfg']['reverse_geocoder_clusters'] = array(
+
+		'neighbourhoods' => array(
+			'hosts' => array('http://localhost:9022'),
+			'fallback' => 'localities',
+			'zoom_levels' => range(15, 18),
+			'source' => 1,
+			'default' => 1,
+		),
+
+		'localities' => array(
+			'hosts' => array('http://localhost:9007'),
+			'fallback' => 'aerotropolii',
+			'zoom_levels' => range(12, 14),
+			'source' => 1,
+		),
+
+		'aerotropolii' => array(
+			'hosts' => array('http://localhost:9099'),
+			'fallback' => 'timezones',
+			'zoom_levels' => range(9, 11),
+			'source' => 2
+		),
+
+		'timezones' => array(
+			'hosts' => array('http://localhost:9031'),
+			'fallback' => null,
+			'zoom_levels' => range(1, 8),
+			'source' => 2
+		),
 	);
-
-	$GLOBALS['cfg']['reverse_geocode_fallbacks'] = array(
-		'neighbourhoods' => 'localities',
-		'localities' => null,
-		# 'localities' => 'aerotropolii',
-		# 'aerotropolii' => 'regions'
-		# 'regions' => 'countries'
-	);
-
-	# Not awesome but it will do for now – see also Github issue #16,19
-	# (20130329/straup)
-
-	# Adjust to taste
-
-	$GLOBALS['cfg']['reverse_geocode_zoom_range'] = array(
-		# 'neighbourhoods' => 'localities',
-		# 'localities' => null,
-		# 'aerotropolii' => null,
-
-		'neighbourhoods' => range(15, 18),
-		'localities' => range(12, 14),
-		'aerotropolii' => range(9, 11),
-		'timezones' => range(1, 8),
-	);
-
-	$GLOBALS['cfg']['reverse_geocode_sources'] = array(
-		0 => 'unknown',	 # this shouldn't happen but better to trap it
-		1 => 'flickr shapefiles (2.0); gowanus heights (1.0)'
-	);
-
-	$GLOBALS['cfg']['reverse_geocode_endpoints_sources'] = array(
-		'neighbourhoods' => 1,
-		'localities' => 1,
-		# 'countries' => 1,
-	);
-
-	$GLOBALS['cfg']['reverse_geocode_default_filter'] = 'neighbourhoods';
 
 	# Get latlon / geocoder stuff
 

@@ -64,7 +64,7 @@
 
 	function reverse_geocode_is_valid_filter($filter){
 
-		return (isset($GLOBALS['cfg']['reverse_geocode_endpoints'][$filter])) ? 1 : 0;
+		return (isset($GLOBALS['cfg']['reverse_geocoder_clusters'][$filter])) ? 1 : 0;
 	}
 
 	########################################################################
@@ -106,9 +106,131 @@
 
 	########################################################################
 
+	function reverse_geocode_default_filter(){
+
+		foreach ($GLOBALS['cfg']['reverse_geocoder_clusters'] as $filter => $details){
+
+			if (isset($details['default']) && $details['default']){
+				return $filter;
+			}
+		}
+	}
+
+	########################################################################
+
+	function reverse_geocode_filter_for_zoom($zoom){
+
+		foreach ($GLOBALS['cfg']['reverse_geocoder_clusters'] as $filter => $details){
+
+			if (in_array($zoom, $details['zoom_levels'])){
+				return $filter;
+			}
+		}
+
+	}
+
+	########################################################################
+
+	function reverse_geocode_filter_source($filter){
+
+		$cluster = $GLOBALS['cfg']['reverse_geocoder_clusters'][$filter];
+		return $cluster['source'];
+
+	}
+
+	########################################################################
+
+	function reverse_geocode_source_label($id){
+
+		$sources = $GLOBALS['cfg']['reverse_geocoder_sources'];
+		return (isset($sources[$id])) ? $sources[$id] : null;
+	}
+
+	########################################################################
+	
+	function reverse_geocode_get_fallback($filter){
+
+		$possible = $GLOBALS['cfg']['reverse_geocode_fallbacks'];
+
+		if (! isset($possible[$filter])){
+			return null;
+		}
+
+		return $possible[$filter];
+	}
+
+	########################################################################
+
+	# get all the placetypes that are ancestors of $filter
+
+	function reverse_geocode_get_fallback_tree($filter){
+
+		$tree = array();
+
+		$clusters = $GLOBALS['cfg']['reverse_geocoder_clusters'];
+
+		if (! array_key_exists($filter, $clusters)){
+			return $tree;
+		}
+
+		$parent = $clusters[$filter]['fallback'];
+		$filter = $parent;
+
+		if (! $filter){
+			return $tree;
+		}
+
+		while ($parent){
+
+			$parent = $clusters[$filter]['fallback'];
+			$tree[$filter] = $parent;
+
+			$filter = $parent;
+		}
+
+		return $tree;
+	}
+
+	########################################################################
+
+	function reverse_geocode_is_valid_fallback($fallback){
+
+		$clusters = array_keys($GLOBALS['cfg']['reverse_geocoder_clusters']);
+		return (in_array($fallback, $clusters)) ? 1 : 0;
+	}
+
+	########################################################################
+
+	# get all the placetypes that are descendants of $filter
+
+	function reverse_geocode_get_falldown_tree($filter){
+
+		$tree = array();
+
+		$clusters = $GLOBALS['cfg']['reverse_geocoder_clusters'];
+
+		if (! array_key_exists($filter, $clusters)){
+			return $tree;
+		}
+
+		foreach ($clusters as $child => $parent){
+
+			if ($child == $filter){
+				break;
+			}
+
+			$tree[$child] = $parent;
+		}
+
+		return $tree;
+	}
+
+	########################################################################
+
 	function _reverse_geocode_endpoint($filter){
 
-		$hosts = $GLOBALS['cfg']['reverse_geocode_endpoints'][$filter];
+		$cluster = $GLOBALS['cfg']['reverse_geocoder_clusters'][$filter];
+		$hosts = $cluster['hosts'];
 
 		if (count($hosts) > 1){
 			shuffle($hosts);

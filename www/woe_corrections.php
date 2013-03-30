@@ -2,6 +2,9 @@
 
 	include("include/init.php");
 
+	loadlib("corrections");
+	loadlib("reverse_geocode");
+
 	$id = get_int64("id");
 
 	$more = array();
