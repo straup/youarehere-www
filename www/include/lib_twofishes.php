@@ -6,6 +6,13 @@
 
 	function twofishes_geocode($q){
 
+		$cache_key = "geocode_{$q}";
+		$cache = cache_get($cache_key);
+
+		if ($cache['ok']){
+			return $cache['data'];
+		}
+
 		$query = array('query' => $q);
 		$query = http_build_query($query);
 
@@ -22,6 +29,9 @@
 		# TO DO: error handling
 
 		$rsp['data'] = $data;
+
+		cache_set($cache_key, $rsp);
+
 		return $rsp;
 	}
 

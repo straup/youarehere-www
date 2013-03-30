@@ -12,6 +12,13 @@
 			return array('ok' => 0, 'error' => 'invalid endpoint/filter');
 		}
 
+		$cache_key = "reverse_geo_{$filter}_{$lat}_{$lon}";
+		$cache = cache_get($cache_key);
+
+		if ($cache['ok']){
+			return $cache['data'];
+		}
+
 		$query = array('lat' => $lat, 'lng' => $lon);
 
 		$url = $endpoint . "?" . http_build_query($query);
@@ -46,6 +53,8 @@
 			}
 
 			$rsp['data'] = $data;
+
+			cache_set($cache_key, $rsp);
 		}
 
 		return $rsp;
