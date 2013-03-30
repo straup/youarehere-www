@@ -3,8 +3,6 @@
 
 {include file="inc_api_header.txt" title="Create a new API key"}
 
-{include file="inc_signin_notice.txt"}
-
 {if $error}
 <p class="error">{$error|escape}</p>
 {/if}

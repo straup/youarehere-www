@@ -4,8 +4,6 @@
 {capture assign="title"}The application called {$key.app_title} would like to access your account{/capture}
 {include file="inc_api_header.txt" title=$title}
 
-{include file="inc_signin_notice.txt"}
-
 {if ! $key.app_callback}
 <p class="warning">Hey, that's weird. The <strong>{$key.app_title|escape}</strong> application is asking you to authorize it but the developer has not provided a callback URL. That's <em>not good</em> so we're just going to stop things right here in case something creepy is going on.</p>
 

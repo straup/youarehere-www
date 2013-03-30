@@ -3,8 +3,6 @@
 
 {include file="inc_api_header.txt" title="Create a new access token for yourself"}
 
-{include file="inc_signin_notice.txt"}
-
 {if $step==3}
 
 <p class="confirm">Hooray! We've created your new access token. It is <strong>{$token.access_token|escape}</strong> and you can see all <a href="{$cfg.abs_root_url}api/oauth2/tokens/{$token.access_token|escape}/">the details over here.</a></p>

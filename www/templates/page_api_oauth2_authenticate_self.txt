@@ -3,8 +3,6 @@
 
 {include file="inc_api_header.txt" title="Register ... for yourself"}
 
-{include file="inc_signin_notice.txt"}
-
 {if $has_token}
 
 <p>Hey, guess what? You've already created <a href="{$cfg.abs_root_url}api/oauth2/tokens/{$token_row.access_token|escape}/">an authentication token</a> for yourself and this API key!</p>
