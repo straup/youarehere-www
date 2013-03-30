@@ -1,4 +1,5 @@
 <div id ="map-container">
 <div id="map"></div>
+<div id="getlatlon-crosshairs"></div>
 <div id="map-feedback"></div>
 </div>
