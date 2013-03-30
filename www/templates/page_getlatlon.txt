@@ -38,7 +38,7 @@ $(document).ready(function(){
 {else}
 
 {if $geojson}
-<p class="error" style="margin-top:1em;font-size:2em;text-align:center;"><q>{$smarty.get.q|escape}</q> is not any place that we know about. Try again?</p>
+<p class="error"><q>{$smarty.get.q|escape}</q> is not any place that we know about. Try again?</p>
 {/if}
 
 <script type="text/javascript">

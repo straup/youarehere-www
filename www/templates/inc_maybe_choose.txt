@@ -1,15 +1,15 @@
 {if !$rsp.ok}
 <p class="error">Well, that's no good. The geo servers appear to be upset and
 not willing to play nicely, right now. Let's marvel at the terseness of their
-error messages. This is what they are willing to tell us: <q>{$rsp.error|escape}</q></p>
+error messages. For example, this is what they've told us so far: <q>{$rsp.error|escape}</q></p>
 
 {elseif $rsp.data|@count == 0}
 
 {if !$fallback_tree|@count}
-<p>Hrm... Okay, well we can't find any <q>{$filter|escape}</q> for this location.</p>
+<p class="error">Hrm... We can't find any <q>{$filter|escape}</q> for this location.</p>
 {else}
 
-<p>Hrm... Okay, well we can't find any <q>{$filter|escape}</q> for this location. Would you like to try situating yourself in a more general place?</p>
+<p class="error">Hrm... okay. We can't find any <q>{$filter|escape}</q> for this location. Would you like to try situating yourself in a more general place?</p>
 
 <form id="choices-other" method="GET" action="{$cfg.abs_root_url}maybe/">
 <input type="hidden" name="lat" value="{$latitude|escape}" />
