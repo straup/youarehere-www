@@ -27,8 +27,8 @@
 		}
 	}
 
-	else if ($filter = request_str("filter")){
-		# pass - we just redefined filter
+	else if ($this_filter = request_str("filter")){
+		$filter = $this_filter;
 	}
 
 	else {}

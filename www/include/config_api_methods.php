@@ -32,6 +32,20 @@
 			"library" => "api_test"
 		),
 
+		"youarehere.geo.geocode" => array(
+			"description" => "...",
+			"documented" => 0,
+			"enabled" => 0,
+			"library" => "api_youarehere_geo"
+		),
+
+		"youarehere.geo.reverseGeocode" => array(
+			"description" => "...",
+			"documented" => 0,
+			"enabled" => 0,
+			"library" => "api_youarehere_geo"
+		),
+
 	), $GLOBALS['cfg']['api']['methods']);
 
 	########################################################################
