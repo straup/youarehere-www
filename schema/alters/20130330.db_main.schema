@@ -1,0 +1,2 @@
+CREATE INDEX `by_woe_perspective` ON Corrections  (`woe_id`, `perspective`, `created`);
+CREATE INDEX `by_perspective` ON Corrections  (`perspective`, `created`);

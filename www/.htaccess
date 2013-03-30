@@ -55,7 +55,8 @@ RewriteRule   ^getlatlon/?$				getlatlon.php?%{QUERY_STRING}			[L]
 RewriteRule   ^decide/?$				maybe.php?%{QUERY_STRING}			[L]
 RewriteRule   ^maybe/?$					maybe.php?%{QUERY_STRING}			[L]
 
-RewriteRule   ^corrections(/page([0-9]+))?/?$		corrections.php?page=$2&%{QUERY_STRING}	[L]
+RewriteRule   ^corrections(/page([0-9]+))?/?$				corrections.php?page=$2&%{QUERY_STRING}	[L]
+RewriteRule   ^corrections/(locals|tourists)(/page([0-9]+))?/?$		corrections.php?perspective=$1&page=$3&%{QUERY_STRING}	[L]
 
 RewriteRule   ^c/([A-Za-z0-9]+)/?$			correction.php?code=$1&%{QUERY_STRING}		[L]
 RewriteRule   ^corrections/([0-9]+)/?$			correction.php?id=$1&%{QUERY_STRING}		[L]
@@ -63,7 +64,8 @@ RewriteRule   ^corrections/([0-9]+)\.([a-z]+)?$		correction_export.php?id=$1&for
 
 RewriteRule   ^users/([0-9]+)/corrections(/page([0-9]+))?/?$		user_corrections.php?id=$1&page=$3&%{QUERY_STRING}	[L]
 
-RewriteRule   ^woe/([0-9]+)/corrections(/page([0-9]+))?/?$		woe_corrections.php?id=$1&page=$3&%{QUERY_STRING}	[L]
+RewriteRule   ^woe/([0-9]+)/corrections(/page([0-9]+))?/?$				woe_corrections.php?id=$1&page=$3&%{QUERY_STRING}	[L]
+RewriteRule   ^woe/([0-9]+)/corrections/(locals|tourists)(/page([0-9]+))?/?$		woe_corrections.php?id=$1&perspective=$2&page=$4&%{QUERY_STRING}	[L]
 
 RewriteRule   ^woe/([0-9]+)/geojson/?$					woedb_geojson.php?id=$1&%{QUERY_STRING}	[L]
 

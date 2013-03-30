@@ -5,13 +5,31 @@
 
 	########################################################################
 
-	function corrections_perspective_map(){
+	function corrections_perspective_map($string_keys=0){
 
 		$map = array(
 			0 => "none of your business",
 			1 => "a local",
 			2 => "a tourist",
 		);
+
+		if ($string_keys){
+			$map = array_flip($map);
+		}
+
+		return $map;
+	}
+
+	function corrections_perspective_filter_map($string_keys=0){
+
+		$map = array(
+			1 => 'locals',
+			2 => 'tourists',
+		);
+
+		if ($string_keys){
+			$map = array_flip($map);
+		}
 
 		return $map;
 	}
@@ -74,7 +92,14 @@
 
 		$enc_id = AddSlashes($user['id']);
 
-		$sql = "SELECT * FROM Corrections ORDER BY created DESC";
+		$sql = "SELECT * FROM Corrections";
+
+		if (isset($more['perspective'])){
+			$enc_pid = AddSlashes($more['perspective']);
+			$sql .= " WHERE perspective='{$enc_pid}'";
+		}
+
+		$sql .= " ORDER BY created DESC";
 
 		$rsp = db_fetch_paginated($sql, $more);
 		$rsp = corrections_scrub_rsp($rsp);
@@ -134,7 +159,14 @@
 
 		$enc_id = AddSlashes($woe['woe_id']);
 
-		$sql = "SELECT * FROM Corrections WHERE woe_id='{$enc_id}' ORDER BY created DESC";
+		$sql = "SELECT * FROM Corrections WHERE woe_id='{$enc_id}'";
+
+		if (isset($more['perspective'])){
+			$enc_pid = AddSlashes($more['perspective']);
+			$sql .= " AND perspective='{$enc_pid}'";
+		}
+
+		$sql .= " ORDER BY created DESC";
 
 		$rsp = db_fetch_paginated($sql, $more);
 		$rsp = corrections_scrub_rsp($rsp);

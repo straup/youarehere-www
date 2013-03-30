@@ -7,15 +7,26 @@
 
 	$id = get_int64("id");
 
+	$mock_woe = array(
+		'woe_id' => $id,
+	);
+
 	$more = array();
 
 	if ($page = get_int32("page")){
 		$more['page'] = $page;
 	}
 
-	$mock_woe = array(
-		'woe_id' => $id,
-	);
+	if ($p = get_str("perspective")){
+
+		$map = corrections_perspective_filter_map('string keys');
+
+		$pid = (isset($map[$p])) ? $map[$p] : null;
+
+		if ($pid){
+			$more['perspective'] = $pid;
+		}
+	}
 
 	$rsp = corrections_get_for_woe($mock_woe, $more);
 	$GLOBALS['smarty']->assign_by_ref("corrections", $rsp['rows']);

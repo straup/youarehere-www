@@ -41,6 +41,8 @@ CREATE TABLE `Corrections` (
   KEY `by_user` (`user_id`, `created`),
   KEY `by_user_latlon` (`user_id`, `latitude`, `longitude`, `created`),
   KEY `by_woe` (`woe_id`, `created`),
+  KEY `by_woe_perspective` (`woe_id`, `perspective`, `created`),
+  KEY `by_perspective` (`perspective`, `created`),
   KEY `by_timestamp` (`created`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

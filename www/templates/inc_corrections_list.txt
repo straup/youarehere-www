@@ -1,5 +1,17 @@
 {include file="inc_map.txt"}
 
+{if !$corrections|@count}
+
+<p class="error">These are not the opinions you are looking for.</p>
+<script type="text/javascript">
+{literal}
+$(document).ready(function(){
+	$("#map").hide();
+});
+{/literal}
+</script>
+{else}
+
 <table id="correction-details" class="table table-condensed table-bordered">
 {include file="inc_correction_details_header.txt" correction_row=$corrections.0}
 
@@ -24,4 +36,7 @@ $(document).ready(function(){literal}{{/literal}
 	youarehere_woe_draw_shapes(woeids);
 
 {literal}}{/literal});
+
+{/if}
+
 </script>

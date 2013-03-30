@@ -11,6 +11,17 @@
 		$more['page'] = $page;
 	}
 
+	if ($p = get_str("perspective")){
+
+		$map = corrections_perspective_filter_map('string keys');
+
+		$pid = (isset($map[$p])) ? $map[$p] : null;
+
+		if ($pid){
+			$more['perspective'] = $pid;
+		}
+	}
+
 	$rsp = corrections_get_recent($more);
 	$GLOBALS['smarty']->assign_by_ref("corrections", $rsp['rows']);
 
