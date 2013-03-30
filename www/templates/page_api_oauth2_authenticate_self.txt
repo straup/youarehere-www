@@ -5,12 +5,12 @@
 
 {if $has_token}
 
-<p>Hey, guess what? You've already created <a href="{$cfg.abs_root_url}api/oauth2/tokens/{$token_row.access_token|escape}/">an authentication token</a> for yourself and this API key!</p>
+<p>Hey, guess what? You've already created <a href="{$cfg.abs_root_url}api/oauth2/tokens/{$key.api_key|escape}/">an authentication token</a> for yourself and this API key!</p>
 
 <table class="api-key-or-token">
 
 	<tr>
-		<td>Authentication Token</td><td class="api-credential"><a href="{$cfg.abs_root_url}api/oauth2/tokens/{$token_row.access_token|escape}/">{$token_row.access_token|escape}</a></td>
+		<td>Authentication Token</td><td class="api-credential"><a href="{$cfg.abs_root_url}api/oauth2/tokens/{$key.api_key|escape}/">{$token_row.access_token|escape}</a></td>
 	</tr>
 
 	{if 0}
@@ -35,7 +35,7 @@
 <table class="api-key-or-token">
 
 	<tr>
-		<td>Authentication Token</td><td class="api-credential"><a href="{$cfg.abs_root_url}api/oauth2/tokens/{$token_rsp.token.access_token|escape}/">{$token_rsp.token.access_token|escape}</a></td>
+		<td>Authentication Token</td><td class="api-credential"><a href="{$cfg.abs_root_url}api/oauth2/tokens/{$key.api_key|escape}/">{$token_rsp.token.access_token|escape}</a></td>
 	</tr>
 
 	<tr>

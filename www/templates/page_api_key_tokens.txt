@@ -23,7 +23,7 @@
 
 	<span class="object-thingy">
 	{if $row.user.id == $cfg.user.id}
-	This token (<a href="{$cfg.abs_root_url}api/oauth2/tokens/{$row.access_token|escape}/">{$row.access_token|escape}</a>) was created on {$row.created|date_format} and was granted <strong>{$permissions.$perms|escape}</strong> permissions.
+	This token (<a href="{$cfg.abs_root_url}api/oauth2/tokens/{$row.app.api_key|escape}/">{$row.access_token|escape}</a>) was created on {$row.created|date_format} and was granted <strong>{$permissions.$perms|escape}</strong> permissions.
 	{else}
 	This token ({$row.access_token|escape}) was created on {$row.created|date_format} and was granted <strong>{$permissions.$perms|escape}</strong> permissions.
 	{/if}

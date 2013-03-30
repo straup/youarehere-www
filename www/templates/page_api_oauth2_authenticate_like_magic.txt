@@ -5,7 +5,7 @@
 
 {if $step==3}
 
-<p class="confirm">Hooray! We've created your new access token. It is <strong>{$token.access_token|escape}</strong> and you can see all <a href="{$cfg.abs_root_url}api/oauth2/tokens/{$token.access_token|escape}/">the details over here.</a></p>
+<p class="confirm">Hooray! We've created your new access token. It is <strong>{$token.access_token|escape}</strong> and you can see all <a href="{$cfg.abs_root_url}api/oauth2/tokens/{$api_key.api_key|escape}/">the details over here.</a></p>
 {if $key_rsp=='ok'}
 <p class="error">Argh! There was a problem creating your token. This is what we know so far: {$error|escape}</p>
 {else}
