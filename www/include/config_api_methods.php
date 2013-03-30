@@ -32,6 +32,13 @@
 			"library" => "api_test"
 		),
 
+		"youarehere.corrections.getCorrections" => array(
+			"description" => "...",
+			"documented" => 0,
+			"enabled" => 0,
+			"library" => "api_youarehere_corrections"
+		),
+
 		"youarehere.geo.geocode" => array(
 			"description" => "...",
 			"documented" => 0,
