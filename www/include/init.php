@@ -216,6 +216,7 @@
 	loadlib('db');
 	loadlib('dbtickets');
 	loadlib('cache');
+	loadlib('cache_memcache');
 	loadlib('crypto');
 	loadlib('crumb');
 	loadlib('login');
