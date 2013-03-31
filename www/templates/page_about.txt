@@ -6,6 +6,10 @@
 
 	<h2>What is this thing?</h2>
 
+	<p>[WORDS]</p>
+
+	<p>This is an experimental service. It's a thing that I have wanted for a long time but this is not a full-time gig for me. I have <a href="http://labs.cooperhewitt.org/author/asc/">a Real Job</a> which keeps me pretty busy so all the usual caveats apply. Ideally, it's a thing that sit quietly in the corner and just chug away unattended. We'll see.</p>
+
 	<a name="why"></a>
 
 	<h2>Why?</h2>
@@ -72,6 +76,14 @@ id,woe_id,latitude,longitude,perspective,created
 	<a name="how"></a>
 
 	<h2>How do I use it?</h2>
+
+	<p>There are two ways to use the site.</p>
+
+	<p>The first way is to visit <a href="{$cfg.abs_root_url}decide/">{$cfg.abs_root_url}decide/</a> and to let your browser's location sensors tell the website where you are in precise geographic terms (a latitude and a longitude). The second way is to visit <a href="{$cfg.abs_root_url}choose/">{$cfg.abs_root_url}choose/</a> and enter a query term that the website will try to geocode. All the geocoded results are plotted on a map which you can pan and zoom to select a precise spot.</p>
+
+	<p>Now that you've got a latitude and longitude the website will ask for all the places of a particular type that intersect that point. The current list of place types to choose from are: <b>{$cfg.reverse_geocoder_clusters|@array_keys|@join:", "|escape}</b>. You can jump up and down the hierarchy of place types until you find something sounds right and then associate that spot on the planet with a given place. Or if it's simply <em>All Wrong</em> then you can record that too.</p>
+
+	<p>That's it! Every opinion is assigned a unique ID and a permalink and eventually added to the <a href="https://github.com/straup/youarehere-data">public data dumps</a>. You can see all the places you've expressed an opinion about by visiting <a href="{$cfg.abs_root_url}corrections/me/">{$cfg.abs_root_url}corrections/me/</a>.</p>
 
 	<a name="delete"></a>
 

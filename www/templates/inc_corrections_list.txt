@@ -2,7 +2,7 @@
 
 {if !$corrections|@count}
 
-<p class="error">These are not the opinions you are looking for.</p>
+<p class="error">These are not the opinions you are looking for (because there are none yet).</p>
 <script type="text/javascript">
 {literal}
 $(document).ready(function(){
