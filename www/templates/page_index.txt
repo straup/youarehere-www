@@ -5,17 +5,24 @@
 {if !$cfg.user.id}
 
   <div class="hero-unit">
-    <h1>You are here</h1>
-    <p>...<a href="{$cfg.abs_root_url}signin/">sign in with your Twitter account</a>.</p>
+    <h2>You are here</h2>
+
+    <div style="text-align:center;">
+<a href="http://www.flickr.com/photos/straup/8442163051/" title="Screen Shot 2013-02-03 at 6.44.42 PM by straup, on Flickr"><img src="https://farm9.staticflickr.com/8228/8442163051_6d48477fbd_c.jpg" width="800" height="612" alt="Screen Shot 2013-02-03 at 6.44.42 PM"></a> 
+
+       <p style="margin-top:2em;">To get started <a href="{$cfg.abs_root_url}signin/">sign in with your Twitter account</a>.</p>
+    </div>
+
   </div>
 
 
 {else}
 
 
-    {include file="inc_caveat.txt"}
-
-	<p><a href="{$cfg.abs_root_url}maybe/">Okay! Let's get started.</a></p>
+  <div class="hero-unit">
+    <h2>You are here</h2>
+    <p><a href="{$cfg.abs_root_url}decide/">I am right here right now</a> or <a href="{$cfg.abs_root_url}choose/">I want to choose another place</a>.</p>	
+  </div>
 
 {/if}
 
