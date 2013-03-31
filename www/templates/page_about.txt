@@ -1,7 +1,27 @@
 {include file='inc_head.txt' nav_tab='about'}
 
 <div class="container">
-	<h1>About</h1>
+
+
+	<h2>What is this thing?</h2>
+
+	<h2>How do I sign in?</h2>
+
+	<p>You must sign in to <b>{$cfg.site_name|escape}</b> using a valid <a href="http://www.twitter.com/">Twitter</a> account.</p>
+
+	<h2>What if I don't have a Twitter account?</h2>
+
+	<p>Unfortunately that means you can't use the site right now. That's not a feature.</p>
+
+	<h2>How do I use it?</h2>
+
+	<h2>Is there an API?</h2>
+
+	<p>Yes, however it's not enabled at the moment. Barring all the usual bad craziness it will be soon.</p>
+
+	<h2>Why?</h2>
+
+	<p><a href="http://www.aaronland.info/weblog/2013/02/03/reality/#youarehere">The long version is over here.</a></p>
 
 	{include file="inc_caveat.txt"}
 
