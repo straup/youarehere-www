@@ -17,6 +17,8 @@ function youarehere_map(){
 
 		var map = L.map(container_id, args);
 
+		map.on('move', youarehere_map_coords);
+
 		var toner = 'http://tile.stamen.com/toner-background/{z}/{x}/{y}.jpg';
 
 		// fix me: this will cause weirdness for countries...
@@ -349,4 +351,24 @@ function youarehere_map_update_feedback(msg){
 	var fb = $("#map-feedback");
 	fb.html(msg);
 	(msg) ? fb.show() : fb.hide();
+}
+
+function youarehere_map_coords(){
+
+	var map = youarehere_map();
+	var centroid = map.getCenter();
+	var zoom = map.getZoom();
+
+	var lat = centroid['lat'];
+	var lon = centroid['lng'];
+
+	var href = "/maybe?lat=" + lat + "&lon=" + lon + "&zoom=" + zoom;
+
+	var html = 'The crosshairs are pointing to ';
+	html += lat.toFixed(6) + ", " + lon.toFixed(6);
+	html += " @ zoom level " + zoom;
+
+	html += ' <span class="pointer">⇦</span> <a href="' + href + '">Try here instead</a>';
+
+	$("#map-coords").html(html);
 }

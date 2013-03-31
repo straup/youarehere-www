@@ -2,4 +2,5 @@
 <div id="map"></div>
 <div id="getlatlon-crosshairs"></div>
 <div id="map-feedback"></div>
+<div class="pointer" id="map-coords" style="text-align:right;font-size:11px;"></div>
 </div>
