@@ -32,17 +32,17 @@
 			"library" => "api_test"
 		),
 
-		"youarehere.corrections.getCorrections" => array(
+		"youarehere.corrections.getCorrectionsByDate" => array(
 			"description" => "...",
 			"documented" => 0,
-			"enabled" => 0,
+			"enabled" => 1,
 			"library" => "api_youarehere_corrections"
 		),
 
 		"youarehere.geo.geocode" => array(
 			"description" => "...",
 			"documented" => 0,
-			"enabled" => 0,
+			"enabled" => 1,
 			"library" => "api_youarehere_geo"
 		),
 

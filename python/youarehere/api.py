@@ -26,7 +26,13 @@ class API:
         conn.request('POST', self.endpoint, body, headers)
 
         rsp = conn.getresponse()
-        data = json.load(rsp)
+        body = rsp.read()
+
+        try:
+            data = json.loads(body)
+        except Exception, e:
+            print body
+            raise Exception, e
 
         # check status here...
 

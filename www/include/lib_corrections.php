@@ -112,9 +112,26 @@
 
 		$sql = "SELECT * FROM Corrections";
 
+		$where = array();
+
 		if (array_key_exists('perspective', $more)){
 			$enc_pid = AddSlashes($more['perspective']);
-			$sql .= " WHERE perspective='{$enc_pid}'";
+			$where[] = "perspective='{$enc_pid}'";
+		}
+
+		if (isset($more['start_date'])){
+			$enc_date = AddSlashes($more['start_date']);
+			$where[] = "created >= {$enc_date}";
+		}
+
+		if (isset($more['end_date'])){
+			$enc_date = AddSlashes($more['end_date']);
+			$where[] = "created <= {$enc_date}";
+		}
+
+		if (count($where)){
+			$where = implode(" AND ", $where);
+			$sql .= " WHERE {$where}";
 		}
 
 		$sql .= " ORDER BY created DESC";
