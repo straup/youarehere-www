@@ -20,3 +20,11 @@
     margin-top: 1em !important;
     display:block !important;
 }
+
+#map-decide-crosshairs {
+    display:none !important;
+}
+
+#map-decide-coords {
+    display:none !important;
+}

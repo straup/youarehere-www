@@ -67,7 +67,7 @@
               {if "reverse_geocoder"|features_is_enabled}<li{if $nav_tab == 'recent'} class="active"{/if}><a href="{$cfg.abs_root_url}decide/">Decide</a></li>{/if}
               <li><a href="{$cfg.abs_root_url}corrections/">Recent</a></li>
               {if "api"|features_is_enabled}<li{if $nav_tab == 'about'} class="active"{/if}><a href="{$cfg.abs_root_url}api/">API</a></li>{/if}
-              <li><a href="{$cfg.abs_root_url}about/">What is this?</a></li>
+              <li><a href="{$cfg.abs_root_url}about/">About</a></li>
             </ul>
 
             <ul class="nav pull-right">

@@ -355,7 +355,7 @@ function youarehere_map_update_feedback(msg){
 
 function youarehere_map_coords(){
 
-	if (! $("#getlatlon-crosshairs")){
+	if (! $("#map-decide-crosshairs")){
 		return;
 	}
 
@@ -374,5 +374,5 @@ function youarehere_map_coords(){
 
 	html += ' <span class="pointer">⇦</span> <a href="' + href + '">Try here instead</a>';
 
-	$("#map-coords").html(html);
+	$("#map-decide-coords").html(html);
 }
