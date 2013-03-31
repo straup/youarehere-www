@@ -1,0 +1,15 @@
+{include file="inc_head.txt"}
+
+<ul id="colophon">
+	<li>Map tiles are courtesy the nice folks at <a href="http://maps.stamen.com/">Stamen Design</a></li>
+
+	<li>Map data is from the rising tide of awesomeness better known as <a href="http://www.openstreetmap.org/">OpenStreetMap</a></li>
+
+	<li>The geocoding robots were generously donated by the <a href="https://github.com/foursquare/twofishes">Foursquare</a> kids</a></li>
+
+	<li>The reverse-geocoding lightshow is like a beautiful duet by <a href="https://github.com/mattb/flickrgeocoder-java">Matt Biddulph</a> and <a href="http://code.flickr.net/2011/01/08/flickr-shapefiles-public-dataset-2-0/">Flickr users</a></li>
+
+	<li>And users like you. In an entirely non-creepy way.</p>
+</ul>
+
+{include file="inc_foot.txt"}
