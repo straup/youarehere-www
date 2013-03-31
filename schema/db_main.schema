@@ -38,12 +38,25 @@ CREATE TABLE `Corrections` (
   `remote_address` char(32) NOT NULL,
   `source_id` tinyint(3) unsigned NOT NULL,
   `perspective` tinyint(3) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
   KEY `by_user` (`user_id`, `created`),
+  KEY `by_user_perspective` (`user_id`, `perspective`, `created`),
+  KEY `by_user_woe` (`user_id`, `woe_id`, `created`),
+  KEY `by_user_woe_perspective` (`user_id`, `woe_id`, `perspective`, `created`),
   KEY `by_user_latlon` (`user_id`, `latitude`, `longitude`, `created`),
   KEY `by_woe` (`woe_id`, `created`),
   KEY `by_woe_perspective` (`woe_id`, `perspective`, `created`),
   KEY `by_perspective` (`perspective`, `created`),
   KEY `by_timestamp` (`created`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `CorrectionsRedacted`;
+
+CREATE TABLE `CorrectionsRedacted` (
+  `correction_id` BIGINT(20) unsigned NOT NULL,
+  `redacted` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`correction_id`),
+  KEY `by_date` (`redacted`),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `TwitterUsers`;

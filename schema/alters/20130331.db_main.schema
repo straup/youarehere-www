@@ -1,0 +1,15 @@
+ALTER TABLE Corrections ADD PRIMARY KEY (`id`);
+
+CREATE INDEX `by_user_perspective` ON Corrections  (`user_id`, `perspective`, `created`);
+CREATE INDEX `by_user_woe` ON Corrections  (`user_id`, `woe_id`, `created`);
+CREATE INDEX `by_user_woe_perspective` ON Corrections  (`user_id`, `woe_id`, `perspective`, `created`);
+
+DROP TABLE IF EXISTS `CorrectionsRedacted`;
+
+CREATE TABLE `CorrectionsRedacted` (
+  `correction_id` BIGINT(20) unsigned NOT NULL,
+  `redacted` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`correction_id`),
+  KEY `by_date` (`redacted`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
