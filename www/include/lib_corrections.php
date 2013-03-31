@@ -3,6 +3,8 @@
 	loadlib("artisanal_integers");
 	loadlib("geo_utils");
 
+	loadlib("corrections_redacted");
+
 	########################################################################
 
 	function corrections_perspective_map($string_keys=0){
@@ -85,6 +87,21 @@
 		$row = corrections_scrub_correction($row);		
 
 		return $row;
+	}
+
+	########################################################################
+
+	function corrections_is_own(&$correction, &$user){
+
+		# cache me...
+
+		$enc_id = AddSlashes($correction['id']);
+
+		$sql = "SELECT user_id FROM Corrections WHERE id='{$enc_id}'";
+		$rsp = db_fetch($sql);
+		$row = db_single($rsp);
+
+		return (($row) && ($row['user_id'] == $user['id'])) ? 1 : 0;
 	}
 
 	########################################################################
@@ -187,6 +204,7 @@
 	# use bcrypt?
 
 	function corrections_obfuscate_remote_address($addr){
+
 		$secret = $GLOBALS['cfg']['crypto_remote_address_secret'];
 
 		# No soup for you
@@ -239,6 +257,23 @@
 		}
 
 		return $row;
+	}
+
+	########################################################################
+
+	function corrections_delete_correction(&$correction){
+
+		$rsp = corrections_redacted_redact_correction($correction);
+
+		if (! $rsp['ok']){
+			$error = $rsp['error'];
+			return array('ok' => 0, 'error' => "Failed to redact correction: {$error}");
+		}
+
+		$enc_id = AddSlashes($correction['id']);
+		$sql = "DELETE FROM Corrections WHERE id='{$enc_id}'";
+
+		return db_write($sql);
 	}
 
 	########################################################################

@@ -1,10 +1,14 @@
 {capture assign="page_title"}correction #{$correction.id}{/capture}
 {include file="inc_head.txt"}
 
+{if $delete_error}
+<p class="error">Ack! There was a problem deleting that correction.</p>
+{/if}
+
 {* note: we are setting both the correction and a list of corrections in the app code *}
 {* this is not ideal but it makes the following work... sort of (20130204/straup) *}
 
-{include file="inc_corrections_list.txt"}
+{include file="inc_corrections_list.txt" delete_me=1}
 
 {if $correction.woe_id >= 0}
 <script type="text/javascript">

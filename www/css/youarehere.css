@@ -147,7 +147,32 @@ input[type=submit] {
     color:red;
 }
 
+.confirm {
+    margin-top:1em;
+    font-size:2em;
+    line-height: 1.3em;
+    margin-top:.5em;
+    margin-bottom: 1em;
+    color:green;
+}
+
 #corrections-filter-menu {
     font-size:11px;
     text-align:right;
+}
+
+#delete-me {
+    position: absolute;
+    bottom: 0;
+    left: 100;
+    background-color:white;
+    color: #000;
+    padding: 1em;
+    padding-left: 0px !important;
+    font-weight: 700;
+    font-size: small;
+}
+
+#delete-me input[type=checkbox] {
+    font-size:3em;
 }

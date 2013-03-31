@@ -12,6 +12,27 @@ $(document).ready(function(){
 </script>
 {else}
 
+{if $is_own && $delete_me}
+<form id="delete-me" method="POST" action="{$cfg.abs_root_url}corrections/{$correction.id|escape}/">
+	{$crumb_key|crumb_input}
+	<input type="checkbox" name="delete" />
+	<input type="submit" value="DELETE THIS CORRECTION" />
+</form>
+<script type="text/javascript">
+{literal}
+$(document).ready(function(){
+	$("#delete-me").submit(function(){
+		var msg = "Are you sure you want to delete this correction? THERE IS NO UNDO";
+
+		if (! confirm(msg)){
+			return false;
+		}
+	});
+});
+{/literal}
+</script>
+{/if}
+
 <table id="correction-details" class="table table-condensed table-bordered">
 {include file="inc_correction_details_header.txt" correction_row=$corrections.0}
 

@@ -1,5 +1,9 @@
 {include file="inc_head.txt"}
 
+{if $smarty.get.deleted}
+<p class="confirm">Okay! Your correction has been deleted.</p>
+{/if}
+
 <div id="container">
 {include file="inc_corrections_list.txt"}
 </div>
