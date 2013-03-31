@@ -63,13 +63,11 @@
           <a class="brand" href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a>
           <div class="nav-collapse">
             <ul class="nav">
-              {if 0}<li{if $nav_tab == 'home'} class="active"{/if}><a href="{$cfg.abs_root_url}">Home</a></li>{/if}
               {if "geocoder"|features_is_enabled}<li{if $nav_tab == 'recent'} class="active"{/if}><a href="{$cfg.abs_root_url}choose/">Choose</a></li>{/if}
               {if "reverse_geocoder"|features_is_enabled}<li{if $nav_tab == 'recent'} class="active"{/if}><a href="{$cfg.abs_root_url}decide/">Decide</a></li>{/if}
-              <li{if $nav_tab == 'about'} class="active"{/if}><a href="{$cfg.abs_root_url}corrections/">Recent</a></li>
+              <li><a href="{$cfg.abs_root_url}corrections/">Recent</a></li>
               {if "api"|features_is_enabled}<li{if $nav_tab == 'about'} class="active"{/if}><a href="{$cfg.abs_root_url}api/">API</a></li>{/if}
-              <li{if $nav_tab == 'about'} class="active"{/if}><a href="{$cfg.abs_root_url}about/">What is this?</a></li>
-              {if 0}<li{if $nav_tab == 'contact'} class="active"{/if}><a href="{$cfg.abs_root_url}contact">Contact</a></li>{/if}
+              <li><a href="{$cfg.abs_root_url}about/">What is this?</a></li>
             </ul>
 
             <ul class="nav pull-right">
