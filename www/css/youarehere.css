@@ -202,3 +202,12 @@ input[type=submit] {
 .caveat {
     font-style: italic;
 }
+
+.hero-unit th {
+    background-color: #fff !important;
+    font-size: small;
+}
+
+.hero-unit td {
+    background-color: #fff !important;
+}
