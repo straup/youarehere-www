@@ -56,17 +56,20 @@ RewriteRule   ^decide/?$				maybe.php?%{QUERY_STRING}			[L]
 RewriteRule   ^maybe/?$					maybe.php?%{QUERY_STRING}			[L]
 
 RewriteRule   ^corrections(/page([0-9]+))?/?$				corrections.php?page=$2&%{QUERY_STRING}	[L]
-RewriteRule   ^corrections/(locals|tourists)(/page([0-9]+))?/?$		corrections.php?perspective=$1&page=$3&%{QUERY_STRING}	[L]
+RewriteRule   ^corrections/(locals|tourists|strangers)(/page([0-9]+))?/?$		corrections.php?perspective=$1&page=$3&%{QUERY_STRING}	[L]
 
-RewriteRule   ^c/([A-Za-z0-9]+)/?$			correction.php?code=$1&%{QUERY_STRING}		[L]
-RewriteRule   ^corrections/([0-9]+)/?$			correction.php?id=$1&%{QUERY_STRING}		[L]
-RewriteRule   ^corrections/([0-9]+)\.([a-z]+)?$		correction_export.php?id=$1&format=$2%{QUERY_STRING}		[L]
+RewriteRule   ^c/([A-Za-z0-9]+)/?$					correction.php?code=$1&%{QUERY_STRING}		[L]
+RewriteRule   ^corrections/([0-9]+)/?$					correction.php?id=$1&%{QUERY_STRING}		[L]
 
-RewriteRule   ^users/([0-9]+)/corrections(/page([0-9]+))?/?$		user_corrections.php?id=$1&page=$3&%{QUERY_STRING}	[L]
+RewriteRule   ^corrections/me(/page([0-9]+))?/?$			corrections_me.php?page=$2&%{QUERY_STRING}	[L]
+RewriteRule   ^corrections/me/(local|tourist|stranger)(/page([0-9]+))?/?$	corrections_me.php?perspective=$1&page=$3&%{QUERY_STRING}	[L]
 
-RewriteRule   ^woe/([0-9]+)/corrections(/page([0-9]+))?/?$				woe_corrections.php?id=$1&page=$3&%{QUERY_STRING}	[L]
-RewriteRule   ^woe/([0-9]+)/corrections/(locals|tourists)(/page([0-9]+))?/?$		woe_corrections.php?id=$1&perspective=$2&page=$4&%{QUERY_STRING}	[L]
+RewriteRule   ^corrections/woe/?$					/corrections/  [R]
 
+RewriteRule   ^corrections/woe/([0-9]+)(/page([0-9]+))?/?$				corrections_woe.php?id=$1&page=$3&%{QUERY_STRING}	[L]
+RewriteRule   ^corrections/woe/([0-9]+)/(locals|tourists|strangers)(/page([0-9]+))?/?$		corrections_woe.php?id=$1&perspective=$2&page=$4&%{QUERY_STRING}	[L]
+
+RewriteRule   ^woe/([0-9]+)/?$						/corrections/woe/$1	[R]
 RewriteRule   ^woe/([0-9]+)/geojson/?$					woedb_geojson.php?id=$1&%{QUERY_STRING}	[L]
 
 # Login stuff

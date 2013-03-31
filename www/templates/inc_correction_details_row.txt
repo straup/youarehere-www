@@ -16,7 +16,7 @@
 {if $value==-1}
 &#8212;
 {else}
-<a href="{$cfg.abs_root_url}woe/{$value|escape}/corrections/"  class="woeid-{$value|escape}">{$value|escape}</a>
+<a href="{$cfg.abs_root_url}corrections/woe/{$value|escape}/"  class="woeid-{$value|escape}">{$value|escape}</a>
 {/if}
 {elseif $key=='created'}
 {$value|@date_format|escape}

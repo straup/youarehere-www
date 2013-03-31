@@ -66,6 +66,7 @@
               {if "geocoder"|features_is_enabled}<li{if $nav_tab == 'recent'} class="active"{/if}><a href="{$cfg.abs_root_url}choose/">Choose</a></li>{/if}
               {if "reverse_geocoder"|features_is_enabled}<li{if $nav_tab == 'recent'} class="active"{/if}><a href="{$cfg.abs_root_url}decide/">Decide</a></li>{/if}
               <li><a href="{$cfg.abs_root_url}corrections/">Recent</a></li>
+              {if $cfg.user}<li><a href="{$cfg.abs_root_url}corrections/me/">Mine</a></li>{/if}
               {if "api"|features_is_enabled}<li{if $nav_tab == 'about'} class="active"{/if}><a href="{$cfg.abs_root_url}api/">API</a></li>{/if}
               <li><a href="{$cfg.abs_root_url}about/">About</a></li>
             </ul>

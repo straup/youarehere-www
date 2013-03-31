@@ -21,10 +21,8 @@
 
 		$map = corrections_perspective_filter_map('string keys');
 
-		$pid = (isset($map[$p])) ? $map[$p] : null;
-
-		if ($pid){
-			$more['perspective'] = $pid;
+		if (array_key_exists($p, $map)){
+			$more['perspective'] = $map[$p];
 		}
 	}
 
@@ -34,6 +32,6 @@
 	$map = corrections_perspective_map();
 	$GLOBALS['smarty']->assign_by_ref("perspective_map", $map);
 
-	$GLOBALS['smarty']->display("page_woe_corrections.txt");
+	$GLOBALS['smarty']->display("page_corrections_woe.txt");
 	exit();
 ?>

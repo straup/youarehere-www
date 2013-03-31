@@ -8,7 +8,7 @@
 	function corrections_perspective_map($string_keys=0){
 
 		$map = array(
-			0 => "none of your business",
+			0 => "a stranger",
 			1 => "a local",
 			2 => "a tourist",
 		);
@@ -23,6 +23,7 @@
 	function corrections_perspective_filter_map($string_keys=0){
 
 		$map = array(
+			0 => 'strangers',
 			1 => 'locals',
 			2 => 'tourists',
 		);
@@ -94,7 +95,7 @@
 
 		$sql = "SELECT * FROM Corrections";
 
-		if (isset($more['perspective'])){
+		if (array_key_exists('perspective', $more)){
 			$enc_pid = AddSlashes($more['perspective']);
 			$sql .= " WHERE perspective='{$enc_pid}'";
 		}
@@ -113,7 +114,14 @@
 
 		$enc_id = AddSlashes($user['id']);
 
-		$sql = "SELECT * FROM Corrections WHERE user_id='{$enc_id}' ORDER BY created DESC";
+		$sql = "SELECT * FROM Corrections WHERE user_id='{$enc_id}'";
+
+		if (array_key_exists('perspective', $more)){
+			$enc_pid = AddSlashes($more['perspective']);
+			$sql .= " AND perspective='{$enc_pid}'";
+		}
+
+		$sql .= " ORDER BY created DESC";
 
 		$rsp = db_fetch_paginated($sql, $more);
 		$rsp = corrections_scrub_rsp($rsp);
@@ -161,7 +169,7 @@
 
 		$sql = "SELECT * FROM Corrections WHERE woe_id='{$enc_id}'";
 
-		if (isset($more['perspective'])){
+		if (array_key_exists('perspective', $more)){
 			$enc_pid = AddSlashes($more['perspective']);
 			$sql .= " AND perspective='{$enc_pid}'";
 		}
@@ -180,6 +188,13 @@
 
 	function corrections_obfuscate_remote_address($addr){
 		$secret = $GLOBALS['cfg']['crypto_remote_address_secret'];
+
+		# No soup for you
+
+		if (! $secret){
+			return '';
+		}
+
 		$hash = hash_hmac("sha256", $addr, $secret);
 		return md5($hash);
 	}
