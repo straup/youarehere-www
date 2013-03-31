@@ -355,6 +355,10 @@ function youarehere_map_update_feedback(msg){
 
 function youarehere_map_coords(){
 
+	if (! $("#getlatlon-crosshairs")){
+		return;
+	}
+
 	var map = youarehere_map();
 	var centroid = map.getCenter();
 	var zoom = map.getZoom();
