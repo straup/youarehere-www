@@ -145,7 +145,12 @@
 	# Okay, now finish logging the user in (setting cookies, etc.) and
 	# redirecting them to some specific page if necessary.
 
-	$redir = (isset($extra['redir'])) ? $extra['redir'] : '';
+	$redir = '';
+
+	if ($redir_cookie = login_get_cookie('r')){
+		login_unset_cookie('r');
+		$redir = crypto_decrypt($redir_cookie, $GLOBALS['cfg']['crypto_oauth_cookie_secret']);
+	}
 
 	login_do_login($user, $redir);
 	exit();

@@ -62,24 +62,22 @@
 	# permission to exchange the request token/secret for a
 	# permanent set of credentials to call the API with.
 
-	$args = array(
-	);
-
-	$extra = array();
-
-	if ($redir = get_str('redir')){
-		$extra[] = "redir=" . urlencode($redir);
-	}
-
-	if (count($extra)){
-		$args['extra'] = implode("&", $extra);
-	}
+	$args = array();
 
 	$url = twitter_oauth_get_auth_url($args, $user_keys);
 
 	# Okay, now go! (Note the crazy-in-the-head cookie setting.)
 
 	login_set_cookie('o', $request);
-	header("location: {$url}");
 
+	# I know right... it's because Twitter's OAuth thingy doesn't support "extras"
+	# This should probably be repurposed to be a general "extras" (build/parse a 
+	# query string) bucket but for now this will do (201303031/straup)
+
+	if (($redir) && ($redir != '/')){
+		$redir = crypto_encrypt($redir, $GLOBALS['cfg']['crypto_oauth_cookie_secret']);
+		login_set_cookie('r', $redir);
+	}
+
+	header("location: {$url}");
 	exit();
