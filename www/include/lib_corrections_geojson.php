@@ -2,7 +2,13 @@
 
 	########################################################################
 
-	function corrections_export_as_geojson($corrections){
+	function corrections_export_as_geojson($corrections, $more=array()){
+
+		$defaults = array(
+			'add_bbox' => 0,
+		);
+
+		$more = array_merge($defaults, $more);
 
 		$features = array();
 
@@ -37,6 +43,10 @@
 		}
 
 		# TO DO: bbox for features if count > 1
+
+		if (($more['add_bbox']) && (count($features) > 1)){
+
+		}
 
 		$geojson = array(
 			'type' => 'FeatureCollection',
