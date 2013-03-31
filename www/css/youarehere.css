@@ -130,3 +130,8 @@ input[type=submit] {
     margin-bottom: 1em;
     color:red;
 }
+
+#corrections-filter-menu {
+    font-size:11px;
+    text-align:right;
+}
