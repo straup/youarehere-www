@@ -198,3 +198,7 @@ input[type=submit] {
 #filter-by li:last-child:before {
     content: " or just ";
 }
+
+.caveat {
+    font-style: italic;
+}

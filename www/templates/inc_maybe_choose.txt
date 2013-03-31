@@ -99,6 +99,21 @@ error messages. For example, this is what they've told us so far: <q>{$rsp.error
 
 </div>
 
+{if $previous|@count}
+
+<p class="caveat">We noticed that you've added some corrections around this spot in the past. Go ahead and add another if you'd like but here's the list of of stuff you've already told us about.</p>
+
+<table id="correction-details" class="table table-condensed table-bordered">
+{include file="inc_correction_details_header.txt" correction_row=$previous.0}
+
+{foreach from=$previous item="correction"}
+{include file="inc_correction_details_row.txt" correction_row=$correction}
+{/foreach}
+
+</table>
+
+{/if}
+
 <script type="text/javascript">
 $(document).ready(function(){literal}{{/literal}
 	var latlons = [[{$latitude|escape}, {$longitude|escape}]];

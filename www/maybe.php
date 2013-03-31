@@ -48,11 +48,25 @@
 		$GLOBALS['smarty']->assign("latitude", $lat);
 		$GLOBALS['smarty']->assign("longitude", $lon);
 
-		# Not really sure what this means or should do yet
-		# (20130223/straup)
+		# All of this has happened before / all of this will happen again
 
-		$rsp = corrections_get_for_user_latlon($GLOBALS['cfg']['user'], $lat, $lon);
-		# $count = $rsp['pagination']['total_count'];
+		$previous_rsp = corrections_get_for_user_latlon($GLOBALS['cfg']['user'], $lat, $lon);
+		$previous = ($previous_rsp['ok']) ? $previous_rsp['rows'] : array();
+
+		$count = count($previous);
+
+		for ($i=0; $i < $count; $i++){
+
+			$crtn = $previous[$i];
+			$dist = geo_utils_distance($lat, $lon, $crtn['latitude'], $crtn['longitude']);
+
+			$crtn['distance (miles)'] = number_format($dist, 3);
+			$previous[$i] = $crtn;
+		}
+
+		$GLOBALS['smarty']->assign_by_ref("previous", $previous);
+
+		# Okay, what's around here
 
 		$reversegeo_rsp = reverse_geocode($lat, $lon, $filter);
 
