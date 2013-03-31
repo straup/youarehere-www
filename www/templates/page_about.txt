@@ -2,27 +2,90 @@
 
 <div class="hero-unit">
 
+	<a name="what"></a>
 
 	<h2>What is this thing?</h2>
 
-	<h2>How do I sign in?</h2>
-
-	<p>You must sign in to <b>{$cfg.site_name|escape}</b> using a valid <a href="http://www.twitter.com/">Twitter</a> account.</p>
-
-	<h2>What if I don't have a Twitter account?</h2>
-
-	<p>Unfortunately that means you can't use the site right now. That's not a feature.</p>
-
-	<h2>How do I use it?</h2>
-
-	<h2>Is there an API?</h2>
-
-	<p>Yes, however it's not enabled at the moment. Barring all the usual bad craziness it will be soon.</p>
+	<a name="why"></a>
 
 	<h2>Why?</h2>
 
-	<p><a href="http://www.aaronland.info/weblog/2013/02/03/reality/#youarehere">The long version is over here.</a></p>
+	<p><a href="http://www.aaronland.info/weblog/2013/02/03/reality/#youarehere">The long version is over here.</a> Long version is long.</p>
 
+	<a name="privacy"></a>
+
+	<h2>What about privacy and personally indentifiable information?</h2>
+
+	<p>The really short version is that <em>I would be just as happy not store any of it</em>.</p>
+
+	<p>The only reason to keep anything that might be considered "identifiable" is so that people consuming the data can make better informed decisions about which corrections to trust and so that I can use it track and prevent abuse. Or not. I am still working through the ways in which that might get creepy. Here's what is currently stored in the database:</p>
+
+	<ul style="margin-left:10%;margin-right:5%;">
+		<li>A latitude and longitude (with a resolution of six decimal points).</li>
+		<li>A timestamp.</li>
+		<li>Your user ID &#8212; not your Twitter ID but an internal numeric user ID that isn't exposed anywhere on the site. One reason for this is so that the site can show you the stuff you've expressed an opinion about.</li>
+		<li>A hashed version of your remote address &#8212; twice-hashed actually. Once using SHA-256 and then again using MD5, just to make the hash shorter.</li>
+	</ul>
+
+	<p>The point is not to promote a naked Facebook-esque mirror world but
+	to find an acceptable place where privacy interests and transparency can
+	exist. That might not be possible and if that's the case then <em>a user's privacy
+	will take precedence</em>. As of this writing neither the remote address or the user ID are exposed anywhere, including the API or the <a href="https://github.com/straup/youarehere-data">public data dumps</a>.</p> 
+
+	<a name="data-dumps"></a>
+	<h2>Wait... did you just say "public data dumps"?</h2>
+
+	<p>Yes.</p>
+	
+	<p>The whole point of this project is to generate a free and open dataset by and for the community that we might use to build on. <b>you are here</b> is only one piece of the stack but the hope is that it might be a useful building block for new <a href="http://code.flickr.net/2008/10/30/the-shape-of-alpha/">Alpha shapes</a> or <a href="https://github.com/simplegeo/betashapes/blob/master/BLOG_POST.mkd">Beta shapes</a> or <a href="http://mike.teczno.com/notes/gammashapes-for-obama.html">Gamma shapes</a>.</p>
+
+	<p>The point is to make shapes for all the things. Most of the things that <a href="http://www.theatlanticcities.com/arts-and-lifestyle/2012/08/mapmaker-artist-or-programmer/3132/">Eric Fischer has been making in the last few years</a> are derived from nothing more than an enormous bag of dots, so we are bounded only by our imagination.</p>
+
+	<p>All of the data is released under a <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 public domain waiver</a> with the hope that it might help get us to a point where we can stop spending all of our time worrying about datasets and start concentrating on <em>actual features</em>. This is what <a href="https://github.com/straup/youarehere-data/blob/master/data/2013/20130330.csv">the data dump for March 30, 2013</a> looks like:</p>
+
+	<pre style="margin-left:10%; margin-right:10%;">
+id,woe_id,latitude,longitude,perspective,created
+51497773,2479351,40.678523,-74.009335,1,1364688207
+51497771,2360582,42.357097,-71.072059,2,1364684731
+51497769,23512024,37.784198,-122.417693,1,1364684137
+37220706,28751330,40.749441,-73.984831,1,1364682654
+</pre>
+
+	<p>If any of that makes you uncomfortable <em>you should not use this website</em>.</p>
+
+	<a name="api"></a>
+
+	<h2>Is there an API?</h2>
+
+	<p>Yes, however it's not enabled at the moment.</p>
+
+	<p>Barring all the usual bad craziness it will be soon. I sort of expect that most of the traffic to the service will be API-related so there's an impetus to get that stuff up and running quickly.</p>
+
+	<a name="sign-in"></a>
+
+	<h2>Do I have to sign in using Twitter?</h2>
+
+	<p>Yes.</p>
+
+	<p>That's not a feature but this is a project I work on over coffee in the mornings and during weekends so the ability to offload all the user account stuff on a serivce that lots of people already use is very helpful in the short-term.</p>
+
+	<a name="how"></a>
+
+	<h2>How do I use it?</h2>
+
+	<a name="delete"></a>
+
+	<h2>Can I delete an opinion about a place?</h2>
+
+	<p>Yes. Assuming you created it, of course.</p>
+
+	<a name="mobile"></a>
+
+	<h2>Is there a mobile version?</h2>
+
+	<p>Sort of.</p>
+
+	<p>The site has been mostly built on a laptop (see above mornings and coffee). The <a href="{$cfg.abs_root_url}decide/">pages for choosing a place based on a latitude and longitude</a> are not as elegant as I would like but they work. The rest of the site is not so awesome on a tiny screen yet.</p>
 </div>
 
 {include file='inc_foot.txt'}
