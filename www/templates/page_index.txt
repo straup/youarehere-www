@@ -4,13 +4,13 @@
 
 {if !$cfg.user.id}
 
-  <div class="hero-unit">
-    <h2>You are here</h2>
+  <div class="hero-unit" style="background-color:#fff; padding-top:1em !important;">
 
     <div style="text-align:center;">
 <a href="http://www.flickr.com/photos/straup/8442163051/" title="Screen Shot 2013-02-03 at 6.44.42 PM by straup, on Flickr"><img src="https://farm9.staticflickr.com/8228/8442163051_6d48477fbd_c.jpg" width="800" height="612" alt="Screen Shot 2013-02-03 at 6.44.42 PM"></a> 
 
-       <p style="margin-top:2em;">To get started <a href="{$cfg.abs_root_url}signin/">sign in with your Twitter account</a>.</p>
+        <p style="margin-top:2em; max-width:800px;margin-right:auto;margin-left:auto;">
+	Welcome to the public beta of <q style="font-weight:700;">you are here</q>. You can read all about it on the ... <a href="{$cfg.abs_root_url}about/">about page</a>. <br /> To get started <a href="{$cfg.abs_root_url}signin/">sign in with your Twitter account</a>.</p>
     </div>
 
   </div>
