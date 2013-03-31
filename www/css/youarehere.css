@@ -176,3 +176,25 @@ input[type=submit] {
 #delete-me input[type=checkbox] {
     font-size:3em;
 }
+
+#filter-by {
+    display: inline;
+    margin:0px;
+    padding: 0px;
+}
+
+#filter-by li {
+    display: inline;
+}
+
+#filter-by li:before {
+    content: " or ";
+}
+
+#filter-by li:first-child:before {
+    content: "";
+}
+
+#filter-by li:last-child:before {
+    content: " or just ";
+}

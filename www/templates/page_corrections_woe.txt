@@ -1,6 +1,7 @@
 {include file="inc_head.txt"}
 
 <div id="container">
+{include file="inc_corrections_filter.txt"}
 {include file="inc_corrections_list.txt"}
 </div>
 

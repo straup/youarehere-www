@@ -26,6 +26,8 @@
 	$map = corrections_perspective_map();
 	$GLOBALS['smarty']->assign_by_ref("perspective_map", $map);
 
+	$GLOBALS['smarty']->assign("filter_root", $GLOBALS['cfg']['abs_root_url'] . 'corrections/');
+
 	$GLOBALS['smarty']->display("page_corrections.txt");
 	exit();
 

@@ -1,1 +1,12 @@
-<div id="corrections-filter-menu">filter by <a href="">locals</a> or <a href="">tourists</a> or just <a href="">show it all</a></div>
+{if $filter_root}
+<div id="corrections-filter-menu">
+filter by
+<ul id="filter-by">
+<li><a href="{$filter_root}{if $singular}local{else}locals{/if}/">locals</a></li>
+<li><a href="{$filter_root}{if $singular}tourist{else}tourists{/if}/">tourists</a></li>
+<li><a href="{$filter_root}{if $singular}stranger{else}strangers{/if}/">strangers</a></li>
+<li><a href="{$filter_root}">show it all</a></li>
+</ul>
+
+</div>
+{/if}

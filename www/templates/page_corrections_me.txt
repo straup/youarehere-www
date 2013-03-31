@@ -5,6 +5,7 @@
 {/if}
 
 <div id="container">
+{include file="inc_corrections_filter.txt" singular=1}
 {include file="inc_corrections_list.txt"}
 </div>
 
