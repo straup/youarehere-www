@@ -9,7 +9,7 @@
 
 	<li>The geocoding robots were generously donated by the <a href="https://github.com/foursquare/twofishes">Foursquare</a> kids</a>.</li>
 
-	<li>The reverse-geocoding lightshow is like a beautiful duet by <a href="https://github.com/mattb/flickrgeocoder-java">Matt Biddulph</a> and <a href="http://code.flickr.net/2011/01/08/flickr-shapefiles-public-dataset-2-0/">Flickr users</a>.</li>
+	<li>The reverse-geocoding lightshow is like a beautiful duet by <a href="https://github.com/mattb/flickrgeocoder-java">Matt Biddulph</a> and <a href="http://code.flickr.net/2011/01/08/flickr-shapefiles-public-dataset-2-0/">Flickr users</a>, with a helping spoonful of <a href="http://www.naturalearthdata.com/">Natural Earth Data</a>.</li>
 
 	<li>And users like you. In an entirely non-creepy way.</p>
 </ul>
