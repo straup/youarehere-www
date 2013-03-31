@@ -264,6 +264,7 @@
 
 		$to_remove = array(
 			'user_id',
+			'remote_address',
 		);
 
 		foreach ($to_remove as $prop){
