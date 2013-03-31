@@ -1,3 +1,5 @@
+<div class="hero-unit">
+
 {if !$do_update}
 	<p class="error">Your correction could not be processed
 	because... robots? This is what they're saying: <q>{$error|escape}</p></p>
@@ -13,3 +15,5 @@
 {/if}
 
 {/if}
+
+</div>

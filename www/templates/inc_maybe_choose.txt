@@ -100,6 +100,7 @@ error messages. For example, this is what they've told us so far: <q>{$rsp.error
 </div>
 
 {if $previous|@count}
+<div class="hero-unit">
 
 <p class="caveat">We noticed that you've added some corrections around this spot in the past. Go ahead and add another if you'd like but here's the list of of stuff you've already told us about.</p>
 
@@ -112,6 +113,7 @@ error messages. For example, this is what they've told us so far: <q>{$rsp.error
 
 </table>
 
+</div>
 {/if}
 
 <script type="text/javascript">

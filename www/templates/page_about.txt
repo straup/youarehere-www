@@ -1,6 +1,6 @@
 {include file='inc_head.txt' nav_tab='about'}
 
-<div class="container">
+<div class="hero-unit">
 
 
 	<h2>What is this thing?</h2>
@@ -22,8 +22,6 @@
 	<h2>Why?</h2>
 
 	<p><a href="http://www.aaronland.info/weblog/2013/02/03/reality/#youarehere">The long version is over here.</a></p>
-
-	{include file="inc_caveat.txt"}
 
 </div>
 
