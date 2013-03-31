@@ -14,11 +14,9 @@
 
 		if ($GLOBALS['cfg']['user']['id']) return;
 
-		if ($redir){
-			header("location: {$GLOBALS['cfg']['abs_root_url']}signin?redir=".urlencode($redir));
-		}else{
-			header("location: {$GLOBALS['cfg']['abs_root_url']}signin");
-		}
+		if (!$redir) $redir = $_SERVER['REQUEST_URI'];
+
+		header("location: {$GLOBALS['cfg']['abs_root_url']}signin?redir=".urlencode($redir));
 		exit;
 	}
 
@@ -125,7 +123,8 @@
 
 	function login_set_cookie($name, $value, $expire=0, $path='/'){
 		$domain = ($GLOBALS['cfg']['environment'] == 'localhost') ? false : $GLOBALS['cfg']['auth_cookie_domain'];
-		$res = setcookie($name, $value, $expire, $path, $domain);
+		$securify = (($GLOBALS['cfg']['auth_cookie_require_https']) && (isset($_SERVER['HTTPS'])) && ($_SERVER['HTTPS'] == 'on')) ? 1 : 0;
+		$res = setcookie($name, $value, $expire, $path, $domain, $securify);
 	}
 
 	#################################################################
