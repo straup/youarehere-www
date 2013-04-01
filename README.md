@@ -8,4 +8,6 @@ you are here is sort of like "geocorrections as a service". It is very much a wo
 See also
 --
 
+* [flamework](https://github.com/exflickr/flamework)
+
 * [Clustr](https://github.com/straup/Clustr)
