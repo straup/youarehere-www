@@ -1,16 +1,16 @@
 <VirtualHost *:80>
 
-	# ServerName example.com
+	ServerName youarehere.example.com
 	# ServerAdmin webmaster@localhost
 
-	DocumentRoot /usr/local/PROJECT/www
+	DocumentRoot /usr/local/youarehere/www
 
 	<Directory />
 		Options FollowSymLinks
 		AllowOverride None
 	</Directory>
 
-	<Directory /usr/local/PROJECT/www>
+	<Directory /usr/local/youarehere/www>
 		Options FollowSymLinks Indexes
 		# AllowOverride FileInfo Limit
 		AllowOverride All
