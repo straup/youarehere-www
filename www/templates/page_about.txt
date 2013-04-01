@@ -9,9 +9,9 @@
 
 	<p>Consider the following passage:</p>
 
-	<blockquote style="font-family:serif;margin-left:5%;margin-right:10%;font-size:1.3em;margin-top:1em;">
+	<blockquote style="font-family:serif;margin-left:5%;margin-right:10%;margin-top:1em;">
 
-		<p>"Never mind so-called disputed places (Kashmir, the West Bank, Cyprus, etc.) all neighbourhoods are "disputed" around the edges. (This is often true of localities, as well.) For example, the rough consensus in San Francisco is that Delores street is the dividing line between the Mission and Noe Valley. That said there are those people who may live on the one side of the line and very much believe themselves to be living on the "other". Our experience has been that there are few better ways to pick a fight than to tell someone what neighbourhood they are in (and being wrong). There is also the problem where the data simply doesn't exist yet or it is just old and dusty, sometimes wrong, and often plain weird : "Manhattan Valley", anyone? This is further compounded by the lack of ideas/tools/infrastructure for reflecting changes (both socially and politically) but, ultimately, those are both somewhat tangential."</p>
+		<p style="font-size:1.2em;line-height:1.25em;font-style:italic;"">Never mind so-called disputed places (Kashmir, the West Bank, Cyprus, etc.) all neighbourhoods are "disputed" around the edges. (This is often true of localities, as well.) For example, the rough consensus in San Francisco is that Delores street is the dividing line between the Mission and Noe Valley. That said there are those people who may live on the one side of the line and very much believe themselves to be living on the "other". <span style="font-weight:700;">Our experience has been that there are few better ways to pick a fight than to tell someone what neighbourhood they are in (and being wrong).</span> There is also the problem where the data simply doesn't exist yet or it is just old and dusty, sometimes wrong, and often plain weird : Manhattan Valley, anyone? This is further compounded by the lack of ideas/tools/infrastructure for reflecting changes (both socially and politically) but, ultimately, those are both somewhat tangential.</p>
 
     </blockquote>
 
@@ -25,13 +25,13 @@
 
 	<h2>How do I use it?</h2>
 
-	<p>There are two ways to use the site.</p>
+	<p>There are two ways to get started using the site.</p>
 
-	<p>The first way is to visit <a href="{$cfg.abs_root_url}decide/">{$cfg.abs_root_url}decide/</a> and to let your browser's location sensors tell the website where you are in precise geographic terms (a latitude and a longitude). The second way is to visit <a href="{$cfg.abs_root_url}choose/">{$cfg.abs_root_url}choose/</a> and enter a query term that the website will try to geocode. All the geocoded results are plotted on a map which you can pan and zoom to select a precise spot.</p>
+	<p>The first is to visit <a href="{$cfg.abs_root_url}decide/">{$cfg.abs_root_url}decide/</a> and to let your browser's location sensors tell the website where you are in precise geographic terms (a latitude and a longitude). The second is to visit <a href="{$cfg.abs_root_url}choose/">{$cfg.abs_root_url}choose/</a> and enter a query term that the website will try to geocode. All the geocoded results are plotted on a map which you can pan and zoom to select a precise spot.</p>
 
 	<p>Now that you've got a latitude and longitude the website will ask for all the places of a particular type that intersect that point. The current list of place types to choose from are: <b>{$cfg.reverse_geocoder_clusters|@array_keys|@join:", "|escape}</b>. You can jump up and down the hierarchy of place types until you find something sounds right and then associate that spot on the planet with a given place. Or if it's simply <em>All Wrong</em> then you can record that too.</p>
 
-	<p>That's it! Every opinion is assigned a unique ID and a permalink and eventually added to the <a href="https://github.com/straup/youarehere-data">public data dumps</a>. You can see all the places you've expressed an opinion about by visiting <a href="{$cfg.abs_root_url}corrections/me/">{$cfg.abs_root_url}corrections/me/</a>.</p>
+	<p>That's it! Every opinion is assigned <a href="http://www.brooklynintegers.com/">a unique ID</a> and a permalink and eventually added to the <a href="https://github.com/straup/youarehere-data">public data dumps</a>. You can see all the places you've expressed an opinion about by visiting <a href="{$cfg.abs_root_url}corrections/me/">{$cfg.abs_root_url}corrections/me/</a>.</p>
 
 	<a name="delete"></a>
 
@@ -57,7 +57,9 @@
 	<p>The point is not to promote a naked Facebook-esque mirror world but
 	to find an acceptable place where privacy interests and transparency can
 	exist. That might not be possible and if that's the case then <em>a user's privacy
-	will take precedence</em>. As of this writing neither the remote address or the user ID are exposed anywhere, including the API or the <a href="https://github.com/straup/youarehere-data">public data dumps</a>.</p> 
+	will take precedence</em>.</p>
+
+	<p>As of this writing neither the remote address or the user ID are exposed anywhere, including the API or the <a href="https://github.com/straup/youarehere-data">public data dumps</a>.</p> 
 
 	<a name="data-dumps"></a>
 	<h2>Wait... did you just say "public data dumps"?</h2>
@@ -66,7 +68,7 @@
 	
 	<p>The whole point of this project is to generate a free and open dataset by and for the community that we might use to build on. <b>you are here</b> is only one piece of the stack but the hope is that it might be a useful building block for new <a href="http://code.flickr.net/2008/10/30/the-shape-of-alpha/">Alpha shapes</a> or <a href="https://github.com/simplegeo/betashapes/blob/master/BLOG_POST.mkd">Beta shapes</a> or <a href="http://mike.teczno.com/notes/gammashapes-for-obama.html">Gamma shapes</a>.</p>
 
-	<p>The point is to make shapes for all the things. Most of the things that <a href="http://www.theatlanticcities.com/arts-and-lifestyle/2012/08/mapmaker-artist-or-programmer/3132/">Eric Fischer has been making in the last few years</a> are derived from nothing more than an enormous bag of dots, so we are bounded only by our imagination.</p>
+	<p>The point is to make shapes for all the things. Most of the things that <a href="http://www.theatlanticcities.com/arts-and-lifestyle/2012/08/mapmaker-artist-or-programmer/3132/">Eric Fischer has been making in the last few years</a> are derived from nothing more than an enormous bag of dots (see below) so we are bounded only by our imagination.</p>
 
 	<p>All of the data is released under a <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 public domain waiver</a> with the hope that it might help get us to a point where we can stop spending all of our time worrying about datasets and start concentrating on <em>actual features</em>. This is what <a href="https://github.com/straup/youarehere-data/blob/master/data/2013/20130330.csv">the data dump for March 30, 2013</a> looks like:</p>
 
@@ -84,7 +86,7 @@ id,woe_id,latitude,longitude,perspective,created
 
 	<h2>Why aren't you doing everything using HTTPS?</h2>
 
-	<p>It's true. All the traffic to and from the site is sent over an unencrypted connection. Setting up an SSL certificate for the site has just always been further down the list of things to do than everything else but that might change soon.</p>
+	<p>It's true: All the traffic to and from the site is sent over an unencrypted connection. Setting up an SSL certificate for the site has just always been further down the list of things to do than everything else but that might change soon.</p>
 
 	<p>If that makes you uncomfortable <em>you should probably not use this website</em>.</p>
 
@@ -110,7 +112,7 @@ id,woe_id,latitude,longitude,perspective,created
 
 	<p>Sort of.</p>
 
-	<p>The site has been mostly built on a laptop (see above mornings and coffee). The <a href="{$cfg.abs_root_url}decide/">pages for choosing a place based on a latitude and longitude</a> are not as elegant as I would like but they work. The rest of the site is not so awesome on a tiny screen yet.</p>
+	<p>The site has been mostly built on a laptop (see above inre: mornings and coffee). The <a href="{$cfg.abs_root_url}decide/">pages for choosing a place based on a latitude and longitude</a> are not as elegant as I would like but they work. The rest of the site is not so awesome on a tiny screen yet.</p>
 
 	<a name="why"></a>
 
