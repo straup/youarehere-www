@@ -9,11 +9,10 @@ function youarehere_locate(){
 
 		var coords = rsp['coords'];
 
-		// trim me...
-		var lat = coords['latitude'];
-		var lon = coords['longitude'];
+		var lat = coords['latitude'].toFixed(6);
+		var lon = coords['longitude'].toFixed(6);
 
-		set_status("The sensors have placed you at or around " + lat + "," + lon + ".");
+		set_status("The sensors have placed you at or around " + lat + ", " + lon + ".");
 		set_status("Now to figure out where that is.");
 
 		setTimeout(function(){

@@ -89,6 +89,10 @@ optgroup {
     font-size: small !important;
 }
 
+.main th {
+    font-size:12pt;
+}
+
 #map-container {
     position: relative;
 }
