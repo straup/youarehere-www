@@ -11,9 +11,11 @@
     </div>
 
         <p>
-	Welcome to the public beta of <q style="font-weight:700;">you are here</q>. You can read all the details on the <a href="{$cfg.abs_root_url}about/">about page</a>. To get started <a href="{$cfg.abs_root_url}signin/">sign in with your Twitter account</a>.
+	Welcome to the public beta of <q style="font-weight:700;">you are here</q> &#8212; an experimental service to let people record opinions about where a place is and to publish those opinions as a free and open dataset. It's sort of like "geo-corrections as a service" but you can read all the details on the <a href="{$cfg.abs_root_url}about/">about page</a>.</p>
 
-	<br /><br /><span style="font-size:small;line-height:.5em !important;">But really go read the <a href="{$cfg.abs_root_url}about/">about page</a> first. This site is all about location data and you should understand what you're participating in.</span>
+	<p> To get started <a href="{$cfg.abs_root_url}signin/">sign in with your Twitter account</a>.
+
+	<p><span style="font-size:small;line-height:.5em !important;">But really go read the <a href="{$cfg.abs_root_url}about/">about page</a> first. This site is all about location data and you should understand what you're participating in.</span>
 	</p>
 
   </div>
