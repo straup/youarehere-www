@@ -10,8 +10,7 @@
 
 	login_ensure_loggedin();
 	
-	$GLOBALS['smarty']->assign('nav_tab', 'account');
-
+	loadlib("twitter_users");
 
 	#
 	# generate a crumb
@@ -29,7 +28,22 @@
 
 		if (post_str('confirm')){
 
-			$ok = users_delete_user($GLOBALS['cfg']['user']);
+			$ok = 1;
+
+			$tw_user = twitter_users_get_by_user_id($GLOBALS['cfg']['user']['id']);
+
+			if (! $tw_user){
+				$ok = 0;
+			}
+
+			if ($ok){
+				$tw_rsp = twitter_users_delete_user($tw_user);
+				$ok = $tw_rsp['ok'];
+			}
+
+			if ($ok){
+				$ok = users_delete_user($GLOBALS['cfg']['user']);
+			}
 
 			if ($ok){
 				login_do_logout();

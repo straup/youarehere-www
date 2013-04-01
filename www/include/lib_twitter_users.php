@@ -72,4 +72,16 @@
 
 	#################################################################
 
+	function twitter_users_delete_user(&$twitter_user){
+
+		$enc_user = AddSlashes($twitter_user['user_id']);
+
+		$sql = "DELETE FROM TwitterUsers WHERE user_id='{$enc_user}'";
+		$rsp = db_write($sql);
+
+		return $rsp;
+	}
+
+	#################################################################
+
 	# the end
