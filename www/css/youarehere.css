@@ -274,3 +274,14 @@ footer {
     font-size:small;
     text-align: right;
 }
+
+#colophon  {
+    margin:0px;
+    padding:0px;
+}
+
+#colophon li {
+    list-style-type:none;
+    line-height:1.4em;
+    margin-bottom: .5em;
+}

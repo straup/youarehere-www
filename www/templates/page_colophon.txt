@@ -1,7 +1,7 @@
 {capture assign="page_title"}colophon{/capture}
 {include file="inc_head.txt"}
 
-<div class="hero-unit">
+<div class="main">
 
 <h2>Colophon</h2>
 

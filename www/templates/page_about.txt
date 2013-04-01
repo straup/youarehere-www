@@ -17,11 +17,11 @@
 
 	<blockquote>
 
-		<p>Never mind so-called disputed places (Kashmir, the West Bank, Cyprus, etc.) all neighbourhoods are "disputed" around the edges. (This is often true of localities, as well.) For example, the rough consensus in San Francisco is that Delores street is the dividing line between the Mission and Noe Valley. That said there are those people who may live on the one side of the line and very much believe themselves to be living on the "other".</p><p><span style="font-weight:700;">Our experience has been that there are few better ways to pick a fight than to tell someone what neighbourhood they are in (and being wrong).</span></p><p>There is also the problem where the data simply doesn't exist yet or it is just old and dusty, sometimes wrong, and often plain weird : Manhattan Valley, anyone? This is further compounded by the lack of ideas / tools / infrastructure for reflecting changes (both socially and politically) but, ultimately, those are both somewhat tangential.</p>
+		<p>Never mind so-called disputed places (Kashmir, the West Bank, Cyprus, etc.) all neighbourhoods are "disputed" around the edges. This is often true of localities, as well. For example, the rough consensus in San Francisco is that Delores street is the dividing line between the Mission and Noe Valley. That said there are those people who may live on the one side of the line and very much believe themselves to be living on the "other".</p><p><span style="font-weight:700;">Our experience has been that there are few better ways to pick a fight than to tell someone what neighbourhood they are in (and being wrong).</span></p><p>There is also the problem where the data simply doesn't exist yet or it is just old and dusty, sometimes wrong, and often plain weird : Manhattan Valley, anyone? This is further compounded by the lack of ideas / tools / infrastructure for reflecting changes both socially and politically but, ultimately, those are both somewhat tangential.</p>
 
     </blockquote>
 
-    	<p><b>you are here</b> is meant to be a tool to reflect those differences. <a href="http://www.aaronland.info/weblog/2013/02/03/reality/#youarehere">The long version is over here.</a> Long version is long.</p>
+    	<p><b>you are here</b> is meant to be a tool to reflect those differences. <a title="Long version is long" href="http://www.aaronland.info/weblog/2013/02/03/reality/#youarehere">The long version is over here.</a></p>
 
 	<a name="how"></a>
 
@@ -33,7 +33,7 @@
 
 	<p>Now that you've got a latitude and longitude the website will fetch all of the places of a particular type that intersect that point. The current list of place types to choose from are: <b>{$cfg.reverse_geocoder_clusters|@array_keys|@join:", "|escape}</b>. You can jump up and down the hierarchy of place types until you find something sounds right and then associate that spot on the planet with a unique <a href="http://woe.spum.org/">Where on Earth</a> (WOE) identifier for that place.</p>
 
-	<p>For example I've said that <a href="http://youarehere.spum.org/corrections/35525827/">latitude -41.290400 and longitude 174.782245</a> is in Wellington New Zealand, which is uniquely identified by WOE ID <a href="http://woe.spum.org/id/28676779/">28676779</a>.</p>
+	<p>For example I've said that <a href="http://youarehere.spum.org/corrections/35525827/">latitude -41.290400 and longitude 174.782245</a> is in Wellington Central, which is uniquely identified by WOE ID <a href="http://woe.spum.org/id/28676779/">28676779</a>.</p>
 
 	<p>Or if you think all of the available choices are wrong you can record that too. Rather than being given a WOE ID the lat, lon pair will be assigned a place ID of <b>-1</b>.</p>
 
@@ -55,7 +55,7 @@
 
 	<h2>What about privacy and personally indentifiable information?</h2>
 
-	<p>The really short version is that <em>I would be just as happy not store any of it</em>. But I do do store some things.</p>
+	<p>The really short version is that <em>I would be just as happy not store any of it</em>. But I do store some things.</p>
 
 	<p>The only reason to keep anything that might be considered "identifiable" is so that people consuming the data can make better informed decisions about which corrections to trust and so that I can use it track and prevent abuse. Or not. I am still working through the ways in which that might get creepy. Here's what is currently stored in the database:</p>
 
@@ -116,7 +116,7 @@ id,woe_id,latitude,longitude,perspective,created
 
 	<p>Yes.</p>
 
-	<p>That's not a feature but this is a project I work on over coffee in the mornings and during weekends so the ability to offload all the user account stuff on a serivce that lots of people already use is very helpful in the short-term.</p>
+	<p>That's not a feature but this is a project I work on over coffee in the mornings and during weekends so the ability to offload all the user account stuff to a serivce that lots of people already use is very helpful.</p>
 
 	<a name="mobile"></a>
 
@@ -132,6 +132,7 @@ id,woe_id,latitude,longitude,perspective,created
 
 	<p><b>you are here</b> is a thing that I have wanted for a long time but this is not a full-time gig for me. I have <a href="http://labs.cooperhewitt.org/author/asc/">a Real Job</a> which keeps me pretty busy so all the usual caveats apply. Ideally, it's a thing that can sit quietly in the corner and just chug away unattended. We'll see.</p>
 
+	<p>Also, the site has not been extensively tested in different browsers yet.</p>
 </div>
 
 {include file='inc_foot.txt'}
