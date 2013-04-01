@@ -10,11 +10,23 @@
 
 	<p>This is an experimental service. It's a thing that I have wanted for a long time but this is not a full-time gig for me. I have <a href="http://labs.cooperhewitt.org/author/asc/">a Real Job</a> which keeps me pretty busy so all the usual caveats apply. Ideally, it's a thing that sit quietly in the corner and just chug away unattended. We'll see.</p>
 
-	<a name="why"></a>
+	<a name="how"></a>
 
-	<h2>Why?</h2>
+	<h2>How do I use it?</h2>
 
-	<p><a href="http://www.aaronland.info/weblog/2013/02/03/reality/#youarehere">The long version is over here.</a> Long version is long.</p>
+	<p>There are two ways to use the site.</p>
+
+	<p>The first way is to visit <a href="{$cfg.abs_root_url}decide/">{$cfg.abs_root_url}decide/</a> and to let your browser's location sensors tell the website where you are in precise geographic terms (a latitude and a longitude). The second way is to visit <a href="{$cfg.abs_root_url}choose/">{$cfg.abs_root_url}choose/</a> and enter a query term that the website will try to geocode. All the geocoded results are plotted on a map which you can pan and zoom to select a precise spot.</p>
+
+	<p>Now that you've got a latitude and longitude the website will ask for all the places of a particular type that intersect that point. The current list of place types to choose from are: <b>{$cfg.reverse_geocoder_clusters|@array_keys|@join:", "|escape}</b>. You can jump up and down the hierarchy of place types until you find something sounds right and then associate that spot on the planet with a given place. Or if it's simply <em>All Wrong</em> then you can record that too.</p>
+
+	<p>That's it! Every opinion is assigned a unique ID and a permalink and eventually added to the <a href="https://github.com/straup/youarehere-data">public data dumps</a>. You can see all the places you've expressed an opinion about by visiting <a href="{$cfg.abs_root_url}corrections/me/">{$cfg.abs_root_url}corrections/me/</a>.</p>
+
+	<a name="delete"></a>
+
+	<h2>Can I delete an opinion about a place?</h2>
+
+	<p>Yes. Assuming you created it, of course.</p>
 
 	<a name="privacy"></a>
 
@@ -55,7 +67,15 @@ id,woe_id,latitude,longitude,perspective,created
 37220706,28751330,40.749441,-73.984831,1,1364682654
 </pre>
 
-	<p>If any of that makes you uncomfortable <em>you should not use this website</em>.</p>
+	<p>If any of the above makes you uncomfortable <em>you should not use this website</em>.</p>
+
+	<a name="https"></a>
+
+	<h2>Why aren't you doing everything using HTTPS?</h2>
+
+	<p>It's true. All the traffic to and from the site is sent over an unencrypted connection. Setting up an SSL certificate for the site has just always been further down the list of things to do than everything else but that might change soon.</p>
+
+	<p>If that makes you uncomfortable <em>you should probably not use this website</em>.</p>
 
 	<a name="api"></a>
 
@@ -73,24 +93,6 @@ id,woe_id,latitude,longitude,perspective,created
 
 	<p>That's not a feature but this is a project I work on over coffee in the mornings and during weekends so the ability to offload all the user account stuff on a serivce that lots of people already use is very helpful in the short-term.</p>
 
-	<a name="how"></a>
-
-	<h2>How do I use it?</h2>
-
-	<p>There are two ways to use the site.</p>
-
-	<p>The first way is to visit <a href="{$cfg.abs_root_url}decide/">{$cfg.abs_root_url}decide/</a> and to let your browser's location sensors tell the website where you are in precise geographic terms (a latitude and a longitude). The second way is to visit <a href="{$cfg.abs_root_url}choose/">{$cfg.abs_root_url}choose/</a> and enter a query term that the website will try to geocode. All the geocoded results are plotted on a map which you can pan and zoom to select a precise spot.</p>
-
-	<p>Now that you've got a latitude and longitude the website will ask for all the places of a particular type that intersect that point. The current list of place types to choose from are: <b>{$cfg.reverse_geocoder_clusters|@array_keys|@join:", "|escape}</b>. You can jump up and down the hierarchy of place types until you find something sounds right and then associate that spot on the planet with a given place. Or if it's simply <em>All Wrong</em> then you can record that too.</p>
-
-	<p>That's it! Every opinion is assigned a unique ID and a permalink and eventually added to the <a href="https://github.com/straup/youarehere-data">public data dumps</a>. You can see all the places you've expressed an opinion about by visiting <a href="{$cfg.abs_root_url}corrections/me/">{$cfg.abs_root_url}corrections/me/</a>.</p>
-
-	<a name="delete"></a>
-
-	<h2>Can I delete an opinion about a place?</h2>
-
-	<p>Yes. Assuming you created it, of course.</p>
-
 	<a name="mobile"></a>
 
 	<h2>Is there a mobile version?</h2>
@@ -98,6 +100,13 @@ id,woe_id,latitude,longitude,perspective,created
 	<p>Sort of.</p>
 
 	<p>The site has been mostly built on a laptop (see above mornings and coffee). The <a href="{$cfg.abs_root_url}decide/">pages for choosing a place based on a latitude and longitude</a> are not as elegant as I would like but they work. The rest of the site is not so awesome on a tiny screen yet.</p>
+
+	<a name="why"></a>
+
+	<h2>Why did you build this thing?</h2>
+
+	<p><a href="http://www.aaronland.info/weblog/2013/02/03/reality/#youarehere">The long version is over here.</a> Long version is long.</p>
+
 </div>
 
 {include file='inc_foot.txt'}
