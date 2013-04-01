@@ -5,9 +5,11 @@
 
 	features_ensure_enabled("geocoder");
 
-	if ($q = get_str("q")){
+	$q = get_str("q");
 
-		$rsp = twofishes_geocode($q);
+	if (($q) && (preg_match("/^([\w\d\s]+)$/", $q, $m))){
+
+		$rsp = twofishes_geocode($m[1]);
 
 		if ($rsp['ok']){
 			$data = $rsp['data']['interpretations'];
