@@ -1,7 +1,7 @@
 {capture assign="page_title"}decide{/capture}
 {include file="inc_head.txt"}
 
-<div id="container">
+<div class="main">
 
 {if $step=='choose'}
 	{include file="inc_maybe_choose.txt"}

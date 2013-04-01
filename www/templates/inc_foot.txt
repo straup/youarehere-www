@@ -5,7 +5,7 @@
       <hr>
 
       <footer>
-        <p>this is a thing by <a href="http://www.aaronstraupcope.com/" target="_asc">aaron straup cope</a> / with help <a href="{$cfg.abs_root_url}colophon/">from some friends</a></p>
+        <p>this is a thing by <a href="http://www.aaronstraupcope.com/" target="_asc">aaron straup cope</a> | <a href="{$cfg.abs_root_url}colophon/">colophon</a></p>
       </footer>
 
 {if 0}

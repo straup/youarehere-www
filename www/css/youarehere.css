@@ -1,3 +1,59 @@
+.main {
+    font-size: 16pt;
+    line-height:1.4em;
+    margin:5%;
+    margin-left:8%;
+    margin-right: 8%;
+}
+
+.about h2 {
+    margin-top:2em;
+    margin-bottom:.6em;
+}
+
+.about p {
+    margin-bottom: 1em;
+    line-height:1.5em;
+}
+
+.about blockquote {
+    font-family:serif;
+    margin-left:5%;
+    margin-right:10%;
+    margin-top:1em;
+    margin-bottom:2em;
+}
+
+.about blockquote p {
+    font-size:1.2em;
+    line-height:1.3em;
+    font-style:italic;
+    margin-bottom:.6em;
+}
+
+.about ul {
+    margin-left:10%;
+    margin-right:5%;
+    font-weight:600;
+    margin-top:1.5em;
+    margin-bottom: 1.5em;
+}
+
+.about ul li {
+    margin-bottom: 1em;
+}
+
+.home-logged-out {
+    text-align:center;
+}
+
+.home-logged-out p {
+    margin-top:2em;
+    max-width:800px;
+    margin-right:auto;
+    margin-left:auto;
+}
+
 optgroup {
     border-top: solid thin;
     padding-top: 1em;
@@ -9,10 +65,15 @@ optgroup {
     padding: 0 !important;
 }
 
+#status {
+    margin:0px;
+    padding:0px;
+}
+
 #status li {
     list-style-type:none;
     color: #666;
-    line-height:2em;
+    line-height:1.6em;
 }
 
 #status li:first-child {
@@ -22,6 +83,10 @@ optgroup {
 
 #main {
     margin:3em;
+}
+
+#map-coords {
+    font-size: small !important;
 }
 
 #map-container {
@@ -203,11 +268,7 @@ input[type=submit] {
     font-style: italic;
 }
 
-.hero-unit th {
-    background-color: #fff !important;
-    font-size: small;
-}
-
-.hero-unit td {
-    background-color: #fff !important;
+footer {
+    font-size:small;
+    text-align: right;
 }

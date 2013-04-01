@@ -1,21 +1,11 @@
 {capture assign="page_title"}about{/capture}
 {include file='inc_head.txt'}
 
-<div class="hero-unit">
+<div class="main about">
 
 	<a name="what"></a>
 
 	<h2>What is this thing?</h2>
-
-	<p>Consider the following passage:</p>
-
-	<blockquote style="font-family:serif;margin-left:5%;margin-right:10%;margin-top:1em;">
-
-		<p style="font-size:1.2em;line-height:1.25em;font-style:italic;"">Never mind so-called disputed places (Kashmir, the West Bank, Cyprus, etc.) all neighbourhoods are "disputed" around the edges. (This is often true of localities, as well.) For example, the rough consensus in San Francisco is that Delores street is the dividing line between the Mission and Noe Valley. That said there are those people who may live on the one side of the line and very much believe themselves to be living on the "other". <span style="font-weight:700;">Our experience has been that there are few better ways to pick a fight than to tell someone what neighbourhood they are in (and being wrong).</span> There is also the problem where the data simply doesn't exist yet or it is just old and dusty, sometimes wrong, and often plain weird : Manhattan Valley, anyone? This is further compounded by the lack of ideas/tools/infrastructure for reflecting changes (both socially and politically) but, ultimately, those are both somewhat tangential.</p>
-
-    </blockquote>
-
-    	<p><b>you are here</b> is meant to be a tool to reflect those differences. <b>you are here</b> is sort of like "geo-corrections as a service".</p>
 
 	<p>[WORDS]</p>
 
@@ -25,7 +15,15 @@
 
 	<h2>Really?</h2>
 
-	<p><a href="http://www.aaronland.info/weblog/2013/02/03/reality/#youarehere">The long version is over here.</a> Long version is long.</p>
+	<p>Consider the following passage:</p>
+
+	<blockquote>
+
+		<p>Never mind so-called disputed places (Kashmir, the West Bank, Cyprus, etc.) all neighbourhoods are "disputed" around the edges. (This is often true of localities, as well.) For example, the rough consensus in San Francisco is that Delores street is the dividing line between the Mission and Noe Valley. That said there are those people who may live on the one side of the line and very much believe themselves to be living on the "other".</p><p><span style="font-weight:700;">Our experience has been that there are few better ways to pick a fight than to tell someone what neighbourhood they are in (and being wrong).</span></p><p>There is also the problem where the data simply doesn't exist yet or it is just old and dusty, sometimes wrong, and often plain weird : Manhattan Valley, anyone? This is further compounded by the lack of ideas / tools / infrastructure for reflecting changes (both socially and politically) but, ultimately, those are both somewhat tangential.</p>
+
+    </blockquote>
+
+    	<p><b>you are here</b> is meant to be a tool to reflect those differences. <b>you are here</b> is sort of like "geo-corrections as a service". <a href="http://www.aaronland.info/weblog/2013/02/03/reality/#youarehere">The long version is over here.</a> Long version is long.</p>
 
 	<a name="how"></a>
 
@@ -37,7 +35,7 @@
 
 	<p>Now that you've got a latitude and longitude the website will fetch all of the places of a particular type that intersect that point. The current list of place types to choose from are: <b>{$cfg.reverse_geocoder_clusters|@array_keys|@join:", "|escape}</b>. You can jump up and down the hierarchy of place types until you find something sounds right and then associate that spot on the planet with a given place. Or if it's simply <em>All Wrong</em> then you can record that too.</p>
 
-	<p>That's it! Every opinion is assigned <a href="http://www.brooklynintegers.com/">a unique ID</a> and a permalink and eventually added to the <a href="https://github.com/straup/youarehere-data">public data dumps</a>. You can see all the places you've expressed an opinion about by visiting <a href="{$cfg.abs_root_url}corrections/me/">{$cfg.abs_root_url}corrections/me/</a>.</p>
+	<p>That's it! Every opinion is assigned <a href="http://www.brooklynintegers.com/">a unique ID</a> and a permalink and eventually added to the <a href="https://github.com/straup/youarehere-data">public data dumps</a>. You can see all the places you've expressed an opinion about by visiting the <a href="{$cfg.abs_root_url}corrections/me/">my corrections</a> page.</p>
 
 	<a name="delete"></a>
 
@@ -53,7 +51,7 @@
 
 	<p>The only reason to keep anything that might be considered "identifiable" is so that people consuming the data can make better informed decisions about which corrections to trust and so that I can use it track and prevent abuse. Or not. I am still working through the ways in which that might get creepy. Here's what is currently stored in the database:</p>
 
-	<ul style="margin-left:10%;margin-right:5%;">
+	<ul>
 		<li>A latitude and longitude (with a resolution of six decimal points).</li>
 		<li>A timestamp.</li>
 		<li>Your user ID &#8212; not your Twitter ID but an internal numeric user ID that isn't exposed anywhere on the site. One reason for this is so that the site can show you the stuff you've expressed an opinion about.</li>

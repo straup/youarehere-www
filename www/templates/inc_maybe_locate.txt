@@ -1,4 +1,4 @@
-<div class="hero-unit">
+<div>
 
 <ul id="status"><li>Getting started by asking permission to look for
 you.</li></ul>

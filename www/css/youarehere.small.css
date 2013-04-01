@@ -1,5 +1,35 @@
-#main {
-    margin: 1em !important;
+.main {
+    margin:.5em !important;
+    font-sie:14px !important;
+}
+
+#status {
+    font-size: 12pt !important;
+}
+
+#splash {
+    display:none !important;
+}
+
+.home-logged-out {
+    max-width: none !important;
+    text-align:left;
+}
+
+.about p {
+    font-size: 12pt !important;
+}
+
+.about blockquote p {
+    margin:none !important;
+}
+
+.about ul li {
+    font-size: 12pt !important;
+}
+
+.about pre {
+    font-size: 11px;
 }
 
 #map {

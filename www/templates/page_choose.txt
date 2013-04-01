@@ -4,6 +4,8 @@
 {/capture}
 {include file="inc_head.txt"}
 
+<div class="main">
+
 {include file="inc_map_getlatlon.txt"}
 
 {if $geojson && $geojson.features|@count}
@@ -53,4 +55,5 @@ $(document).ready(function(){
 
 {/if}
 
+</div>
 {include file="inc_foot.txt"}
