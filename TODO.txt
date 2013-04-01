@@ -1,6 +1,26 @@
 # This file was generated automatically by grep-ing for 'TO DO' in the source code.
 # This file is meant as a pointer to the actual details in the files themselves.
-# This file was created Mon May 21 12:27:52 PDT 2012
+# This file was created Sun Mar 31 20:17:57 EDT 2013
 
+www/api_key.php:110:	# TO DO: get API keys stats, etc.
+www/api_method.php:34:	# TO DO: convert markdown in $details
+www/api_methods.php:18:		# TO DO: god auth check...
+www/include/lib_api_keys.php:92:		# TO DO: callbacks and other stuff (what?)
+www/include/lib_api_oauth2_access_tokens.php:5:	# TO DO: put me in the config?
+www/include/lib_api_oauth2_access_tokens.php:227:		# TO DO: purge caches - iterate over all the things?
+www/include/lib_api_oauth2_grant_tokens.php:121:		# TO DO: purge caches - iterate over all the keys?
+www/include/lib_api_output_json.php:38:		# TO DO: these don't always appear to be being set correctly
+www/include/lib_corrections.php:187:		# TO DO: recently-ish-ness (20130223/straup)
+www/include/lib_corrections_geojson.php:20:		# TO DO: bbox for features if count > 1
 www/include/lib_error.php:169:	# TO DO: work out how to use this for when the site is disabled
-www/include/lib_users.php:257:		# TO DO: an actual cluster ID if federated
+www/include/lib_twofishes.php:29:		# TO DO: error handling
+www/include/lib_twofishes.php:65:			# TO DO: names and concordances
+www/include/lib_users.php:258:		# TO DO: an actual cluster ID if federated
+www/javascript/youarehere.getlatlon.js:145:// TO DO: pass in a UID and track to bounding box, etc (20130303/straup)
+www/javascript/youarehere.getlatlon.js:164:// TO DO: allow styles to be passed in at runtime (20130218/straup)
+www/javascript/youarehere.map.js:80:// TO DO: allow styles to be passed in at runtime (20130218/straup)
+www/maybe.php:43:		# TO DO: error reporting (20130223/straup)
+www/maybe.php:188:			# TO DO: notifications (pubsub or ... ?)
+www/maybe.php:194:			# TO DO – radial or tiny bbox query (20130331/straup)
+www/templates/inc_maybe_choose.txt:61:{* TO DO: scrumjax this eventually (20130324/straup) *}
+www/templates/page_api_method.txt:45:<p>TO DO</p>
