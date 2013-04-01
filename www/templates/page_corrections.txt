@@ -1,3 +1,4 @@
+{capture assign="page_title"}corrections{/capture}
 {include file="inc_head.txt"}
 
 <div id="container">

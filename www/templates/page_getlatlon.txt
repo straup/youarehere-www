@@ -1,4 +1,4 @@
-{capture assign="page_title"}where are you?{/capture}
+{capture assign="page_title"}choose{/capture}
 {capture assign="extra_head"}
 <script src="{$cfg.abs_root_url}javascript/youarehere.getlatlon.js"></script>
 {/capture}

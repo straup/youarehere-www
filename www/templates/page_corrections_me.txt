@@ -1,3 +1,4 @@
+{capture assign="page_title"}corrections / me{/capture}
 {include file="inc_head.txt"}
 
 {if $smarty.get.deleted}

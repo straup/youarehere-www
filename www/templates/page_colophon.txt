@@ -1,6 +1,9 @@
+{capture assign="page_title"}colophon{/capture}
 {include file="inc_head.txt"}
 
 <div class="hero-unit">
+
+<h2>Colophon</h2>
 
 <ul id="colophon">
 	<li>Map tiles are courtesy the nice folks at <a href="http://maps.stamen.com/">Stamen Design</a>.</li>
