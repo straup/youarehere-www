@@ -49,8 +49,8 @@ RewriteEngine on
 
 # You are here
 
-RewriteRule   ^choose/?$				getlatlon.php?%{QUERY_STRING}			[L]
-RewriteRule   ^getlatlon/?$				getlatlon.php?%{QUERY_STRING}			[L]
+RewriteRule   ^choose/?$				choose.php?%{QUERY_STRING}			[L]
+RewriteRule   ^getlatlon/?$				choose.php?%{QUERY_STRING}			[L]
 
 RewriteRule   ^decide/?$				maybe.php?%{QUERY_STRING}			[L]
 RewriteRule   ^maybe/?$					maybe.php?%{QUERY_STRING}			[L]

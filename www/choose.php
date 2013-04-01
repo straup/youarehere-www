@@ -19,6 +19,6 @@
 		}
 	}
 
-	$GLOBALS['smarty']->display("page_getlatlon.txt");
+	$GLOBALS['smarty']->display("page_choose.txt");
 	exit();
 ?>
