@@ -7,6 +7,16 @@
 
 	<h2>What is this thing?</h2>
 
+	<p>Consider the following passage:</p>
+
+	<blockquote style="font-family:serif;margin-left:5%;margin-right:10%;font-size:1.3em;margin-top:1em;">
+
+		<p>"Never mind so-called disputed places (Kashmir, the West Bank, Cyprus, etc.) all neighbourhoods are "disputed" around the edges. (This is often true of localities, as well.) For example, the rough consensus in San Francisco is that Delores street is the dividing line between the Mission and Noe Valley. That said there are those people who may live on the one side of the line and very much believe themselves to be living on the "other". Our experience has been that there are few better ways to pick a fight than to tell someone what neighbourhood they are in (and being wrong). There is also the problem where the data simply doesn't exist yet or it is just old and dusty, sometimes wrong, and often plain weird : "Manhattan Valley", anyone? This is further compounded by the lack of ideas/tools/infrastructure for reflecting changes (both socially and politically) but, ultimately, those are both somewhat tangential."</p>
+
+    </blockquote>
+
+    	<p><b>you are here</b> is meant to be a tool to reflect those differences. <b>you are here</b> is sort of like "geo-corrections as a service".</p>
+
 	<p>[WORDS]</p>
 
 	<p>This is an experimental service. It's a thing that I have wanted for a long time but this is not a full-time gig for me. I have <a href="http://labs.cooperhewitt.org/author/asc/">a Real Job</a> which keeps me pretty busy so all the usual caveats apply. Ideally, it's a thing that sit quietly in the corner and just chug away unattended. We'll see.</p>
