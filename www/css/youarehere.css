@@ -41,6 +41,13 @@
 
 .about ul li {
     margin-bottom: 1em;
+    line-height: 1.3em;
+}
+
+.about pre {
+    margin: 2em;
+    margin-left:10%;
+    margin-right:10%;
 }
 
 .home-logged-out {
@@ -231,15 +238,6 @@ input[type=submit] {
 }
 
 #delete-me {
-    position: absolute;
-    bottom: 0;
-    left: 100;
-    background-color:white;
-    color: #000;
-    padding: 1em;
-    padding-left: 0px !important;
-    font-weight: 700;
-    font-size: small;
 }
 
 #delete-me input[type=checkbox] {

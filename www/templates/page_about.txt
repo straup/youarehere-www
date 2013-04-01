@@ -3,13 +3,11 @@
 
 <div class="main about">
 
-	<a name="what"></a>
+	<a name="intro"></a>
 
 	<h2>What is this thing?</h2>
 
-	<p>[WORDS]</p>
-
-	<p>This is an experimental service. It's a thing that I have wanted for a long time but this is not a full-time gig for me. I have <a href="http://labs.cooperhewitt.org/author/asc/">a Real Job</a> which keeps me pretty busy so all the usual caveats apply. Ideally, it's a thing that sit quietly in the corner and just chug away unattended. We'll see.</p>
+	<p><b>you are here</b> is an experimental service to let people record opinions about where a place <em>is</em> and to publish those opinions as a free and open dataset. <b>you are here</b> is sort of like "geo-corrections as a service".</p>
 
 	<a name="really"></a>
 
@@ -23,7 +21,7 @@
 
     </blockquote>
 
-    	<p><b>you are here</b> is meant to be a tool to reflect those differences. <b>you are here</b> is sort of like "geo-corrections as a service". <a href="http://www.aaronland.info/weblog/2013/02/03/reality/#youarehere">The long version is over here.</a> Long version is long.</p>
+    	<p><b>you are here</b> is meant to be a tool to reflect those differences. <a href="http://www.aaronland.info/weblog/2013/02/03/reality/#youarehere">The long version is over here.</a> Long version is long.</p>
 
 	<a name="how"></a>
 
@@ -31,11 +29,21 @@
 
 	<p>There are two ways to get started using the site.</p>
 
-	<p>The first is to visit <a href="{$cfg.abs_root_url}decide/">{$cfg.abs_root_url}decide/</a> and to let your browser's location sensors tell the website where you are in precise geographic terms (a latitude and a longitude). The second is to visit <a href="{$cfg.abs_root_url}choose/">{$cfg.abs_root_url}choose/</a> and enter a query term that the website will try to geocode. All the geocoded results are plotted on a map which you can pan and zoom to select a precise spot.</p>
+	<p>The first is to visit <a href="{$cfg.abs_root_url}decide/">{$cfg.abs_root_url}decide/</a> and let your browser's location sensors tell the website where you are in precise geographic terms (a latitude and a longitude). The second is to visit <a href="{$cfg.abs_root_url}choose/">{$cfg.abs_root_url}choose/</a> and enter a query term that the website will try to geocode. All the geocoded results are plotted on a map which you can pan and zoom to select a precise spot on the planet (a latitude and longitude).</p>
 
-	<p>Now that you've got a latitude and longitude the website will fetch all of the places of a particular type that intersect that point. The current list of place types to choose from are: <b>{$cfg.reverse_geocoder_clusters|@array_keys|@join:", "|escape}</b>. You can jump up and down the hierarchy of place types until you find something sounds right and then associate that spot on the planet with a given place. Or if it's simply <em>All Wrong</em> then you can record that too.</p>
+	<p>Now that you've got a latitude and longitude the website will fetch all of the places of a particular type that intersect that point. The current list of place types to choose from are: <b>{$cfg.reverse_geocoder_clusters|@array_keys|@join:", "|escape}</b>. You can jump up and down the hierarchy of place types until you find something sounds right and then associate that spot on the planet with a unique <a href="http://woe.spum.org/">Where on Earth</a> (WOE) identifier for that place.</p>
 
-	<p>That's it! Every opinion is assigned <a href="http://www.brooklynintegers.com/">a unique ID</a> and a permalink and eventually added to the <a href="https://github.com/straup/youarehere-data">public data dumps</a>. You can see all the places you've expressed an opinion about by visiting the <a href="{$cfg.abs_root_url}corrections/me/">my corrections</a> page.</p>
+	<p>For example I've said that <a href="http://youarehere.spum.org/corrections/35525827/">latitude -41.290400 and longitude 174.782245</a> is in Wellington New Zealand, which is uniquely identified by WOE ID <a href="http://woe.spum.org/id/28676779/">28676779</a>.</p>
+
+	<p>Or if you think all of the available choices are wrong you can record that too. Rather than being given a WOE ID the lat, lon pair will be assigned a place ID of <b>-1</b>.</p>
+
+	<p>That's it! Every pairing is assigned its own <a href="http://www.brooklynintegers.com/">unique ID</a> and a permalink and eventually added to the <a href="https://github.com/straup/youarehere-data">public data dumps</a>. You can see all the places you've expressed an opinion about by visiting the <a href="{$cfg.abs_root_url}corrections/me/">my corrections</a> page.</p>
+
+	<a name="what"></a>
+
+	<h2>What can I do with this information?</h2>
+
+	<p>That's up to you, really. The primary goal of <b>you are here</b> is to provide a service for <em>collecting</em> and <em>distributing</em> raw data.</p>
 
 	<a name="delete"></a>
 
@@ -47,7 +55,7 @@
 
 	<h2>What about privacy and personally indentifiable information?</h2>
 
-	<p>The really short version is that <em>I would be just as happy not store any of it</em>.</p>
+	<p>The really short version is that <em>I would be just as happy not store any of it</em>. But I do do store some things.</p>
 
 	<p>The only reason to keep anything that might be considered "identifiable" is so that people consuming the data can make better informed decisions about which corrections to trust and so that I can use it track and prevent abuse. Or not. I am still working through the ways in which that might get creepy. Here's what is currently stored in the database:</p>
 
@@ -70,13 +78,13 @@
 
 	<p>Yes.</p>
 	
-	<p>The whole point of this project is to generate a free and open dataset by and for the community that we might use to build on. <b>you are here</b> is only one piece of the stack but the hope is that it might be a useful building block for new <a href="http://code.flickr.net/2008/10/30/the-shape-of-alpha/">Alpha shapes</a> or <a href="https://github.com/simplegeo/betashapes/blob/master/BLOG_POST.mkd">Beta shapes</a> or <a href="http://mike.teczno.com/notes/gammashapes-for-obama.html">Gamma shapes</a>.</p>
+	<p>The whole point of this project is to generate a free and open dataset <em>by and for</em> a community of users that we might use to create new things. <b>you are here</b> is only one piece of the stack but the hope is that it might be a useful building block for new <a href="http://code.flickr.net/2008/10/30/the-shape-of-alpha/">Alpha shapes</a> or <a href="https://github.com/simplegeo/betashapes/blob/master/BLOG_POST.mkd">Beta shapes</a> or <a href="http://mike.teczno.com/notes/gammashapes-for-obama.html">Gamma shapes</a>.</p>
 
-	<p>The point is to make shapes for all the things. Most of the things that <a href="http://www.theatlanticcities.com/arts-and-lifestyle/2012/08/mapmaker-artist-or-programmer/3132/">Eric Fischer has been making in the last few years</a> are derived from nothing more than an enormous bag of dots (see below) so we are bounded only by our imagination.</p>
+	<p>The point is to be <em>able</em> to make shapes for all the things. Most of the things that <a href="http://www.theatlanticcities.com/arts-and-lifestyle/2012/08/mapmaker-artist-or-programmer/3132/">Eric Fischer has been making in the last few years</a> are derived from nothing more than an enormous bag of dots (see below) so we are bounded only by our imagination.</p>
 
 	<p>All of the data is released under a <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 public domain waiver</a> with the hope that it might help get us to a point where we can stop spending all of our time worrying about datasets and start concentrating on <em>actual features</em>. This is what <a href="https://github.com/straup/youarehere-data/blob/master/data/2013/20130330.csv">the data dump for March 30, 2013</a> looks like:</p>
 
-	<pre style="margin-left:10%; margin-right:10%;">
+	<pre>
 id,woe_id,latitude,longitude,perspective,created
 51497773,2479351,40.678523,-74.009335,1,1364688207
 51497771,2360582,42.357097,-71.072059,2,1364684731
@@ -117,6 +125,12 @@ id,woe_id,latitude,longitude,perspective,created
 	<p>Sort of.</p>
 
 	<p>The site has been mostly built on a laptop (see above inre: mornings and coffee). The <a href="{$cfg.abs_root_url}decide/">pages for choosing a place based on a latitude and longitude</a> are not as elegant as I would like but they work. The rest of the site is not so awesome on a tiny screen yet.</p>
+
+	<a name="caveat"></a>
+
+	<h2>What's the catch?</h2>
+
+	<p><b>you are here</b> is a thing that I have wanted for a long time but this is not a full-time gig for me. I have <a href="http://labs.cooperhewitt.org/author/asc/">a Real Job</a> which keeps me pretty busy so all the usual caveats apply. Ideally, it's a thing that can sit quietly in the corner and just chug away unattended. We'll see.</p>
 
 </div>
 

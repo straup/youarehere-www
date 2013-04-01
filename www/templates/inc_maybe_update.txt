@@ -1,4 +1,4 @@
-<div class="hero-unit">
+<div>
 
 {if !$do_update}
 	<p class="error">Your correction could not be processed

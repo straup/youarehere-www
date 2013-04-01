@@ -12,6 +12,15 @@ $(document).ready(function(){
 </script>
 {else}
 
+<table id="correction-details" class="table table-condensed table-bordered">
+{include file="inc_correction_details_header.txt" correction_row=$corrections.0}
+
+{foreach from=$corrections item="correction"}
+{include file="inc_correction_details_row.txt" correction_row=$correction}
+{/foreach}
+
+</table>
+
 {if $is_own && $delete_me}
 <form id="delete-me" method="POST" action="{$cfg.abs_root_url}corrections/{$correction.id|escape}/">
 	{$crumb_key|crumb_input}
@@ -32,15 +41,6 @@ $(document).ready(function(){
 {/literal}
 </script>
 {/if}
-
-<table id="correction-details" class="table table-condensed table-bordered">
-{include file="inc_correction_details_header.txt" correction_row=$corrections.0}
-
-{foreach from=$corrections item="correction"}
-{include file="inc_correction_details_row.txt" correction_row=$correction}
-{/foreach}
-
-</table>
 
 {include file="inc_pagination.txt"}
 

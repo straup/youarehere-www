@@ -24,9 +24,13 @@
 
   <div class="main">
     <h2>You are here</h2>
+
+    <div style="margin-top:2em;">
     <p><a href="{$cfg.abs_root_url}decide/">I am right here right now</a> or <a href="{$cfg.abs_root_url}choose/">I want to choose another place</a>.</p>	
 
     <p style="margin-top:2em;font-size:small;">You've read the <a href="{$cfg.abs_root_url}about/">about page</a>, right? This site is all about location data and you should understand and be comfortable with what you're participating in.</p>
+    </div>
+
   </div>
 
 {/if}
