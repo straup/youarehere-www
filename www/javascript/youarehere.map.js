@@ -132,7 +132,6 @@ function youarehere_map_draw_features(geojson){
 		if (! f['properties']){
 			return;
 		}
-
 		var name = f['properties']['label'];
 
 		if (! name){
@@ -155,6 +154,8 @@ function youarehere_map_draw_features(geojson){
 		if (! menu){
 			return;
 		}
+
+		// I AM SAD...
 
 		var id = f['properties']['woe_id'];
 

@@ -33,7 +33,7 @@ error messages. For example, this is what they've told us so far: <q>{$rsp.error
 
 {else}
 
-{include file="inc_map.txt" show_crosshairs=1}
+{include file="inc_map.txt" show_crosshairs=0}
 
 <div id="correction-select">
 
