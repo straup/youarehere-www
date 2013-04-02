@@ -51,6 +51,14 @@
 
 	<p>Yes. Assuming you created it, of course.</p>
 
+	<a name="new"></a>
+
+	<h2>Can I add new places to the map?</h2>
+
+	<p>No.</p>
+
+	<p>At the moment the list of places to choose from is fixed. I would like to add the ability to create new places but right now the focus is on the site's current functionality.</p>
+
 	<a name="privacy"></a>
 
 	<h2>What about privacy and personally indentifiable information?</h2>
