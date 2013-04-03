@@ -42,9 +42,26 @@ if __name__ == '__main__':
     #
 
     token = cfg.get('api', 'access_token')
-    endpoint = cfg.get('api', 'endpoint')
+    host = cfg.get('api', 'host')
 
-    yah = youarehere.api.API(token, endpoint)
+    # Mostly stuff for doing development - this isn't
+    # anything that you should need to care about once
+    # the API is live and public (20130403/straup)
+
+    kwargs = {}
+
+    for opt in ('username', 'password', 'use_https'):
+
+        if cfg.has_option('api', opt):
+
+            if opt == 'use_https':
+                kwargs[opt] = bool(int(cfg.get('api', opt)))
+            else:
+                kwargs[opt] = cfg.get('api', opt)
+
+    #
+
+    yah = youarehere.api.API(token, host, **kwargs)
 
     args = {
         'start_date' : "%s 00:00:00" % opts.ymd,

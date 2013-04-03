@@ -1,28 +1,50 @@
 import urllib
 import httplib
+import base64
 import json
 
 class API:
 
-    def __init__(self, access_token, host, endpoint='/rest'):
-        self.host = host
-        self.endpoint = endpoint
+    def __init__(self, access_token, host, **kwargs):
+
         self.access_token = access_token
-        
+        self.host = host
+
+        self.endpoint = kwargs.get('endpoint', '/rest')
+
+        # Strictly speaking not ever necessary until of course it
+        # is like when I need to call a dev server or whatever.
+        # This can safely be ignored most of the time.
+        # (20130403/straup)
+
+        self.username = kwargs.get('username', None)
+        self.password = kwargs.get('password', None)
+
+        self.use_https = kwargs.get('use_https', True)
+
     def call (self, method, **kwargs):
+
+        headers = {"Content-type": "application/x-www-form-urlencoded"}
+
+        # See notes in __init__ (20130403/straup)
+
+        if self.username and self.password:
+            auth = base64.encodestring("%s:%s" % (self.username, self.password))
+            auth = auth.strip()
+
+            headers["Authorization"] = "Basic %s" % auth
 
         kwargs['method'] = method
         kwargs['format'] = 'json'
         kwargs['access_token'] = self.access_token
 
-        headers = {"Content-type": "application/x-www-form-urlencoded"}
-
         body = urllib.urlencode(kwargs)
 
-        # One (more) reason why the API isn't enabled by default...
-        # conn = httplib.HTTPSConnection(self.host)
+        if self.use_https:
+            conn = httplib.HTTPSConnection(self.host)
+        else:
+            conn = httplib.HTTPConnection(self.host) 
 
-        conn = httplib.HTTPConnection(self.host) 
         conn.request('POST', self.endpoint, body, headers)
 
         rsp = conn.getresponse()
