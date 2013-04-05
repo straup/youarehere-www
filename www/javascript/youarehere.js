@@ -20,9 +20,21 @@ function youarehere_locate(){
 		}, 2500);
 	};
 
-	var _onerror = function(rsp){ };
+	var _onerror = function(rsp){
+		if (rsp.code == rsp.TIMEOUT) {
+			set_status("Hmmm... the cloud is taking a long, long time to find you.");
+		} else if (rsp.code == rsp.POSITION_UNAVAILABLE) {
+			if (rsp.message) {
+				set_status("Hmmm... the cloud can't find you, because " + rsp.message);
+			} else {
+				set_status("Hmmm... the cloud simply can't find you.");
+			}
+		} else if (rsp.code == rsp.PERMISSION_DENIED) {
+			set_status("Oh, it sounds like you don't want to be located. Maybe you want to <a href=\"/choose\">choose</a> your location?");
+		}
+	};
 
-	navigator.geolocation.getCurrentPosition(_onsuccess, _onerror);
+	navigator.geolocation.getCurrentPosition(_onsuccess, _onerror, {timeout: 30000});
 
 	set_status("Asking the sky where you are.");
 }
