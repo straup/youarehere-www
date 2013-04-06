@@ -10,12 +10,13 @@
 	color: #333;
 	border-bottom: 1px dotted #ccc;
 	text-align: right;
+	display:none;
 }
 
 #api-header h2 {
 	margin-top: 0;
-	font-weight: 100;
-	font-size: small;
+	font-weight: 500;
+	font-size: medium;
 	color: #666;
 	text-align: right;
 }

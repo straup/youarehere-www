@@ -3,8 +3,6 @@
 
 {include file="inc_api_header.txt" title="API methods"}
 
-{include file="inc_api_notice.txt"}
-
 <div id="api_methods">
 
 {foreach from=$method_classes item="methods" key="class"}
