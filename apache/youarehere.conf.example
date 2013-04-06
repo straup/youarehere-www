@@ -5,6 +5,48 @@
 
 	DocumentRoot /usr/local/youarehere/www
 
+	# https://httpd.apache.org/docs/2.2/rewrite/avoid.html
+	# See also: notes in www/.htaccess
+
+	RewriteEngine On
+	Redirect / https://youarehere.example.com/
+
+	<Directory />
+		Options FollowSymLinks
+		AllowOverride None
+	</Directory>
+
+	<Directory /usr/local/youarehere/www>
+		Options FollowSymLinks Indexes
+		# AllowOverride FileInfo Limit
+		AllowOverride All
+		Order allow,deny
+		allow from all
+	</Directory>
+
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel warn
+
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+</VirtualHost>
+
+<VirtualHost *:443>
+
+	ServerName youarehere.example.com
+	# ServerAdmin webmaster@localhost
+
+	DocumentRoot /usr/local/youarehere/www
+
+	SSLEngine on
+	SSLProtocol all
+	SSLCertificateFile /usr/local/ssl/certificate.crt
+	SSLCertificateKeyFile /usr/local/ssl/certificate.key
+	SSLCACertificateFile /usr/local/ssl/intermediate.crt
+
 	<Directory />
 		Options FollowSymLinks
 		AllowOverride None

@@ -49,8 +49,12 @@ RewriteEngine on
 
 # API stuff (part one - there is only HTTPS)
 
-RewriteCond %{HTTPS} off
-RewriteRule (.*) https://%{HTTP_HOST}/$1?%{QUERY_STRING}	[R,L]
+# Better off put in your Apache config for the host itself but
+# you can do it here if you need/want to. See also:
+# https://httpd.apache.org/docs/2.2/rewrite/avoid.html
+
+# RewriteCond %{HTTPS} off
+# RewriteRule (.*) https://%{HTTP_HOST}/$1?%{QUERY_STRING}	[R,L]
 
 # You are here
 
