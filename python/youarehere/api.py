@@ -10,7 +10,7 @@ class API:
         self.access_token = access_token
         self.host = host
 
-        self.endpoint = kwargs.get('endpoint', '/rest')
+        self.endpoint = kwargs.get('endpoint', '/api/rest/')
 
         # Strictly speaking not ever necessary until of course it
         # is like when I need to call a dev server or whatever.
