@@ -1,5 +1,4 @@
-{capture assign="api_request_method"}{if $cfg.api_auth_type=='oauth2'}POST{elseif $details.request_method}{$details.request_method|escape}{else}GET{/if}{/capture}
-{capture assign="api_request_host"}{if $cfg.api_abs_root_url}{$cfg.api_abs_root_url}{else}{$cfg.abs_root_url}{/if}{/capture}
+{capture assign="api_request_method"}{if $cfg.api_auth_type=='oauth2' and !$cfg.api_oauth2_allow_get_parameters}POST{elseif $details.request_method}{$details.request_method|escape}{else}GET{/if}{/capture}
 
 <div id="api_method">
 
@@ -50,19 +49,14 @@
 
 <h3>Example</h3>
 
-{if $api_request_method=='GET' and $cfg.api_auth_type!='oauth2'}
-<pre>curl -X {$api_request_method|escape} {$api_request_host}rest/?method=<strong>{$method|escape}</strong>{if $cfg.api_auth_type=='oauth2'}&access_token=<strong>&lt;TOKEN&gt;</strong>{/if}{if $details.parameters|@count} \{/if}
+{if $api_request_method=='GET' and $cfg.api_auth_type!='oauth2' or $cfg.api_oauth2_allow_get_parameters}
+<pre>curl -X {$api_request_method|escape} {$cfg.api_abs_root_url}{$cfg.api_endpoint}?method=<strong>{$method|escape}</strong>{if $cfg.api_auth_type=='oauth2'}&access_token=<strong>&lt;TOKEN&gt;</strong>{/if}{if $details.parameters|@count} \{/if}
 {if $details.parameters|@count}{foreach from=$details.parameters item="param" name="params"}
 
             &{$param.name|escape}={if $param.required}<strong>&lt;{$param.name|strtoupper|escape}&gt;</strong>{else}<strong>...</strong>{/if}{if !$smarty.foreach.params.last} \{/if}{/foreach}
 {/if}
 {else}
-<pre>curl -X {if $cfg.api_auth_type=='oauth2'}POST{else}{$api_request_method|escape}{/if}
-     -F "method={$method|escape}"
-{if $details.parameters|@count}{foreach from=$details.parameters item="param"}     -F "{$param.name|escape}={if $param.required}<strong>&lt;{$param.name|strtoupper|escape}&gt;</strong>{else}<strong>...</strong>{/if}"{/foreach}
-
-{/if}
-     {$api_request_host}rest/
+<pre>curl -X {if $cfg.api_auth_type=='oauth2'}POST{else}{$api_request_method|escape}{/if} -F "method=<strong>{$method|escape}</strong>" {if $cfg.api_auth_type=='oauth2'}-F "access_token=<strong>&lt;TOKEN&gt;</strong>"{/if}{if $details.parameters|@count}{foreach from=$details.parameters item="param"} -F "{$param.name|escape}={if $param.required}<strong>&lt;{$param.name|strtoupper|escape}&gt;</strong>{else}<strong>...</strong>{/if}"{/foreach} {/if} {$cfg.api_abs_root_url}{$cfg.api_endpoint}
 </pre>
 {/if}
 

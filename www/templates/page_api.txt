@@ -1,8 +1,6 @@
 {capture assign="page_title"}API{/capture}
 {include file="inc_head.txt"}
 
-{capture assign="api_request_host"}{if $cfg.api_abs_root_url}{$cfg.api_abs_root_url}{else}{$cfg.abs_root_url}{/if}{/capture}
-
 {capture assign="title"}Application Programming Interface (API){/capture}
 {include file="inc_api_header.txt" title=$title}
 
@@ -10,7 +8,7 @@
 
 <p>{$cfg.site_name|escape} offers a <code>could-play-REST-on-TV</code> style application programming interface (API) for developers to use in their products and services. API requests are made by passing one or more parameters to:</p>
 
-<p style="text-align:center;"><code>{$api_request_host}{$cfg.api_endpoint}</code></p>
+<p style="text-align:center;"><code>{$cfg.api_abs_root_url}{$cfg.api_endpoint}</code></p>
 
 <p>Unless otherwise noted API methods can be called using the HTTP <code>GET</code> request method. API responses may be returned in a number of formats which at the moment means: only <code>JSON</code>.</p>
 
