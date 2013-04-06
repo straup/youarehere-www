@@ -33,24 +33,31 @@
 		),
 
 		"youarehere.corrections.getCorrectionsByDate" => array(
-			"description" => "...",
-			"documented" => 0,
+			"description" => "Return a list of corrections by date range",
+			"documented" => 1,
 			"enabled" => 1,
 			"library" => "api_youarehere_corrections"
 		),
 
 		"youarehere.geo.geocode" => array(
-			"description" => "...",
-			"documented" => 0,
+			"description" => "Gecode a placename",
+			"documented" => 1,
 			"enabled" => 1,
 			"library" => "api_youarehere_geo"
 		),
 
 		"youarehere.geo.reverseGeocode" => array(
-			"description" => "...",
-			"documented" => 0,
+			"description" => "Reverse geocode a latitude and longitude",
+			"documented" => 1,
 			"enabled" => 1,
 			"library" => "api_youarehere_geo"
+		),
+
+		"youarehere.geo.filters.getList" => array(
+			"description" => "Return the list of valid filters (for reverse geocoding)",
+			"documented" => 1,
+			"enabled" => 1,
+			"library" => "api_youarehere_geo_filters"
 		),
 
 	), $GLOBALS['cfg']['api']['methods']);

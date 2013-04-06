@@ -30,6 +30,17 @@
 			api_output_error(404, "Invalid end date");
 		}
 
+		if ($start_date >= $end_date){
+			api_output_error(999, "Invalid date range");
+		}
+
+		# sudo put me in a config file or something...
+		$max = 60 * 60 * 24 * 28;
+
+		if (($end_date - $start_date) > $max){
+			api_output_error(999, "Date range is too large");
+		}
+
 		$args = array(
 			'start_date' => $start_date,
 			'end_date' => $end_date,
