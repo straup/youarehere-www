@@ -1,0 +1,18 @@
+{
+    "filters": [
+        {
+            "is_default": 1, 
+            "name": "neighbourhoods"
+        }, 
+        {
+            "name": "localities"
+        }, 
+        {
+            "name": "aerotropolii"
+        }, 
+        {
+            "name": "timezones"
+        }
+    ], 
+    "stat": "ok"
+}

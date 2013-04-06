@@ -1,0 +1,67 @@
+{
+    "features": [
+        {
+            "bbox": [
+                -73.9918060303, 
+                45.2580909729, 
+                -73.1563262939, 
+                45.7858009338
+            ], 
+            "geometry": {
+                "geometries": [
+                    {
+                        "coordinates": [
+                            -73.58781, 
+                            45.50884
+                        ], 
+                        "type": "Point"
+                    }, 
+                    {
+                        "coordinates": [
+                            [
+                                [
+                                    -73.9918060303, 
+                                    45.2580909729
+                                ], 
+                                [
+                                    -73.9918060303, 
+                                    45.7858009338
+                                ], 
+                                [
+                                    -73.1563262939, 
+                                    45.7858009338
+                                ], 
+                                [
+                                    -73.1563262939, 
+                                    45.2580909729
+                                ], 
+                                [
+                                    -73.9918060303, 
+                                    45.2580909729
+                                ]
+                            ]
+                        ], 
+                        "type": "Polygon"
+                    }
+                ], 
+                "type": "GeometryCollection"
+            }, 
+            "properties": {
+                "adm0cap": 0, 
+                "displayname": "Montreal, QC, CA", 
+                "id": "geonameid:6077243", 
+                "labelrank": 2, 
+                "latitude": 45.50884, 
+                "longitude": -73.58781, 
+                "name": "Montreal", 
+                "natscale": 200, 
+                "placetype": 7, 
+                "population": 3268513, 
+                "scalerank": 2
+            }, 
+            "type": "Feature"
+        }
+    ], 
+    "query": "montreal", 
+    "stat": "ok"
+}

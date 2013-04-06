@@ -36,21 +36,68 @@
 			"description" => "Return a list of corrections by date range",
 			"documented" => 1,
 			"enabled" => 1,
-			"library" => "api_youarehere_corrections"
+			"library" => "api_youarehere_corrections",
+			"parameters" => array(
+				array(
+					"name" => "start_date",
+					"description" => "The earliest date to return corrections for",
+					"required" => 1,
+				),
+				array(
+					"name" => "end_date",
+					"description" => "The latest date to return corrections for",
+					"required" => 1,
+				),
+			),
+			"notes" => array(
+				"Dates may be passed in as strings or as Unix timestamps. The API method will attempt to parse either but does not guarantee that if will be able to make sense of edge cases or esoteric formattings",
+				"The maximum date range (between start_date and end_date) is 28 days",
+			),
 		),
 
 		"youarehere.geo.geocode" => array(
-			"description" => "Gecode a placename",
+			"description" => "Gecode a place name.",
 			"documented" => 1,
 			"enabled" => 1,
-			"library" => "api_youarehere_geo"
+			"library" => "api_youarehere_geo",
+			"parameters" => array(
+				array(
+					"name" => "query",
+					"description" => "The place name to geocode",
+					"required" => 1,
+				),
+			),
+			"notes" => array(
+				"Results are returned as a list of GeoJSON features",
+			),
 		),
 
 		"youarehere.geo.reverseGeocode" => array(
-			"description" => "Reverse geocode a latitude and longitude",
+			"description" => "Reverse geocode a latitude and longitude.",
 			"documented" => 1,
 			"enabled" => 1,
-			"library" => "api_youarehere_geo"
+			"library" => "api_youarehere_geo",
+			"parameters" => array(
+				array(
+					"name" => "lat",
+					"description" => "The latitude of the place to reverse geocode",
+					"required" => 1,
+				),
+				array(
+					"name" => "lon",
+					"description" => "The longitude of the place to reverse geocode",
+					"required" => 1,
+				),
+				array(
+					"name" => "filter",
+					"description" => "The place type to scope your reverse geocoding query to",
+					"required" => 0,
+				),
+			),
+			"notes" => array(
+				"Results are returned as a list of GeoJSON features",
+			),
+
 		),
 
 		"youarehere.geo.filters.getList" => array(

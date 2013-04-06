@@ -31,6 +31,8 @@
 		error_404();
 	}
 
+	$details['example_response'] = api_utils_example_response($method);
+
 	# TO DO: convert markdown in $details
 
 	$GLOBALS['smarty']->assign("method", $method);

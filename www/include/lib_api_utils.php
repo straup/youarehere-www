@@ -41,4 +41,30 @@
 	
 	##############################################################################
 
+	function api_utils_example_response($method){
+
+		if (! isset($GLOBALS['cfg']['api']['methods'][$method])){
+			return null;
+		}
+
+		# Please be fiercer about validating $method
+
+		$parts = array(
+			FLAMEWORK_INCLUDE_DIR,
+			"config.api.examples",
+			"{$method}.json"
+		);
+
+		$path = implode(DIRECTORY_SEPARATOR, $parts);
+		$path = realpath($path);
+
+		if (! file_exists($path)){
+			return null;
+		}
+
+		return file_get_contents($path);
+	}
+
+	##############################################################################
+
 	# the end
