@@ -1,0 +1,69 @@
+{capture assign="api_request_method"}{if $cfg.api_auth_type=='oauth2'}POST{elseif $details.request_method}{$details.request_method|escape}{else}GET{/if}{/capture}
+{capture assign="api_request_host"}{if $cfg.api_abs_root_url}{$cfg.api_abs_root_url}{else}{$cfg.abs_root_url}{/if}{/capture}
+
+<div id="api_method">
+
+<h2>{$method|escape}</h2>
+
+{if $details.requires_auth}
+<p><strong>This method requires authentication.</strong></p>
+{/if}
+
+<p>{$details.description|escape}</p>
+
+<h3>Method</h3>
+
+<p>{$api_request_method|escape}</p>
+
+<h3>Arguments</h3>
+
+{if $details.parameters|@count or $cfg.api_auth_type=='oauth2'}
+<ul class="list-o-things">
+<li><strong>access_token</strong> &#8212; A valid <a href="{$cfg.abs_root_url}api/oauth2/">OAuth2 access token</a> <em>required</em></li>
+
+{if $details.parameters|@count}
+{foreach from=$details.parameters item="param"}
+<li><strong>{$param.name|escape}</strong> &#8212; {$param.description|escape}{if $param.required} <em>required</em>{/if}</li>
+{/foreach}
+{/if}
+
+</ul>
+{else}
+<p>None</p>
+{/if}
+
+{if 0}
+<h3>Errors</h3>
+
+<p>TO DO</p>
+{/if}
+
+{if $details.notes|@count}
+<h3>Notes</h3>
+
+<ul>
+{foreach from=$details.notes item="note"}
+<li>{$note|escape}</li>
+{/foreach}
+</ul>
+{/if}
+
+<h3>Example</h3>
+
+{if $api_request_method=='GET' and $cfg.api_auth_type!='oauth2'}
+<pre>curl -X {$api_request_method|escape} {$api_request_host}rest/?method=<strong>{$method|escape}</strong>{if $cfg.api_auth_type=='oauth2'}&access_token=<strong>&lt;TOKEN&gt;</strong>{/if}{if $details.parameters|@count} \{/if}
+{if $details.parameters|@count}{foreach from=$details.parameters item="param" name="params"}
+
+            &{$param.name|escape}={if $param.required}<strong>&lt;{$param.name|strtoupper|escape}&gt;</strong>{else}<strong>...</strong>{/if}{if !$smarty.foreach.params.last} \{/if}{/foreach}
+{/if}
+{else}
+<pre>curl -X {if $cfg.api_auth_type=='oauth2'}POST{else}{$api_request_method|escape}{/if}
+     -F "method={$method|escape}"
+{if $details.parameters|@count}{foreach from=$details.parameters item="param"}     -F "{$param.name|escape}={if $param.required}<strong>&lt;{$param.name|strtoupper|escape}&gt;</strong>{else}<strong>...</strong>{/if}"{/foreach}
+
+{/if}
+     {$api_request_host}rest/
+</pre>
+{/if}
+
+</div>
