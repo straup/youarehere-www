@@ -106,9 +106,13 @@ id,woe_id,latitude,longitude,perspective,created
 
 	<h2>Why aren't you doing everything over HTTPS?</h2>
 
+	<div style="text-decoration:line-through;">
 	<p>It's true: All the traffic to and from the site is sent over an unencrypted connection. Setting up an SSL certificate for the site has just always been further down the list of things to do than everything else but that might change soon.</p>
 
 	<p>If that makes you uncomfortable <em>you should probably not use this website</em>.</p>
+	</div>
+
+	<p>Everything is being done over HTTPS!</p>
 
 	<a name="api"></a>
 
