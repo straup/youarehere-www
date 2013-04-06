@@ -112,7 +112,7 @@ id,woe_id,latitude,longitude,perspective,created
 	<p>If that makes you uncomfortable <em>you should probably not use this website</em>.</p>
 	</div>
 
-	<p>Everything is being done over HTTPS!</p>
+	<p>Everything <em>is</em> being done over HTTPS!</p>
 
 	<a name="api"></a>
 

@@ -1,8 +1,6 @@
 {capture assign="page_title"}colophon{/capture}
 {include file="inc_head.txt"}
 
-<div class="main">
-
 <h2>Colophon</h2>
 
 <ul id="colophon">
@@ -16,7 +14,5 @@
 
 	<li>And users like you. In an entirely non-creepy way.</p>
 </ul>
-
-</div>
 
 {include file="inc_foot.txt"}

@@ -1,8 +1,6 @@
 {capture assign="page_title"}correction #{$correction.id}{/capture}
 {include file="inc_head.txt"}
 
-<div class="main">
-
 {if $delete_error}
 <p class="error">Ack! There was a problem deleting that correction.</p>
 {/if}
@@ -19,7 +17,5 @@ $(document).ready(function(){literal}{{/literal}
 {literal}}{/literal});
 </script>
 {/if}
-
-</div>
 
 {include file="inc_foot.txt"}

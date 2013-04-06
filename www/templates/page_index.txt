@@ -1,10 +1,8 @@
 {include file="inc_head.txt"}
 
-<div class="container">
-
 {if !$cfg.user.id}
 
-  <div class="main home-logged-out">
+  <div class="home-logged-out">
 
     <div id="splash">
     <a href="http://www.flickr.com/photos/straup/8442163051/" title="Screen Shot 2013-02-03 at 6.44.42 PM by straup, on Flickr"><img src="https://farm9.staticflickr.com/8228/8442163051_6d48477fbd_c.jpg" width="800" height="612" alt="Screen Shot 2013-02-03 at 6.44.42 PM"></a> 
@@ -24,7 +22,7 @@
 {else}
 
 
-  <div class="main">
+  <div class="home-logged-in">
     <h2>You are here</h2>
 
     <div style="margin-top:2em;">
@@ -36,7 +34,5 @@
   </div>
 
 {/if}
-
-</div>
 
 {include file="inc_foot.txt"}

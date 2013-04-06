@@ -1,10 +1,8 @@
 {capture assign="page_title"}corrections{/capture}
 {include file="inc_head.txt"}
 
-<div class="main">
 {include file="inc_corrections_filter.txt"}
 {include file="inc_corrections_list.txt"}
-</div>
 
 {include file="inc_foot.txt"}
 

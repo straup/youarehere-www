@@ -1,8 +1,6 @@
 {capture assign="page_title"}corrections / me{/capture}
 {include file="inc_head.txt"}
 
-<div class="main">
-
 {if $smarty.get.deleted}
 <p class="confirm">Okay! Your correction has been deleted.</p>
 {/if}
@@ -10,8 +8,6 @@
 <div id="container">
 {include file="inc_corrections_filter.txt" singular=1}
 {include file="inc_corrections_list.txt"}
-</div>
-
 </div>
 
 {include file="inc_foot.txt"}
