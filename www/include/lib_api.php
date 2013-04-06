@@ -59,12 +59,12 @@
 
 		if ($GLOBALS['cfg']['api_auth_type'] == 'oauth2'){
 
-			if ($_SERVER['REQUEST_METHOD'] != 'POST'){
+			if (($_SERVER['REQUEST_METHOD'] != 'POST') && (! $GLOBALS['cfg']['api_oauth2_allow_get_parameters'])){
 			 	api_output_error(405, 'Method not allowed');
 			}
 		}
 
-		else if (isset($method_row['request_method'])){
+		if (isset($method_row['request_method'])){
 
 			if ($_SERVER['REQUEST_METHOD'] != $method_row['request_method']){
 				api_output_error(405, 'Method not allowed');

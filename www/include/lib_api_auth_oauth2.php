@@ -4,9 +4,40 @@
 
 	#################################################################
 
+	function api_auth_oauth2_get_access_token(&$method){
+
+		# https://tools.ietf.org/html/draft-ietf-oauth-v2-bearer-20#section-2.1
+
+		if ($GLOBALS['cfg']['api_oauth2_require_authentication_header']){
+
+			$headers = apache_request_headers();
+
+			if (! isset($headers['Authorization'])){
+				return null;
+			}
+
+			if (! preg_match("/Bearer\s+([a-zA-Z0-9\+\/]+)$/", $headers['Authorization'], $m)){
+				return null;
+			}
+
+			$token = $m[1];
+			$token = base64_decode($token);
+
+			return $token;
+		}
+
+		if ($GLOBALS['cfg']['api_oauth2_allow_get_parameters']){
+			return request_str('access_token');
+		}
+
+		return post_str('access_token');
+	}
+
+	#################################################################
+
 	function api_auth_oauth2_has_auth(&$method, $key_row=null){
 
-		$access_token = post_str("access_token");
+		$access_token = api_auth_oauth2_get_access_token($method);
 
 		if (! $access_token){
 			return array('ok' => 0, 'error' => 'Required access token missing', 'error_code' => 400);

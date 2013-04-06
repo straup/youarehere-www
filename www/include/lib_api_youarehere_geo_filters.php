@@ -7,8 +7,9 @@
 		$filters = array();
 
 		foreach ($GLOBALS['cfg']['reverse_geocoder_clusters'] as $name => $details){
+
 			$filter = array(
-				'name' => $filter
+				'name' => $name
 			);
 
 			if ($details['default']){
