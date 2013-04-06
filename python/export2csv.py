@@ -7,7 +7,7 @@ import ConfigParser
 import csv
 import logging
 
-import youarehere.api
+import youarehere.api.client
 
 if __name__ == '__main__':
 
@@ -61,7 +61,7 @@ if __name__ == '__main__':
 
     #
 
-    yah = youarehere.api.API(token, host, **kwargs)
+    api = youarehere.api.client.OAuth2(token, host, **kwargs)
 
     args = {
         'start_date' : "%s 00:00:00" % opts.ymd,
@@ -78,7 +78,7 @@ if __name__ == '__main__':
         args['page'] = page
 
         try:
-            rsp = yah.call('youarehere.corrections.getCorrectionsByDate', **args)
+            rsp = api.call('youarehere.corrections.getCorrectionsByDate', **args)
         except Exception, e:
             logging.error("API error: %s" % e)
             break

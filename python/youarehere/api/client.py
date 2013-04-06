@@ -3,7 +3,7 @@ import httplib
 import base64
 import json
 
-class API:
+class OAuth2:
 
     def __init__(self, access_token, host, **kwargs):
 
@@ -79,7 +79,7 @@ if __name__ == '__main__':
 
     options, args = parser.parse_args()
 
-    api = API(options.access_token, options.endpoint)
+    api = OAuth2(options.access_token, options.endpoint)
 
     try:
         now = int(time.time())
