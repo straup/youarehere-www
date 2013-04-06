@@ -144,6 +144,8 @@
 	}
 
 	$GLOBALS['cfg']['api_auth_type'] = 'oauth2';
+	$GLOBALS['cfg']['api_oauth2_require_authentication_header'] = 0;
+	$GLOBALS['cfg']['api_oauth2_allow_get_parameters'] = 0;
 
 	# API pagination
 
