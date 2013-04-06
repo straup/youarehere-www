@@ -4,6 +4,34 @@
 
 	function api_config_init(){
 
+		$GLOBALS['cfg']['api_server_scheme'] = ($GLOBALS['cfg']['api_require_ssl']) ? 'https' : 'http';
+		$GLOBALS['cfg']['api_server_name'] =  parse_url($GLOBALS['cfg']['abs_root_url'], 1);
+
+		# If I have an API specific subdomain/prefix then check to see if I am already
+		# running on that host; if not then update the 'api_server_name' config
+
+		if (($GLOBALS['cfg']['api_subdomain']) && (! preg_match("/^{$GLOBALS['cfg']['api_subdomain']}\.(?:.*)/", $GLOBALS['cfg']['api_server_name']))){
+			$GLOBALS['cfg']['api_server_name'] = $GLOBALS['cfg']['api_subdomain'] . "." . $GLOBALS['cfg']['api_server_name'];
+		}
+
+		# Build the 'api_abs_root_url' based on everything above
+
+		$GLOBALS['cfg']['api_abs_root_url'] = "{$GLOBALS['cfg']['api_server_scheme']}://{$GLOBALS['cfg']['api_server_name']}" . "/";
+
+		# If I have an API specific subdomain/prefix then check to see if I am already
+		# running on that host; if I am then update the 'site_abs_root_url' config and
+		# use it in your code accordingly.
+
+		if (($GLOBALS['cfg']['api_subdomain']) && (preg_match("/{$GLOBALS['cfg']['api_subdomain']}\.(?:.*)/", $GLOBALS['cfg']['api_server_name']))){
+			$GLOBALS['cfg']['site_abs_root_url'] = str_replace("{$GLOBALS['cfg']['api_subdomain']}.", "", $GLOBALS['cfg']['abs_root_url']);
+		}
+
+		else {
+			$GLOBALS['cfg']['site_abs_root_url'] = $GLOBALS['cfg']['abs_root_url'];
+		}
+
+		# Load methods / blessings
+
 		foreach ($GLOBALS['cfg']['api_method_definitions'] as $def){
 
 			try {

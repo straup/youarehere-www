@@ -10,7 +10,7 @@
 
 <p>{$cfg.site_name|escape} offers a <code>could-play-REST-on-TV</code> style application programming interface (API) for developers to use in their products and services. API requests are made by passing one or more parameters to:</p>
 
-<p style="text-align:center;"><code>{$api_request_host}rest/</code></p>
+<p style="text-align:center;"><code>{$api_request_host}{$cfg.api_endpoint}</code></p>
 
 <p>Unless otherwise noted API methods can be called using the HTTP <code>GET</code> request method. API responses may be returned in a number of formats which at the moment means: only <code>JSON</code>.</p>
 

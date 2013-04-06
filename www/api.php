@@ -1,6 +1,7 @@
 <?php
 
 	include("include/init.php");
+	loadlib("api");
 
 	features_ensure_enabled("api");
 
