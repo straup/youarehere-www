@@ -28,7 +28,7 @@
 <table class="api-key-or-token">
 
        <tr><td>Name</td><td>{$key.app_title|escape}</td></tr>
-	<tr class="api-admin"><td>&nbsp;</td><td><input type="checkbox" name="confirm" value="1" /><label for="confirm">Yes, I would like to make this API key go away.</label></td></tr>
+	<tr class="api-admin"><td>&nbsp;</td><td><input type="checkbox" name="confirm" value="1" /> <label for="confirm">Yes, I would like to make this API key go away.</label></td></tr>
 	<tr class="api-admin"><td>&nbsp;</td><td><input type="submit" value="MAKE IT SO" /></td></tr>
 
 </table>

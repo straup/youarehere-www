@@ -27,6 +27,7 @@
 		$conf = post_str("confirm");
 
 		if ($conf){
+
 			$rsp = api_keys_delete($key_row);
 			$GLOBALS['smarty']->assign_by_ref("delete_rsp", $rsp);
 		}		

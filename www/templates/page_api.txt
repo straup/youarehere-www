@@ -7,15 +7,9 @@
 {if "api_documentation"|@features_is_enabled}
 
 <div class="api-sect">
-<p>{$cfg.site_name|escape} offers a <code>could-play-REST-on-TV</code> style application programming interface (API) for developers to use in their products and services. API requests are made by passing one or more parameters to:</p>
+<p><a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> provides a REST-ish style application programming interface (API) for developers to use in their products and services. API requests are made by passing one or more query parameters to:</p>
 
-<p style="text-align:center;"><code>{$cfg.api_abs_root_url}{$cfg.api_endpoint}</code></p>
-
-</div>
-
-<div class="api-sect">
-
-<p>Unless otherwise noted API methods can be called using the HTTP <code>GET</code> request method. API responses may be returned in a number of formats which at the moment means: only <code>JSON</code>.</p>
+<p style="margin-top:2em;text-align:center;"><code style="font-size:1.5em;">{$cfg.api_abs_root_url}{$cfg.api_endpoint}</code></p>
 
 </div>
 
@@ -23,7 +17,7 @@
 
 <div class="api-sect">
 
-<p>We require <a href="{$cfg.abs_root_url}api/oauth2/">OAuth (version 2) access tokens</a> to monitor and limit access to the API.</p>
+<p><a href="{$cfg.abs_root_url}api/oauth2/">OAuth (version 2) access tokens</a> are used to monitor and limit access to the API.</p>
 
 </div>
 

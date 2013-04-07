@@ -126,7 +126,7 @@
 		if ($rsp['ok']){
 
 			api_keys_purge_cache($key);
-			
+		
 			$key = array_merge($key, $update);
 			$rsp['key'] = $key;
 		}
@@ -179,8 +179,8 @@
 			"api_key_key_{$key['api_key']}",
 		);
 
-		foreach ($cache_keys as $key){
-			cache_unset($key);
+		foreach ($cache_keys as $cache_key){
+			cache_unset($cache_key);
 		}
 	}
 

@@ -67,7 +67,9 @@
 
 			if ($rsp['ok']){
 				$url = "{$GLOBALS['cfg']['abs_root_url']}api/keys/{$rsp['key']['api_key']}/?success=1";
-				urls_redirect($url);
+
+				header("location: {$url}");
+				exit();
 			}
 		}
 	}
