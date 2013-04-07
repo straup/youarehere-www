@@ -11,9 +11,11 @@
 
 {include file="inc_api_header.txt" title="Your access tokens"}
 
-{if $tokens|@count}
+<div class="api-sect">
 
-<ul class="list-o-things">
+<h2>Access tokens</h2>
+
+<ul class="api-list-o-things">
 {foreach from=$tokens item="row"}
 {assign var="perms" value=$row.perms}
 
@@ -31,15 +33,10 @@
 
 </li>
 {/foreach}
+	<li><a href="{$cfg.abs_root_url}api/oauth2/authenticate/like-magic/">Create a new access token for yourself</li>
 </ul>
 
-{else}
-
-<p>You haven't authorized any applications yet.</p>
-
-{/if}
-
-<p><a href="{$cfg.abs_root_url}api/oauth2/authenticate/like-magic/">Would you like to create an access token for yourself?</a>
+</div>
 
 {include file="inc_pagination.txt"}
 {include file="inc_foot.txt"}

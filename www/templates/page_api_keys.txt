@@ -13,34 +13,22 @@
 
 {include file="inc_api_header.txt" title="Your API keys"}
 
-{if $keys|@count}
+<div class="api-sect">
 
-<ul class="list-o-things">
+<h2>API keys</h2>
+
+<ul class="api-list-o-things">
 {foreach from=$keys item="row"}
 <li>
 	<a href="{$cfg.abs_root_url}api/keys/{$row.api_key|escape}/">{$row.app_title|escape}</a>
-	<span class="count-objects">
-
-	{if $row.app_description}
-	<span class="object-thingy">
-	<q>{$row.app_description|escape}</q>
-	</span>
-	{/if}
-
-	<span class="object-thingy">
-	You created this API key on {$row.created|date_format} 
-	</span>
-
-	</span>
+	&#8212; created on {$row.created|date_format} 
 </li>
 {/foreach}
+
+	<li><a href="{$cfg.abs_root_url}api/keys/register/">Create a new API key</a></li>
 </ul>
 
-{else}
-
-<p>You haven't created any API keys. <a href="{$cfg.abs_root_url}api/keys/register/">Would you like to?</a></p>
-
-{/if}
+</div>
 
 {include file="inc_pagination.txt"}
 {include file="inc_foot.txt"}

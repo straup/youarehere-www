@@ -113,6 +113,10 @@
     x-overflow:none;
 }
 
+.api-list-o-things {
+    margin-bottom: 1em;
+}
+
 .api-list-o-things li {
     line-height: 1.4em !important;
     margin-bottom: .5em;
@@ -121,6 +125,10 @@
 
 .api-sect {
     margin-bottom: 2em;
+}
+
+.api-sect h2 {
+    margin-bottom: .75em;
 }
 
 .api-required {
