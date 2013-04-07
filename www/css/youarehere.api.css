@@ -106,3 +106,9 @@
     font-style: italic;
     margin-left: 8%;
 }
+
+.api-example-response {
+    max-height: 600px;
+    overflow:scroll !important;
+    x-overflow:none;
+}
