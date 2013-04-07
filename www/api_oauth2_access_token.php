@@ -32,7 +32,11 @@
 
 	#
 
-	$key_row = api_keys_utils_get_from_url();
+	$key_more = array(
+		'ensure_isown' => 0
+	);
+
+	$key_row = api_keys_utils_get_from_url($key_more);
 	$GLOBALS['smarty']->assign_by_ref("key", $key_row);
 
 	$ok = 1;
