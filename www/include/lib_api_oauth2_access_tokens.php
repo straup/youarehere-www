@@ -115,7 +115,7 @@
 		$cache = cache_get($cache_key);
 
 		if ($cache['ok']){
-			return $cache['data'];
+			# return $cache['data'];
 		}
 
 		$enc_user = AddSlashes($user['id']);
