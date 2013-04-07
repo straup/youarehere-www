@@ -25,7 +25,7 @@ Okay, that's just weird. If you're seeing this it means that something very wron
 
 {else}
 
-{include file="inc_api_oauth2_authentication_permissions.txt"}
+{include file="inc_api_oauth2_authenticate_permissions.txt"}
 
 <div class="api-sect">
 <form method="POST" action="{$cfg.abs_root_url}api/oauth2/authenticate/">

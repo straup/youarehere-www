@@ -105,7 +105,9 @@
 			$rsp_params = http_build_query($rsp_params);
 
 			$url = $key_row['app_callback'] . "?" . $rsp_params;
-			urls_redirect($url);
+
+			header("location: {$url}");
+			exit();
 		}
 
 		else {
@@ -145,7 +147,9 @@
 			$rsp_params = http_build_query($rsp_params);
 
 			$url = $key_row['app_callback'] . "?" . $rsp_params;
-			urls_redirect($url);
+
+			header("location: {$url}");
+			exit();
 		}
 	}
 
@@ -187,7 +191,9 @@
 		$rsp_params = http_build_query($rsp_params);
 
 		$url = $key_row['app_callback'] . "?" . $rsp_params;
-		urls_redirect($url);
+
+		header("location: {$url}");
+		exit();
 	}
 
 	if ($ok){
