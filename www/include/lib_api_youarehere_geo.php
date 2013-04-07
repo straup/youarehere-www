@@ -55,9 +55,15 @@
 
 		$filter = request_str("filter");
 
-		if ((! $filter) || (! reverse_geocode_is_valid_filter($filter))){
+		if (! $filter){
+			$filter = reverse_geocode_default_filter();
+		}
+
+		else if (! reverse_geocode_is_valid_filter($filter)){
 			api_output_error(500, "Missing or invalid filter");
 		}
+
+		else {}
 
 		$rsp = reverse_geocode($lat, $lon, $filter);
 
