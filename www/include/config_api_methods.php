@@ -50,8 +50,8 @@
 				),
 			),
 			"notes" => array(
-				"Dates may be passed in as strings or as Unix timestamps. The API method will attempt to parse either but does not guarantee that if will be able to make sense of edge cases or esoteric formattings",
-				"The maximum date range (between start_date and end_date) is 28 days",
+				"Dates may be passed in as strings or as Unix timestamps. The API method will attempt to parse either but does not guarantee that if will be able to make sense of edge cases or esoteric formattings.",
+				"The maximum date range (between start_date and end_date) is 28 days.",
 			),
 		),
 
@@ -68,7 +68,7 @@
 				),
 			),
 			"notes" => array(
-				"Results are returned as a list of GeoJSON features",
+				"Results are returned as a list of GeoJSON features.",
 			),
 		),
 
@@ -95,7 +95,7 @@
 				),
 			),
 			"notes" => array(
-				"Results are returned as a list of GeoJSON features",
+				"Results are returned as a list of GeoJSON features.",
 			),
 
 		),

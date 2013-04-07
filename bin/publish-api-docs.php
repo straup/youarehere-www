@@ -4,8 +4,10 @@
 	ini_set("include_path", "{$root}/www:{$root}/www/include");
 
 	include("include/init.php");
-	loadlib("api_config");
 	loadlib("cli");
+
+	loadlib("api_config");
+	loadlib("api_spec");
 
 	$spec = array(
 		"output" => array("flag" => "o", "required" => 1, "help" => "..."),
@@ -75,6 +77,12 @@
 		}
 
 		echo "adding {$method_name}\n";
+
+		$rsp = api_spec_utils_example_for_method($method_name);
+
+		if ($rsp['ok']){
+			$details['example_response'] = $rsp['example'];
+		}
 
 		$GLOBALS['smarty']->assign_by_ref("method", $method_name);
 		$GLOBALS['smarty']->assign_by_ref("details", $method_details);

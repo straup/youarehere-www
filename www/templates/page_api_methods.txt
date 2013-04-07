@@ -6,15 +6,17 @@
 <div id="api_methods">
 
 {foreach from=$method_classes item="methods" key="class"}
+<div class="api-sect">
 
 <h2>{$class|escape}</h2>
 
-<ul class="list-o-things">
+<ul class="api-list-o-things">
 {foreach from=$methods item="method_name}
 	<li><a href="{$cfg.abs_root_url}api/methods/{$method_name|escape:'uri'}">{$method_name|escape}</a></li>
 {/foreach}
 </ul>
 
+</div>
 {/foreach}
 
 </div>

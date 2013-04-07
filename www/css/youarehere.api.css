@@ -112,3 +112,30 @@
     overflow:scroll !important;
     x-overflow:none;
 }
+
+.api-list-o-things li {
+    line-height: 1.4em !important;
+    margin-bottom: .5em;
+    color: #333;
+}
+
+.api-sect {
+    margin-bottom: 2em;
+}
+
+.api-required {
+    font-weight: 700;
+    color:red;
+}
+
+.api-required:before {
+    content: "[ ";
+}
+
+.api-required:after {
+    content: " ]";
+}
+
+.api-caveat {
+    font-size: small;
+}

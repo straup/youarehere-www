@@ -2,6 +2,7 @@
 
 <div id="api_method">
 
+<div class="api-sect">
 <h2>{$method|escape}</h2>
 
 {if $details.requires_auth}
@@ -9,20 +10,24 @@
 {/if}
 
 <p>{$details.description|escape}</p>
+</div>
 
+<div class="api-sect">
 <h3>Method</h3>
 
 <p>{$api_request_method|escape}</p>
+</div>
 
+<div class="api-sect">
 <h3>Arguments</h3>
 
 {if $details.parameters|@count or $cfg.api_auth_type=='oauth2'}
-<ul class="list-o-things">
-<li><strong>access_token</strong> &#8212; A valid <a href="{$cfg.abs_root_url}api/oauth2/">OAuth2 access token</a> <em>required</em></li>
+<ul class="api-list-o-things">
+<li><strong>access_token</strong> &#8212; A valid <a href="{$cfg.abs_root_url}api/oauth2/">OAuth2 access token</a> <span class="api-required">required</span></li>
 
 {if $details.parameters|@count}
 {foreach from=$details.parameters item="param"}
-<li><strong>{$param.name|escape}</strong> &#8212; {$param.description|escape}{if $param.required} <em>required</em>{/if}</li>
+<li><strong>{$param.name|escape}</strong> &#8212; {$param.description|escape}{if $param.required} <span class="api-required">required</span>{/if}</li>
 {/foreach}
 {/if}
 
@@ -31,6 +36,8 @@
 <p>None</p>
 {/if}
 
+</div>
+
 {if 0}
 <h3>Errors</h3>
 
@@ -38,14 +45,18 @@
 {/if}
 
 {if $details.notes|@count}
+<div class="api-sect">
 <h3>Notes</h3>
 
-<ul>
+<ul class="api-list-o-things">
 {foreach from=$details.notes item="note"}
 <li>{$note|escape}</li>
 {/foreach}
 </ul>
+</div>
 {/if}
+
+<div class="api-sect">
 
 <h3>Example request</h3>
 
@@ -66,6 +77,29 @@
 {if $details.example_response}
 <h3>Example response</h3>
 <pre class="api-example-response">{$details.example_response|escape}</pre>
+{/if}
+
+</div>
+
+{if $api_request_method=='GET' and $cfg.api_auth_type!='oauth2' or $cfg.api_oauth2_allow_get_parameters}
+
+<div class="api-sect">
+<div class="api-caveat">
+<h3>Important</h3>
+
+<p>This API method uses <a href="{$cfg.abs_root_url}api/oauth2/">OAuth2</a> and allows you to pass parameters as part of the URL (or as <code>GET</code> requests). One of those parameters is your <strong>access token</strong> which is extra special and has super-powers.</p>
+
+<p>Requests to and from the API are done over an encrypted channel so no one can see what's going on <strong>BUT</strong> that also means there are a couple things you need to be conscious of:</p>
+
+<ol class="api-list-o-things">
+<li>That the request URL always starts with <code>https://</code> and not just <code>http://</code> &#8212; that little <strong>s</strong> is what tells your browser to use an encrypted connection.</li>
+
+<li>If you are copy-paste-ing those URLs in to an email or some other place where someone else might be able to read them you should make sure to remove the access token &#8212; remember the access token is what links your account to <a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> on behalf of an application and has super-powers.</li>
+</ol>
+
+</div>
+</div>
+
 {/if}
 
 </div>
