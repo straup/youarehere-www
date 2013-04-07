@@ -13,12 +13,6 @@
 		<td>Authentication Token</td><td class="api-credential"><a href="{$cfg.abs_root_url}api/oauth2/tokens/{$key.api_key|escape}/">{$token_row.access_token|escape}</a></td>
 	</tr>
 
-	{if 0}
-	<tr>
-		<td>Authentication Secret</td><td>{$token_row.auth_secret|escape}</td>
-	</tr>
-	{/if}
-
 	<tr>
 		{assign var="perms" value=$token_row.perms}
 		<td>Permissions</td><td>{$permissions.$perms|escape}</td>
@@ -35,7 +29,7 @@
 <table class="api-key-or-token">
 
 	<tr>
-		<td>Authentication Token</td><td class="api-credential"><a href="{$cfg.abs_root_url}api/oauth2/tokens/{$key.api_key|escape}/">{$token_rsp.token.access_token|escape}</a></td>
+		<td>Access Token</td><td class="api-credential"><a href="{$cfg.abs_root_url}api/oauth2/tokens/{$key.api_key|escape}/">{$token_rsp.token.access_token|escape}</a></td>
 	</tr>
 
 	<tr>
@@ -60,7 +54,9 @@ Hrmph. There was a problem creating your auth token. The robots know this so far
 <p class="error">{$error|escape}</p>
 {/if}
 
+<div class="api-sect">
 <p>Create a new authentication token for your <a href="{$cfg.abs_root_url}api/keys/{$key.api_key|escape}/">{$key.app_title|escape} API key</a>?</p>
+</div>
 
 <form method="POST" action="{$cfg.abs_root_url}api/oauth2/authenticate/">
 	{$crumb_key|crumb_input}
@@ -69,7 +65,7 @@ Hrmph. There was a problem creating your auth token. The robots know this so far
 
 <table class="api-key-or-token">
 
-       <tr><td><label for="perms">Permissions</a></td>
+       <tr><td>Permissions</td>
        <td>
 	<select name="perms">
 		<option />
@@ -81,7 +77,7 @@ Hrmph. There was a problem creating your auth token. The robots know this so far
 	</tr>
 
 	<tr>
-		<td><label for="perms">Make this token valid</a></td>
+		<td>Make this token valid</td>
 		<td>
 	<select name="ttl">
 	{foreach from=$ttl_map item="label" key="ttl"}
