@@ -142,3 +142,7 @@ label {
 .api-thisisyou {
     color: #ccc;
 }
+
+.api-details {
+    font-size:small;
+}

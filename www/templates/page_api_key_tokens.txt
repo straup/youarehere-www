@@ -11,25 +11,26 @@
 
 {include file="inc_api_header.txt" title="Authenticated users"}
 
+<div class="api-sect">
+<h2>Authenticated users</h2>
+
 {if $tokens|@count}
 
-<ul class="list-o-things">
+<ul class="api-list-o-things">
 {foreach from=$tokens item="row"}
 	{assign var="perms" value=$row.perms}
 
 <li>
-	{$row.user.username|escape}{if $row.user.id == $cfg.user.id}<span class="thisisyou"> ⇽ this is you</span>{/if}
-	<span class="count-objects">
+	{$row.user.username|escape}{if $row.user.id == $cfg.user.id}<span class="api-thisisyou"> ⇽ this is you</span>{/if}
+	<div class="api-details">
 
-	<span class="object-thingy">
 	{if $row.user.id == $cfg.user.id}
-	This token (<a href="{$cfg.abs_root_url}api/oauth2/tokens/{$row.app.api_key|escape}/">{$row.access_token|escape}</a>) was created on {$row.created|date_format} and was granted <strong>{$permissions.$perms|escape}</strong> permissions.
+	<a href="{$cfg.abs_root_url}api/oauth2/tokens/{$key.api_key|escape}/">This access token</a> was created on {$row.created|date_format} and was granted <strong>{$permissions.$perms|escape}</strong> permissions.
 	{else}
-	This token ({$row.access_token|escape}) was created on {$row.created|date_format} and was granted <strong>{$permissions.$perms|escape}</strong> permissions.
+	This token was created on {$row.created|date_format} and was granted <strong>{$permissions.$perms|escape}</strong> permissions.
 	{/if}
-	</span>
 
-	</span>
+	</div>
 
 </li>
 {/foreach}
@@ -42,4 +43,7 @@
 {/if}
 
 {include file="inc_pagination.txt"}
+
+</div>
+
 {include file="inc_foot.txt"}
