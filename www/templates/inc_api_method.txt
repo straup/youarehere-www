@@ -87,7 +87,7 @@
 <div class="api-caveat">
 <h3>Important</h3>
 
-<p>This API method uses <a href="{$cfg.abs_root_url}api/oauth2/">OAuth2</a> and allows you to pass parameters as part of the URL (or as <code>GET</code> requests). One of those parameters is your <strong>access token</strong> which is extra special and has super-powers.</p>
+<p>This API method uses <a href="{$cfg.abs_root_url}api/oauth2/">OAuth2</a> and allows you to pass parameters as part of the URL (or as <code>GET</code> requests). One of those parameters is your <a href="{$cfg.abs_root_url}api/oauth2/tokens/">access token</a> which is extra special and has super-powers.</p>
 
 <p>Requests to and from the API are done over an encrypted channel so no one can see what's going on <strong>BUT</strong> that also means there are a couple things you need to be conscious of:</p>
 
