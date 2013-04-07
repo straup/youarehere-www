@@ -24,6 +24,8 @@ OH NO! INVISIBLE ERROR CAT HISSES AT YOU...
 {else}
 {/if}
 
+<div class="api-sect">
+
 <form method="POST" action="{$cfg.abs_root_url}api/oauth2/tokens/{$token.app.api_key|escape}/">
 	{$crumb_key|crumb_input}
 	<input type="hidden" name="done" value="1" />
@@ -34,7 +36,7 @@ OH NO! INVISIBLE ERROR CAT HISSES AT YOU...
 
 	{if $token.app.user_id==$cfg.user.id}
 	<tr>
-		<td>Application</td><td><a href="{$cfg.abs_root_url}api/keys/{$token.app.api_key|escape}/">{$token.app.app_title|escape}</a> <span class="thisisyou"> ⇽ you made this</span></td>
+		<td>Application</td><td><a href="{$cfg.abs_root_url}api/keys/{$token.app.api_key|escape}/">{$token.app.app_title|escape}</a> <span class="api-thisisyou"> ⇽ you made this</span></td>
 	</tr>
 
 	{else}
@@ -48,7 +50,7 @@ OH NO! INVISIBLE ERROR CAT HISSES AT YOU...
 	<tr>
 		
 	<tr>
-		<td>Authentication Token</td><td class="api-credential">{$token.access_token|escape}</td>
+		<td>Access Token</td><td class="api-credential">{$token.access_token|escape}</td>
 	</tr>
 
 	<tr>
@@ -92,7 +94,7 @@ OH NO! INVISIBLE ERROR CAT HISSES AT YOU...
 
 	<tr class="api-admin">
 		<td>&nbsp;</td>
-		<td class="api-delete"><label for="delete">Actually, I'd like to delete this auth token entirely</label><input type="checkbox" name="delete" /></td>
+		<td class="api-delete"><input type="checkbox" name="delete" /> <label for="delete">Actually, I'd like to delete this auth token entirely</label></td>
 	</tr>
 
 	<tr class="api-admin">
@@ -101,5 +103,7 @@ OH NO! INVISIBLE ERROR CAT HISSES AT YOU...
 	</tr>
 
 </table>
+
+</div>
 
 {include file="inc_foot.txt"}

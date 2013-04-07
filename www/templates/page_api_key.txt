@@ -26,6 +26,8 @@
 
 {else}{/if}
 
+<div class="api-sect">
+
 <form method="POST" action="{$cfg.abs_root_url}api/keys/{$key.api_key|escape}/">
 	{$crumb_key|crumb_input}
 	<input type="hidden" name="done" value="1" />
@@ -115,7 +117,7 @@
 
 	<tr class="api-admin">
 		<td>&nbsp;</td>
-		<td class="api-delete"><label for="delete">Actually, I'd like to delete this API key</label><input type="checkbox" name="delete" /></td>
+		<td class="api-delete"><input type="checkbox" name="delete" /> <label for="delete">Actually, I'd like to delete this API key</label></td>
 	</tr>
 
 	<tr class="api-admin">
@@ -128,5 +130,7 @@
 </table>
 
 </form>
+
+</div>
 
 {include file="inc_foot.txt"}

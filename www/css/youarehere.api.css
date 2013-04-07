@@ -28,40 +28,32 @@
     font-size: 1.5em;
 }
 
-.api-key-or-token tr {
-}
-
 .api-key-or-token td {
     padding: 20px;
     padding-left:20px;
 }
 
-.api-key-or-token select {
-    font-size: 1.1em;
-    padding: 5px;
-}
-
-.api-key-or-token input {
-    font-size: 1.2em;
-    font-weight:100;
-    padding: 5px;
+.api-key-or-token input[type=text]{
+    width:90%;
 }
 
 .api-key-or-token textarea {
     font-size: 1.1em;
     font-weight:100;
+    width:90%;
     padding: 10px;
 }
 
 .api-key-or-token tr td:first-child {
     font-weight: 700;
     background-color: #adadad;
+    color:#fff;
     vertical-align:text-top;
 }
 
-.api-admin td {
-    background-color: #fff !important;
-    text-align:right;
+label {
+    display: inline !important;
+    font-size:medium;
 }
 
 .api-credential {
@@ -146,4 +138,8 @@
 
 .api-caveat {
     font-size: small;
+}
+
+.api-thisisyou {
+    color: #ccc;
 }
