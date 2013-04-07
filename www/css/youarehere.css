@@ -168,13 +168,6 @@ optgroup {
     font-size:small;
 }
 
-input[type=submit] {
-    border: solid thin;
-    font-weight: 700;
-    padding: .5em;
-    margin-left: .5em;
-}
-
 .error q {
     font-weight: 700;
 }

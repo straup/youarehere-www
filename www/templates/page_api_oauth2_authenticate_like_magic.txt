@@ -5,14 +5,18 @@
 
 {if $step==3}
 
+<div class="api-sect">
 <p class="confirm">Hooray! We've created your new access token. It is <strong>{$token.access_token|escape}</strong> and you can see all <a href="{$cfg.abs_root_url}api/oauth2/tokens/{$api_key.api_key|escape}/">the details over here.</a></p>
 {if $key_rsp=='ok'}
 <p class="error">Argh! There was a problem creating your token. This is what we know so far: {$error|escape}</p>
 {else}
+</div>
 
 {/if}
 
 {elseif $step==2}
+
+<div class="api-sect">
 
 <form method="POST" action="{$cfg.abs_root_url}api/oauth2/authenticate/like-magic/" accept-encoding="UTF-8">
 	{$crumb_key|crumb_input}
@@ -31,7 +35,11 @@
 
 </form>
 
+</div>
+
 {else}
+
+<div class="api-sect">
 
 <form method="POST" action="{$cfg.abs_root_url}api/oauth2/authenticate/like-magic/" accept-encoding="UTF-8">
 	{$crumb_key|crumb_input}
@@ -40,12 +48,12 @@
 <table class="api-key-or-token">
 
        <tr>
-        <td><label for="title">Name</label></td>
-	<td><input type="text" value="{$title|escape}" size="28" name="title" placeholder="Give your token/application a name" /></td>
+        <td>Name</td>
+	<td><input type="text" value="{$title|escape}" name="title" placeholder="Give your token/application a name" /></td>
 	</tr>
 
        <tr>
-	<td><label for="perms">Permissions</a></td>
+	<td>Permissions</td>
 	<td>
 	<select name="perms">
 		<option />
@@ -57,7 +65,7 @@
        </tr>
 
        <tr>
-        <td><label for="perms">Make this token valid</label></td>
+        <td>Make this token valid</td>
 	<td>
 	<select name="ttl">
 	{foreach from=$ttl_map item="label" key="ttl"}
@@ -73,6 +81,7 @@
 
 </table>
 </form>
+</div>
 
 {/if}
 
