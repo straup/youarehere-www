@@ -49,6 +49,28 @@
 					$props['woe_id'] = $props['woeid'];
 				}
 
+				# Sigh... I am never going to escape these mistakes
+				# I made in 2008 (20130408/straup)
+
+				if (! isset($props['name'])){
+
+					if ($props['place_type'] == 'neighbourhood'){
+
+						# To account for stuff like this:
+						# Boerum Hill, NY, US, United States
+
+						$parts = explode(", ", $props['label']);
+						$idx = count($parts) - 2;
+						unset($parts[$idx]);
+
+						$props['name'] = implode(", ", $parts);
+					}
+
+					else {
+						$props['name'] = $props['label'];
+					}
+				}
+
 				$data[$i] = $props;
 			}
 
@@ -82,6 +104,7 @@
 
 			$props = array(
 				'woe_id' => $row['woe_id'],
+				'name' => $row['name'],
 				'placetype' => $row['place_type'],
 				'placetype_id' => $row['place_ty_1'],
 			);
