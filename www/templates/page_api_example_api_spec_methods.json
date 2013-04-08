@@ -1,4 +1,4 @@
-{
+{literal}{
     "methods": [
         {
             "description": "Return the list of available API response methods.", 
@@ -21,7 +21,7 @@
             "description": "A testing method which echo's all parameters back in the response.", 
             "errors": [], 
             "method": "GET", 
-            "name": "test.echo", 
+            "name": "api.test.echo", 
             "parameters": [], 
             "requires_auth": 0
         }, 
@@ -29,10 +29,10 @@
             "description": "Return a test error from the API", 
             "errors": [], 
             "method": "GET", 
-            "name": "test.error", 
+            "name": "api.test.error", 
             "parameters": [], 
             "requires_auth": 0
         }
     ], 
     "stat": "ok"
-}
+}{/literal}

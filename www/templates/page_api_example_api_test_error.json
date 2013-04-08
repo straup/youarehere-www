@@ -1,0 +1,7 @@
+{literal}{
+	"stat": "error",
+	"error":{
+		"code":500,
+		"error":"I want you to want me."
+	}
+}{/literal}

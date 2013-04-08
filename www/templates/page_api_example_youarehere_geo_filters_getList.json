@@ -1,4 +1,4 @@
-{
+{literal}{
     "filters": [
         {
             "is_default": 1, 
@@ -15,4 +15,4 @@
         }
     ], 
     "stat": "ok"
-}
+}{/literal}

@@ -1,0 +1,5 @@
+{literal}{
+	"stat":"ok",
+	"method":"api.test.echo",
+	"foo":"bar"
+}{/literal}

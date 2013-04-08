@@ -18,14 +18,14 @@
 			"library" => "api_spec"
 		),
 
-		"test.echo" => array(
+		"api.test.echo" => array(
 			"description" => "A testing method which echo's all parameters back in the response.",
 			"documented" => 1,
 			"enabled" => 1,
 			"library" => "api_test"
 		),
 
-		"test.error" => array(
+		"api.test.error" => array(
 			"description" => "Return a test error from the API",
 			"documented" => 1,
 			"enabled" => 1,
