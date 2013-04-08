@@ -9,7 +9,7 @@
 <div class="api-sect">
 <p><a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> provides a REST-ish style application programming interface (API) for developers to use in their products and services. API requests are made by passing one or more query parameters to:</p>
 
-<p style="margin-top:2em;margin-bottom:2.5em;text-align:center;"><code style="font-size:1.5em;">{$cfg.api_abs_root_url}{$cfg.api_endpoint}</code></p>
+<p class="api-link"><code>{$cfg.api_abs_root_url}{$cfg.api_endpoint}</code></p>
 
 <p>Please consult the <a style="text-decoration:underline !important;" href="{$cfg.abs_root_url}api/methods/">API method documentation</a> for complete details.</p>
 

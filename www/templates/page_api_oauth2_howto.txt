@@ -1,0 +1,8 @@
+{capture assign="page_title"}How to | OAuth2 | API{/capture}
+{include file="inc_head.txt"}
+
+<p class="api-link"><code>{$cfg.abs_root_url}api/oauth2/authenticate/</code></p>
+
+<p class="api-link"><code>{$cfg.abs_root_url}api/oauth2/access_token/</code></p>
+
+{include file="inc_foot.txt"}

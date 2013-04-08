@@ -1,6 +1,6 @@
 <div class="api-sect">
 
-<h2>login</h2>
+<h3>login</h3>
 
 <ul class="api-list-o-things">
     <li>Validate your account, which just means an application could use your Cooper-Hewitt account as a single-sign-on provider (kind of like Facebook Connect).</li>
@@ -12,7 +12,7 @@
 
 <div class="api-sect">
 
-<h2>read</h2>
+<h3>read</h3>
 
 <ul class="api-list-o-things">
     <li>Validate your account.</li>
@@ -25,7 +25,7 @@
 
 <div class="api-sect">
 
-<h2>write</h2>
+<h3>write</h3>
 
 <ul class="api-list-o-things">
     <li>Validate your account.</li>

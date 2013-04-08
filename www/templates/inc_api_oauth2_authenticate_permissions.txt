@@ -16,7 +16,7 @@
 
 <ul class="list-o-things">
     <li>Validate your account.</li>
-    <li>Access things that you've marked as private (to own account).</li>
+    <li>Access things that you've marked as private (to your own account).</li>
 </ul>
 
 <p>It will not be able to perform any other functions (or call API methods) that require <q>write</q> permissions.</p>
@@ -25,8 +25,8 @@
 
 <ul class="list-o-things">
     <li>Validate your account.</li>
-    <li>Access things that you've marked as private (to own account).</li>
-    <li>Update things that you've marked as private (to own account).</li>
+    <li>Access things that you've marked as private (to your own account).</li>
+    <li>Update things that you've marked as private (to your own account).</li>
 </ul>
 
 {else}
