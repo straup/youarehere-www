@@ -11,11 +11,9 @@
 			return array('ok'=> 0, 'error' => 'no example defined for {$method} method');
 		}
 
-		$example = $GLOBALS['smarty']->fetch($template);
-
 		return array(
 			'ok' => 1,
-			'example' => $example,
+			'example' => $GLOBALS['smarty']->fetch($template),
 		);
 	}
 
