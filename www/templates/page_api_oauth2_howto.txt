@@ -3,6 +3,47 @@
 
 <p class="api-link"><code>{$cfg.abs_root_url}api/oauth2/authenticate/</code></p>
 
+<h3>Pseudo-code: Getting a grant token</h3>
+
+<pre>
+	$args = array(
+		'client_id' => '<strong>YOUR API KEY</strong>',
+		'redirect_uri' => '<strong>YOUR ENDPOINT</strong>',
+		'scope' => 'read',
+		'response_type' => 'code',
+	);
+
+	$query = http_build_query($args);
+
+	$url = "{$cfg.abs_root_url}api/oauth2/<strong>authenticate/</strong>?" . $query;
+
+	header("location: $url");
+	exit();
+</pre>
+
 <p class="api-link"><code>{$cfg.abs_root_url}api/oauth2/access_token/</code></p>
+
+<h3>Pseudo-code: Exchanging a grant token for an access token</h3>
+
+<pre>
+	$code = get_str("code");
+
+	$args = array(
+		'client_id' => '<strong>YOUR API KEY</strong>',
+		'redirect_uri' => '<strong>YOUR ENDPOINT</strong>',
+		'grant_type' => 'authorization_code',
+		'response_type' => 'code',
+		'code' => $code,
+	);
+
+	$query = http_build_query($args);
+
+	$url = "{$cfg.abs_root_url}api/oauth2/<strong>access_token/</strong>?" . $query;
+	$rsp = http_get($url);
+
+	$data = json_decode($rsp['body'], 'as hash');
+
+	<strong>$access_token = $data['access_token'];</strong>
+</pre>
 
 {include file="inc_foot.txt"}
