@@ -1,15 +1,20 @@
 {capture assign="api_request_method"}{if $cfg.api_auth_type=='oauth2' and !$cfg.api_oauth2_allow_get_parameters}POST{elseif $details.request_method}{$details.request_method|escape}{else}GET{/if}{/capture}
 
-<div id="api_method">
+<div class="api-method">
 
 <div class="api-sect">
-<h2>{$method|escape}</h2>
-
-{if $details.requires_auth}
-<p><strong>This method requires authentication.</strong></p>
-{/if}
+<h2 class="api-method-name{if $details.requires_blessing} api-method-blessed{/if}{if !$details.documented} api-method-undocumented{/if}">{$method|escape}</h2>
 
 <p>{$details.description|escape}</p>
+</div>
+
+<div class="api-sect">
+<ul class="api-method-details">
+{if $details.requires_auth}<li>This method requires <strong>authentication</strong>.</li>{/if}
+{if $details.requires_blessing}<li>This method requires additional <strong>authorization</strong>.</li>{/if}
+{if !$details.documented}<li>This method is <strong>undocumented</strong>.</li>{/if}
+{if !$details.enabled}<li>This method is <strong>disabled</strong>.</li>{/if}
+</ul>
 </div>
 
 <div class="api-sect">
@@ -83,8 +88,9 @@
 
 {if $api_request_method=='GET' and $cfg.api_auth_type!='oauth2' or $cfg.api_oauth2_allow_get_parameters}
 
-<div class="api-sect">
 <div class="api-caveat">
+<div class="api-sect">
+
 <h3>Important</h3>
 
 <p>This API method uses <a href="{$cfg.abs_root_url}api/oauth2/">OAuth2</a> and allows you to pass parameters as part of the URL (or as <code>GET</code> requests). One of those parameters is your <a href="{$cfg.abs_root_url}api/oauth2/tokens/">access token</a> which is extra special and has super-powers.</p>
@@ -103,3 +109,4 @@
 {/if}
 
 </div>
+

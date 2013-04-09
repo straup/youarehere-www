@@ -15,6 +15,7 @@
 
 #api-header h2 {
 	margin-top: 0;
+	/* padding-top:20px; */
 	font-weight: 500;
 	font-size: medium;
 	color: #666;
@@ -102,6 +103,9 @@ label {
     max-height: 600px;
     overflow:scroll !important;
     x-overflow:none;
+    border:1px solid #999;
+    padding:1em;
+    background-color:#ededed;
 }
 
 .api-list-o-things {
@@ -153,4 +157,40 @@ label {
 
 .api-link code {
     font-size:1.5em;
+}
+
+@media print {
+
+    .api-method {
+	font-family: sans-serif;
+	page-break-after: always;
+    }
+
+    .api-list-o-things li {
+	margin-bottom: 1em;
+    }
+
+    .api-caveat {
+	margin-top:10em;
+	color:#666;
+	font-size: 7px !important;
+    }
+
+    .api-method-blessed {
+	color: red;
+    }
+
+    .api-method-undocumented {
+	color: red;
+    }
+    
+    .api-method-details {
+	margin: 0;
+	padding:0;
+	font-style: italic;
+    }
+
+    .api-method-details li {
+	margin-bottom: .5em;
+    }
 }
