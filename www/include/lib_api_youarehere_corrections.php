@@ -4,6 +4,30 @@
 
 	#################################################################
 
+	function api_youarehere_corrections_doThis(){
+
+		api_output_error(999, "YAHOO SAYS NO");
+
+		$lat = post_float("lat");
+		$lon = post_float("lon");
+
+		if ((! $lat) || (! geo_utils_is_valid_latitude($lat))){
+			api_output_error(500, "Missing or invalid latitude");
+		}
+
+		if ((! $lon) || (! geo_utils_is_valid_longitude($lon))){
+			api_output_error(500, "Missing or invalid longitude");
+		}
+
+		$woeid = post_float("woeid");
+
+		if (! $woeid){
+			api_output_error(500, "Missing WOE ID");
+		}
+	}
+
+	#################################################################
+
 	function api_youarehere_corrections_getCorrectionsByDate(){
 
 		$start_date = request_str("start_date");

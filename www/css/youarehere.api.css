@@ -161,6 +161,19 @@ label {
 
 @media print {
 
+    #api-methods-toc {
+	font-family: sans-serif;
+	page-break-after: always;
+	font-size:.75em;
+	margin:0px;
+	padding:0px;
+    }
+
+    #api-methods-toc li {
+	margin-bottom: .4em;
+	list-style-type: none;
+    }
+
     .api-method {
 	font-family: sans-serif;
 	page-break-after: always;

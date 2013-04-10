@@ -1,5 +1,7 @@
 {capture assign="api_request_method"}{if $cfg.api_auth_type=='oauth2' and !$cfg.api_oauth2_allow_get_parameters}POST{elseif $details.request_method}{$details.request_method|escape}{else}GET{/if}{/capture}
 
+<a name="{$method|escape}"></a>
+
 <div class="api-method">
 
 <div class="api-sect">

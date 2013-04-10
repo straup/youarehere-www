@@ -47,11 +47,7 @@
 		$fh = fopen("php://output", "w");
 	}
 
-	# $GLOBALS['smarty']->assign("page_title", "{$GLOBALS['cfg']['site_name']} API documentation");
-	# fwrite($fh, $GLOBALS['smarty']->fetch("inc_head.txt"));
-
-	# TO DO: generate a TOC which probably means running this loop and building
-	# a new list that all the remaining code uses (20130408/straup)
+	$methods = array();
 
 	foreach ($GLOBALS['cfg']['api']['methods'] as $method_name => $method_details){
 
@@ -85,6 +81,23 @@
 			continue;
 		}
 
+		$methods[$method_name] = $method_details;
+	}
+
+	# Header (maybe?)
+
+	# $GLOBALS['smarty']->assign("page_title", "{$GLOBALS['cfg']['site_name']} API documentation");
+	# fwrite($fh, $GLOBALS['smarty']->fetch("inc_head.txt"));
+
+	# Table of contents
+
+	$GLOBALS['smarty']->assign_by_ref("methods", $methods);
+	fwrite($fh, $GLOBALS['smarty']->fetch("inc_api_methods_toc.txt"));
+
+	# The actual API methods
+
+	foreach ($methods as $method_name => $method_details){
+
 		$rsp = api_spec_utils_example_for_method($method_name);
 
 		if ($rsp['ok']){
@@ -96,6 +109,8 @@
 
 		fwrite($fh, $GLOBALS['smarty']->fetch("inc_api_method.txt"));
 	}
+
+	# Footer (maybe?)
 
 	# fwrite($fh, $GLOBALS['smarty']->fetch("inc_foot.txt"));
 
