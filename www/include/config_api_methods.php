@@ -32,6 +32,38 @@
 			"library" => "api_test"
 		),
 
+		"youarehere.corrections.doThis" => array(
+			"description" => "Submit a correction",
+			"documented" => 1,
+			"enabled" => 1,
+			"library" => "api_youarehere_corrections",
+			"request_method" => "POST",
+			"parameters" => array(
+				array(
+					"name" => "lat",
+					"description" => "The latitude of the place to reverse geocode",
+					"required" => 1,
+				),
+				array(
+					"name" => "lon",
+					"description" => "The longitude of the place to reverse geocode",
+					"required" => 1,
+				),
+				array(
+					"name" => "woeid",
+					"description" => "The WOE ID ...",
+					"required" => 1,
+				),
+				array(
+					"name" => "perspective",
+					"description" => "The perspective for your correction",
+					"required" => 0,
+				),
+			),
+			"notes" => array(
+			),
+		),
+
 		"youarehere.corrections.getCorrectionsByDate" => array(
 			"description" => "Return a list of corrections by date range",
 			"documented" => 1,

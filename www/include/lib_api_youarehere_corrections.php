@@ -19,11 +19,82 @@
 			api_output_error(500, "Missing or invalid longitude");
 		}
 
-		$woeid = post_float("woeid");
+		$filter = post_str("filter");
+
+		if ((! $filter) || (! reverse_geocode_is_valid_filter($filter))){
+			api_output_error(500, "Missing or invalid filter");
+		}
+
+		# TO DO: allow for string values...
+
+		$perspective_id = post_int32("perspective");
+
+		if (! corrections_is_valid_perspective($perspective_id)){
+			api_output_error(500, "Invalid perspective");
+		}
+
+		$woeid = post_int64("woeid");
 
 		if (! $woeid){
 			api_output_error(500, "Missing WOE ID");
 		}
+
+		$ok_woeid = 1;
+
+		if ($woeid = -1){
+			# pass
+		}
+
+		else if ($woeid < 0){
+			$ok_woeid = 0;
+		}
+
+		else {
+
+			$reversegeo_rsp = reverse_geocode($lat, $lon, $filter);
+
+			foreach ($reversegeo_rsp['data'] as $row){
+
+				if ($row['woe_id'] == $woeid){
+					$ok_woeid = 1;
+					break;
+				}
+			}
+		}
+
+		if (! $ok_woeid){
+			api_output_error(999, "Invalid WOE ID");
+		}
+
+		# Go!
+
+		$source_id = reverse_geocode_filter_source($filter);
+
+		$correction = array(
+			'user_id' => $GLOBALS['cfg']['user']['id'],
+			'woe_id' => $choice,
+			'latitude' => $lat,
+			'longitude' => $lon,
+			'source_id' => $source_id,
+			'perspective' => $perspective_id,
+		);
+
+		if (features_is_enabled("record_remote_address")){
+			$addr = corrections_obfuscate_remote_address($_SERVER['REMOTE_ADDR']);
+			$correction['remote_address'] = $addr;
+		}
+
+		$rsp = corrections_add_correction($correction);
+
+		if (! $rsp['ok']){
+			api_output_error(999, "There was a problem adding your correction");
+		}
+
+		$out = array(
+			'id' => $rsp['correction']['id'],
+		);
+
+		api_output_ok($out);
 	}
 
 	#################################################################
