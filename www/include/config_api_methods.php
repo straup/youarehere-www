@@ -87,6 +87,13 @@
 			),
 		),
 
+		"youarehere.corrections.perspectives.getList" => array(
+			"description" => "Return the list of valid perspectives (for corrections)",
+			"documented" => 1,
+			"enabled" => 1,
+			"library" => "api_youarehere_corrections_perspectives"
+		),
+
 		"youarehere.geo.geocode" => array(
 			"description" => "Gecode a place name.",
 			"documented" => 1,

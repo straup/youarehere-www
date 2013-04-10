@@ -123,6 +123,11 @@
 		$method = array_pop($parts);
 
 		$func = "{$method_row['library']}_{$method}";
+
+		if (! function_exists($func)){
+			api_output_error(404, "Method not found");
+		}
+
 		call_user_func($func);
 
 		exit();
