@@ -139,6 +139,10 @@ label {
     content: " ]";
 }
 
+.api-param-required {
+    color:red !important;
+}
+
 .api-caveat {
     font-size: small;
 }

@@ -67,18 +67,18 @@
 
 <h3>Example request</h3>
 
-{if $api_request_method=='GET' and $cfg.api_auth_type!='oauth2' or $cfg.api_oauth2_allow_get_parameters}
+{if $api_request_method=='GET' and ($cfg.api_auth_type!='oauth2' or $cfg.api_oauth2_allow_get_parameters)}
 <pre class="api-example-request">curl -X {$api_request_method|escape} {$cfg.api_abs_root_url}<strong>{$cfg.api_endpoint}</strong> \
-            ?method=<strong>{$method|escape}</strong>{if $cfg.api_auth_type=='oauth2'} \
-            &access_token=<strong>&lt;TOKEN&gt;</strong> {/if}{if $details.parameters|@count} \{foreach from=$details.parameters item="param" name="params"}
+            ?method=<strong class="api-param-required">{$method|escape}</strong>{if $cfg.api_auth_type=='oauth2'} \
+            &access_token=<strong class="api-param-required">&lt;TOKEN&gt;</strong> {/if}{if $details.parameters|@count} \{foreach from=$details.parameters item="param" name="params"}
 
-	    &{$param.name|escape}=<strong>&lt;{$param.name|strtoupper|escape}&gt;</strong>{if !$smarty.foreach.params.last} \{/if}{/foreach}{/if}</pre>
+	    &{$param.name|escape}=<strong{if $param.required} class="api-param-required"{/if}>&lt;{$param.name|strtoupper|escape}&gt;</strong>{if !$smarty.foreach.params.last} \{/if}{/foreach}{/if}</pre>
 {else}
 <pre class="api-example-request">curl -X {$api_request_method|escape} {$cfg.api_abs_root_url}<strong>{$cfg.api_endpoint}</strong> \
-            -F "method=<strong>{$method|escape}</strong>"{if $cfg.api_auth_type=='oauth2'} \
-            -F "access_token=<strong>&lt;TOKEN&gt;</strong>" {/if}{if $details.parameters|@count} \{foreach from=$details.parameters item="param" name="params"}
+            -F "method=<strong class="api-param-required">{$method|escape}</strong>"{if $cfg.api_auth_type=='oauth2'} \
+            -F "access_token=<strong class="api-param-required">&lt;TOKEN&gt;</strong>" {/if}{if $details.parameters|@count} \{foreach from=$details.parameters item="param" name="params"}
 
-	    -F "{$param.name|escape}=<strong>&lt;{$param.name|strtoupper|escape}&gt;</strong> {if !$smarty.foreach.params.last} \{/if}{/foreach}{/if}</pre>
+	    -F "{$param.name|escape}=<strong{if $param.required} class="api-param-required"{/if}>&lt;{$param.name|strtoupper|escape}&gt;</strong> {if !$smarty.foreach.params.last} \{/if}{/foreach}{/if}</pre>
 {/if}
 
 {if $details.example_response}
@@ -88,7 +88,7 @@
 
 </div>
 
-{if $api_request_method=='GET' and $cfg.api_auth_type!='oauth2' or $cfg.api_oauth2_allow_get_parameters}
+{if $api_request_method=='GET' and ($cfg.api_auth_type!='oauth2' or $cfg.api_oauth2_allow_get_parameters)}
 
 <div class="api-caveat">
 <div class="api-sect">
