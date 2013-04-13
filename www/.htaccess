@@ -64,6 +64,24 @@ RewriteRule   ^getlatlon/?$				choose.php?%{QUERY_STRING}			[L]
 RewriteRule   ^decide/?$				maybe.php?%{QUERY_STRING}			[L]
 RewriteRule   ^maybe/?$					maybe.php?%{QUERY_STRING}			[L]
 
+# Assertions
+
+RewriteRule   ^assertions(/page([0-9]+))?/?$						assertions.php?page=$2&%{QUERY_STRING}	[L]
+RewriteRule   ^assertions/(locals|tourists|strangers)(/page([0-9]+))?/?$		assertions.php?perspective=$1&page=$3&%{QUERY_STRING}	[L]
+
+RewriteRule   ^a/([A-Za-z0-9]+)/?$							assertion.php?code=$1&%{QUERY_STRING}		[L]
+RewriteRule   ^assertions/([0-9]+)/?$							assertion.php?id=$1&%{QUERY_STRING}		[L]
+
+RewriteRule   ^assertions/me(/page([0-9]+))?/?$						assertions_me.php?page=$2&%{QUERY_STRING}	[L]
+RewriteRule   ^assertions/me/(local|tourist|stranger)(/page([0-9]+))?/?$		assertions_me.php?perspective=$1&page=$3&%{QUERY_STRING}	[L]
+
+RewriteRule   ^assertions/woe/?$							/assertions/  [R]
+
+RewriteRule   ^assertions/woe/([0-9]+)(/page([0-9]+))?/?$				assertions_woe.php?id=$1&page=$3&%{QUERY_STRING}	[L]
+RewriteRule   ^assertions/woe/([0-9]+)/(locals|tourists|strangers)(/page([0-9]+))?/?$	assertions_woe.php?id=$1&perspective=$2&page=$4&%{QUERY_STRING}	[L]
+
+# Old stuff (TO DO...)
+
 RewriteRule   ^corrections(/page([0-9]+))?/?$				corrections.php?page=$2&%{QUERY_STRING}	[L]
 RewriteRule   ^corrections/(locals|tourists|strangers)(/page([0-9]+))?/?$		corrections.php?perspective=$1&page=$3&%{QUERY_STRING}	[L]
 
@@ -78,7 +96,7 @@ RewriteRule   ^corrections/woe/?$						/corrections/  [R]
 RewriteRule   ^corrections/woe/([0-9]+)(/page([0-9]+))?/?$				corrections_woe.php?id=$1&page=$3&%{QUERY_STRING}	[L]
 RewriteRule   ^corrections/woe/([0-9]+)/(locals|tourists|strangers)(/page([0-9]+))?/?$		corrections_woe.php?id=$1&perspective=$2&page=$4&%{QUERY_STRING}	[L]
 
-RewriteRule   ^woe/([0-9]+)/?$						/corrections/woe/$1	[R]
+RewriteRule   ^woe/([0-9]+)/?$						/assertions/woe/$1	[R]
 RewriteRule   ^woe/([0-9]+)/geojson/?$					woedb_geojson.php?id=$1&%{QUERY_STRING}	[L]
 
 # Login stuff

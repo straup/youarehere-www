@@ -26,9 +26,9 @@ CREATE TABLE `users_password_reset` (
   KEY `by_timestamp` (`created`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `Corrections`;
+DROP TABLE IF EXISTS `Assertions`;
 
-CREATE TABLE `Corrections` (
+CREATE TABLE `Assertions` (
   `id` BIGINT(20) unsigned NOT NULL,
   `user_id` INT(10) unsigned NOT NULL,
   `woe_id` BIGINT(20) signed NOT NULL,
@@ -50,12 +50,12 @@ CREATE TABLE `Corrections` (
   KEY `by_timestamp` (`created`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `CorrectionsRedacted`;
+DROP TABLE IF EXISTS `AssertionsRedacted`;
 
-CREATE TABLE `CorrectionsRedacted` (
-  `correction_id` BIGINT(20) unsigned NOT NULL,
+CREATE TABLE `AssertionsRedacted` (
+  `assertion_id` BIGINT(20) unsigned NOT NULL,
   `redacted` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`correction_id`),
+  PRIMARY KEY (`assertion_id`),
   KEY `by_date` (`redacted`),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

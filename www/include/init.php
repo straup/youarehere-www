@@ -228,7 +228,7 @@
 	#loadlib('versions');
 	loadlib('http');
 
-	loadlib('corrections');
+	loadlib('assertions');
 	loadlib('reverse_geocode');
 	loadlib('urls');
 	loadlib('base58');

@@ -162,7 +162,7 @@
 
 				$source_id = reverse_geocode_filter_source($filter);
 
-				$correction = array(
+				$assertion = array(
 					'user_id' => $GLOBALS['cfg']['user']['id'],
 					'woe_id' => $choice,
 					'latitude' => $lat,
@@ -171,17 +171,17 @@
 				);
 
 				if (features_is_enabled("record_remote_address")){
-					$addr = corrections_obfuscate_remote_address($_SERVER['REMOTE_ADDR']);
-					$correction['remote_address'] = $addr;
+					$addr = assertions_obfuscate_remote_address($_SERVER['REMOTE_ADDR']);
+					$assertion['remote_address'] = $addr;
 				}
 
 				$perspective = post_int32("perspective");
 
-				if (($perspective) && (corrections_is_valid_perspective($perspective))){
-					$correction['perspective'] = $perspective;
+				if (($perspective) && (assertions_is_valid_perspective($perspective))){
+					$assertion['perspective'] = $perspective;
 				}
 
-				$rsp = corrections_add_correction($correction);
+				$rsp = assertions_add_assertion($assertion);
 				$GLOBALS['smarty']->assign("update", $rsp);
 			}
 
@@ -193,7 +193,7 @@
 			# All of this has happened before / all of this will happen again
 			# TO DO – radial or tiny bbox query (20130331/straup)
 
-			$previous_rsp = corrections_get_for_user_latlon($GLOBALS['cfg']['user'], $lat, $lon);
+			$previous_rsp = assertions_get_for_user_latlon($GLOBALS['cfg']['user'], $lat, $lon);
 			$previous = ($previous_rsp['ok']) ? $previous_rsp['rows'] : array();
 
 			$count = count($previous);
@@ -222,8 +222,8 @@
 	$GLOBALS['smarty']->assign("fallback_tree", $fallback_tree);
 	$GLOBALS['smarty']->assign("falldown_tree", $falldown_tree);
 
-	$map = corrections_perspective_map();
+	$map = assertions_perspective_map();
 	$GLOBALS['smarty']->assign_by_ref("perspective_map", $map);
 
-	$GLOBALS['smarty']->display("page_maybe.txt");
+	$GLOBALS['smarty']->display("page_decide.txt");
 	exit();

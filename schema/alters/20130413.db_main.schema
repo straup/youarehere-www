@@ -1,0 +1,3 @@
+ALTER TABLE Corrections RENAME AS Assertions;
+ALTER TABLE CorrectionsRedacted RENAME AS AssertionsRedacted;
+ALTER TABLE AssertionsRedacated CHANGE correction_id assertion_id BIGINT(20) UNSIGNED NOT NULL;

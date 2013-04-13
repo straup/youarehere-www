@@ -2,7 +2,7 @@
 
 	include("include/init.php");
 
-	loadlib("corrections");
+	loadlib("assertions");
 	loadlib("reverse_geocode");
 
 	$id = get_int64("id");
@@ -15,18 +15,18 @@
 		error_404();
 	}
 
-	$correction = corrections_get_by_id($id);
+	$assertion = assertions_get_by_id($id);
 
-	if (! $correction){
+	if (! $assertion){
 
-		if ($redacted = corrections_redacted_get_by_id($id)){
+		if ($redacted = assertions_redacted_get_by_id($id)){
 			error_410();
 		}
 
 		error_404();
 	}
 
-	$is_own = (($GLOBALS['cfg']['user']) && (corrections_is_own($correction, $GLOBALS['cfg']['user']))) ? 1 : 0;
+	$is_own = (($GLOBALS['cfg']['user']) && (assertions_is_own($assertion, $GLOBALS['cfg']['user']))) ? 1 : 0;
 	$GLOBALS['smarty']->assign("is_own", $is_own);
 
 	if ($is_own){
@@ -36,11 +36,11 @@
 
 		if (post_isset('delete') && crumb_check($crumb_key)){
 
-			$rsp = corrections_delete_correction($correction);
+			$rsp = assertions_delete_assertion($assertion);
 
 			if ($rsp['ok']){
 
-				$redir = "{$GLOBALS['cfg']['abs_root_url']}corrections/me?deleted=1";
+				$redir = "{$GLOBALS['cfg']['abs_root_url']}assertions/me?deleted=1";
 				header("location: {$redir}");
 				exit();
 			}
@@ -49,16 +49,16 @@
 		}
 	}
 
-	$GLOBALS['smarty']->assign_by_ref("correction", $correction);
+	$GLOBALS['smarty']->assign_by_ref("assertion", $assertion);
 
 	# Not a feature. Please fix me... (20130204/straup)
-	$corrections = array($correction);
-	$GLOBALS['smarty']->assign_by_ref("corrections", $corrections);
+	$assertions = array($assertion);
+	$GLOBALS['smarty']->assign_by_ref("assertions", $assertions);
 
-	$map = corrections_perspective_map();
+	$map = assertions_perspective_map();
 	$GLOBALS['smarty']->assign_by_ref("perspective_map", $map);
 
-	$GLOBALS['smarty']->display("page_correction.txt");
+	$GLOBALS['smarty']->display("page_assertion.txt");
 	exit();
 
 ?>

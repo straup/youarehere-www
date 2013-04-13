@@ -4,7 +4,7 @@
 
 	login_ensure_loggedin();
 
-	loadlib("corrections");
+	loadlib("assertions");
 	loadlib("reverse_geocode");
 
 	$user = $GLOBALS['cfg']['user'];
@@ -19,21 +19,21 @@
 
 		$p = "{$p}s";
 
-		$map = corrections_perspective_filter_map('string keys');
+		$map = assertions_perspective_filter_map('string keys');
 
 		if (array_key_exists($p, $map)){
 			$more['perspective'] = $map[$p];
 		}
 	}
 
-	$rsp = corrections_get_for_user($user, $more);
-	$GLOBALS['smarty']->assign_by_ref("corrections", $rsp['rows']);
+	$rsp = assertions_get_for_user($user, $more);
+	$GLOBALS['smarty']->assign_by_ref("assertions", $rsp['rows']);
 
-	$map = corrections_perspective_map();
+	$map = assertions_perspective_map();
 	$GLOBALS['smarty']->assign_by_ref("perspective_map", $map);
 
-	$GLOBALS['smarty']->assign("filter_root", "{$GLOBALS['cfg']['abs_root_url']}corrections/me/");
+	$GLOBALS['smarty']->assign("filter_root", "{$GLOBALS['cfg']['abs_root_url']}assertions/me/");
 
-	$GLOBALS['smarty']->display("page_corrections_me.txt");
+	$GLOBALS['smarty']->display("page_assertions_me.txt");
 	exit();
 ?>

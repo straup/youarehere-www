@@ -2,7 +2,7 @@
 
 	########################################################################
 
-	function corrections_geojson_corrections_to_geojson($corrections, $more=array()){
+	function assertions_geojson_assertions_to_geojson($assertions, $more=array()){
 
 		$defaults = array(
 			'add_bbox' => 0,
@@ -12,9 +12,9 @@
 
 		$features = array();
 
-		foreach ($corrections as $c){
+		foreach ($assertions as $c){
 
-			$features[] = corrections_geojson_correction_to_feature($c);
+			$features[] = assertions_geojson_assertion_to_feature($c);
 		}
 
 		# TO DO: bbox for features if count > 1
@@ -33,7 +33,7 @@
 
 	########################################################################
 
-	function corrections_geojson_correction_to_feature(&$c){
+	function assertions_geojson_assertion_to_feature(&$c){
 
 		$coords = array(
 			floatval($c['longitude']),

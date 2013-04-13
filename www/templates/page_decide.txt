@@ -2,11 +2,11 @@
 {include file="inc_head.txt"}
 
 {if $step=='choose'}
-	{include file="inc_maybe_choose.txt"}
+	{include file="inc_decide_choose.txt"}
 {elseif $step=='update'}
-	{include file="inc_maybe_update.txt"}
+	{include file="inc_decide_update.txt"}
 {else}
-	{include file="inc_maybe_locate.txt"}
+	{include file="inc_decide_locate.txt"}
 {/if}
 
 {include file="inc_foot.txt"}

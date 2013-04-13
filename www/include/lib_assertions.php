@@ -3,11 +3,11 @@
 	loadlib("artisanal_integers");
 	loadlib("geo_utils");
 
-	loadlib("corrections_redacted");
+	loadlib("assertions_redacted");
 
 	########################################################################
 
-	function corrections_perspective_map($string_keys=0){
+	function assertions_perspective_map($string_keys=0){
 
 		$map = array(
 			0 => "a stranger",
@@ -22,7 +22,7 @@
 		return $map;
 	}
 
-	function corrections_perspective_filter_map($string_keys=0){
+	function assertions_perspective_filter_map($string_keys=0){
 
 		$map = array(
 			0 => 'strangers',
@@ -39,15 +39,15 @@
 
 	########################################################################
 
-	function corrections_is_valid_perspective($id){
+	function assertions_is_valid_perspective($id){
 
-		$map = corrections_perspective_map();
+		$map = assertions_perspective_map();
 		return (isset($map[$id])) ? 1 : 0;
 	}
 
 	########################################################################
 
-	function corrections_add_correction($data){
+	function assertions_add_assertion($data){
 
 		$rsp = artisanal_integers_create();
 
@@ -64,11 +64,11 @@
 			$insert[$k] = AddSlashes($v);
 		}
 
-		$rsp = db_insert('Corrections', $insert);
+		$rsp = db_insert('Assertions', $insert);
 
 		if ($rsp['ok']){
-			$data = corrections_scrub_correction($data);
-			$rsp['correction'] = $data;
+			$data = assertions_scrub_assertion($data);
+			$rsp['assertion'] = $data;
 		}
 
 		return $rsp;
@@ -76,28 +76,28 @@
 
 	########################################################################
 
-	function corrections_get_by_id($id){
+	function assertions_get_by_id($id){
 
 		$enc_id = AddSlashes($id);
 
-		$sql = "SELECT * FROM Corrections WHERE id='{$enc_id}'";
+		$sql = "SELECT * FROM Assertions WHERE id='{$enc_id}'";
 		$rsp = db_fetch($sql);
 
 		$row = db_single($rsp);
-		$row = corrections_scrub_correction($row);		
+		$row = assertions_scrub_assertion($row);		
 
 		return $row;
 	}
 
 	########################################################################
 
-	function corrections_is_own(&$correction, &$user){
+	function assertions_is_own(&$assertion, &$user){
 
 		# cache me...
 
-		$enc_id = AddSlashes($correction['id']);
+		$enc_id = AddSlashes($assertion['id']);
 
-		$sql = "SELECT user_id FROM Corrections WHERE id='{$enc_id}'";
+		$sql = "SELECT user_id FROM Assertions WHERE id='{$enc_id}'";
 		$rsp = db_fetch($sql);
 		$row = db_single($rsp);
 
@@ -106,11 +106,11 @@
 
 	########################################################################
 
-	function corrections_get_recent($more=array()){
+	function assertions_get_recent($more=array()){
 
 		$enc_id = AddSlashes($user['id']);
 
-		$sql = "SELECT * FROM Corrections";
+		$sql = "SELECT * FROM Assertions";
 
 		$where = array();
 
@@ -137,18 +137,18 @@
 		$sql .= " ORDER BY created DESC";
 
 		$rsp = db_fetch_paginated($sql, $more);
-		$rsp = corrections_scrub_rsp($rsp);
+		$rsp = assertions_scrub_rsp($rsp);
 
 		return $rsp;
 	}
 
 	########################################################################
 
-	function corrections_get_for_user(&$user, $more=array()){
+	function assertions_get_for_user(&$user, $more=array()){
 
 		$enc_id = AddSlashes($user['id']);
 
-		$sql = "SELECT * FROM Corrections WHERE user_id='{$enc_id}'";
+		$sql = "SELECT * FROM Assertions WHERE user_id='{$enc_id}'";
 
 		if (array_key_exists('perspective', $more)){
 			$enc_pid = AddSlashes($more['perspective']);
@@ -158,20 +158,20 @@
 		$sql .= " ORDER BY created DESC";
 
 		$rsp = db_fetch_paginated($sql, $more);
-		$rsp = corrections_scrub_rsp($rsp);
+		$rsp = assertions_scrub_rsp($rsp);
 
 		return $rsp;
 	}
 
 	########################################################################
 
-	function corrections_get_for_user_latlon(&$user, $lat, $lon, $more=array()){
+	function assertions_get_for_user_latlon(&$user, $lat, $lon, $more=array()){
 
 		$enc_id = AddSlashes($user['id']);
 		$enc_lat = AddSlashes($lat);
 		$enc_lon = AddSlashes($lon);
 
-		$sql = "SELECT * FROM Corrections WHERE user_id='{$enc_id}'";
+		$sql = "SELECT * FROM Assertions WHERE user_id='{$enc_id}'";
 
 		# $sql .= " AND latitude='{$enc_lat}' AND longitude='{$enc_lon}'";
 
@@ -189,7 +189,7 @@
 		$sql .= " ORDER BY created DESC";
 
 		$rsp = db_fetch_paginated($sql, $more);
-		$rsp = corrections_scrub_rsp($rsp);
+		$rsp = assertions_scrub_rsp($rsp);
 
 		return $rsp;
 
@@ -197,11 +197,11 @@
 
 	########################################################################
 
-	function corrections_get_for_woe(&$woe, $more=array()){
+	function assertions_get_for_woe(&$woe, $more=array()){
 
 		$enc_id = AddSlashes($woe['woe_id']);
 
-		$sql = "SELECT * FROM Corrections WHERE woe_id='{$enc_id}'";
+		$sql = "SELECT * FROM Assertions WHERE woe_id='{$enc_id}'";
 
 		if (array_key_exists('perspective', $more)){
 			$enc_pid = AddSlashes($more['perspective']);
@@ -211,7 +211,7 @@
 		$sql .= " ORDER BY created DESC";
 
 		$rsp = db_fetch_paginated($sql, $more);
-		$rsp = corrections_scrub_rsp($rsp);
+		$rsp = assertions_scrub_rsp($rsp);
 
 		return $rsp;
 	}
@@ -220,7 +220,7 @@
 
 	# use bcrypt?
 
-	function corrections_obfuscate_remote_address($addr){
+	function assertions_obfuscate_remote_address($addr){
 
 		$secret = $GLOBALS['cfg']['crypto_remote_address_secret'];
 
@@ -236,10 +236,10 @@
 
 	########################################################################
 
-	function corrections_scrub_rsp(&$rsp){
+	function assertions_scrub_rsp(&$rsp){
 
 		if ($rsp['ok']){
-			$rsp['rows'] = corrections_scrub_corrections($rsp['rows']);
+			$rsp['rows'] = assertions_scrub_assertions($rsp['rows']);
 		}
 
 		return $rsp;
@@ -247,12 +247,12 @@
 
 	########################################################################
 
-	function corrections_scrub_corrections(&$rows){
+	function assertions_scrub_assertions(&$rows){
 
 		$count = count($rows);
 
 		for ($i=0; $i < $count; $i++){
-			$rows[$i] = corrections_scrub_correction($rows[$i]);
+			$rows[$i] = assertions_scrub_assertion($rows[$i]);
 		}
 
 		return $rows;
@@ -260,7 +260,7 @@
 
 	########################################################################
 
-	function corrections_scrub_correction($row){
+	function assertions_scrub_assertion($row){
 
 		$to_remove = array(
 			'user_id',
@@ -279,17 +279,17 @@
 
 	########################################################################
 
-	function corrections_delete_correction(&$correction){
+	function assertions_delete_assertion(&$assertion){
 
-		$rsp = corrections_redacted_redact_correction($correction);
+		$rsp = assertions_redacted_redact_assertion($assertion);
 
 		if (! $rsp['ok']){
 			$error = $rsp['error'];
-			return array('ok' => 0, 'error' => "Failed to redact correction: {$error}");
+			return array('ok' => 0, 'error' => "Failed to redact assertion: {$error}");
 		}
 
-		$enc_id = AddSlashes($correction['id']);
-		$sql = "DELETE FROM Corrections WHERE id='{$enc_id}'";
+		$enc_id = AddSlashes($assertion['id']);
+		$sql = "DELETE FROM Assertions WHERE id='{$enc_id}'";
 
 		return db_write($sql);
 	}
