@@ -11,7 +11,7 @@
 
 			$perspectives[] = array(
 				'id' => $id,
-				'label' => $label,
+				'name' => $label,
 			);
 		}
 

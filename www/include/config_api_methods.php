@@ -146,6 +146,13 @@
 			"library" => "api_youarehere_geo_filters"
 		),
 
+		"youarehere.geo.sources.getList" => array(
+			"description" => "Return the list of sources used for reverse geocoding",
+			"documented" => 1,
+			"enabled" => 1,
+			"library" => "api_youarehere_geo_sources"
+		),
+
 	), $GLOBALS['cfg']['api']['methods']);
 
 	########################################################################

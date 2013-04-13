@@ -9,7 +9,9 @@
 		foreach ($GLOBALS['cfg']['reverse_geocoder_clusters'] as $name => $details){
 
 			$filter = array(
-				'name' => $name
+				'name' => $name,
+				'fallback' => $details['fallback'],
+				'source_id' => $details['source'],
 			);
 
 			if ($details['default']){
