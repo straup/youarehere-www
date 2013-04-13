@@ -32,31 +32,31 @@
 			"library" => "api_test"
 		),
 
-		"youarehere.corrections.doThis" => array(
+		"youarehere.assertions.assertLocation" => array(
 			"description" => "Submit a correction",
 			"documented" => 1,
 			"enabled" => 1,
-			"library" => "api_youarehere_corrections",
+			"library" => "api_youarehere_assertions",
 			"request_method" => "POST",
 			"parameters" => array(
 				array(
 					"name" => "lat",
-					"description" => "The latitude of the place to reverse geocode",
+					"description" => "The latitude of the place you are assering a location for.",
 					"required" => 1,
 				),
 				array(
 					"name" => "lon",
-					"description" => "The longitude of the place to reverse geocode",
+					"description" => "The longitude of the place you are asserting a location for.",
 					"required" => 1,
 				),
 				array(
-					"name" => "woeid",
-					"description" => "The WOE ID ...",
+					"name" => "woe_id",
+					"description" => "The WOE ID of the place that contains the latitude and longitude.",
 					"required" => 1,
 				),
 				array(
-					"name" => "perspective",
-					"description" => "The perspective for your correction",
+					"name" => "perspective_id",
+					"description" => "The numeric perspective ID for your assertion. See the documentation for the youarehere.geo.sources.getList API method for details.",
 					"required" => 0,
 				),
 			),
@@ -64,20 +64,20 @@
 			),
 		),
 
-		"youarehere.corrections.getCorrectionsByDate" => array(
-			"description" => "Return a list of corrections by date range",
+		"youarehere.assertions.getAssertionsByDate" => array(
+			"description" => "Return a list of assertions by date range",
 			"documented" => 1,
 			"enabled" => 1,
-			"library" => "api_youarehere_corrections",
+			"library" => "api_youarehere_assertions",
 			"parameters" => array(
 				array(
 					"name" => "start_date",
-					"description" => "The earliest date to return corrections for",
+					"description" => "The earliest date to return assertions for",
 					"required" => 1,
 				),
 				array(
 					"name" => "end_date",
-					"description" => "The latest date to return corrections for",
+					"description" => "The latest date to return assertions for",
 					"required" => 1,
 				),
 			),
@@ -87,11 +87,11 @@
 			),
 		),
 
-		"youarehere.corrections.perspectives.getList" => array(
-			"description" => "Return the list of valid perspectives (for corrections)",
+		"youarehere.assertions.perspectives.getList" => array(
+			"description" => "Return the list of valid perspectives (for assertions)",
 			"documented" => 1,
 			"enabled" => 1,
-			"library" => "api_youarehere_corrections_perspectives"
+			"library" => "api_youarehere_assertions_perspectives"
 		),
 
 		"youarehere.geo.geocode" => array(
