@@ -64,6 +64,21 @@
 			),
 		),
 
+		"youarehere.assertions.redactAssertion" => array(
+			"description" => "Redact an assertion.",
+			"documented" => 1,
+			"enabled" => 1,
+			"library" => "api_youarehere_assertions",
+			"request_method" => "POST",
+			"parameters" => array(
+				array(
+					"name" => "assertion_id",
+					"description" => "",
+					"required" => 1,
+				),
+			),
+		),
+
 		"youarehere.assertions.getAssertionsByDate" => array(
 			"description" => "Return a list of assertions by date range",
 			"documented" => 1,

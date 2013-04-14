@@ -102,7 +102,7 @@
 		}
 	
 		if ($auth_rsp['user']){
-			$GLOBALS['cfg']['user'] = $user;
+			$GLOBALS['cfg']['user'] = $auth_rsp['user'];
 		}
 
 		# Third, lessings and other method specific access controls

@@ -6,8 +6,6 @@
 
 	function api_youarehere_assertions_assertLocation(){
 
-		api_output_error(999, "YAHOO SAYS NO");
-
 		$lat = post_float("lat");
 		$lon = post_float("lon");
 
@@ -21,19 +19,25 @@
 
 		$filter = post_str("filter");
 
-		if ((! $filter) || (! reverse_geocode_is_valid_filter($filter))){
+		if (! $filter){
+			$filter = reverse_geocode_default_filter();
+		}
+
+		else if (! reverse_geocode_is_valid_filter($filter)){
 			api_output_error(500, "Missing or invalid filter");
 		}
 
+		else {}
+
 		# TO DO: allow for string values...
 
-		$perspective_id = post_int32("perspective");
+		$perspective_id = post_int32("perspective_id");
 
 		if (! assertions_is_valid_perspective($perspective_id)){
 			api_output_error(500, "Invalid perspective");
 		}
 
-		$woeid = post_int64("woeid");
+		$woeid = post_int64("woe_id");
 
 		if (! $woeid){
 			api_output_error(500, "Missing WOE ID");
@@ -72,12 +76,14 @@
 
 		$assertion = array(
 			'user_id' => $GLOBALS['cfg']['user']['id'],
-			'woe_id' => $choice,
+			'woe_id' => $woeid,
 			'latitude' => $lat,
 			'longitude' => $lon,
 			'source_id' => $source_id,
 			'perspective' => $perspective_id,
 		);
+
+		# api_output_ok($assertion);
 
 		if (features_is_enabled("record_remote_address")){
 			$addr = assertions_obfuscate_remote_address($_SERVER['REMOTE_ADDR']);
@@ -95,6 +101,13 @@
 		);
 
 		api_output_ok($out);
+	}
+
+	#################################################################
+
+	function api_youarehere_assertions_redactAssertion(){
+
+		api_output_error(999, "Not yet");
 	}
 
 	#################################################################
