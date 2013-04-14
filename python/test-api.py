@@ -52,12 +52,14 @@ if __name__ == '__main__':
     tests = {
         'api.spec.formats' : {},
         'api.spec.methods': {},
-        'test.echo': {'foo': 'bar' },
-        'test.error': {},
-        'youarehere.corrections.getCorrectionsByDate': { 'start_date': '2013-04-01', 'end_date': '2013-04-02' },
+        'api.test.echo': {'foo': 'bar' },
+        'api.test.error': {},
+        'youarehere.assertions.getAssertionsByDate': { 'start_date': '2013-04-01', 'end_date': '2013-04-02' },
+        'youarehere.assertions.perspectives.getList' : {},
         'youarehere.geo.geocode' : { 'query': 'melbourne' },
         'youarehere.geo.reverseGeocode' : { 'lat': 40.683789, 'lon': -73.989958, 'filter': 'localities' },
         'youarehere.geo.filters.getList' : {},
+        'youarehere.geo.sources.getList' : {},
         }
 
     #
