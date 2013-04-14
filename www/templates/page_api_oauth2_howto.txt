@@ -7,7 +7,7 @@
 
 <h2>The basics</h2>
 
-<p><a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> implements the basics of <a href="http://oauth.net/2/">section 4.2 of the OAuth2 specification</a> and assumes the following roles and relationships:</p>
+<p><a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> implements the basics of <a href="http://tools.ietf.org/html/rfc6749#section-4.2">section 4.2 of the OAuth2 specification</a> and assumes the following roles and relationships:</p>
 
 <div class="api-sect">
 
