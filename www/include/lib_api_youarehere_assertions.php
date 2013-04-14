@@ -105,9 +105,33 @@
 
 	#################################################################
 
-	function api_youarehere_assertions_redactAssertion(){
+	function api_youarehere_assertions_deleteAssertion(){
 
 		api_output_error(999, "Not yet");
+
+		$id = post_int64("assertion_id");
+
+		if (! $id){
+			api_output_error(999, "Missing assertion ID");
+		}
+
+		$assertion = assertions_get_by_id($id);
+
+		if (! $assertion){
+			api_output_error(999, "Invalid assertion ID");
+		}
+
+		if ($assertion['user_id'] != $GLOBALS['cfg']['user']['id']){
+			api_output_error(999, "Insufficient permissions");
+		}
+
+		$rsp = assertions_delete_assertion($assertion);
+
+		if (! $rsp['ok']){
+			api_output_error(999, "There was a problem deleting the assertion");
+		}
+
+		api_output_error();
 	}
 
 	#################################################################

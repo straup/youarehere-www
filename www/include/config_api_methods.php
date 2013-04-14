@@ -64,8 +64,8 @@
 			),
 		),
 
-		"youarehere.assertions.redactAssertion" => array(
-			"description" => "Redact an assertion.",
+		"youarehere.assertions.deleteAssertion" => array(
+			"description" => "Delete an assertion.",
 			"documented" => 1,
 			"enabled" => 1,
 			"library" => "api_youarehere_assertions",
