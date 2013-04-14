@@ -1,10 +1,10 @@
 <?php
 
-	loadlib("corrections_geojson");
+	loadlib("assertions_geojson");
 
 	#################################################################
 
-	function api_youarehere_corrections_doThis(){
+	function api_youarehere_assertions_assertLocation(){
 
 		api_output_error(999, "YAHOO SAYS NO");
 
@@ -29,7 +29,7 @@
 
 		$perspective_id = post_int32("perspective");
 
-		if (! corrections_is_valid_perspective($perspective_id)){
+		if (! assertions_is_valid_perspective($perspective_id)){
 			api_output_error(500, "Invalid perspective");
 		}
 
@@ -70,7 +70,7 @@
 
 		$source_id = reverse_geocode_filter_source($filter);
 
-		$correction = array(
+		$assertion = array(
 			'user_id' => $GLOBALS['cfg']['user']['id'],
 			'woe_id' => $choice,
 			'latitude' => $lat,
@@ -80,18 +80,18 @@
 		);
 
 		if (features_is_enabled("record_remote_address")){
-			$addr = corrections_obfuscate_remote_address($_SERVER['REMOTE_ADDR']);
-			$correction['remote_address'] = $addr;
+			$addr = assertions_obfuscate_remote_address($_SERVER['REMOTE_ADDR']);
+			$assertion['remote_address'] = $addr;
 		}
 
-		$rsp = corrections_add_correction($correction);
+		$rsp = assertions_add_assertion($assertion);
 
 		if (! $rsp['ok']){
-			api_output_error(999, "There was a problem adding your correction");
+			api_output_error(999, "There was a problem adding your assertion");
 		}
 
 		$out = array(
-			'id' => $rsp['correction']['id'],
+			'id' => $rsp['assertion']['id'],
 		);
 
 		api_output_ok($out);
@@ -99,7 +99,7 @@
 
 	#################################################################
 
-	function api_youarehere_corrections_getCorrectionsByDate(){
+	function api_youarehere_assertions_getAssertionsByDate(){
 
 		$start_date = request_str("start_date");
 
@@ -143,13 +143,13 @@
 
 		api_utils_ensure_pagination_args($args);
 
-		$rsp = corrections_get_recent($args);
+		$rsp = assertions_get_recent($args);
 
 		if (! $rsp['ok']){
-			api_output_error(999, "Failed to retrieve corrections");
+			api_output_error(999, "Failed to retrieve assertions");
 		}
 
-		$geojson = corrections_geojson_corrections_to_geojson($rsp['rows']);
+		$geojson = assertions_geojson_assertions_to_geojson($rsp['rows']);
 
 		$out = array(
 			'start_date' => $start_date,

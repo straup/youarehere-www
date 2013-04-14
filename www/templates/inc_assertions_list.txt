@@ -1,6 +1,6 @@
 {include file="inc_map.txt"}
 
-{if !$corrections|@count}
+{if !$assertions|@count}
 
 <p class="error">These are not the opinions you are looking for (because there are none yet).</p>
 <script type="text/javascript">
@@ -12,26 +12,26 @@ $(document).ready(function(){
 </script>
 {else}
 
-<table id="correction-details" class="table table-condensed table-bordered">
-{include file="inc_correction_details_header.txt" correction_row=$corrections.0}
+<table id="assertion-details" class="table table-condensed table-bordered">
+{include file="inc_assertion_details_header.txt" assertion_row=$assertions.0}
 
-{foreach from=$corrections item="correction"}
-{include file="inc_correction_details_row.txt" correction_row=$correction}
+{foreach from=$assertions item="assertion"}
+{include file="inc_assertion_details_row.txt" assertion_row=$assertion}
 {/foreach}
 
 </table>
 
 {if $is_own && $delete_me}
-<form id="delete-me" method="POST" action="{$cfg.abs_root_url}corrections/{$correction.id|escape}/">
+<form id="delete-me" method="POST" action="{$cfg.abs_root_url}assertions/{$assertion.id|escape}/">
 	{$crumb_key|crumb_input}
 	<input type="checkbox" name="delete" />
-	<input type="submit" value="DELETE THIS CORRECTION" />
+	<input type="submit" value="DELETE THIS ASSERTION" />
 </form>
 <script type="text/javascript">
 {literal}
 $(document).ready(function(){
 	$("#delete-me").submit(function(){
-		var msg = "Are you sure you want to delete this correction? THERE IS NO UNDO";
+		var msg = "Are you sure you want to delete this assertion? THERE IS NO UNDO";
 
 		if (! confirm(msg)){
 			return false;
@@ -46,14 +46,14 @@ $(document).ready(function(){
 
 <script type="text/javascript">
 $(document).ready(function(){literal}{{/literal}
-	var latlons = [{foreach from=$corrections item="row"}
-		[{$row.latitude|escape},{$row.longitude|escape},{literal}{{/literal}'id':{$row.id|escape},'permalink':'{$row|@urls_correction_url}'{literal}}{/literal}],
+	var latlons = [{foreach from=$assertions item="row"}
+		[{$row.latitude|escape},{$row.longitude|escape},{literal}{{/literal}'id':{$row.id|escape},'permalink':'{$row|@urls_assertion_url}'{literal}}{/literal}],
 	{/foreach}];
 
 	var geojson = youarehere_map_latlons_to_geojson(latlons);
 	youarehere_map_init(geojson);
 
-	var woeids = [{foreach from=$corrections item="row" name="woeids"}{$row.woe_id|escape}{if !$smarty.foreach.woeids.last},{/if}{/foreach}];
+	var woeids = [{foreach from=$assertions item="row" name="woeids"}{$row.woe_id|escape}{if !$smarty.foreach.woeids.last},{/if}{/foreach}];
 	youarehere_woe_draw_shapes(woeids);
 
 {literal}}{/literal});

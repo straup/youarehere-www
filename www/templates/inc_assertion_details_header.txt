@@ -1,5 +1,5 @@
 <tr>
-{foreach from=$correction_row|@array_keys item="label"}
+{foreach from=$assertion_row|@array_keys item="label"}
 
 {if $label=='user_id' and !"show_users"|@features_is_enabled}
 	{* pass *}

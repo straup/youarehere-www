@@ -1,4 +1,4 @@
-function youarehere_correction_draw_map(geojson_url){
+function youarehere_assertion_draw_map(geojson_url){
 
 	var _onsuccess = function(geojson){
 		youarehere_map_init(geojson);

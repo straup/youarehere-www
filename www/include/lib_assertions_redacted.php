@@ -2,13 +2,13 @@
 
 	########################################################################
 
-	function corrections_redacted_get_by_id($id){
+	function assertions_redacted_get_by_id($id){
 
 		# cache me...
 
 		$enc_id = AddSlashes($id);
 
-		$sql = "SELECT * FROM CorrectionsRedacted WHERE correction_id='{$enc_id}'";
+		$sql = "SELECT * FROM AssertionsRedacted WHERE assertion_id='{$enc_id}'";
 		$rsp = db_fetch($sql);
 		$row = db_single($rsp);
 
@@ -17,12 +17,12 @@
 
 	########################################################################
 
-	function corrections_redacted_redact_correction(&$correction){
+	function assertions_redacted_redact_assertion(&$assertion){
 
 		$now = time();
 
 		$redacted = array(
-			'correction_id' => $correction['id'],
+			'assertion_id' => $assertion['id'],
 			'redacted' => $now
 		);
 
@@ -32,7 +32,7 @@
 			$insert[$k] = AddSlashes($v);
 		}
 
-		$rsp = db_insert('CorrectionsRedacted', $insert);
+		$rsp = db_insert('AssertionsRedacted', $insert);
 
 		if ($rsp['ok']){
 			$rsp['redacted'] = $redacted;

@@ -33,7 +33,7 @@
 		),
 
 		"youarehere.assertions.assertLocation" => array(
-			"description" => "Submit a correction",
+			"description" => "Assert the location for a latitude and longitude.",
 			"documented" => 1,
 			"enabled" => 1,
 			"library" => "api_youarehere_assertions",

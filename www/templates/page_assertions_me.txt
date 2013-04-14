@@ -1,13 +1,13 @@
-{capture assign="page_title"}corrections / me{/capture}
+{capture assign="page_title"}assertions / me{/capture}
 {include file="inc_head.txt"}
 
 {if $smarty.get.deleted}
-<p class="confirm">Okay! Your correction has been deleted.</p>
+<p class="confirm">Okay! Your assertion has been deleted.</p>
 {/if}
 
 <div id="container">
-{include file="inc_corrections_filter.txt" singular=1}
-{include file="inc_corrections_list.txt"}
+{include file="inc_assertions_filter.txt" singular=1}
+{include file="inc_assertions_list.txt"}
 </div>
 
 {include file="inc_foot.txt"}

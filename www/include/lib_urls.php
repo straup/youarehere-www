@@ -2,29 +2,29 @@
 
 	########################################################################
 
-	function urls_corrections_url(){
-		return $GLOBALS['cfg']['abs_root_url'] . "corrections/";
+	function urls_assertions_url(){
+		return $GLOBALS['cfg']['abs_root_url'] . "assertions/";
 	}
 
 	########################################################################
 
-	function urls_correction_url($correction){
-		$root = urls_corrections_url();
-		return $root . "{$correction['id']}/";
+	function urls_assertion_url($assertion){
+		$root = urls_assertions_url();
+		return $root . "{$assertion['id']}/";
 	}
 
 	########################################################################
 
-	function urls_correction_export_url($correction, $format="json"){
-		$root = urls_corrections_url();
-		return $root . "{$correction['id']}.json";
+	function urls_assertion_export_url($assertion, $format="json"){
+		$root = urls_assertions_url();
+		return $root . "{$assertion['id']}.json";
 	}
 
 	########################################################################
 
-	function urls_correction_short_url($correction){
-		$root = $GLOBALS['cfg']['abs_root_url'] . "c/";
-		$code = base58_encode($correction['id']);
+	function urls_assertion_short_url($assertion){
+		$root = $GLOBALS['cfg']['abs_root_url'] . "a/";
+		$code = base58_encode($assertion['id']);
 		return $root . "{$code}/";
 	}
 

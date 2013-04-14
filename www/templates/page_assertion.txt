@@ -1,19 +1,19 @@
-{capture assign="page_title"}correction #{$correction.id}{/capture}
+{capture assign="page_title"}assertion #{$assertion.id}{/capture}
 {include file="inc_head.txt"}
 
 {if $delete_error}
-<p class="error">Ack! There was a problem deleting that correction.</p>
+<p class="error">Ack! There was a problem deleting that assertion.</p>
 {/if}
 
-{* note: we are setting both the correction and a list of corrections in the app code *}
+{* note: we are setting both the assertion and a list of assertions in the app code *}
 {* this is not ideal but it makes the following work... sort of (20130204/straup) *}
 
-{include file="inc_corrections_list.txt" delete_me=1}
+{include file="inc_assertions_list.txt" delete_me=1}
 
-{if $correction.woe_id >= 0}
+{if $assertion.woe_id >= 0}
 <script type="text/javascript">
 $(document).ready(function(){literal}{{/literal}
-	youarehere_correction_draw_map('{$correction|@urls_correction_export_url}');
+	youarehere_assertion_draw_map('{$assertion|@urls_assertion_export_url}');
 {literal}}{/literal});
 </script>
 {/if}

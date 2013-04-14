@@ -33,11 +33,11 @@
 
 	<p>Now that you've got a latitude and longitude the website will fetch all of the places of a particular type that intersect that point. The current list of place types to choose from are: <b>{$cfg.reverse_geocoder_clusters|@array_keys|@join:", "|escape}</b>. You can jump up and down the hierarchy of place types until you find something sounds right and then associate that spot on the planet with a unique <a href="http://woe.spum.org/">Where on Earth</a> (WOE) identifier for that place.</p>
 
-	<p>For example I've said that <a href="http://youarehere.spum.org/corrections/35525827/">latitude -41.290400 and longitude 174.782245</a> is in Wellington Central, which is uniquely identified by WOE ID <a href="http://woe.spum.org/id/28676779/">28676779</a>.</p>
+	<p>For example I've said that <a href="http://youarehere.spum.org/assertions/35525827/">latitude -41.290400 and longitude 174.782245</a> is in Wellington Central, which is uniquely identified by WOE ID <a href="http://woe.spum.org/id/28676779/">28676779</a>.</p>
 
 	<p>Or if you think all of the available choices are wrong you can record that too. Rather than being given a WOE ID the lat, lon pair will be assigned a place ID of <b>-1</b>.</p>
 
-	<p>That's it! Every pairing is assigned its own <a href="http://www.brooklynintegers.com/">unique ID</a> and a permalink and eventually added to the <a href="https://github.com/straup/youarehere-data">public data dumps</a>. You can see all the places you've expressed an opinion about by visiting the <a href="{$cfg.abs_root_url}corrections/me/">my corrections</a> page.</p>
+	<p>That's it! Every pairing is assigned its own <a href="http://www.brooklynintegers.com/">unique ID</a> and a permalink and eventually added to the <a href="https://github.com/straup/youarehere-data">public data dumps</a>. You can see all the places you've expressed an opinion about by visiting the <a href="{$cfg.abs_root_url}assertions/me/">my assertions</a> page.</p>
 
 	<a name="what"></a>
 
@@ -65,7 +65,7 @@
 
 	<p>The really short version is that <em>I would be just as happy not store any of it</em>. But I do store some things.</p>
 
-	<p>The only reason to keep anything that might be considered "identifiable" is so that people consuming the data can make better informed decisions about which corrections to trust and so that I can use it track and prevent abuse. Or not. I am still working through the ways in which that might get creepy. Here's what is currently stored in the database:</p>
+	<p>The only reason to keep anything that might be considered "identifiable" is so that people consuming the data can make better informed decisions about which assertions to trust and so that I can use it track and prevent abuse. Or not. I am still working through the ways in which that might get creepy. Here's what is currently stored in the database:</p>
 
 	<ul>
 		<li>A latitude and longitude (with a resolution of six decimal points).</li>

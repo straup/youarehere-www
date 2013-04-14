@@ -16,7 +16,7 @@
 	<p>Data dumps will <em>not</em> contain your (Twitter) username but
 	<em>might</em> contain an obfuscated user identifier. This is so that
 	people consuming the data can make better informed decisions about which
-	corrections to trust. Or not. I am still working through the ways in
+	assertions to trust. Or not. I am still working through the ways in
 	which that might get creepy.</p>
 
 	<p>The point is not to promote a naked Facebook-esque mirror world but

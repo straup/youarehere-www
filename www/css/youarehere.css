@@ -148,22 +148,22 @@ optgroup {
 
 }
 
-#correction-select {
+#assertion-select {
     width: 100%;
     margin-top: 2em;
 }
 
-#correction-details {
+#assertion-details {
     width: 100%;
     margin-top: 2em;
 }
 
-#correction-details th {
+#assertion-details th {
     text-align: left;
     padding-bottom:.5em;
 }
 
-#correction-details td {
+#assertion-details td {
     padding-top:1em;
     font-size:small;
 }
@@ -225,7 +225,7 @@ optgroup {
     color:green;
 }
 
-#corrections-filter-menu {
+#assertions-filter-menu {
     font-size:11px;
     text-align:right;
 }

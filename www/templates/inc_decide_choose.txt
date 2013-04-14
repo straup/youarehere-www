@@ -35,7 +35,7 @@ error messages. For example, this is what they've told us so far: <q>{$rsp.error
 
 {include file="inc_map.txt" show_crosshairs=0}
 
-<div id="correction-select">
+<div id="assertion-select">
 
 <form id="choices" method="POST" action="{$cfg.abs_root_url}maybe/">
 {$crumb_key|crumb_input}
@@ -44,9 +44,9 @@ error messages. For example, this is what they've told us so far: <q>{$rsp.error
 <input type="hidden" name="lon" value="{$longitude|escape}" />
 <input type="hidden" name="filter" value="{$filter|escape}" />
 	
-<span class="correction-select">
+<span class="assertion-select">
 
-<span class="correction-select-text">It appears that you are in</span>
+<span class="assertion-select-text">It appears that you are in</span>
 
 <select name="whereami" id="whereami-places">
 <optgroup>
@@ -81,8 +81,8 @@ error messages. For example, this is what they've told us so far: <q>{$rsp.error
 
 </span>
 
-<span class="correction-select">
-<span class="correction-select-text">and you're saying this as</span>
+<span class="assertion-select">
+<span class="assertion-select-text">and you're saying this as</span>
 
 <select name="perspective" id="whereami-perspective">
 <option value="0" />
@@ -91,7 +91,7 @@ error messages. For example, this is what they've told us so far: <q>{$rsp.error
 {/foreach}
 </select>
 
-<input type="submit" value="WORD" id="correction-select-submit" class="correction-select" />
+<input type="submit" value="WORD" id="assertion-select-submit" class="assertion-select" />
 
 </form>
 
@@ -101,13 +101,13 @@ error messages. For example, this is what they've told us so far: <q>{$rsp.error
 
 {if $previous|@count}
 
-<p class="caveat">We noticed that you've added some corrections around this spot in the past. Go ahead and add another if you'd like but here's the list of of stuff you've already told us about.</p>
+<p class="caveat">We noticed that you've added some assertions around this spot in the past. Go ahead and add another if you'd like but here's the list of of stuff you've already told us about.</p>
 
-<table id="correction-details" class="table table-condensed table-bordered">
-{include file="inc_correction_details_header.txt" correction_row=$previous.0}
+<table id="assertion-details" class="table table-condensed table-bordered">
+{include file="inc_assertion_details_header.txt" assertion_row=$previous.0}
 
-{foreach from=$previous item="correction"}
-{include file="inc_correction_details_row.txt" correction_row=$correction}
+{foreach from=$previous item="assertion"}
+{include file="inc_assertion_details_row.txt" assertion_row=$assertion}
 {/foreach}
 
 </table>

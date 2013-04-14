@@ -2,9 +2,9 @@
 
 	########################################################################
 
-	function api_youarehere_corrections_perspectives_getList(){
+	function api_youarehere_assertions_perspectives_getList(){
 
-		$map = corrections_perspective_map();
+		$map = assertions_perspective_map();
 		$perspectives = array();
 
 		foreach ($map as $id => $label){

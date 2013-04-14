@@ -1,7 +1,7 @@
 {include file="inc_head.txt"}
 
-{include file="inc_corrections_filter.txt"}
-{include file="inc_corrections_list.txt"}
+{include file="inc_assertions_filter.txt"}
+{include file="inc_assertions_list.txt"}
 
 {include file="inc_foot.txt"}
 

@@ -36,17 +36,17 @@
     height: 150px !important;
 }
 
-.correction-select {
+.assertion-select {
     display: block !important;
     font-weight: 700 !important;
 }
 
-.correction-select-text {
+.assertion-select-text {
     display: block !important;
     padding-bottom: 1em !important;
 }
 
-#correction-select-submit {
+#assertion-select-submit {
     margin-top: 1em !important;
     display:block !important;
 }

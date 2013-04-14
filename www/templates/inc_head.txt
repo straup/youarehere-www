@@ -37,7 +37,7 @@
     <script src="{$cfg.abs_root_url}javascript/youarehere.min.js"></script>
     {else}
     <script src="{$cfg.abs_root_url}javascript/youarehere.js"></script>
-    <script src="{$cfg.abs_root_url}javascript/youarehere.correction.js"></script>
+    <script src="{$cfg.abs_root_url}javascript/youarehere.assertion.js"></script>
     <script src="{$cfg.abs_root_url}javascript/youarehere.map.js"></script>
     <script src="{$cfg.abs_root_url}javascript/youarehere.woe.js"></script>
     {/if}
@@ -65,8 +65,8 @@
             <ul class="nav">
               {if $cfg.user and "geocoder"|features_is_enabled}<li{if $nav_tab == 'recent'} class="active"{/if}><a href="{$cfg.abs_root_url}choose/">Choose</a></li>{/if}
               {if $cfg.user and "reverse_geocoder"|features_is_enabled}<li{if $nav_tab == 'recent'} class="active"{/if}><a href="{$cfg.abs_root_url}decide/">Decide</a></li>{/if}
-              <li><a href="{$cfg.abs_root_url}corrections/">Recent</a></li>
-              {if $cfg.user}<li><a href="{$cfg.abs_root_url}corrections/me/">Mine</a></li>{/if}
+              <li><a href="{$cfg.abs_root_url}assertions/">Recent</a></li>
+              {if $cfg.user}<li><a href="{$cfg.abs_root_url}assertions/me/">Mine</a></li>{/if}
               {if 0}{if "api"|features_is_enabled}<li{if $nav_tab == 'about'} class="active"{/if}><a href="{$cfg.abs_root_url}api/">API</a></li>{/if}{/if}
               <li><a href="{$cfg.abs_root_url}about/">About</a></li>
             </ul>
