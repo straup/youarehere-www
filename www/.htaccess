@@ -82,19 +82,28 @@ RewriteRule   ^assertions/woe/([0-9]+)/(locals|tourists|strangers)(/page([0-9]+)
 
 # Old stuff (TO DO...)
 
-RewriteRule   ^corrections(/page([0-9]+))?/?$				corrections.php?page=$2&%{QUERY_STRING}	[L]
-RewriteRule   ^corrections/(locals|tourists|strangers)(/page([0-9]+))?/?$		corrections.php?perspective=$1&page=$3&%{QUERY_STRING}	[L]
+RewriteRule   ^corrections/?$								/assertions/			[R]
+RewriteRule   ^corrections/page([0-9]+)/?$						/assertions/page$2/		[R]
+RewriteRule   ^corrections/(locals|tourists|strangers)/?$				/assertions/$1/			[R]
+RewriteRule   ^corrections/(locals|tourists|strangers)(/page([0-9]+))?/?$		/assertions/$1/page$3/		[R]
 
-RewriteRule   ^c/([A-Za-z0-9]+)/?$					correction.php?code=$1&%{QUERY_STRING}		[L]
-RewriteRule   ^corrections/([0-9]+)/?$					correction.php?id=$1&%{QUERY_STRING}		[L]
+RewriteRule   ^c/([A-Za-z0-9]+)/?$							/a/$1/				[R]
+RewriteRule   ^corrections/([0-9]+)/?$							/assertions/$1/			[R]
 
-RewriteRule   ^corrections/me(/page([0-9]+))?/?$				corrections_me.php?page=$2&%{QUERY_STRING}	[L]
-RewriteRule   ^corrections/me/(local|tourist|stranger)(/page([0-9]+))?/?$	corrections_me.php?perspective=$1&page=$3&%{QUERY_STRING}	[L]
+RewriteRule   ^corrections/me/?$							/assertions/me/			[R]
+RewriteRule   ^corrections/me(/page([0-9]+))?/?$					/assertions/me/page$2/		[R]
+RewriteRule   ^corrections/me/(local|tourist|stranger)/?$				/assertions/me/$1/		[R]
+RewriteRule   ^corrections/me/(local|tourist|stranger)(/page([0-9]+))?/?$		/assertions/me/$1/page$3	[R]
 
-RewriteRule   ^corrections/woe/?$						/corrections/  [R]
+RewriteRule   ^corrections/woe/?$							/assertions/  [R]
 
-RewriteRule   ^corrections/woe/([0-9]+)(/page([0-9]+))?/?$				corrections_woe.php?id=$1&page=$3&%{QUERY_STRING}	[L]
-RewriteRule   ^corrections/woe/([0-9]+)/(locals|tourists|strangers)(/page([0-9]+))?/?$		corrections_woe.php?id=$1&perspective=$2&page=$4&%{QUERY_STRING}	[L]
+RewriteRule   ^corrections/woe/([0-9]+)/?$						/assertions/woe/$1/		[R]
+RewriteRule   ^corrections/woe/([0-9]+)(/page([0-9]+))?/?$				/assertions/woe/$1/page$3/	[R]
+
+RewriteRule   ^corrections/woe/([0-9]+)/(locals|tourists|strangers)/?$				/assertions/woe/$1/$2/		[R]
+RewriteRule   ^corrections/woe/([0-9]+)/(locals|tourists|strangers)(/page([0-9]+))?/?$		/assertions/woe/$1/$2/page$4/	[R]
+
+# WOE 
 
 RewriteRule   ^woe/([0-9]+)/?$						/assertions/woe/$1	[R]
 RewriteRule   ^woe/([0-9]+)/geojson/?$					woedb_geojson.php?id=$1&%{QUERY_STRING}	[L]
