@@ -25,9 +25,11 @@ Okay, that's just weird. If you're seeing this it means that something very wron
 
 {else}
 
-{include file="inc_api_oauth2_authenticate_permissions.txt"}
-
 <div class="api-sect">
+{include file="inc_api_oauth2_authenticate_permissions.txt"}
+</div>
+
+<div class="api-sect" style="text-align:center;">
 <form method="POST" action="{$cfg.abs_root_url}api/oauth2/authenticate/">
 	{$crumb_key|crumb_input}
 	<input type="hidden" name="done" value="1" />
@@ -35,6 +37,18 @@ Okay, that's just weird. If you're seeing this it means that something very wron
 	<input type="hidden" name="response_type" value="code" />
 	<input type="hidden" name="scope" value="{$str_perms|escape}" />
 	<input type="hidden" name="redirect_uri" value="{$key.app_callback|escape}" />
+
+	<div style="text-align:left !important;margin-bottom:2em;">
+	<p>By default access tokens are valid until you revoke them. You may also set a predefined expiry date for this token after which it will no longer be able to perform functions on your behalf.</p>
+
+	<p>This access token will remain valid 
+	<select name="ttl">
+	{foreach from=$ttl_map item="label" key="ttl"}
+		<option value="{$ttl|escape}">{$label|escape}</option>
+	{/foreach}
+	</select>
+	</p>
+	</div>
 
 	<input type="submit" name="confirm" value="YES, I AGREE" />
 	<input type="submit" name="confirm" value="NO, I DON'T THINK SO" />

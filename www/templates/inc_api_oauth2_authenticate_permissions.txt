@@ -1,8 +1,6 @@
-<div class="api-permissions-glossary">
+<div class="api-sect">
 
-<p>The application named <strong>{$key.app_title|escape}</strong> is requesting acccess to your account with <strong>{$str_perms|escape}</strong> permissions.</p>
-
-<p><strong>{$str_perms|strtoupper|escape}</strong> permissions means that this API key will be able to:</p>
+<p>The application named <strong>{$key.app_title|escape}</strong> is requesting acccess to your account with <strong>{$str_perms|strtoupper|escape}</strong> permissions. <strong>{$str_perms|strtoupper|escape}</strong> permissions means that this API key will be able to:</p>
 
 {if $str_perms=='login'}
 
@@ -14,7 +12,7 @@
 
 {elseif $str_perms=='read'}
 
-<ul class="list-o-things">
+<ul class="api-list-o-things">
     <li>Validate your account.</li>
     <li>Access things that you've marked as private (to your own account).</li>
 </ul>
@@ -23,7 +21,7 @@
 
 {elseif $str_perms=='write'}
 
-<ul class="list-o-things">
+<ul class="api-list-o-things">
     <li>Validate your account.</li>
     <li>Access things that you've marked as private (to your own account).</li>
     <li>Update things that you've marked as private (to your own account).</li>
