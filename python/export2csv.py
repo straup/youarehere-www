@@ -78,7 +78,7 @@ if __name__ == '__main__':
         args['page'] = page
 
         try:
-            rsp = api.call('youarehere.corrections.getCorrectionsByDate', **args)
+            rsp = api.call('youarehere.assertions.getAssertionsByDate', **args)
         except Exception, e:
             logging.error("API error: %s" % e)
             break
