@@ -49,30 +49,30 @@ if __name__ == '__main__':
     
     # put me in a file or something...
     
-    tests = {
-        'api.spec.formats' : {},
-        'api.spec.methods': {},
-        'api.test.echo': {'foo': 'bar' },
-        'api.test.error': {},
-        'youarehere.assertions.getAssertionsByDate': { 'start_date': '2013-04-01', 'end_date': '2013-04-02' },
-        'youarehere.assertions.perspectives.getList' : {},
-        'youarehere.geo.geocode' : { 'query': 'melbourne' },
-        'youarehere.geo.reverseGeocode' : { 'lat': 40.683789, 'lon': -73.989958, 'filter': 'localities' },
-        'youarehere.geo.filters.getList' : {},
-        'youarehere.geo.sources.getList' : {},
-        }
+    tests = [
+        [ 'api.spec.formats', {} ],
+        [ 'api.spec.methods', {} ],
+        [ 'api.test.echo', {'foo': 'bar' } ],
+        [ 'api.test.error', {} ],
+        [ 'youarehere.assertions.getAssertionsByDate', { 'start_date': '2013-04-01', 'end_date': '2013-04-02' } ],
+        [ 'youarehere.assertions.perspectives.getList', {} ],
+        [ 'youarehere.geo.geocode', { 'query': 'melbourne' } ],
+        [ 'youarehere.geo.reverseGeocode', { 'lat': 40.683789, 'lon': -73.989958, 'filter': 'localities' } ],
+        [ 'youarehere.geo.filters.getList', {} ],
+        [ 'youarehere.geo.sources.getList', {} ],
+        ]
 
     """
-    tests = {
-        'youarehere.assertions.assertLocation': { 'lat': 40.674780, 'lon': -73.997705, 'woe_id': 18807771, 'perspective_id': 1}
-        }
+    tests = [
+        [ 'youarehere.assertions.assertLocation', { 'lat': 40.674780, 'lon': -73.997705, 'woe_id': 18807771, 'perspective_id': 1} ],
+        ]
     """
 
     #
 
     api = youarehere.api.client.OAuth2(token, host, **kwargs)
 
-    for method, args in tests.items():
+    for method, args in tests:
 
         logging.info("testing %s w/ %s" % (method, args))
 

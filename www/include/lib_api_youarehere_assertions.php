@@ -45,7 +45,7 @@
 
 		$ok_woeid = 1;
 
-		if ($woeid = -1){
+		if ($woeid == -1){
 			# pass
 		}
 
