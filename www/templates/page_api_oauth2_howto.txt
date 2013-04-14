@@ -62,7 +62,7 @@
 
     <li><strong>There is a callback URL maintained by an application where a service can send users after they've approved an application.</strong> Once a user has approved an application the service will send the user to this URL by issuing a <code>302 Redirect</code> HTTP header to the user's browser. The URL will be appended with a <code>code</code> parameter which is a time-sensitive special token that the application uses to request an access token.</li>
 
-    <li><strong>There is a URL maintained by a service where an application can request an access token for a user.</strong> This is the URL that an application sends to the time-sensitive <code>code</code> token to in exchange for an access token. The &#8220;access token exchange&#8221; page is <code>{$cfg.abs_root_url}api/oauth2/access_token/</code>.</li>
+    <li><strong>There is a URL maintained by a service where an application can request an access token for a user.</strong> This is the URL that an application sends to the time-sensitive <code>code</code> token to in exchange for an access token. The &#8220;access token exchange&#8221; page for <a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> is <code>{$cfg.abs_root_url}api/oauth2/access_token/</code>.</li>
 
 </ol>
 
