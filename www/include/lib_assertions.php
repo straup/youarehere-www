@@ -76,7 +76,13 @@
 
 	########################################################################
 
-	function assertions_get_by_id($id){
+	function assertions_get_by_id($id, $more=array()){
+
+		$defaults = array(
+			'scrub_assertion' => 1,
+		);
+
+		$more = array_merge($defaults, $more);
 
 		$enc_id = AddSlashes($id);
 
@@ -84,7 +90,10 @@
 		$rsp = db_fetch($sql);
 
 		$row = db_single($rsp);
-		$row = assertions_scrub_assertion($row);		
+
+		if ($more['scrub_assertion']){
+			$row = assertions_scrub_assertion($row);		
+		}
 
 		return $row;
 	}

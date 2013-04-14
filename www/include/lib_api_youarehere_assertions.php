@@ -107,15 +107,17 @@
 
 	function api_youarehere_assertions_deleteAssertion(){
 
-		api_output_error(999, "Not yet");
-
 		$id = post_int64("assertion_id");
 
 		if (! $id){
 			api_output_error(999, "Missing assertion ID");
 		}
 
-		$assertion = assertions_get_by_id($id);
+		$more = array(
+			'scrub_assertion' => 0,
+		);
+
+		$assertion = assertions_get_by_id($id, $more);
 
 		if (! $assertion){
 			api_output_error(999, "Invalid assertion ID");
@@ -131,7 +133,7 @@
 			api_output_error(999, "There was a problem deleting the assertion");
 		}
 
-		api_output_error();
+		api_output_ok();
 	}
 
 	#################################################################

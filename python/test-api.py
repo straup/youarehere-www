@@ -62,11 +62,10 @@ if __name__ == '__main__':
         [ 'youarehere.geo.sources.getList', {} ],
         ]
 
-    """
-    tests = [
-        [ 'youarehere.assertions.assertLocation', { 'lat': 40.674780, 'lon': -73.997705, 'woe_id': 18807771, 'perspective_id': 1} ],
-        ]
-    """
+#    tests = [
+#        [ 'youarehere.assertions.assertLocation', { 'lat': 40.674780, 'lon': -73.997705, 'woe_id': 18807771, 'perspective_id': 1} ],
+#        [ 'youarehere.assertions.deleteAssertion', { 'assertion_id': 51551745 } ],
+#        ]
 
     #
 
