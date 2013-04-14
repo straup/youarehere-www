@@ -1,14 +1,79 @@
 {capture assign="page_title"}How to | OAuth2 | API{/capture}
 {include file="inc_head.txt"}
 
-<p class="api-link"><code>{$cfg.abs_root_url}api/oauth2/authenticate/</code></p>
+<div class="api-sect">
+
+<h2>The basics</h2>
+
+<div class="api-sect">
+
+<h3>Who's on first?</h3>
+
+<ol class="api-list-o-things" style="margin-top:1.5em;">
+	<li><strong>There are services.</strong> Like this one. <a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> is a &#8220;service&#8221;.</p>
+
+	<li><strong>There are users.</strong> Users have accounts on services.{if $cfg.user.id} For example, you are currently logged in to <a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> with your <a href="{$cfg.abs_root_url}account/}">{$cfg.user.username|escape}</a> account.{/if}</li>
+
+	<li><strong>Services have application programming interfaces (APIs).</strong> APIs allow computer programs and robots to talk to the service <a href="{$cfg.abs_root_url}api/methods/">in computer-speak</a>.</li>
+
+	<li><strong>There are applications.</strong> Applications are <em>other</em> programs that use a service's APIs to do stuff. Sometimes an application is another service with its own API.</li> 
+
+	<li><strong>Applications have API keys.</strong> An API key is like a username for applications. It is used to identify the program trying to use a service's API and, if necessary, to control access.</li>
+
+	<li><strong>Applications sometimes have special access tokens</strong> that allow them to perform actions on a service on behalf of a user without a user having to tell the application their username and password, for that service.</li> 
+
+	<li><strong>Access tokens are only granted with a user's approval</strong> and can be revoked by a user at any time.</li>
+
+	<li><strong>Access tokens have restricted permissions sets.</strong> For example some tokens might grant an application permission to read a user's private data while others might be allowed to read <em>and</em> write data on behalf of a user.</li>
+</ol>
+</div>
+
+</div>
+
+<div class="api-sect">
+
+<h2>Access tokens (and applications)</h2>
+
+<div class="api-sect">
+<h3>Generating an access token for yourself</h3>
+
+<p>If you're just interested in creating an access token for yourself and don't want to muck about creating applications and approval pages you can use the handy <a href="{$cfg.abs_root_url}api/oauth2/authenticate/like-magic/">authenticate-like-magic</a> web page.</p>
+
+<p>You'll need to give your access token a name and tell us what kind of permissions it has and then, like magic, you'll have a new access token that <a href="{$cfg.abs_root_url}api/methods/">you can start using the API with</a>.</p>
+
+<p>Everything described above still happens behind the scenes but the details are hidden from you. Technically you will have created an &#8220;application&#8221; that you then approved to perform actions on behalf of yourself. Both the application and the token can be deleted at any time.</p>
+</div>
+
+<div class="api-sect">
+<h3>Generating access tokens on behalf of another user</h3>
+
+<ol class="api-list-o-things" style="margin-top:1.5em;">
+
+    <li><strong>There is a webpage maintained by a service where applications can be registered.</strong> The application registration page for <a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> is <code><a href="{$cfg.abs_root_url}api/keys/register/">{$cfg.abs_root_url}api/keys/register/</a></code>. You must have a valid user account to register an application.</li>
+
+    <li><strong>The is a webpage maintained by a service where users can be prompted to approve an application.</strong> The application approval for <a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> is <code><a href="{$cfg.abs_root_url}api/oauth2/authenticate/">{$cfg.abs_root_url}api/oauth2/authenticate/</a></code>.</li>
+
+    <li><strong>There is a URL maintained by an application where a service can send users after they've approved an application.</strong> Once a user has approved an application the service will send the user to this URL by issuing a <code>302 Redirect</code> HTTP header to the user's browser. The URL will be appended with a <code>code</code> parameter which is a time-sensitive special token that the application uses to request an access token.</li>
+
+    <li><strong>There is a URL maintained by a service where an application can request an access token for a user.</strong> This is the URL that an application sends to the time-sensitive <code>code</code> token to in exchange for an access token. The &#8220;access token exchange&#8221; page is <code><a href="{$cfg.abs_root_url}api/oauth2/access_token/">{$cfg.abs_root_url}api/oauth2/access_token/</a></code>.</li>
+
+</ol>
+
+<p>The &#8220;URL&#8221; defined by an application does not necessary need to a &#8220;web page&#8221; but does need to conform to a known scheme for a <a href="http://www.w3.org/TR/html5/webappapis.html#custom-handlers">protocol handlers</a>. Protocol handlers are used to launch applications instead of just web pages using URLs and vary from one operating system so that's really a discussion that is outside the scope of this document.</p>
+</div>
+
+</div>
+
+<div class="api-sect">
+
+<h2>Examples</h2>
 
 <h3>Pseudo-code: Getting a grant token</h3>
 
 <pre>
 	$args = array(
-		'client_id' => '<strong>YOUR API KEY</strong>',
-		'redirect_uri' => '<strong>YOUR ENDPOINT</strong>',
+		'client_id' => '<strong>APPLICATION API KEY</strong>',
+		'redirect_uri' => '<strong>APPLICATION ENDPOINT</strong>',
 		'scope' => 'read',
 		'response_type' => 'code',
 	);
@@ -21,16 +86,14 @@
 	exit();
 </pre>
 
-<p class="api-link"><code>{$cfg.abs_root_url}api/oauth2/access_token/</code></p>
-
 <h3>Pseudo-code: Exchanging a grant token for an access token</h3>
 
 <pre>
 	$code = get_str("code");
 
 	$args = array(
-		'client_id' => '<strong>YOUR API KEY</strong>',
-		'redirect_uri' => '<strong>YOUR ENDPOINT</strong>',
+		'client_id' => '<strong>APPLICATION API KEY</strong>',
+		'redirect_uri' => '<strong>APPLICATION ENDPOINT</strong>',
 		'grant_type' => 'authorization_code',
 		'response_type' => 'code',
 		'code' => $code,
@@ -45,5 +108,9 @@
 
 	<strong>$access_token = $data['access_token'];</strong>
 </pre>
+
+<p class="api-link"></p>
+
+</div>
 
 {include file="inc_foot.txt"}

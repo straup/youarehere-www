@@ -45,11 +45,11 @@
 
 </div>
 
-{if 0}
+<div class="api-sect">
 <h3>Errors</h3>
 
-<p>TO DO</p>
-{/if}
+<p style="font-style:italic;">I still need to document these. In the meantime please consult <a href="{$cfg.abs_root_url}api/methods/api.test.error">the API documentation for the api.test.error method</a> for an example.</p>
+</div>
 
 {if $details.notes|@count}
 <div class="api-sect">
