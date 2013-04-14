@@ -7,11 +7,9 @@
 
 <h2>The basics</h2>
 
-<p><a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> implements the basics of <a href="http://oauth.net/2/">section 4.2 of the OAuth2 specification</a>.</p>
+<p><a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> implements the basics of <a href="http://oauth.net/2/">section 4.2 of the OAuth2 specification</a> and assumes the following roles and relationships:</p>
 
 <div class="api-sect">
-
-<h3>Who's on first?</h3>
 
 <ol class="api-list-o-things" style="margin-top:1.5em;">
 	<li><strong>There are services.</strong> Like this one. <a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> is a &#8220;service&#8221;.</p>
@@ -45,15 +43,16 @@
 
 <p>If you're just interested in creating an access token for yourself and don't want to muck about creating applications and approval pages you can use the handy <a href="{$cfg.abs_root_url}api/oauth2/authenticate/like-magic/">authenticate-like-magic</a> web page.</p>
 
+<p>Everything described above still happens behind the scenes but the details are hidden from you. Technically you will have created an &#8220;application&#8221; that you then approved to perform actions on behalf of yourself. Both the application and the token can be deleted at any time.</p>
+
 <p>You'll need to give your access token a name and tell us what kind of permissions it has and then, like magic, you'll have a new access token that <a href="{$cfg.abs_root_url}api/methods/">you can start using the API with</a>.</p>
 
-<p>Everything described above still happens behind the scenes but the details are hidden from you. Technically you will have created an &#8220;application&#8221; that you then approved to perform actions on behalf of yourself. Both the application and the token can be deleted at any time.</p>
 </div>
 
 <div class="api-sect">
 <h3>Generating access tokens on behalf of another user</h3>
 
-<p>For application developers wanting to request access tokens on behalf of other users there are a few more steps to complete.</p>
+<p>For application developers wanting to request access tokens on behalf of other users there are a few more steps to complete. Specifically:</p>
 
 <ol class="api-list-o-things" style="margin-top:1.5em;">
 
@@ -81,10 +80,12 @@
 <p>This is the part where an application builds a URL that you will send a user to in order to approve your application. <a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> <em>does not</em> allow applications to specify a callback URL (sometimes called a redirect_uri) as part of the user approval process. Applications <em>must</em> define a redirect URL when they <a href="{$cfg.abs_root_url}api/keys/register/">create a API key</a>.</p>
 
 <pre style="margin-top:2.5em;margin-bottom:2em;">
+
 	$args = array(
 		'client_id' => '<strong>APPLICATION API KEY</strong>',
 		'scope' => '<strong>THE PERMISSIONS YOU'D LIKE YOUR APPLICATION TO HAVE</strong>',
 		'response_type' => 'code',
+		'state' => 'OPTIONAL APPLICATION-SPECIFIC STATE INFORMATION',
 	);
 
 	$query = http_build_query($args);
@@ -93,6 +94,7 @@
 
 	<strong>header("location: $url");</strong>
 	exit();
+
 </pre>
 
 <h3>Pseudo-code: Exchanging a grant token for an access token</h3>
@@ -100,7 +102,9 @@
 <p>This is the code that an application executes <em>after</em> a user has approved the application and service has sent them back to the application's callback URL. The application looks for a request parameter called <code>code</code> and the turns around and send the code back to the service asking to exchange it for an access token. What an application does after the access token is returned is outside the scope of this document.</p>
 
 <pre style="margin-top:2.5em;margin-bottom:2em;">
+
 	<strong>$code = get_str("code");</strong>
+	$state = get_str("state");
 
 	$args = array(
 		'client_id' => '<strong>APPLICATION API KEY</strong>',
@@ -115,15 +119,18 @@
 	<strong>$rsp = http_get($url);</strong>
 
 	$data = json_decode($rsp['body'], 'as hash');
-
 	<strong>$access_token = $data['access_token'];</strong>
+
+	$scope = $data['scope'];
+	$expires = $data['expires'];
+
 </pre>
 
 <h3>Caveats</h3>
 
 <ol class="api-list-o-things" style="margin-top:1.5em;">
 <li>A user may choose to define different permissions for an access token than those requested by an application. Permissions information is returned with an access token so applications should react accordingly.</li>
-<li>A user may choose to define an expiry date for an access token. <em>As of this writing that information is not returned when retrieving an access token but will be shortly.</em></li>
+<li>A user may choose to define an expiry date for an access token. This information is returned with an access token as a Unix timestamp. A value of <code>0</code> means that the token has no defined expiry date. <em>Returning expiry dates for access tokens is not part of the offical OAuth2 specification.</em></li>
 </ol>
 
 </div>

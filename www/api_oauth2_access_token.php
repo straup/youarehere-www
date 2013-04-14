@@ -145,11 +145,8 @@
 		'access_token' => $access_token['access_token'],
 		# 'token_type' => 'OMGWTF... see section 7.1',
 		'scope' => $scope,
+		'expires' => $access_token['expires'],
 	);
-
-	if ($state = get_str("state")){
-		$rsp['state'] = $state;
-	}
 
 	local_send_json($rsp);
 	exit();
