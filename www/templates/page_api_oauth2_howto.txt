@@ -22,7 +22,7 @@
 
 	<li><strong>Applications have API keys.</strong> An API key is like a username for applications. It is used to identify the program trying to use a service's API and, if necessary, to control access.</li>
 
-	<li><strong>Applications sometimes have special access tokens</strong> that allow them to perform actions on a service on behalf of a user without a user having to tell the application their username and password, for that service.</li> 
+	<li><strong>Applications sometimes have special access tokens</strong> that allow them to perform actions on a service on behalf of a user without having to know their username and password.</li> 
 
 	<li><strong>Access tokens are only granted with a user's approval</strong> and can be revoked by a user at any time.</li>
 
