@@ -11,7 +11,7 @@ error messages. For example, this is what they've told us so far: <q>{$rsp.error
 
 <p class="error">Hrm... okay. We can't find any <q>{$filter|escape}</q> for this location. Would you like to try situating yourself in a more general place?</p>
 
-<form id="choices-other" method="GET" action="{$cfg.abs_root_url}maybe/">
+<form id="choices-other" method="GET" action="{$cfg.abs_root_url}decide/">
 <input type="hidden" name="lat" value="{$latitude|escape}" />
 <input type="hidden" name="lon" value="{$longitude|escape}" />
 
@@ -37,7 +37,7 @@ error messages. For example, this is what they've told us so far: <q>{$rsp.error
 
 <div id="assertion-select">
 
-<form id="choices" method="POST" action="{$cfg.abs_root_url}maybe/">
+<form id="choices" method="POST" action="{$cfg.abs_root_url}decide/">
 {$crumb_key|crumb_input}
 <input type="hidden" name="choose" value="1" />
 <input type="hidden" name="lat" value="{$latitude|escape}" />

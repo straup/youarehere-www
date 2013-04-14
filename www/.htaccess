@@ -61,8 +61,8 @@ RewriteEngine on
 RewriteRule   ^choose/?$				choose.php?%{QUERY_STRING}			[L]
 RewriteRule   ^getlatlon/?$				choose.php?%{QUERY_STRING}			[L]
 
-RewriteRule   ^decide/?$				maybe.php?%{QUERY_STRING}			[L]
-RewriteRule   ^maybe/?$					maybe.php?%{QUERY_STRING}			[L]
+RewriteRule   ^decide/?$				decide.php?%{QUERY_STRING}			[L]
+RewriteRule   ^maybe/?$					/decide/?%{QUERY_STRING}			[R]
 
 # Assertions
 
