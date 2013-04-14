@@ -1,9 +1,13 @@
 {capture assign="page_title"}How to | OAuth2 | API{/capture}
 {include file="inc_head.txt"}
 
+{include file="inc_api_header.txt" title="OAuth2 How to"}
+
 <div class="api-sect">
 
 <h2>The basics</h2>
+
+<p><a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> implements the basics of <a href="http://oauth.net/2/">section 4.2 of the OAuth2 specification</a>.</p>
 
 <div class="api-sect">
 
@@ -25,7 +29,9 @@
 	<li><strong>Access tokens are only granted with a user's approval</strong> and can be revoked by a user at any time.</li>
 
 	<li><strong>Access tokens have restricted permissions sets.</strong> For example some tokens might grant an application permission to read a user's private data while others might be allowed to read <em>and</em> write data on behalf of a user.</li>
+
 </ol>
+
 </div>
 
 </div>
@@ -47,13 +53,15 @@
 <div class="api-sect">
 <h3>Generating access tokens on behalf of another user</h3>
 
+<p>For application developers wanting to request access tokens on behalf of other users there are a few more steps to complete.</p>
+
 <ol class="api-list-o-things" style="margin-top:1.5em;">
 
     <li><strong>There is a webpage maintained by a service where applications can be registered.</strong> The application registration page for <a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> is <code><a href="{$cfg.abs_root_url}api/keys/register/">{$cfg.abs_root_url}api/keys/register/</a></code>. You must have a valid user account to register an application.</li>
 
-    <li><strong>The is a webpage maintained by a service where users can be prompted to approve an application.</strong> The application approval for <a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> is <code><a href="{$cfg.abs_root_url}api/oauth2/authenticate/">{$cfg.abs_root_url}api/oauth2/authenticate/</a></code>.</li>
+    <li><strong>The is a webpage maintained by a service where users can be prompted to approve an application.</strong> The application approval page for <a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> is <code><a href="{$cfg.abs_root_url}api/oauth2/authenticate/">{$cfg.abs_root_url}api/oauth2/authenticate/</a></code>.</li>
 
-    <li><strong>There is a URL maintained by an application where a service can send users after they've approved an application.</strong> Once a user has approved an application the service will send the user to this URL by issuing a <code>302 Redirect</code> HTTP header to the user's browser. The URL will be appended with a <code>code</code> parameter which is a time-sensitive special token that the application uses to request an access token.</li>
+    <li><strong>There is a callback URL maintained by an application where a service can send users after they've approved an application.</strong> Once a user has approved an application the service will send the user to this URL by issuing a <code>302 Redirect</code> HTTP header to the user's browser. The URL will be appended with a <code>code</code> parameter which is a time-sensitive special token that the application uses to request an access token.</li>
 
     <li><strong>There is a URL maintained by a service where an application can request an access token for a user.</strong> This is the URL that an application sends to the time-sensitive <code>code</code> token to in exchange for an access token. The &#8220;access token exchange&#8221; page is <code><a href="{$cfg.abs_root_url}api/oauth2/access_token/">{$cfg.abs_root_url}api/oauth2/access_token/</a></code>.</li>
 
@@ -70,11 +78,12 @@
 
 <h3>Pseudo-code: Getting a grant token</h3>
 
-<pre>
+<p>This is the part where an application builds a URL that you will send a user to in order to approve your application. <a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> <em>does not</em> allow applications to specify a callback URL (sometimes called a redirect_uri) as part of the user approval process. Applications <em>must</em> define a redirect URL when they <a href="{$cfg.abs_root_url}api/keys/register/">create a API key</a>.</p>
+
+<pre style="margin-top:2.5em;margin-bottom:2em;">
 	$args = array(
 		'client_id' => '<strong>APPLICATION API KEY</strong>',
-		'redirect_uri' => '<strong>APPLICATION ENDPOINT</strong>',
-		'scope' => 'read',
+		'scope' => '<strong>THE PERMISSIONS YOU'D LIKE YOUR APPLICATION TO HAVE</strong>',
 		'response_type' => 'code',
 	);
 
@@ -82,34 +91,40 @@
 
 	$url = "{$cfg.abs_root_url}api/oauth2/<strong>authenticate/</strong>?" . $query;
 
-	header("location: $url");
+	<strong>header("location: $url");</strong>
 	exit();
 </pre>
 
 <h3>Pseudo-code: Exchanging a grant token for an access token</h3>
 
-<pre>
-	$code = get_str("code");
+<p>This is the code that an application executes <em>after</em> a user has approved the application and service has sent them back to the application's callback URL. The application looks for a request parameter called <code>code</code> and the turns around and send the code back to the service asking to exchange it for an access token. What an application does after the access token is returned is outside the scope of this document.</p>
+
+<pre style="margin-top:2.5em;margin-bottom:2em;">
+	<strong>$code = get_str("code");</strong>
 
 	$args = array(
 		'client_id' => '<strong>APPLICATION API KEY</strong>',
-		'redirect_uri' => '<strong>APPLICATION ENDPOINT</strong>',
 		'grant_type' => 'authorization_code',
 		'response_type' => 'code',
-		'code' => $code,
+		'code' => <strong>$code</strong>,
 	);
 
 	$query = http_build_query($args);
 
 	$url = "{$cfg.abs_root_url}api/oauth2/<strong>access_token/</strong>?" . $query;
-	$rsp = http_get($url);
+	<strong>$rsp = http_get($url);</strong>
 
 	$data = json_decode($rsp['body'], 'as hash');
 
 	<strong>$access_token = $data['access_token'];</strong>
 </pre>
 
-<p class="api-link"></p>
+<h3>Caveats</h3>
+
+<ol class="api-list-o-things" style="margin-top:1.5em;">
+<li>A user may choose to define different permissions for an access token than those requested by an application. Permissions information is returned with an access token so applications should react accordingly.</li>
+<li>A user may choose to define an expiry date for an access token. <em>As of this writing that information is not returned when retrieving an access token but will be shortly.</em></li>
+</ol>
 
 </div>
 

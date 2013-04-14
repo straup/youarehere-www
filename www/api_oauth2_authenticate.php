@@ -78,7 +78,7 @@
 		$ok = 0;
 	}
 
-	if (($ok) && (request_str("redirect_uri") != $key_row['app_callback'])){
+	if (($ok) && (! $key_row['app_callback'])){
 		$GLOBALS['smarty']->assign("error", "invalid_callback");
 		$ok = 0;
 	}

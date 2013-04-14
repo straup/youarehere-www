@@ -44,7 +44,7 @@
 
 	# Basics (redirect URLs)
 
-	if (($ok) && (request_str("redirect_uri") != $key_row['app_callback'])){
+	if (($ok) && (! $key_row['app_callback'])){
 		error_403();
 	}
 
