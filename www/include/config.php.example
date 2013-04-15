@@ -33,7 +33,7 @@
 
 	$GLOBALS['cfg']['reverse_geocoder_sources'] = array(
 		0 => 'unknown',	 # this shouldn't happen but better to trap it
-		1 => 'flickr shapefiles (2.0); gowanus heights (1.0)',
+		1 => 'flickr shapefiles (2.0); gowanus heights (1.0); la lengua (1.0)',
 		2 => 'woedb (2.0)'
 	);
 
