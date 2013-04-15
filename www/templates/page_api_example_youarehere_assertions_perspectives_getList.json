@@ -1,0 +1,17 @@
+{literal}{
+    "perspectives": [
+        {
+            "id": 0, 
+            "name": "a stranger"
+        }, 
+        {
+            "id": 1, 
+            "name": "a local"
+        }, 
+        {
+            "id": 2, 
+            "name": "a tourist"
+        }
+    ], 
+    "stat": "ok"
+}{/literal}

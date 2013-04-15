@@ -1,17 +1,25 @@
 {literal}{
     "filters": [
         {
+            "fallback": "localities", 
             "is_default": 1, 
-            "name": "neighbourhoods"
+            "name": "neighbourhoods", 
+            "source_id": 1
         }, 
         {
-            "name": "localities"
+            "fallback": "aerotropolii", 
+            "name": "localities", 
+            "source_id": 1
         }, 
         {
-            "name": "aerotropolii"
+            "fallback": "timezones", 
+            "name": "aerotropolii", 
+            "source_id": 2
         }, 
         {
-            "name": "timezones"
+            "fallback": null, 
+            "name": "timezones", 
+            "source_id": 2
         }
     ], 
     "stat": "ok"

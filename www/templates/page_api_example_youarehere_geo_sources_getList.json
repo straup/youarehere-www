@@ -1,0 +1,17 @@
+{literal}{
+    "sources": [
+        {
+            "id": 0, 
+            "name": "unknown"
+        }, 
+        {
+            "id": 1, 
+            "name": "flickr shapefiles (2.0); gowanus heights (1.0); la lengua (1.0)"
+        }, 
+        {
+            "id": 2, 
+            "name": "woedb (2.0)"
+        }
+    ], 
+    "stat": "ok"
+}{/literal}
