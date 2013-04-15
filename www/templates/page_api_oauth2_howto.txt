@@ -146,8 +146,8 @@
 <h3>Caveats</h3>
 
 <ol class="api-list-o-things" style="margin-top:1.5em;">
-<li>A user may choose to define different permissions for an access token than those requested by an application. Permissions information is returned with an access token so applications should react accordingly.</li>
-<li>A user may choose to define an expiry date for an access token. This information is returned with an access token as a Unix timestamp. A value of <code>0</code> means that the token has no defined expiry date. <em>Returning expiry dates for access tokens is not part of the offical OAuth2 specification.</em></li>
+    <!-- <li>A user may choose to define different permissions for an access token than those requested by an application. Permissions information is returned with an access token so applications should react accordingly.</li> -->
+    <li>A user may choose to define an expiry date for an access token. This information is returned with an access token as a Unix timestamp. A value of <code>0</code> means that the token has no defined expiry date. <em>Returning expiry dates for access tokens is not part of the offical OAuth2 specification.</em></li>
 </ol>
 
 </div>
