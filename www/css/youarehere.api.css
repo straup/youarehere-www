@@ -161,6 +161,14 @@ label {
     font-size:1.5em;
 }
 
+.api-site-name:before {
+    content: '"';
+}
+
+.api-site-name:after {
+    content: '"';
+}
+
 @media print {
 
     #api-methods-toc {

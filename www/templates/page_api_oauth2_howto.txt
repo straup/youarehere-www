@@ -7,18 +7,18 @@
 
 <h2>The basics</h2>
 
-<p><a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> implements the basics of <a href="http://tools.ietf.org/html/rfc6749#section-4.2">section 4.2 of the OAuth2 specification</a> and assumes the following roles and relationships:</p>
+<p><a href="{$cfg.abs_root_url}" class="api-site-name">{$cfg.site_name|escape}</a> implements the basics of <a href="http://tools.ietf.org/html/rfc6749#section-4.2">section 4.2 of the OAuth2 specification</a> and assumes the following roles and relationships:</p>
 
 <div class="api-sect">
 
 <ol class="api-list-o-things" style="margin-top:1.5em;">
-	<li><strong>There are services.</strong> Like this one. <a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> is a &#8220;service&#8221;.</p>
+	<li><strong>There are services.</strong> Like this one. <a href="{$cfg.abs_root_url}" class="api-site-name">{$cfg.site_name|escape}</a> is a service.</p>
 
-	<li><strong>There are users.</strong> Users have accounts on services.{if $cfg.user.id} For example, you are currently logged in to <a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> with your <a href="{$cfg.abs_root_url}account/}">{$cfg.user.username|escape}</a> account.{/if}</li>
+	<li><strong>There are users.</strong> Users have accounts on services.{if $cfg.user.id} For example, you are currently logged in to <a href="{$cfg.abs_root_url}" class="api-site-name">{$cfg.site_name|escape}</a> with your <a href="{$cfg.abs_root_url}account/}">{$cfg.user.username|escape}</a> account.{/if}</li>
 
 	<li><strong>Services have application programming interfaces (APIs).</strong> APIs allow computer programs and robots to talk to the service <a href="{$cfg.abs_root_url}api/methods/">in computer-speak</a>.</li>
 
-	<li><strong>There are applications.</strong> Applications are <em>other</em> programs that use a service's APIs to do stuff. Sometimes an application is another service with its own API.</li> 
+	<li><strong>There are applications.</strong> Applications are <em>other</em> programs that use a service's APIs to do stuff.{if 0}Sometimes an application is another service with its own API.{/if}</li> 
 
 	<li><strong>Applications have API keys.</strong> An API key is like a username for applications. It is used to identify the program trying to use a service's API and, if necessary, to control access.</li>
 
@@ -56,13 +56,13 @@
 
 <ol class="api-list-o-things" style="margin-top:1.5em;">
 
-    <li><strong>There is a webpage maintained by a service where applications can be registered.</strong> The application registration page for <a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> is <code><a href="{$cfg.abs_root_url}api/keys/register/">{$cfg.abs_root_url}api/keys/register/</a></code>. You must have a valid user account to register an application.</li>
+    <li><strong>There is a webpage maintained by a service where applications can be registered.</strong> The application registration page for <a href="{$cfg.abs_root_url}" class="api-site-name">{$cfg.site_name|escape}</a> is <code><a href="{$cfg.abs_root_url}api/keys/register/">{$cfg.abs_root_url}api/keys/register/</a></code>. You must have a valid user account to register an application.</li>
 
-    <li><strong>There is a webpage maintained by a service where users can be prompted to approve an application.</strong> The application approval page for <a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> is <code>{$cfg.abs_root_url}api/oauth2/authenticate/</code>.</li>
+    <li><strong>There is a webpage maintained by a service where users can be prompted to approve an application.</strong> The application approval page for <a href="{$cfg.abs_root_url}" class="api-site-name">{$cfg.site_name|escape}</a> is <code>{$cfg.abs_root_url}api/oauth2/authenticate/</code>.</li>
 
     <li><strong>There is a callback URL maintained by an application where a service can send users after they've approved an application.</strong> Once a user has approved an application the service will send the user to this URL by issuing a <code>302 Redirect</code> HTTP header to the user's browser. The URL will be appended with a <code>code</code> parameter which is a time-sensitive special token that the application uses to request an access token.</li>
 
-    <li><strong>There is a URL maintained by a service where an application can request an access token for a user.</strong> This is the URL that an application sends to the time-sensitive <code>code</code> token to in exchange for an access token. The &#8220;access token exchange&#8221; page for <a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> is <code>{$cfg.abs_root_url}api/oauth2/access_token/</code>.</li>
+    <li><strong>There is a URL maintained by a service where an application can request an access token for a user.</strong> This is the URL that an application sends to the time-sensitive <code>code</code> token to in exchange for an access token. The access token exchange page for <a href="{$cfg.abs_root_url}" class="api-site-name">{$cfg.site_name|escape}</a> is <code>{$cfg.abs_root_url}api/oauth2/access_token/</code>.</li>
 
 </ol>
 
@@ -77,11 +77,11 @@
 
 <ol class="api-list-o-things">
 
-	<li><strong>You create an application</strong> and <a href="{$cfg.abs_root_url}api/keys/register/">register it</a> with <a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a>. As part of the registration process you will define a callback URL where users will be sent to complete the authorization process.</li>
+	<li><strong>You create an application</strong> and <a href="{$cfg.abs_root_url}api/keys/register/">register it</a> with <a href="{$cfg.abs_root_url}" class="api-site-name">{$cfg.site_name|escape}</a>. As part of the registration process you will include a URL where users will be sent to complete the authorization process.</li>
 
-	<li><strong>When you want a user to agree to let your application act on their behalf</strong> you send them to the application authentication page on <a href="{$cfg.abs_root_ur}">{$cfg.site_name|escape}</a>.</li>
+	<li><strong>When you want a user to agree to let your application act on their behalf</strong> you send them to the application authentication page on <a href="{$cfg.abs_root_ur}" class="api-site-name">{$cfg.site_name|escape}</a>.</li>
 
-	<li><strong>Once the user approves the authorization request</strong> they are returned to the callback URL you defined when you registered your application. The callback URL will contain a unique code that can be exchanged for an access token. The code is time-sensitive and is your application's proof to <a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> that a user has approved the authorization request.</li>
+	<li><strong>Once the user approves the authorization request</strong> they are returned to the URL you defined when you registered your application. The URL will contain a unique code that can be exchanged for an access token. The code is time-sensitive and is your application's proof to <a href="{$cfg.abs_root_url}" class="api-site-name">{$cfg.site_name|escape}</a> that a user has approved the authorization request.</li>
 
 	<li><strong>Your application exchanges the code for an access token</strong> and stores the token in a safe and secure place. Your application is now ready to issue <a href="{$cfg.abs_root_url}api/methods/">API calls</a> on behalf of the user associated with the access token.</li>
 </ol>
@@ -96,7 +96,7 @@
 
 <h3>Pseudo-code: Getting a grant token</h3>
 
-<p>This is the part where an application builds a URL that you will send a user to in order to approve your application. <a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> <em>does not</em> allow applications to specify a callback URL (sometimes called a redirect_uri) as part of the user approval process. Applications <em>must</em> define a redirect URL when they <a href="{$cfg.abs_root_url}api/keys/register/">create a API key</a>.</p>
+<p>This is the part where an application builds a URL that you will send a user to in order to approve your application. <a href="{$cfg.abs_root_url}" class="api-site-name">{$cfg.site_name|escape}</a> <em>does not</em> allow applications to specify a callback URL (sometimes called a redirect_uri) as part of the user approval process. Applications <em>must</em> define a redirect URL when they <a href="{$cfg.abs_root_url}api/keys/register/">create a API key</a>.</p>
 
 <pre style="margin-top:2.5em;margin-bottom:2em;">
 
