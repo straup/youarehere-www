@@ -69,6 +69,25 @@
 <p>The &#8220;URL&#8221; defined by an application does not necessarily need to represent a &#8220;web page&#8221; but does need to conform to a known scheme for a <a href="http://www.w3.org/TR/html5/webappapis.html#custom-handlers">protocol handlers</a>. Protocol handlers are used to launch applications instead of just web pages using URLs and vary from one operating system to another so that's really a discussion outside the scope of this document.</p>
 </div>
 
+<div class="api-sect">
+
+<h3>Putting it all together</h3>
+
+<p>In less abstract terms here's how the OAuth2 authorization flow will work:</p>
+
+<ol class="api-list-o-things">
+
+	<li><strong>You create an application</strong> and <a href="{$cfg.abs_root_url}api/keys/register/">register it</a> with <a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a>. As part of the registration process you will define a callback URL where users will be sent to complete the authorization process.</li>
+
+	<li><strong>When you want a user to agree to let your application act on their behalf</strong> you send them to the application authentication page on <a href="{$cfg.abs_root_ur}">{$cfg.site_name|escape}</a>.</li>
+
+	<li><strong>Once the user approves the authorization request</strong> they are returned to the callback URL you defined when you registered your application. The callback URL will contain a unique code that can be exchanged for an access token. The code is time-sensitive and is your application's proof to <a href="{$cfg.abs_root_url}">{$cfg.site_name|escape}</a> that a user has approved the authorization request.</li>
+
+	<li><strong>Your application exchanges the code for an access token</strong> and stores the token in a safe and secure place. Your application is now ready to issue <a href="{$cfg.abs_root_url}api/methods/">API calls</a> on behalf of the user associated with the access token.</li>
+</ol>
+
+</div>
+
 </div>
 
 <div class="api-sect">
@@ -85,7 +104,6 @@
 		'client_id' => '<strong>APPLICATION API KEY</strong>',
 		'scope' => '<strong>THE PERMISSIONS YOU'D LIKE YOUR APPLICATION TO HAVE</strong>',
 		'response_type' => 'code',
-		'state' => 'OPTIONAL APPLICATION-SPECIFIC STATE INFORMATION',
 	);
 
 	$query = http_build_query($args);
@@ -104,7 +122,6 @@
 <pre style="margin-top:2.5em;margin-bottom:2em;">
 
 	<strong>$code = get_str("code");</strong>
-	$state = get_str("state");
 
 	$args = array(
 		'client_id' => '<strong>APPLICATION API KEY</strong>',
