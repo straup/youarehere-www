@@ -73,7 +73,7 @@
 
 <h3>Putting it all together</h3>
 
-<p>In less abstract terms here's how the OAuth2 authorization flow will work:</p>
+<p>In less abstract terms here's how the OAuth2 authorization flow works:</p>
 
 <ol class="api-list-o-things">
 
