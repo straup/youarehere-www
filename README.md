@@ -10,6 +10,8 @@ See also
 
 * [youarehere-data](https://github.com/straup/youarehere-data)
 
+* [flamework-youarehere-api](https://github.com/straup/flamework-youarehere-api)
+
 * [flickrgeocoder-java](https://github.com/mattb/flickrgeocoder-java)
 
 * [twofishes](https://github.com/foursquare/twofishes)
