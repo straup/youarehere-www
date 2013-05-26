@@ -52,6 +52,10 @@
 
   <body>
 
+    {if $cfg.display_message}
+    <div class="navbar navbar-static-top" style="text-align:center;font-weight:700;margin-top:1em;background-color:">{$cfg.display_message_text|escape}</div>
+    {/if}
+
     <div class="navbar navbar-static-top">
       <div class="navbar-inner">
         <div class="container">
